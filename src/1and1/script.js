@@ -5,7 +5,7 @@ const apiObj = {
 // fetch api
 const fetchApi = async (apiObj) => {
   const response = await fetch(
-    "http://localhost:8000/scraper/based_scraper_py/",
+    "https://dev.laurentiumarian.ro/scraper/based_scraper_py/",
     {
       method: "POST",
       headers: {
@@ -29,12 +29,15 @@ button.addEventListener("click", () => {
   fetchApi(apiObj).then((data) => {
     svg.classList.toggle("rotate");
     button.disabled = false;
-    console.log(data);
     if (data.succes) {
       document.querySelector("#status").innerHTML = "Active";
       document.querySelector("#jobs").innerHTML = data.Total;
     } else {
       document.querySelector("#status").innerHTML = "Inactive";
     }
+  }).catch(() => {
+    svg.classList.toggle("rotate");
+    button.disabled = false;
+    document.querySelector("#status").innerHTML = "Api Error";
   });
 });
