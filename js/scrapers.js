@@ -20,4 +20,7 @@ let scrapers = [
   {
     name:"8x8"
   },
+  {
+    name:"adp"
+  },
 ];
