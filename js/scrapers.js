@@ -13,5 +13,11 @@ let scrapers = [
   },
   {
     name:"adobe"
-  }
+  },
+  {
+    name:"slb"
+  },
+  {
+    name:"8x8"
+  },
 ];
