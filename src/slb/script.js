@@ -1,11 +1,11 @@
 const apiObj = {
-  file: "1and1.py",
+  file: "slb.js",
 };
 
 // fetch api
 const fetchApi = async (apiObj) => {
   const response = await fetch(
-    "https://dev.laurentiumarian.ro/scraper/based_scraper_py/",
+    "https://dev.laurentiumarian.ro/scraper/based_scraper_js/",
     {
       method: "POST",
       headers: {
