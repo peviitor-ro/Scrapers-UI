@@ -104,12 +104,10 @@ const create_job = (data) => {
       </div>
   `
   document.querySelector('.jobs').appendChild(jobElement)
-}
+};
 
 const button = document.querySelector("button");
 const svg = document.querySelector("svg");
-const div = document.querySelector("div");
-const a = document.querySelector("a");
 
 button.addEventListener("click", () => {
   svg.classList.toggle("rotate");
