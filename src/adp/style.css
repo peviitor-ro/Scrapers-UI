@@ -227,3 +227,55 @@ button div {
     gap: 10px;
   }
 }
+
+/* data */
+
+.job-location a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.jobs {
+  display: flex;
+  flex-direction: column;
+}
+
+.job{
+  margin:10px;
+  background-color: white;
+  padding: 20px;
+}
+
+.job-title, .job-company, .job-location {
+  margin: 10px;
+}
+
+.job-location{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color:#979c9e;
+}
+
+.job-location div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.validate {
+  color: rgb(0, 172, 0) !important;
+}
+
+.invalid {
+  color: red !important;
+}
+
+@media (max-width: 546px) {
+  .job-location {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
