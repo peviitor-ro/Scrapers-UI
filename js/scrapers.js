@@ -46,5 +46,11 @@ let scrapers = [
   },
   {
     name:"InterbrandsOrbico" // Rares
+  },
+  {
+    name:"quantrabbit" // Loredana Berchesan
+  },
+  {
+    name:"Nagarro" // Rares
   }
 ];
