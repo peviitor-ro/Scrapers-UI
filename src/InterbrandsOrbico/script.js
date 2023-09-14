@@ -5,7 +5,7 @@ const apiObj = {
 // fetch api
 const fetchApi = async (apiObj) => {
   const response = await fetch(
-    "http://localhost:8000",
+    "https://dev.laurentiumarian.ro",
     {
       method: "POST",
       headers: {
