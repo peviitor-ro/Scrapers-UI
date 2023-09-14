@@ -19,31 +19,47 @@ const fetchApi = async (apiObj) => {
 };
 
 const validate_data = (data, keyword) => {
-  if (data[keyword][0] !== undefined && data[keyword][0] !== null && data[keyword][0] !== '') {
+  try {
+    if (data[keyword][0] !== undefined && data[keyword][0] !== null && data[keyword][0] !== '') {
       return true
+    }
+  } catch (error) {
+    return false
   }
   return false
 }
 
 const validate_company = (data) => {
-  if (data['company'][0] !== undefined && data['company'][0] !== null && data['company'][0] !== '' && data['company'][0].toLowerCase().includes('interbrands') && data['company'][0] === apiObj.company) {
-      return true
+  try{
+    if (data['company'][0] !== undefined && data['company'][0] !== null && data['company'][0] !== '' && data['company'][0].toLowerCase().includes('interbrands') && data['company'][0] === apiObj.company) {
+        return true
+    }
+  }catch (error) {
+    return false
   }
   return false
 };
 
 const validate_link = (data) => {
-  if (data['job_link'][0] !== undefined && data['job_link'][0] !== null && data['job_link'][0] !== '' && data['job_link'][0].includes('https://')) {
+  try {
+    if (data['job_link'][0] !== undefined && data['job_link'][0] !== null && data['job_link'][0] !== '' && data['job_link'][0].includes('https://')) {
       return true
+    }
+  } catch (error) {
+    return false
   }
   return false
 }
 
 const validate_country = (data) => {
-  for (let i = 0; i < countries.length; i++) {
+  try {
+    for (let i = 0; i < countries.length; i++) {
       if (countries[i].name.toLowerCase().includes(data['country'][0].toLowerCase())) {
           return true
       }
+    }
+  } catch (error) {
+    return false
   }
   return false
 }
