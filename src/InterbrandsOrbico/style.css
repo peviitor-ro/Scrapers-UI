@@ -72,6 +72,8 @@ table {
   border: 1px solid #ccc;
   margin: 100px auto;
   width: calc(100% - 40px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
 }
 
 table td,

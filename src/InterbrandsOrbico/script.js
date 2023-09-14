@@ -1,11 +1,11 @@
 const apiObj = {
-  file: "acrom.py",
+  company: "InterbrandsOrbico",
 };
 
 // fetch api
 const fetchApi = async (apiObj) => {
   const response = await fetch(
-    "https://dev.laurentiumarian.ro/scraper/based_scraper_py/",
+    "http://localhost:8000",
     {
       method: "POST",
       headers: {
@@ -19,22 +19,29 @@ const fetchApi = async (apiObj) => {
 };
 
 const validate_data = (data, keyword) => {
-  if (data[keyword] !== undefined && data[keyword] !== null && data[keyword] !== '') {
+  if (data[keyword][0] !== undefined && data[keyword][0] !== null && data[keyword][0] !== '') {
       return true
   }
   return false
 }
 
-const validate_link = (data, keyword) => {
-  if (data[keyword] !== undefined && data[keyword] !== null && data[keyword] !== '' && data[keyword].includes('https://')) {
+const validate_company = (data) => {
+  if (data['company'][0] !== undefined && data['company'][0] !== null && data['company'][0] !== '' && data['company'][0].toLowerCase().includes('interbrands') && data['company'][0] === apiObj.company) {
+      return true
+  }
+  return false
+};
+
+const validate_link = (data) => {
+  if (data['job_link'][0] !== undefined && data['job_link'][0] !== null && data['job_link'][0] !== '' && data['job_link'][0].includes('https://')) {
       return true
   }
   return false
 }
 
-const validate_country = (data, keyword) => {
+const validate_country = (data) => {
   for (let i = 0; i < countries.length; i++) {
-      if (countries[i].name.toLowerCase().includes(data[keyword].toLowerCase())) {
+      if (countries[i].name.toLowerCase().includes(data['country'][0].toLowerCase())) {
           return true
       }
   }
@@ -80,10 +87,10 @@ const create_job = (data) => {
                   }
               </div>, 
               <div class="${
-                  validate_country(data, 'country') ? 'validate' : 'invalid'
+                  validate_country(data) ? 'validate' : 'invalid'
               }">
                   ${
-                      validate_country(data, 'country')
+                      validate_country(data)
                           ? data.country
                           : data.country + ' is not a country'
                   }
@@ -92,7 +99,7 @@ const create_job = (data) => {
           </div>
           <a href="${data.job_link}" class="
           ${
-              validate_link(data, 'job_link') ? 'validate' : 'invalid'
+              validate_link(data) ? 'validate' : 'invalid'
           }"
           ">
               Vezi Postul 
@@ -107,6 +114,8 @@ const create_job = (data) => {
 
 const button = document.querySelector("button");
 const svg = document.querySelector("svg");
+const div = document.querySelector("div");
+const a = document.querySelector("a");
 
 button.addEventListener("click", () => {
   svg.classList.toggle("rotate");

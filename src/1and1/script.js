@@ -36,7 +36,6 @@ const validate_country = (data, keyword) => {
   for (let i = 0; i < countries.length; i++) {
       if (countries[i].name.toLowerCase().includes(data[keyword].toLowerCase())) {
           return true
-          break
       }
   }
   return false
