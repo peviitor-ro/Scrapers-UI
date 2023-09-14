@@ -1,0 +1,229 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: "Poppins", sans-serif;
+  background-color: #e9e9e9;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header .logo {
+  flex: 1;
+  display: flex;
+    align-items: center;
+    font-family:'Times New Roman', Times, serif;
+}
+
+.header a {
+  text-decoration: none;
+  color: black;
+}
+
+.company {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: end;
+  width: 90%;
+  margin: 20px auto;
+}
+
+.about {
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.5);
+  transform: translate(-50px, 70px);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.about div {
+  margin: 10px 0;
+  display: flex;
+  justify-content: end;
+}
+
+.about a,
+.job-location a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  background-color: #e08d21;
+  border-radius: 5px;
+  text-align: center;
+}
+
+table {
+  position: relative;
+  width: 100%;
+  border: 1px solid #ccc;
+  margin: 100px auto;
+  width: calc(100% - 40px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
+}
+
+table td,
+table th {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+tbody tr td:nth-last-child(1) {
+  display: flex;
+  justify-content: end;
+}
+
+thead {
+  background-color: #e08d21;
+  color: white;
+}
+
+td button,
+td a {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  background-color: #e08d21;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-right: 10px;
+  text-decoration: none;
+  font-size: 10px;
+  height: 30px;
+}
+
+button div {
+  margin-right: 5px;
+}
+
+.rotate {
+  animation: rotate 1s linear infinite;
+}
+
+/* rotate animation */
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+@media (max-width: 1047px) {
+  .company {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about {
+    transform: translate(0, 0);
+    margin: 20px 0 0 0;
+  }
+
+  table {
+    margin: 10px auto;
+    display: flex;
+  }
+
+  thead {
+    background-color: inherit;
+  }
+
+  th {
+    background-color: #e08d21;
+    margin: 1px;
+  }
+
+  td {
+    margin: 1px;
+  }
+
+  table td,
+  table th {
+    height: 50px;
+    display: flex;
+    align-items: center;
+  }
+
+  thead tr,
+  tbody tr {
+    display: flex;
+    flex-direction: column;
+  }
+
+  tbody {
+    flex: 1;
+  }
+}
+
+/* data */
+
+.job-location a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.jobs {
+  display: flex;
+  flex-direction: column;
+}
+
+.job{
+  margin:10px;
+  background-color: white;
+  padding: 20px;
+}
+
+.job-title, .job-company, .job-location {
+  margin: 10px;
+}
+
+.job-location{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color:#979c9e;
+}
+
+.job-location div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.validate {
+  color: rgb(0, 172, 0) !important;
+}
+
+.invalid {
+  color: red !important;
+}
+
+@media (max-width: 546px) {
+  .job-location {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
