@@ -52,5 +52,8 @@ let scrapers = [
   },
   {
     name:"Nagarro" // Rares
+  },
+  {
+    name:"altom"
   }
 ];
