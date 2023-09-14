@@ -9,18 +9,39 @@ let scrapers = [
     name: "acrom",
   },
   {
-    name:"adi"
+    name: "adi",
   },
   {
-    name:"adobe"
+    name: "adobe",
   },
   {
-    name:"slb"
+    name: "slb",
   },
   {
-    name:"8x8"
+    name: "8x8",
   },
   {
-    name:"adp"
+    name: "adp",
+  },
+  {
+    name: "888sparkware",
+  },
+  {
+    name: "abbvie",
+  },
+  {
+    name: "adient",
+  },
+  {
+    name: "aera",
+  },
+  {
+    name: "agricover",
+  },
+  {
+    name: "airbus",
+  },
+  {
+    name: "alstom",
   },
 ];
