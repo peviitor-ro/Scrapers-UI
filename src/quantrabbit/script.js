@@ -1,5 +1,5 @@
 const apiObj = {
-  company: "InterbrandsOrbico",
+  company: "quantrabbit",
 };
 
 // fetch api
