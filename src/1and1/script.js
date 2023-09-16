@@ -76,20 +76,20 @@ const create_job = (data) => {
                       ? data.country
                       : data.country + " is not a country"
                   }
-              </div> 
-            
-        </div>
-    </div>
-      <div class="job_link-container">
-      <a href="${data.job_link}" class="
-      ${validate_link(data, "job_link") ? "validate" : "invalid"}"
-      target="_blank"
-      ">
-          Vezi Postul 
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M5 12H19M19 12L12 4.99988M19 12L12 18.9999" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-      </a>
+              </div>
+              
+          </div>
+          <a href="${data.job_link}" class="
+          ${
+              validate_link(data, 'job_link') ? 'validate' : 'invalid'
+          }"
+          target="_blank"
+          ">
+              Vezi Postul 
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12H19M19 12L12 4.99988M19 12L12 18.9999" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+          </a>
       </div>
 
   `;
