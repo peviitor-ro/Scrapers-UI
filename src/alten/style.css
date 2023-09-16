@@ -5,9 +5,6 @@
 }
 
 body {
-  /* display: flex;
-  flex-direction: column;
-  justify-content: space-between; */
   font-family: "Poppins", sans-serif;
   background-color: #e9e9e9;
 }
@@ -23,8 +20,8 @@ body {
 .header .logo {
   flex: 1;
   display: flex;
-  align-items: center;
-  font-family: "Times New Roman", Times, serif;
+    align-items: center;
+    font-family:'Times New Roman', Times, serif;
 }
 
 .header a {
@@ -35,10 +32,17 @@ body {
 .company {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  align-items: end;
-  width: 90%;
-  margin: 20px auto;
+  align-items: center;
+  width: 80%;
+  margin: auto;
+  letter-spacing: 1px;
+  font: 1.2em "Poppins", sans-se, bold;
+}
+
+.company img {
+  width: 20%;
+  height: 100%;
+  margin-right: 100px;
 }
 
 .about {
@@ -55,7 +59,9 @@ body {
   justify-content: end;
 }
 
-.about a {
+.about a,
+.job-location a {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-decoration: none;
   color: white;
   font-weight: bold;
@@ -66,12 +72,14 @@ body {
 }
 
 table {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   position: relative;
   width: 100%;
   border: 1px solid #ccc;
-  margin: 100px auto;
+  margin: 150px auto;
   width: calc(100% - 40px);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
 }
 
 table td,
@@ -104,9 +112,8 @@ td a {
   justify-content: space-evenly;
   margin-right: 10px;
   text-decoration: none;
-  font-size: 10px;
+  font-size: 12px;
   height: 30px;
-  font-size: 16px;
 }
 
 button div {
@@ -177,41 +184,36 @@ button div {
 
 /* data */
 
-.jobs {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  grid-auto-rows: 250px;
-}
-.job {
-  background-color: white;
-  border-top-right-radius: 26px;
-  border-bottom-left-radius: 26px;
-  margin: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-shadow: 0 4px 8px black;
-}
-
-.details-container {
-  padding: 10px 15px;
-}
-
-.job-title,
-.job-company,
-.job-location {
-  margin: 15px 0px;
-}
-
-.job-location {
+.job-location a {
   display: flex;
   align-items: center;
-  color: #979c9e;
   gap: 10px;
 }
 
+.jobs {
+  display: flex;
+  flex-direction: column;
+}
+
+.job{
+  margin:10px;
+  background-color: white;
+  padding: 20px;
+}
+
+.job-title, .job-company, .job-location {
+  margin: 10px;
+}
+
+.job-location{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color:#979c9e;
+}
+
 .job_link-container {
-  background-color: #cfcfcf;
+  background-color: #201f1f;
   border-top-right-radius: 26px;
   border-bottom-left-radius: 26px;
   padding: 5px;
@@ -221,7 +223,49 @@ button div {
   font-weight: 600;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 10px;
+}
+
+.validate {
+  color: rgb(0, 172, 0) !important;
+}
+
+.invalid {
+  color: rgba(255, 0, 0, 0.938) !important;
+}
+
+.button-to-top-parent {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.jobs {
+  display: flex;
+  flex-direction: column;
+}
+
+.job{
+  margin:10px;
+  background-color: white;
+  padding: 20px;
+}
+
+.job-title, .job-company, .job-location {
+  margin: 10px;
+}
+
+.job-location{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color:#979c9e;
+}
+
+.job-location div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .validate {
@@ -232,31 +276,10 @@ button div {
   color: red !important;
 }
 
-.button-to-top-parent{
-  display: flex;
-  justify-content: end;
-  margin-right: 20px;
-  align-items: end;
-}
-.button-to-top {
-  padding: 10px;
-  background-color: black;
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  font-size: 20px;
-  position: fixed;
-  bottom: 10px;
-  color: white;
-}
-
 @media (max-width: 546px) {
-  .logo-company {
-    width: 250px;
-    height: 100px;
+  .job-location {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
   }
 }

@@ -35,10 +35,17 @@ body {
 .company {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  align-items: end;
-  width: 90%;
-  margin: 20px auto;
+  align-items: center;
+  width: 80%;
+  margin: auto;
+  letter-spacing: 1px;
+  font: 1.2em "Poppins", sans-se, bold;
+}
+
+.company img {
+  width: 20%;
+  height: 100%;
+  margin-right: 100px;
 }
 
 .about {
@@ -57,6 +64,7 @@ body {
 
 .about a,
 .job-location a {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-decoration: none;
   color: white;
   font-weight: bold;
@@ -67,11 +75,14 @@ body {
 }
 
 table {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   position: relative;
   width: 100%;
   border: 1px solid #ccc;
-  margin: 100px auto;
+  margin: 150px auto;
   width: calc(100% - 40px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
 }
 
 table td,
@@ -104,7 +115,7 @@ td a {
   justify-content: space-evenly;
   margin-right: 10px;
   text-decoration: none;
-  font-size: 10px;
+  font-size: 12px;
   height: 30px;
 }
 
@@ -171,5 +182,109 @@ button div {
 
   tbody {
     flex: 1;
+  }
+}
+
+/* data */
+
+.job-location a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.jobs {
+  display: flex;
+  flex-direction: column;
+}
+
+.job{
+  margin:10px;
+  background-color: white;
+  padding: 20px;
+}
+
+.job-title, .job-company, .job-location {
+  margin: 10px;
+}
+
+.job-location{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color:#979c9e;
+}
+
+.job-location div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.validate {
+  color: rgb(0, 172, 0) !important;
+}
+
+.invalid {
+  color: red !important;
+}
+
+@media (max-width: 546px) {
+  .job-location {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+/* data */
+
+.job-location a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.jobs {
+  display: flex;
+  flex-direction: column;
+}
+
+.job{
+  margin:10px;
+  background-color: white;
+  padding: 20px;
+}
+
+.job-title, .job-company, .job-location {
+  margin: 10px;
+}
+
+.job-location{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color:#979c9e;
+}
+
+.job-location div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.validate {
+  color: rgb(0, 172, 0) !important;
+}
+
+.invalid {
+  color: red !important;
+}
+
+@media (max-width: 546px) {
+  .job-location {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
   }
 }

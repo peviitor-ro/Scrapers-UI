@@ -1,81 +1,51 @@
 const apiObj = {
-  company: "InterbrandsOrbico",
+  file: "ahk.py",
 };
 
 // fetch api
 const fetchApi = async (apiObj) => {
-  const response = await fetch("https://dev.laurentiumarian.ro", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(apiObj),
-  });
+  const response = await fetch(
+    "https://dev.laurentiumarian.ro/scraper/based_scraper_py/",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(apiObj),
+    }
+  );
   const data = await response.json();
   return data;
 };
 
 const validate_data = (data, keyword) => {
-  try {
-    if (
-      data[keyword][0] !== undefined &&
-      data[keyword][0] !== null &&
-      data[keyword][0] !== ""
-    ) {
-      return true;
-    }
-  } catch (error) {
-    return false;
+  if (
+    data[keyword] !== undefined &&
+    data[keyword] !== null &&
+    data[keyword] !== ""
+  ) {
+    return true;
   }
   return false;
 };
 
-const validate_company = (data) => {
-  try {
-    if (
-      data["company"][0] !== undefined &&
-      data["company"][0] !== null &&
-      data["company"][0] !== "" &&
-      data["company"][0].toLowerCase().includes("interbrands") &&
-      data["company"][0] === apiObj.company
-    ) {
-      return true;
-    }
-  } catch (error) {
-    return false;
+const validate_link = (data, keyword) => {
+  if (
+    data[keyword] !== undefined &&
+    data[keyword] !== null &&
+    data[keyword] !== "" &&
+    data[keyword].includes("https://")
+  ) {
+    return true;
   }
   return false;
 };
 
-const validate_link = (data) => {
-  try {
-    if (
-      data["job_link"][0] !== undefined &&
-      data["job_link"][0] !== null &&
-      data["job_link"][0] !== "" &&
-      data["job_link"][0].includes("https://")
-    ) {
+const validate_country = (data, keyword) => {
+  for (let i = 0; i < countries.length; i++) {
+    if (countries[i].name.toLowerCase().includes(data[keyword].toLowerCase())) {
       return true;
     }
-  } catch (error) {
-    return false;
-  }
-  return false;
-};
-
-const validate_country = (data) => {
-  try {
-    for (let i = 0; i < countries.length; i++) {
-      if (
-        countries[i].name
-          .toLowerCase()
-          .includes(data["country"][0].toLowerCase())
-      ) {
-        return true;
-      }
-    }
-  } catch (error) {
-    return false;
   }
   return false;
 };
@@ -106,9 +76,11 @@ const create_job = (data) => {
               }">
                   ${validate_data(data, "city") ? data.city : "No city"}
               </div>, 
-              <div class="${validate_country(data) ? "validate" : "invalid"}">
+              <div class="${
+                validate_country(data, "country") ? "validate" : "invalid"
+              }">
                   ${
-                    validate_country(data)
+                    validate_country(data, "country")
                       ? data.country
                       : data.country + " is not a country"
                   }
@@ -116,7 +88,7 @@ const create_job = (data) => {
               
           </div>
           <a href="${data.job_link}" class="
-          ${validate_link(data) ? "validate" : "invalid"}"
+          ${validate_link(data, "job_link") ? "validate" : "invalid"}"
           target="_blank"
           ">
               Vezi Postul 
@@ -131,8 +103,6 @@ const create_job = (data) => {
 
 const button = document.querySelector("button");
 const svg = document.querySelector("svg");
-const div = document.querySelector("div");
-const a = document.querySelector("a");
 
 button.addEventListener("click", () => {
   svg.classList.toggle("rotate");
