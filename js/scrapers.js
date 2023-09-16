@@ -45,15 +45,17 @@ let scrapers = [
     name: "alstom",
   },
   {
-    name:"InterbrandsOrbico" // Rares
+    name: "InterbrandsOrbico", // Rares
   },
   {
-    name:"quantrabbit" // Loredana Berchesan
+    name: "quantrabbit", // Loredana Berchesan
   },
   {
-    name:"Nagarro" // Rares
+    name: "Nagarro", // Rares
   },
+  { name: "alten" },
+
   {
-    name:"altom"
-  }
+    name: "altom",
+  },
 ];
