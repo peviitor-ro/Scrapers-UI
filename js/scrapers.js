@@ -58,7 +58,5 @@ let scrapers = [
   {
     name: "altom",
   },
-  {
-    name: "ahk",
-  },
+  { name: "ahk"}
 ];
