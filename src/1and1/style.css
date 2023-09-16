@@ -20,8 +20,8 @@ body {
 .header .logo {
   flex: 1;
   display: flex;
-    align-items: center;
-    font-family:'Times New Roman', Times, serif;
+  align-items: center;
+  font-family: "Times New Roman", Times, serif;
 }
 
 .header a {
@@ -65,7 +65,7 @@ body {
 
 .about a,
 .job-location a {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   text-decoration: none;
   color: white;
   font-weight: bold;
@@ -76,13 +76,12 @@ body {
 }
 
 table {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   position: relative;
   border: 1px solid #ccc;
   margin: auto;
   width: calc(100% - 40px);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  
 }
 
 table td,
@@ -148,7 +147,7 @@ button div {
   .about {
     transform: translate(0, 0);
     margin: 20px 0 0 0;
-    border-radius:0;
+    border-radius: 0;
     font: 1rem "Poppins", sans-serif, bold;
   }
 
@@ -210,15 +209,20 @@ button div {
   padding: 10px 15px;
 }
 
-.job-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-}
-
 .job-title,
 .job-company,
 .job-location {
   margin: 15px 0px;
+}
+
+.job-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.job-company {
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 .job-location {
@@ -229,7 +233,7 @@ button div {
 }
 
 .job_link-container {
-  background-color: #cfcfcf;
+  background-color: #201f1f;
   border-top-right-radius: 26px;
   border-bottom-left-radius: 26px;
   padding: 5px;
@@ -247,10 +251,10 @@ button div {
 }
 
 .invalid {
-  color: red !important;
+  color: rgba(255, 0, 0, 0.938) !important;
 }
 
-.button-to-top-parent{
+.button-to-top-parent {
   display: flex;
   justify-content: end;
   margin-right: 20px;
