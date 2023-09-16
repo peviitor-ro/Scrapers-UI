@@ -5,6 +5,9 @@
 }
 
 body {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-between; */
   font-family: "Poppins", sans-serif;
   background-color: #e9e9e9;
 }
@@ -213,7 +216,7 @@ button div {
 }
 
 .job_link-container {
-  background-color: #201f1f;
+  background-color: #cfcfcf;
   border-top-right-radius: 26px;
   border-bottom-left-radius: 26px;
   padding: 5px;
@@ -231,10 +234,10 @@ button div {
 }
 
 .invalid {
-  color: rgba(255, 0, 0, 0.938) !important;
+  color: red !important;
 }
 
-.button-to-top-parent {
+.button-to-top-parent{
   display: flex;
   align-items: center;
   gap: 10px;
