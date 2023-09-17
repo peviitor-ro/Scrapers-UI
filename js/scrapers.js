@@ -37,4 +37,5 @@ let scrapers = [
   { name: "BorgWarner" },
   { name: "brightantity" },
   { name: "brinks" },
+  { name: "cbre" },
 ];
