@@ -16,13 +16,25 @@ let scrapers = [
   { name: "alstom" },
   { name: "InterbrandsOrbico" }, // Rares
   { name: "quantrabbit" }, // Loredana Berchesan
-  { name: "Nagarro" }, // Rares 
+  { name: "Nagarro" }, // Rares
   { name: "alten" },
   { name: "altom" },
-  { name: "ahk"},
-  { name: "aeroportoradea"},
-  { name: "allengra"},
-  { name: "anahr"},
-  { name: "apavital"},
-  { name: "artvertising"},
+  { name: "ahk" },
+  { name: "aeroportoradea" },
+  { name: "allengra" },
+  { name: "anahr" },
+  { name: "apavital" },
+  { name: "artvertising" },
+  { name: "amdaris" },
+  { name: "ameropa" },
+  { name: "apple" },
+  { name: "aptiv" },
+  { name: "AtlasCopco" },
+  { name: "autoliv" },
+  { name: "bandainamco" },
+  { name: "bearingpoint" },
+  { name: "bolt" },
+  { name: "BorgWarner" },
+  { name: "brightantity" },
+  { name: "brinks" },
 ];
