@@ -100,6 +100,7 @@ const create_job = (data) => {
           </svg>
       </a>
       </div>
+    
 
   `;
   document.querySelector(".jobs").appendChild(jobElement);
@@ -118,13 +119,14 @@ const jobsTotal = (document.querySelector("#jobs").innerHTML =
   localStorage.getItem("jobs"));
 const lastUpdate = (document.querySelector("#last-update").innerHTML =
   localStorage.getItem("lastUpdate"));
+const datasave = JSON.parse(localStorage.getItem("data"));
 
 const container = document.querySelector(".skeleton-jobs");
 const cardTemplate = document.getElementById("card-template");
 
 const today = new Date();
 const date =
-  today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+  today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
 const time =
   today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 const dateTime = date + " " + time;
@@ -136,6 +138,7 @@ for (let i = 0; i < 9; i++) {
 button.addEventListener("click", () => {
   svg.classList.toggle("rotate");
   button.disabled = true;
+  document.querySelector(".jobs").innerHTML = "";
   container.style.display = "grid";
   fetchApi(apiObj)
     .then((data) => {
@@ -149,6 +152,7 @@ button.addEventListener("click", () => {
         data.succes.forEach((job) => {
           create_job(job);
         });
+        localStorage.setItem("data", JSON.stringify(data.succes));
         localStorage.setItem("status", "Active");
         localStorage.setItem("jobs", data.Total);
         localStorage.setItem("lastUpdate", dateTime);
@@ -164,3 +168,16 @@ button.addEventListener("click", () => {
       document.querySelector("#status").innerHTML = "Api Error";
     });
 });
+
+if (datasave !== null) {
+  datasave.forEach((post) => {
+    create_job(post);
+  });
+} else {
+  document.querySelector(".jobs").innerHTML = `
+    <div class='no-data'>
+      <img src="https://icon-library.com/images/no-data-icon/no-data-icon-4.jpg" alt="no-data"/>
+       <p>No data in Local Storage</p>
+    </div>
+    `;
+}

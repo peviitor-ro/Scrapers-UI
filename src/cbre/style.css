@@ -283,6 +283,17 @@ button div {
   }
 }
 
+.no-data {
+  text-align: center;
+  margin-top: auto;
+  font-weight: 600;
+}
+
+.no-data img {
+  width: 150px;
+  margin-bottom: 10px;
+}
+
 /* Skeleton animation */
 
 .skeleton-jobs {
