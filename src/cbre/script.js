@@ -114,12 +114,12 @@ const button = document.querySelector("button");
 const svg = document.querySelector("svg");
 
 const status = (document.querySelector("#status").innerHTML =
-  localStorage.getItem("status"));
+  localStorage.getItem("status-cbre"));
 const jobsTotal = (document.querySelector("#jobs").innerHTML =
-  localStorage.getItem("jobs"));
+  localStorage.getItem("jobs-cbre"));
 const lastUpdate = (document.querySelector("#last-update").innerHTML =
-  localStorage.getItem("lastUpdate"));
-const datasave = JSON.parse(localStorage.getItem("data"));
+  localStorage.getItem("lastUpdate-cbre"));
+const datasave = JSON.parse(localStorage.getItem("data-cbre"));
 
 const container = document.querySelector(".skeleton-jobs");
 const cardTemplate = document.getElementById("card-template");
@@ -152,13 +152,13 @@ button.addEventListener("click", () => {
         data.succes.forEach((job) => {
           create_job(job);
         });
-        localStorage.setItem("data", JSON.stringify(data.succes));
-        localStorage.setItem("status", "Active");
-        localStorage.setItem("jobs", data.Total);
-        localStorage.setItem("lastUpdate", dateTime);
+        localStorage.setItem("data-cbre", JSON.stringify(data.succes));
+        localStorage.setItem("status-cbre", "Active");
+        localStorage.setItem("jobs-cbre", data.Total);
+        localStorage.setItem("lastUpdate-cbre", dateTime);
       } else {
-        localStorage.setItem("status", "Inactive");
-        localStorage.setItem("lastUpdate", dateTime);
+        localStorage.setItem("status-cbre", "Inactive");
+        localStorage.setItem("lastUpdate-cbre", dateTime);
         document.querySelector("#status").innerHTML = "Inactive";
       }
     })
@@ -174,10 +174,31 @@ if (datasave !== null) {
     create_job(post);
   });
 } else {
+  document.querySelector("#status").innerHTML = "Uknown";
+  document.querySelector("#jobs").innerHTML = "Uknown";
+  document.querySelector("#last-update").innerHTML = "Uknown";
   document.querySelector(".jobs").innerHTML = `
-    <div class='no-data'>
-      <img src="https://icon-library.com/images/no-data-icon/no-data-icon-4.jpg" alt="no-data"/>
-       <p>No data in Local Storage</p>
-    </div>
-    `;
+<div class='no-data'>
+  <img src="https://icon-library.com/images/no-data-icon/no-data-icon-4.jpg" alt="no-data"/>
+   <p>No data in Local Storage</p>
+</div>
+`;
 }
+
+const removeLocalStorage = document.querySelector(".delete-storage");
+
+removeLocalStorage.addEventListener("click", () => {
+  localStorage.removeItem("data-cbre");
+  localStorage.removeItem("status-cbre");
+  localStorage.removeItem("jobs-cbre");
+  localStorage.removeItem("lastUpdate-cbre");
+  document.querySelector(".jobs").innerHTML = `
+<div class='no-data'>
+  <img src="https://icon-library.com/images/no-data-icon/no-data-icon-4.jpg" alt="no-data"/>
+   <p>No data in Local Storage</p>
+</div>
+`;
+  document.querySelector("#status").innerHTML = "Uknown";
+  document.querySelector("#jobs").innerHTML = "Uknown";
+  document.querySelector("#last-update").innerHTML = "Uknown";
+});
