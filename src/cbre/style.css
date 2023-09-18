@@ -101,7 +101,8 @@ thead {
 }
 
 td button,
-td a {
+td a,
+td p {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -281,6 +282,17 @@ button div {
     width: 250px;
     height: 100px;
   }
+}
+
+.no-data {
+  text-align: center;
+  margin-top: auto;
+  font-weight: 600;
+}
+
+.no-data img {
+  width: 150px;
+  margin-bottom: 10px;
 }
 
 /* Skeleton animation */
