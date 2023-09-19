@@ -14,9 +14,6 @@ let scrapers = [
   { name: "agricover" },
   { name: "airbus" },
   { name: "alstom" },
-  { name: "InterbrandsOrbico" }, // Rares
-  { name: "quantrabbit" }, // Loredana Berchesan
-  { name: "Nagarro" }, // Rares
   { name: "alten" },
   { name: "altom" },
   { name: "ahk" },

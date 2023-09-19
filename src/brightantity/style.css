@@ -63,11 +63,6 @@ body {
   text-indent: 20px;
 }
 
-.about a {
-  margin: 10px;
-  font-size: 18px;
-}
-
 .about a,
 .job-location a {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -106,7 +101,8 @@ thead {
 }
 
 td button,
-td a {
+td a,
+td p {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -286,4 +282,74 @@ button div {
     width: 250px;
     height: 100px;
   }
+}
+
+.no-data {
+  text-align: center;
+  margin-top: auto;
+  font-weight: 600;
+}
+
+.no-data img {
+  width: 150px;
+  margin-bottom: 10px;
+}
+
+/* Skeleton animation */
+
+.skeleton-jobs {
+  display: none;
+  /* display: grid; */
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-auto-rows: 250px;
+}
+
+.skeleton-job {
+  border-top-right-radius: 26px;
+  border-bottom-left-radius: 26px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #fff;
+}
+
+.skeleton-job-title {
+  width: 15em;
+  height: 2.5em;
+}
+.skeleton-job-company {
+  width: 5em;
+  height: 1em;
+}
+
+.skeleton-job-location {
+  width: 10em;
+  height: 2em;
+}
+
+.skeleton-job-title,
+.skeleton-job-company,
+.skeleton-job-location {
+  margin: 25px 15px;
+  background: #eee;
+  background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+  border-radius: 5px;
+  background-size: 200% 100%;
+  animation: 1.5s shine linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
+}
+
+.skeleton-job-post {
+  border-top-right-radius: 26px;
+  border-bottom-left-radius: 26px;
+  padding: 15px;
+  background: linear-gradient(110deg, #494747 8%, #302e2e 18%, #3d3b3b 33%);
+  background-size: 200% 100%;
+  animation: 1.5s shine linear infinite;
 }

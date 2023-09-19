@@ -4,9 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <!-- De Modificat -->
-    <title>Scraper-artvertising</title>
-    <!-- ################## -->
+    <title></title>
   </head>
   <body>
     <div class="header">
@@ -16,6 +14,8 @@
             <i>Scraper-UI.</i>
           </h3>
           <img
+            width="100"
+            height="30"
             src="https://peviitor.ro/static/media/peviitor_logo.df4cd2d4b04f25a93757bb59b397e656.svg"
             alt="logo"
           />
@@ -53,16 +53,16 @@
           <th>Company</th>
           <th>Status</th>
           <th>Jobs</th>
+          <th>Last Update</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <!-- De Modificat -->
-          <td>Apavital</td>
-          <!-- ############ -->
+          <td id="company"></td>
           <td id="status">Uknown</td>
           <td id="jobs">Uknown</td>
+          <td id="last-update"></td>
           <td>
             <button>
               <div>Run Scraper</div>
@@ -89,11 +89,26 @@
               >See Jobs</a
             >
             <!-- ############ -->
+            <p class="delete-storage">Delete Local Storage</p>
           </td>
         </tr>
       </tbody>
     </table>
     <div class="jobs"></div>
+    <div class="skeleton-jobs">
+      <template id="card-template">
+        <div class="skeleton-job">
+          <div>
+            <p class="skeleton-job-title"></p>
+            <p class="skeleton-job-company"></p>
+            <p class="skeleton-job-location"></p>
+          </div>
+          <div class="skeleton-job-post">
+            <p></p>
+          </div>
+        </div>
+      </template>
+    </div>
     <div onclick="toTop()" class="button-to-top-parent">
       <div class="button-to-top">&#8679;</div>
     </div>
