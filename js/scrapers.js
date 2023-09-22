@@ -1,60 +1,974 @@
 let scrapers = [
-  { name: "1and1" },
-  { name: "3m" },
-  { name: "acrom" },
-  { name: "adi" },
-  { name: "adobe" },
-  { name: "slb" },
-  { name: "8x8" },
-  { name: "adp" },
-  { name: "888sparkware" },
-  { name: "abbvie" },
-  { name: "adient" },
-  { name: "aera" },
-  { name: "agricover" },
-  { name: "airbus" },
-  { name: "alstom" },
-  { name: "alten" },
-  { name: "altom" },
-  { name: "ahk" },
-  { name: "aeroportoradea" },
-  { name: "allengra" },
-  { name: "anahr" },
-  { name: "apavital" },
-  { name: "artvertising" },
-  { name: "amdaris" },
-  { name: "ameropa" },
-  { name: "apple" },
-  { name: "aptiv" },
-  { name: "AtlasCopco" },
-  { name: "autoliv" },
-  { name: "bandainamco" },
-  { name: "bearingpoint" },
-  { name: "bolt" },
-  { name: "BorgWarner" },
-  { name: "brightantity" },
-  { name: "brinks" },
-  { name: "cbre" },
-  { name: "cegeka" },
-  { name: "celestica" },
-  { name: "cocacola" },
-  { name: "cognizantSoftvision" },
-  { name: "conarg" },
-  { name: "continental" },
-  { name: "crowdstrike" },
-  { name: "cummins" },
-  { name: "ddroidd" },
-  { name: "decorfloor" },
-  { name: "delonghi" },
-  { name: "DeutscheBank" },
-  { name: "DistrigazSudRetele" },
-  { name: "drmax" },
-  { name: "dynata" },
-  { name: "eaton" },
-  { name: "evolve" },
-  { name: "ey" },
-  { name: "fildas" },
-  { name: "finastra" },
-  { name: "flex" },
-  { name: "glovo" },
+  {
+    name: "inetum",
+  },
+  {
+    name: "veeam",
+  },
+  {
+    name: "msgsystems",
+  },
+  {
+    name: "svn",
+  },
+  {
+    name: "nextgh",
+  },
+  {
+    name: "bcr",
+  },
+  {
+    name: "arabesque",
+  },
+  {
+    name: "lseg",
+  },
+  {
+    name: "eon",
+  },
+  {
+    name: "linde",
+  },
+  {
+    name: "vodafone",
+  },
+  {
+    name: "bancatransilvania",
+  },
+  {
+    name: "penny",
+  },
+  {
+    name: "adobe",
+  },
+  {
+    name: "diconium",
+  },
+  {
+    name: "intel",
+  },
+  {
+    name: "siemenshealthineers",
+  },
+  {
+    name: "thalesgroup",
+  },
+  {
+    name: "primark",
+  },
+  {
+    name: "autonom",
+  },
+  {
+    name: "allianz",
+  },
+  {
+    name: "generali",
+  },
+  {
+    name: "bat",
+  },
+  {
+    name: "capgemini",
+  },
+  {
+    name: "teleperformance",
+  },
+  {
+    name: "samsung",
+  },
+  {
+    name: "enel",
+  },
+  {
+    name: "evozone",
+  },
+  {
+    name: "wtb",
+  },
+  {
+    name: "msd",
+  },
+  {
+    name: "kws",
+  },
+  {
+    name: "JacobsDouweEgberts",
+  },
+  {
+    name: "siemensenergy",
+  },
+  {
+    name: "webasto",
+  },
+  {
+    name: "thoughtworks",
+  },
+  {
+    name: "sgs",
+  },
+  {
+    name: "veoneer",
+  },
+  {
+    name: "heineken",
+  },
+  {
+    name: "kpmg",
+  },
+  {
+    name: "amd",
+  },
+  {
+    name: "dedeman",
+  },
+  {
+    name: "3m",
+  },
+  {
+    name: "allianztiriac",
+  },
+  {
+    name: "ericsson",
+  },
+  {
+    name: "ppt",
+  },
+  {
+    name: "fga",
+  },
+  {
+    name: "TBIBank",
+  },
+  {
+    name: "betfair",
+  },
+  {
+    name: "danone",
+  },
+  {
+    name: "brd",
+  },
+  {
+    name: "avangardesoftware",
+  },
+  {
+    name: "LibraBank",
+  },
+  {
+    name: "strabag",
+  },
+  {
+    name: "fedex",
+  },
+  {
+    name: "amazon",
+  },
+  {
+    name: "pentesttools",
+  },
+  {
+    name: "ptc",
+  },
+  {
+    name: "main",
+  },
+  {
+    name: "uipath",
+  },
+  {
+    name: "biofarm",
+  },
+  {
+    name: "adi",
+  },
+  {
+    name: "infineon",
+  },
+  {
+    name: "nestle",
+  },
+  {
+    name: "publicisgroupe",
+  },
+  {
+    name: "MegaImage",
+  },
+  {
+    name: "draxlmaier",
+  },
+  {
+    name: "1and1",
+  },
+  {
+    name: "sonnentor",
+  },
+  {
+    name: "kelloggs",
+  },
+  {
+    name: "romaero",
+  },
+  {
+    name: "8x8",
+  },
+  {
+    name: "IntesaSanpaoloBank",
+  },
+  {
+    name: "weatherford",
+  },
+  {
+    name: "oracle",
+  },
+  {
+    name: "cososys",
+  },
+  {
+    name: "medicover",
+  },
+  {
+    name: "cargill",
+  },
+  {
+    name: "pfizer",
+  },
+  {
+    name: "medlife",
+  },
+  {
+    name: "telusinternational",
+  },
+  {
+    name: "mazars",
+  },
+  {
+    name: "cartofisserie",
+  },
+  {
+    name: "bayern",
+  },
+  {
+    name: "freudenberg",
+  },
+  {
+    name: "atos",
+  },
+  {
+    name: "molsoncoors",
+  },
+  {
+    name: "romstal",
+  },
+  {
+    name: "altom",
+  },
+  {
+    name: "cat",
+  },
+  {
+    name: "astrazeneca",
+  },
+  {
+    name: "zentiva",
+  },
+  {
+    name: "parexel",
+  },
+  {
+    name: "pragmaticplay",
+  },
+  {
+    name: "HCLTechnologies",
+  },
+  {
+    name: "KBR",
+  },
+  {
+    name: "hp",
+  },
+  {
+    name: "ups",
+  },
+  {
+    name: "rompetrol",
+  },
+  {
+    name: "nshift",
+  },
+  {
+    name: "decathlon",
+  },
+  {
+    name: "crowe",
+  },
+  {
+    name: "acrom",
+  },
+  {
+    name: "arcadis",
+  },
+  {
+    name: "dell",
+  },
+  {
+    name: "hm",
+  },
+  {
+    name: "ElectronicArts",
+  },
+  {
+    name: "skilld",
+  },
+  {
+    name: "synevo",
+  },
+  {
+    name: "novartis",
+  },
+  {
+    name: "otpbank",
+  },
+  {
+    name: "docker",
+  },
+  {
+    name: "auchan",
+  },
+  {
+    name: "snclavalin",
+  },
+  {
+    name: "adp",
+  },
+  {
+    name: "ahk",
+  },
+  {
+    name: "mcro",
+  },
+  {
+    name: "randstad",
+  },
+  {
+    name: "farmaciatei",
+  },
+  {
+    name: "gep",
+  },
+  {
+    name: "segula",
+  },
+  {
+    name: "MagnaElectronics",
+  },
+  {
+    name: "veo",
+  },
+  {
+    name: "goodyear",
+  },
+  {
+    name: "selgros",
+  },
+  {
+    name: "renault",
+  },
+  {
+    name: "cgm",
+  },
+  {
+    name: "velpitar",
+  },
+  {
+    name: "InterbrandsOrbico",
+  },
+  {
+    name: "softexco",
+  },
+  {
+    name: "duktech",
+  },
+  {
+    name: "cscale",
+  },
+  {
+    name: "autoclass",
+  },
+  {
+    name: "edutrust",
+  },
+  {
+    name: "pago",
+  },
+  {
+    name: "iuliuscompany",
+  },
+  {
+    name: "covalact",
+  },
+  {
+    name: "rervest",
+  },
+  {
+    name: "signaliduna",
+  },
+  {
+    name: "dualit",
+  },
+  {
+    name: "zucchetti",
+  },
+  {
+    name: "calcrom",
+  },
+  {
+    name: "anahr",
+  },
+  {
+    name: "consultmed",
+  },
+  {
+    name: "kaizengaming",
+  },
+  {
+    name: "saladbox",
+  },
+  {
+    name: "takeandeat",
+  },
+  {
+    name: "gazduirejocuri",
+  },
+  {
+    name: "speedservicesatumare",
+  },
+  {
+    name: "update_logo",
+  },
+  {
+    name: "ramadaiasi",
+  },
+  {
+    name: "sephora",
+  },
+  {
+    name: "rdnautomatic",
+  },
+  {
+    name: "conexdist",
+  },
+  {
+    name: "beenear",
+  },
+  {
+    name: "avaelgo",
+  },
+  {
+    name: "bakertilly",
+  },
+  {
+    name: "ellisium",
+  },
+  {
+    name: "splendor",
+  },
+  {
+    name: "panifcom",
+  },
+  {
+    name: "bbcollection",
+  },
+  {
+    name: "htecgroup",
+  },
+  {
+    name: "ensemblesoftware",
+  },
+  {
+    name: "aeroportoradea",
+  },
+  {
+    name: "arcadiamedical",
+  },
+  {
+    name: "creatopy",
+  },
+  {
+    name: "netrom",
+  },
+  {
+    name: "leier",
+  },
+  {
+    name: "reginamaria",
+  },
+  {
+    name: "titanmachinery",
+  },
+  {
+    name: "metamob",
+  },
+  {
+    name: "typingdna",
+  },
+  {
+    name: "expomedics",
+  },
+  {
+    name: "reinert",
+  },
+  {
+    name: "oradeatechhub",
+  },
+  {
+    name: "electra",
+  },
+  {
+    name: "trencadis",
+  },
+  {
+    name: "autosiena",
+  },
+  {
+    name: "brillio",
+  },
+  {
+    name: "apavital",
+  },
+  {
+    name: "iasidelivery",
+  },
+  {
+    name: "kinetic",
+  },
+  {
+    name: "bitsoftware",
+  },
+  {
+    name: "artvertising",
+  },
+  {
+    name: "expresscredit",
+  },
+  {
+    name: "etusoft",
+  },
+  {
+    name: "secondtex",
+  },
+  {
+    name: "polipolmobila",
+  },
+  {
+    name: "carturesti",
+  },
+  {
+    name: "connectgroup",
+  },
+  {
+    name: "expertmind",
+  },
+  {
+    name: "atp-group",
+  },
+  {
+    name: "sonrisatechnologies",
+  },
+  {
+    name: "csgroup",
+  },
+  {
+    name: "nolimits",
+  },
+  {
+    name: "britishcouncil",
+  },
+  {
+    name: "tcandc",
+  },
+  {
+    name: "cargus",
+  },
+  {
+    name: "nielseniq",
+  },
+  {
+    name: "careerscenter",
+  },
+  {
+    name: "inova",
+  },
+  {
+    name: "cargotrack",
+  },
+  {
+    name: "elytishospital",
+  },
+  {
+    name: "kimballelectronics",
+  },
+  {
+    name: "nokia",
+  },
+  {
+    name: "autonet",
+  },
+  {
+    name: "softing",
+  },
+  {
+    name: "sandra",
+  },
+  {
+    name: "zeelandia",
+  },
+  {
+    name: "urbio",
+  },
+  {
+    name: "ppromania",
+  },
+  {
+    name: "nagarro",
+  },
+  {
+    name: "allengra",
+  },
+  {
+    name: "casaautoiasi",
+  },
+  {
+    name: "basware",
+  },
+  {
+    name: "mennekes",
+  },
+  {
+    name: "preh",
+  },
+  {
+    name: "unilever",
+  },
+  {
+    name: "regnology",
+  },
+  {
+    name: "osfdigital",
+  },
+  {
+    name: "syncrosoft",
+  },
+  {
+    name: "wns",
+  },
+  {
+    name: "agricover",
+  },
+  {
+    name: "maersk",
+  },
+  {
+    name: "ey",
+  },
+  {
+    name: "finastra",
+  },
+  {
+    name: "npx",
+  },
+  {
+    name: "crowdstrike",
+  },
+  {
+    name: "poppAsociatii",
+  },
+  {
+    name: "rsystems",
+  },
+  {
+    name: "infineon",
+  },
+  {
+    name: "alten",
+  },
+  {
+    name: "evolve",
+  },
+  {
+    name: "brinks",
+  },
+  {
+    name: "ortec",
+  },
+  {
+    name: "kuka",
+  },
+  {
+    name: "mahle",
+  },
+  {
+    name: "glovo",
+  },
+  {
+    name: "pentalog",
+  },
+  {
+    name: "smithfield",
+  },
+  {
+    name: "bandainamco",
+  },
+  {
+    name: "halliburton",
+  },
+  {
+    name: "slb",
+  },
+  {
+    name: "delonghi",
+  },
+  {
+    name: "BorgWarner",
+  },
+  {
+    name: "michelin",
+  },
+  {
+    name: "METGroup",
+  },
+  {
+    name: "henkel",
+  },
+  {
+    name: "conarg",
+  },
+  {
+    name: "kontron",
+  },
+  {
+    name: "ssischaefer",
+  },
+  {
+    name: "cummins",
+  },
+  {
+    name: "plexus",
+  },
+  {
+    name: "ikea",
+  },
+  {
+    name: "sanofi",
+  },
+  {
+    name: "cognizantSoftvision",
+  },
+  {
+    name: "leoni",
+  },
+  {
+    name: "SchneiderElectric",
+  },
+  {
+    name: "loreal",
+  },
+  {
+    name: "romcim",
+  },
+  {
+    name: "majorel",
+  },
+  {
+    name: "sagittarius",
+  },
+  {
+    name: "pentasia",
+  },
+  {
+    name: "flex",
+  },
+  {
+    name: "porsche",
+  },
+  {
+    name: "ing",
+  },
+  {
+    name: "kone",
+  },
+  {
+    name: "adient",
+  },
+  {
+    name: "groupama",
+  },
+  {
+    name: "keysight",
+  },
+  {
+    name: "philips",
+  },
+  {
+    name: "888sparkware",
+  },
+  {
+    name: "zf",
+  },
+  {
+    name: "AtlasCopco",
+  },
+  {
+    name: "ameropa",
+  },
+  {
+    name: "DistrigazSudRetele",
+  },
+  {
+    name: "schaeffler",
+  },
+  {
+    name: "decorfloor",
+  },
+  {
+    name: "ibm",
+  },
+  {
+    name: "dynata",
+  },
+  {
+    name: "Hill",
+  },
+  {
+    name: "amdaris",
+  },
+  {
+    name: "mondelez",
+  },
+  {
+    name: "hilti",
+  },
+  {
+    name: "aera",
+  },
+  {
+    name: "ddroidd",
+  },
+  {
+    name: "revolut",
+  },
+  {
+    name: "cegeka",
+  },
+  {
+    name: "qualcomm",
+  },
+  {
+    name: "fildas",
+  },
+  {
+    name: "marquardt",
+  },
+  {
+    name: "abbvie",
+  },
+  {
+    name: "bolt",
+  },
+  {
+    name: "pirelli",
+  },
+  {
+    name: "techtalent",
+  },
+  {
+    name: "zollner",
+  },
+  {
+    name: "continental",
+  },
+  {
+    name: "quanticlab",
+  },
+  {
+    name: "yonder",
+  },
+  {
+    name: "eaton",
+  },
+  {
+    name: "DeutscheBank",
+  },
+  {
+    name: "qualitance",
+  },
+  {
+    name: "aptiv",
+  },
+  {
+    name: "celestica",
+  },
+  {
+    name: "brightantity",
+  },
+  {
+    name: "airbus",
+  },
+  {
+    name: "autoliv",
+  },
+  {
+    name: "hella",
+  },
+  {
+    name: "alstom",
+  },
+  {
+    name: "apple",
+  },
+  {
+    name: "raben",
+  },
+  {
+    name: "cbre",
+  },
+  {
+    name: "bearingpoint",
+  },
+  {
+    name: "VitescoTechnologies",
+  },
+  {
+    name: "ryanair",
+  },
+  {
+    name: "sii",
+  },
+  {
+    name: "ness",
+  },
+  {
+    name: "marriott",
+  },
+  {
+    name: "drmax",
+  },
+  {
+    name: "yazaki",
+  },
+  {
+    name: "cocacola",
+  },
+  {
+    name: "lear",
+  },
+  {
+    name: "heidelbergcement",
+  },
+  {
+    name: "xerox",
+  },
+  {
+    name: "mairon",
+  },
 ];
