@@ -1,0 +1,442 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f2f6ff;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header .logo {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.header a {
+  text-decoration: none;
+  color: black;
+}
+
+.company {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 5em auto 20px auto;
+  letter-spacing: 1px;
+  font: 1.2em "Poppins", sans-serif, bold;
+  gap: 20px;
+  width: 60%;
+}
+.company .company-container {
+  margin: 0px 10px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+    rgb(204, 219, 232) -3px -3px 6px 0px inset;
+}
+.company .company-container img {
+  margin-top: -3.4em;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+    rgb(204, 219, 232) -3px -3px 6px 0px inset;
+  padding: 15px;
+}
+
+.about {
+  padding: 20px;
+  border-radius: 26px;
+}
+
+.about div {
+  margin: 16px 10px 0px 0px;
+  display: flex;
+  justify-content: end;
+}
+
+.about div a {
+  border: 1px solid #e08d21;
+  transition: all 0.3s;
+}
+
+.about div a:hover {
+  box-shadow: 0 0.6em 0.6em -0.3em #e08d21;
+  transform: translateY(-0.25em);
+}
+
+.about h2 {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.about p {
+  text-align: justify;
+  text-indent: 20px;
+}
+
+.content {
+  height: auto;
+}
+
+.hideContent {
+  overflow: hidden;
+  height: 5em;
+  position: relative;
+}
+
+.hideContent::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 64px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgb(204, 219, 232, 0.6) 100%
+  );
+}
+
+.show-more {
+  margin-top: 10px;
+  color: #e08d21;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.about a,
+.job-location a {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  background-color: #e08d21;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.scraper-details {
+  display: flex;
+  justify-content: center;
+}
+
+.scraper-details .hr {
+  height: auto;
+  background-color: #e08d21;
+  width: 2px;
+}
+
+.scraper-details div {
+  margin: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scraper-details div h5 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.functionality {
+  display: flex;
+  justify-content: center;
+}
+.functionality a,
+.functionality button,
+.functionality p {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  background-color: #e08d21;
+  color: #fff;
+  font-size: 16px;
+  margin: 10px 0px;
+  transition: all 0.3s;
+}
+
+.functionality a:hover,
+.functionality button:hover,
+.functionality p:hover {
+  box-shadow: 0 0.6em 0.6em -0.3em #e08d21;
+  transform: translateY(-0.25em);
+}
+
+.functionality button {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.functionality a {
+  margin: 10px;
+  text-decoration: none;
+}
+
+@media (max-width: 640px) {
+  .scraper-details .hr {
+    height: auto;
+    background-color: #e08d21;
+    width: 2px;
+  }
+
+  .scraper-details div {
+    margin: 5px;
+  }
+  .functionality {
+    display: flex;
+    text-align: center;
+    margin: 0px 20px;
+  }
+}
+
+button div {
+  margin-right: 5px;
+}
+
+.rotate {
+  animation: rotate 1s linear infinite;
+}
+
+/* rotate animation */
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+@media (max-width: 1047px) {
+  .company {
+    width: 80%;
+  }
+
+  .about {
+    font: 1rem "Poppins", sans-serif, bold;
+  }
+}
+
+@media (max-width: 640px) {
+  .company {
+    width: 100%;
+  }
+
+  .about {
+    font: 1rem "Poppins", sans-serif, bold;
+  }
+  .company-container img {
+    width: 200px;
+    height: 100px;
+  }
+}
+
+/* data */
+
+.jobs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-auto-rows: 250px;
+}
+.job {
+  background-color: white;
+  border-top-right-radius: 16px;
+  border-bottom-left-radius: 26px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+    rgb(204, 219, 232) -3px -3px 6px 0px inset;
+}
+
+.details-container {
+  padding: 10px 15px;
+}
+
+.job-title,
+.job-company,
+.job-location {
+  margin: 15px 0px;
+}
+
+.job-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.job-company {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.job-location {
+  display: flex;
+  align-items: center;
+  color: #979c9e;
+  gap: 10px;
+}
+
+.job_link-container {
+  background-color: #201f1f;
+  border-top-right-radius: 26px;
+  border-bottom-left-radius: 26px;
+  padding: 5px;
+  text-align: center;
+}
+.job_link-container a {
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  transition: all 0.2s linear 0s;
+}
+
+.job_link-container a:before {
+  content: "\21D7";
+  font-size: 15px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 0;
+  top: 0;
+  opacity: 0;
+  height: 100%;
+  right: -1em;
+  transition: all 0.2s linear 0s;
+  font-size: 20px;
+}
+
+.job_link-container a:hover::before {
+  opacity: 1;
+}
+
+.validate {
+  color: rgb(0, 172, 0) !important;
+}
+
+.invalid {
+  color: rgba(255, 0, 0, 0.938) !important;
+}
+
+.button-to-top-parent {
+  display: flex;
+  justify-content: end;
+  margin-right: 20px;
+  align-items: end;
+}
+.button-to-top {
+  padding: 10px;
+  background-color: black;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 20px;
+  position: fixed;
+  bottom: 10px;
+  color: white;
+  transition: 0.5s;
+}
+.button-to-top:hover {
+  scale: 1.2;
+}
+
+@media (max-width: 546px) {
+  .logo-company {
+    width: 250px;
+    height: 100px;
+  }
+}
+
+.no-data {
+  text-align: center;
+  margin-top: auto;
+  font-weight: 600;
+}
+
+.no-data img {
+  width: 150px;
+  margin-bottom: 10px;
+}
+
+/* Skeleton animation */
+
+.skeleton-jobs {
+  display: none;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-auto-rows: 250px;
+}
+
+.skeleton-job {
+  border-top-right-radius: 16px;
+  border-bottom-left-radius: 26px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #fff;
+  box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+    rgb(204, 219, 232) -3px -3px 6px 0px inset;
+}
+
+.skeleton-job-title {
+  width: 15em;
+  height: 2.5em;
+}
+.skeleton-job-company {
+  width: 5em;
+  height: 1em;
+}
+
+.skeleton-job-location {
+  width: 10em;
+  height: 2em;
+}
+
+.skeleton-job-title,
+.skeleton-job-company,
+.skeleton-job-location {
+  margin: 25px 15px;
+  background: #eee;
+  background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+  border-radius: 5px;
+  background-size: 200% 100%;
+  animation: 1.5s shine linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
+}
+
+.skeleton-job-post {
+  border-top-right-radius: 26px;
+  border-bottom-left-radius: 26px;
+  padding: 15px;
+  background: linear-gradient(110deg, #494747 8%, #302e2e 18%, #3d3b3b 33%);
+  background-size: 200% 100%;
+  animation: 1.5s shine linear infinite;
+}

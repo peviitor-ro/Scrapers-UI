@@ -56,4 +56,5 @@ let scrapers = [
   { name: "fildas" },
   { name: "finastra" },
   { name: "flex" },
+  { name: "glovo" },
 ];
