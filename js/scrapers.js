@@ -971,4 +971,394 @@ let scrapers = [
   {
     name: "mairon",
   },
+  {
+    name: "fieldcore",
+  },
+  {
+    name: "trustyou",
+  },
+  {
+    name: "spyrosoft",
+  },
+  {
+    name: "wpriders",
+  },
+  {
+    name: "axway",
+  },
+  {
+    name: "test",
+  },
+  {
+    name: "yopeso",
+  },
+  {
+    name: "dowjones",
+  },
+  {
+    name: "corteva",
+  },
+  {
+    name: "neptungears",
+  },
+  {
+    name: "fintechos",
+  },
+  {
+    name: "utilben",
+  },
+  {
+    name: "connect44",
+  },
+  {
+    name: "centric",
+  },
+  {
+    name: "idemia",
+  },
+  {
+    name: "aspeninstitute",
+  },
+  {
+    name: "threatconnect",
+  },
+  {
+    name: "intersnack",
+  },
+  {
+    name: "sbaflex",
+  },
+  {
+    name: "appgreat",
+  },
+  {
+    name: "c4media",
+  },
+  {
+    name: "monefy",
+  },
+  {
+    name: "sap",
+  },
+  {
+    name: "coremaker",
+  },
+  {
+    name: "proctergamble",
+  },
+  {
+    name: "tractable",
+  },
+  {
+    name: "haleon",
+  },
+  {
+    name: "saltpepper",
+  },
+  {
+    name: "eastmen",
+  },
+  {
+    name: "aggranda",
+  },
+  {
+    name: "smartdreamers",
+  },
+  {
+    name: "verifone",
+  },
+  {
+    name: "capex",
+  },
+  {
+    name: "bandainamcoent",
+  },
+  {
+    name: "upteam",
+  },
+  {
+    name: "evalueserve",
+  },
+  {
+    name: "redbee",
+  },
+  {
+    name: "jivygroup",
+  },
+  {
+    name: "teamland",
+  },
+  {
+    name: "bittnet",
+  },
+  {
+    name: "osf",
+  },
+  {
+    name: "citi",
+  },
+  {
+    name: "azur",
+  },
+  {
+    name: "kebormed",
+  },
+  {
+    name: "everience",
+  },
+  {
+    name: "agilefreaks",
+  },
+  {
+    name: "cegedim",
+  },
+  {
+    name: "axintor",
+  },
+  {
+    name: "supportninja",
+  },
+  {
+    name: "xperi",
+  },
+  {
+    name: "makita",
+  },
+  {
+    name: "tesla",
+  },
+  {
+    name: "daisler",
+  },
+  {
+    name: "masabi",
+  },
+  {
+    name: "dornamedical",
+  },
+  {
+    name: "blackline",
+  },
+  {
+    name: "bertrandtgroup",
+  },
+  {
+    name: "systematic",
+  },
+  {
+    name: "arrk",
+  },
+  {
+    name: "siemens",
+  },
+  {
+    name: "updivision",
+  },
+  {
+    name: "jti",
+  },
+  {
+    name: "farmexim",
+  },
+  {
+    name: "htss",
+  },
+  {
+    name: "ninedots",
+  },
+  {
+    name: "sustainalytics",
+  },
+  {
+    name: "oselo",
+  },
+  {
+    name: "skywindgroup",
+  },
+  {
+    name: "serrala",
+  },
+  {
+    name: "crosswork",
+  },
+  {
+    name: "softserveinc",
+  },
+  {
+    name: "seedblink",
+  },
+  {
+    name: "ursus",
+  },
+  {
+    name: "nxp",
+  },
+  {
+    name: "leaseplan",
+  },
+  {
+    name: "acronis",
+  },
+  {
+    name: "emag",
+  },
+  {
+    name: "ausy",
+  },
+  {
+    name: "ubisoft",
+  },
+  {
+    name: "flowx",
+  },
+  {
+    name: "bitpanda",
+  },
+  {
+    name: "genos",
+  },
+  {
+    name: "gradle",
+  },
+  {
+    name: "smarttech",
+  },
+  {
+    name: "mol",
+  },
+  {
+    name: "romsoft",
+  },
+  {
+    name: "bunge",
+  },
+  {
+    name: "fabricadata",
+  },
+  {
+    name: "totalsoft",
+  },
+  {
+    name: "iqvia",
+  },
+  {
+    name: "thecoders",
+  },
+  {
+    name: "suvoda",
+  },
+  {
+    name: "webhelp",
+  },
+  {
+    name: "hpe",
+  },
+  {
+    name: "leadlion",
+  },
+  {
+    name: "elektrobit",
+  },
+  {
+    name: "playtika",
+  },
+  {
+    name: "uniqasoftware",
+  },
+  {
+    name: "egger",
+  },
+  {
+    name: "conectys",
+  },
+  {
+    name: "imc",
+  },
+  {
+    name: "gmv",
+  },
+  {
+    name: "canam",
+  },
+  {
+    name: "akka",
+  },
+  {
+    name: "funcom",
+  },
+  {
+    name: "arkadium",
+  },
+  {
+    name: "microsoft",
+  },
+  {
+    name: "wirtek",
+  },
+  {
+    name: "keyence",
+  },
+  {
+    name: "yokogawa",
+  },
+  {
+    name: "cec",
+  },
+  {
+    name: "rcsrds",
+  },
+  {
+    name: "orioninc",
+  },
+  {
+    name: "azets",
+  },
+  {
+    name: "clevertech",
+  },
+  {
+    name: "sita",
+  },
+  {
+    name: "fisglobal",
+  },
+  {
+    name: "aecom",
+  },
+  {
+    name: "emia",
+  },
+  {
+    name: "hosterion",
+  },
+  {
+    name: "spacelift",
+  },
+  {
+    name: "globallogic",
+  },
+  {
+    name: "pmi",
+  },
+  {
+    name: "google",
+  },
+  {
+    name: "empact",
+  },
+  {
+    name: "eurofins",
+  },
+  {
+    name: "restartenergy",
+  },
+  {
+    name: "nasstar",
+  },
+  {
+    name: "autototal",
+  },
+  {
+    name: "transperfect",
+  },
 ];
