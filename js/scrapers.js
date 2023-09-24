@@ -1463,4 +1463,49 @@ let scrapers = [
   {
     name: "veridion",
   },
+  {
+    name: "smartree",
+  },
+  {
+    name: "electromontaj",
+  },
+  {
+    name: "equilobe",
+  },
+  {
+    name: "wipro",
+  },
+  {
+    name: "atek",
+  },
+  {
+    name: "acrelec",
+  },
+  {
+    name: "huf",
+  },
+  {
+    name: "bnpparibas",
+  },
+  {
+    name: "bytex",
+  },
+  {
+    name: "ciklum",
+  },
+  {
+    name: "rei",
+  },
+  {
+    name: "mondly",
+  },
+  {
+    name: "access",
+  },
+  {
+    name: "harman",
+  },
+  {
+    name: "welocalize",
+  },
 ];
