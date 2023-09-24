@@ -1361,4 +1361,106 @@ let scrapers = [
   {
     name: "transperfect",
   },
+  {
+    name: "hennlich",
+  },
+  {
+    name: "simavi",
+  },
+  {
+    name: "rolandberger",
+  },
+  {
+    name: "bluewiresoftware",
+  },
+  {
+    name: "vevohub",
+  },
+  {
+    name: "kenvue",
+  },
+  {
+    name: "varicent",
+  },
+  {
+    name: "brinel",
+  },
+  {
+    name: "foundever",
+  },
+  {
+    name: "chorus",
+  },
+  {
+    name: "voxility",
+  },
+  {
+    name: "sonicwall",
+  },
+  {
+    name: "eeusoftware",
+  },
+  {
+    name: "accace",
+  },
+  {
+    name: "exiger",
+  },
+  {
+    name: "tradeville",
+  },
+  {
+    name: "gameloft",
+  },
+  {
+    name: "ascentcore",
+  },
+  {
+    name: "windsoft",
+  },
+  {
+    name: "haynespro",
+  },
+  {
+    name: "engie",
+  },
+  {
+    name: "sostenia",
+  },
+  {
+    name: "ezugi",
+  },
+  {
+    name: "smarttech247",
+  },
+  {
+    name: "siveco",
+  },
+  {
+    name: "sowelo",
+  },
+  {
+    name: "seimaf",
+  },
+  {
+    name: "tenaris",
+  },
+  {
+    name: "neovision",
+  },
+  {
+    name: "mediagalaxy",
+  },
+  {
+    name: "codezilla",
+  },
+  {
+    name: "deloitte",
+  },
+  {
+    name: "selfpay",
+  },
+  {
+    name: "veridion",
+  },
 ];
