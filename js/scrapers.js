@@ -38,4 +38,7 @@ let scrapers = [
   { name: "brightantity" },
   { name: "brinks" },
   { name: "cbre" },
+  { name: "electronicarts" },
+  { name: "hcltechnologies" },
+
 ];
