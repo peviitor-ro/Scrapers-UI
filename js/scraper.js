@@ -177,7 +177,7 @@ button.addEventListener("click", () => {
         document.querySelector(".jobs").innerHTML = noDataImage;
       }
     })
-    .catch(() => {
+    .catch((e) => {
       svg.classList.toggle("rotate");
       button.disabled = false;
       document.querySelector("#status").innerHTML = "Api Error";
