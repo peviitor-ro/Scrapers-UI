@@ -129,10 +129,14 @@ const cardTemplate = document.getElementById("card-template");
 
 const today = new Date();
 const date =
-  today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
+  today.getDate() +
+  "-" +
+  today.toLocaleString("en", { month: "long" }) +
+  "-" +
+  today.getFullYear();
 const time =
   today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-const dateTime = date + " " + time;
+const dateTime = time + "<br>" + date;
 
 for (let i = 0; i < 9; i++) {
   container.append(cardTemplate.content.cloneNode(true));

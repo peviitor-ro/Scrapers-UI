@@ -151,6 +151,10 @@ body {
   align-items: center;
 }
 
+#last-update {
+  text-align: center;
+}
+
 .scraper-details div h5 {
   font-size: 18px;
   margin-bottom: 10px;
