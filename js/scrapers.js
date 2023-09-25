@@ -1508,4 +1508,22 @@ let scrapers = [
   {
     name: "welocalize",
   },
+  {
+    name: "signifytechnology",
+  },
+  {
+    name: "lucanet",
+  },
+  {
+    name: "hubgets",
+  },
+  {
+    name: "worldline",
+  },
+  {
+    name: "jobshop",
+  },
+  {
+    name: "sinaps",
+  },
 ];
