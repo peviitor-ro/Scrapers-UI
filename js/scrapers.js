@@ -654,9 +654,6 @@ let scrapers = [
     name: "regnology",
   },
   {
-    name: "osfdigital",
-  },
-  {
     name: "syncrosoft",
   },
   {
@@ -1219,9 +1216,6 @@ let scrapers = [
   },
   {
     name: "gradle",
-  },
-  {
-    name: "smarttech",
   },
   {
     name: "mol",
