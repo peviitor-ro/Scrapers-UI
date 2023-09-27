@@ -9,6 +9,23 @@ body {
   background-color: #f2f6ff;
 }
 
+::-webkit-scrollbar {
+  width: 13px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e08d21;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e08d21c4;
+}
+
 .header {
   display: flex;
   align-items: center;
