@@ -1494,7 +1494,7 @@ let scrapers = [
     name: "mondly",
   },
   {
-    name: "access",
+    name: "accessgroup",
   },
   {
     name: "harman",
