@@ -153,6 +153,7 @@ body {
 .scraper-details {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .scraper-details .hr {
@@ -179,6 +180,8 @@ body {
 .functionality {
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 .functionality a,
 .functionality button,
@@ -221,11 +224,6 @@ body {
 
   .scraper-details div {
     margin: 5px;
-  }
-  .functionality {
-    display: flex;
-    text-align: center;
-    margin: 0px 20px;
   }
 }
 
