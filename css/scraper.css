@@ -339,7 +339,7 @@ button div {
   display: flex;
   align-items: center;
   justify-content: center;
-  right: 0;
+  right: -1em;
   top: 0;
   opacity: 0;
   height: 100%;
