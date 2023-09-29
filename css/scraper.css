@@ -46,6 +46,105 @@ body {
   color: black;
 }
 
+/* Documentation display */
+
+.doc-container-blur {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 2;
+  top: 0px;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  background-color: #4947473b;
+}
+
+.doc-text {
+  display: none;
+  height: 100%;
+  width: 40%;
+  background-color: #f2f6ff;
+  z-index: 3;
+  overflow: auto;
+  animation: name 1s ease-in-out both;
+}
+.doc-text h1,
+.doc-text p {
+  margin: 15px;
+}
+
+@keyframes name {
+  0% {
+    transform: translate(-20em, 0px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+.doc-text p a {
+  color: black;
+  font-weight: 600;
+}
+
+.doc-container .open-doc {
+  position: absolute;
+  cursor: pointer;
+  margin-top: 20px;
+  background-color: #e08d21;
+  color: white;
+  padding: 10px 5px 10px 10px;
+  border-top-right-radius: 26px;
+  border-bottom-right-radius: 26px;
+  transition: 0.2s;
+  clip-path: polygon(0 72%, 0 27%, 100% 10%, 100% 90%);
+}
+.doc-container .open-doc::after {
+  content: "Learn New Things";
+}
+
+.doc-container .open-doc:hover {
+  border-top-left-radius: 26px;
+  border-bottom-left-radius: 26px;
+  clip-path: polygon(0 90%, 0 10%, 100% 10%, 100% 90%);
+}
+
+.doc-container .close-doc {
+  display: block;
+  margin: 10px;
+  animation: name 1s ease-in-out both;
+  cursor: pointer;
+  width: fit-content;
+  margin-left: auto;
+}
+
+.doc-container-display {
+  display: block;
+}
+
+.d-none {
+  display: none;
+}
+
+.stop {
+  overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+  .doc-text {
+    width: 70%;
+  }
+}
+@media (max-width: 640px) {
+  .doc-text {
+    width: 100%;
+  }
+  .doc-container .open-doc::after {
+    content: "\2630";
+  }
+}
+/*  */
+
 .company {
   display: flex;
   align-items: center;

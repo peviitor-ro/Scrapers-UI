@@ -243,3 +243,19 @@ if (content.innerText.length > 400) {
   content.classList.remove("hideContent");
   showMore.style.display = "none";
 }
+
+const docBlur = document.querySelector(".doc-container");
+const openDoc = document.querySelector(".open-doc");
+const docContainer = document.querySelector(".doc-text");
+const closeDoc = document.querySelector(".d-none");
+
+function openDoc2() {
+  docContainer.classList.toggle("doc-container-display");
+  openDoc.classList.toggle("d-none");
+  closeDoc.classList.toggle("close-doc");
+  docBlur.classList.toggle("doc-container-blur");
+  document.querySelector("body").classList.toggle("stop");
+}
+
+openDoc.addEventListener("click", openDoc2);
+closeDoc.addEventListener("click", openDoc2);
