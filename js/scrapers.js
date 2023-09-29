@@ -1520,4 +1520,25 @@ let scrapers = [
   {
     name: "sinaps",
   },
+  {
+    name: "hrsromania",
+  },
+  {
+    name: "amber",
+  },
+  {
+    name: "tdcx",
+  },
+  {
+    name: "raiffeisenbank",
+  },
+  {
+    name: "dlapiper",
+  },
+  {
+    name: "reevo",
+  },
+  {
+    name: "lensa",
+  },
 ];

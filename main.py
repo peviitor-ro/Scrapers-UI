@@ -10,9 +10,9 @@ import json
 
 # curent path
 path = os.getcwd()
-exclude = ['', 'a', 'l',]
+exclude = ['', 'a', 'l','000']
 
-url = 'https://dev.laurentiumarian.ro/scraper/PeViitor_Scrapers_Melania/' # Change this url to your url
+url = 'https://dev.laurentiumarian.ro/scraper/Scrapers_Job_PeViitor/' # Change this url to your url
 def get_scrapers(url):
     """Returns a list of scrapers."""
     response = requests.get(url)
@@ -193,6 +193,7 @@ for key, value in data:
                 f.write(html)
 
                 json_file.append({"name": key.split('_')[0]})
+                print(f'Folder {folder} created.')
     except FileExistsError:
         print(f'Folder {key.lower().split("_")[0]} already exists.')
         continue
