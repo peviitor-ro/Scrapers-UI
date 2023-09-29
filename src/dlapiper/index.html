@@ -1,46 +1,4 @@
-# This script is only for creating the folders and the html files for the scrapers...
-# https://dev.laurentiumarian.ro/scraper/PeViitor_Scrapers_Melania/
-# https://dev.laurentiumarian.ro/scraper/Scrapers_start_with_digi/
-# https://dev.laurentiumarian.ro/scraper/Scrapers_Job_PeViitor/
 
-
-import requests
-import os
-import json
-
-# curent path
-path = os.getcwd()
-exclude = ['', 'a', 'l','000']
-
-url = 'https://dev.laurentiumarian.ro/scraper/Scrapers_Job_PeViitor/' # Change this url to your url
-def get_scrapers(url):
-    """Returns a list of scrapers."""
-    response = requests.get(url)
-
-    return response.json()
-
-def get_logos():
-    """Returns a list of logos."""
-    url = 'https://api.peviitor.ro/v1/logo/'
-
-    response = requests.get(url)
-
-    obj = response.json().get('companies')
-    data = {}
-    
-    for company in obj:
-        name = company.get('name').lower()
-        data[name] = company.get('logo')
-
-    return data
-
-json_file = []
-logos = get_logos()
-
-data = get_scrapers(url)[1].items()
-
-for key, value in data:
-    html = f'''
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -70,12 +28,8 @@ for key, value in data:
                 <img
                 width="320"
                 height="120"
-                src="{
-                    logos.get(key.lower().split(
-                        '_'
-                    )[0])
-                    }"
-                alt="{key.lower()}"
+                src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/DLA_Piper_logo.svg/300px-DLA_Piper_logo.svg.png"
+                alt="dlapiper_scraper"
                 />
                 <!-- De Modificat -->
                 <div class="about">
@@ -92,7 +46,7 @@ for key, value in data:
                         <a
                         href="#" 
                         target="_blank"
-                        >{key.lower().split('_')[0].capitalize()} Careers</a
+                        >Dlapiper Careers</a
                         >
                     </div>
                 </div>
@@ -142,7 +96,7 @@ for key, value in data:
                 </button>
                 
                 <a
-                href="https://peviitor.ro/rezultate?q={key.split('_')[0]}&country=Rom%C3%A2nia&page=1"
+                href="https://peviitor.ro/rezultate?q=dlapiper&country=Rom%C3%A2nia&page=1"
                 target="_blank"
                 >See Jobs</a
                 >
@@ -171,37 +125,14 @@ for key, value in data:
         </div>
         <script>
             // De Modificat
-            const apiObj = {{
-                file: "{value}",
-                url: "{url}",
-            }};
+            const apiObj = {
+                file: "dlapiper_scraper.py",
+                url: "https://dev.laurentiumarian.ro/scraper/PeViitor_Scrapers_Melania/",
+            };
             // ##########################################
         </script>
         <script src="../../js/countries.js"></script>
         <script src="../../js/scraper.js"></script>
     </body>
 </html>
-    '''
-    
-    # Create folder
-    try:
-        folder = key.lower().split("_")[0]
-        if folder not in exclude:
-            os.mkdir(f'{path}/src/{key.lower().split("_")[0]}')
-
-            with open(f'{path}/src/{key.lower().split("_")[0]}/index.html', 'w') as f:
-                f.write(html)
-
-                json_file.append({"name": key.split('_')[0]})
-                print(f'Folder {folder} created.')
-    except FileExistsError:
-        print(f'Folder {key.lower().split("_")[0]} already exists.')
-        continue
-
-with open('scrapers.json', 'w') as f:
-    f.write(json.dumps(json_file, indent=4))
-
-
-
-
     

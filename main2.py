@@ -200,6 +200,7 @@ for key, value in data:
                 f.write(html)
 
                 json_file.append({"name": key})
+                print(f'Folder {folder} created.')
     except FileExistsError:
         print(f'Folder {key.lower()} already exists.')
         continue
