@@ -1,0 +1,52 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.map {
+  position: relative;
+}
+
+.container {
+  position: absolute;
+  border: 0.5px solid #e08d21;
+  border-radius: 10px;
+  padding: 5px;
+  width: fit-content;
+  backdrop-filter: blur(3px);
+  /* for apple devices */
+  -webkit-backdrop-filter: blur(3px);
+}
+.container:hover {
+  background-color: #e08d21;
+  color: white;
+}
+h1 {
+  text-align: center;
+  color: #e08d21;
+}
+.line {
+  position: absolute;
+  width: 1px;
+  background: linear-gradient(to bottom, #0e0afa 0%, #f80707 100%);
+  z-index: -1;
+  animation: lineopacity 1s linear infinite;
+}
+
+@keyframes lineopacity {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
