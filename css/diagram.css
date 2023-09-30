@@ -6,10 +6,17 @@
 
 body {
   font-family: "Poppins", sans-serif;
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .map {
   position: relative;
+    width: 1024px;
+    height: 100%;
 }
 
 .container {
