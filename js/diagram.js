@@ -42,7 +42,11 @@ function adjustLine(from, to, line) {
     line.style.left = left + "px";
     line.style.height = H + "px";
 
-  }
+    line.style.animation = `lineopacity ${
+        Math.floor(Math.random() * 5) + 1
+    }s linear infinite`;
+
+    }
 
 // Scrapers
 let based_scraper_java = document.getElementById("based_scraper_java");
