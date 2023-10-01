@@ -1541,4 +1541,10 @@ let scrapers = [
   {
     name: "lensa",
   },
+  {
+    name: "phinia",
+  },
+  {
+    name: "dentesse",
+  },
 ];
