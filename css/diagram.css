@@ -1,0 +1,74 @@
+
+:root {
+  --random: "";
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.map {
+  position: relative;
+    width: 1024px;
+    height: 100%;
+}
+
+.container {
+  position: absolute;
+  border: 0.5px solid #e08d21;
+  border-radius: 10px;
+  padding: 5px;
+  width: fit-content;
+  backdrop-filter: blur(3px);
+  /* for apple devices */
+  -webkit-backdrop-filter: blur(3px);
+}
+.container:hover {
+  background-color: #e08d21;
+  color: white;
+}
+h1 {
+  text-align: center;
+  color: #e08d21;
+}
+.line {
+  position: absolute;
+  width: 1px;
+  z-index: -1;
+}
+
+.line::after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom, #0e0afa 0%, #f80707 100%);
+    animation: grow var(--random) linear infinite;
+}
+
+@keyframes grow{
+    0%{
+        height: 0%;
+    }
+    50%{
+        height: 100%;
+    }
+    100%{
+        height: 0%;
+        bottom: 0;
+    }
+}
+
+
+
