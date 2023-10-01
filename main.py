@@ -3,7 +3,6 @@
 # https://dev.laurentiumarian.ro/scraper/Scrapers_start_with_digi/
 # https://dev.laurentiumarian.ro/scraper/Scrapers_Job_PeViitor/
 
-
 import requests
 import os
 import json
@@ -12,7 +11,7 @@ import json
 path = os.getcwd()
 exclude = ['', 'a', 'l','000']
 
-url = 'https://dev.laurentiumarian.ro/scraper/Scrapers_Job_PeViitor/' # Change this url to your url
+url = 'https://dev.laurentiumarian.ro/scraper/PeViitor_Scrapers_Melania/' # Change this url to your url
 def get_scrapers(url):
     """Returns a list of scrapers."""
     response = requests.get(url)
@@ -39,6 +38,11 @@ logos = get_logos()
 
 data = get_scrapers(url)[1].items()
 
+extensions = {
+    "py": "Python",
+    "js": "JavaScript",
+}
+
 for key, value in data:
     html = f'''
 <!DOCTYPE html>
@@ -64,17 +68,112 @@ for key, value in data:
                     />
                 </div>
             </a>
+            <a href="../../doc.html" style="margin-left: auto">
+                Documentation
+            </a>
+        </div>
+        <div class="doc-container">
+            <div class="open-doc"></div>
+            <div class="doc-text">
+                <div class="d-none">
+                    ❌
+                </div>
+                <h1>
+                    What is Web Scraping?
+                </h1>
+                <p>
+                    Web scraping refers to the
+                    <strong>
+                        extraction of data from a website
+                    </strong>
+                    .
+                                    This information
+                                    is collected and then exported into a format that is more useful for
+                                    the user. Be it a spreadsheet or an API.
+                </p>
+                <p>
+                    Although web scraping can be done manually, in most cases,
+                                    automated
+                                    tools are preferred when scraping web data as they can be less costly
+                                    and work at a faster rate.
+                </p>
+                <p>
+                    But in most cases, web scraping is not a simple task.
+                    <a href="https://www.expertmarket.com/uk/web-design/different-types-of-websites" target="_blank">
+                        Websites come in many shapes and forms,
+                    </a>
+                    as a result, web scrapers vary in functionality and
+                                    features.
+                </p>
+                <h1>
+                    How do Web
+                                    Scrapers Work?
+                </h1>
+                <p>
+                    So,
+                                    how do web scrapers work? Automated web scrapers work in a rather
+                                    simple but also complex way. After all, websites are built for humans
+                                    to understand, not machines.
+                </p>
+                <p>
+                    First, the web scraper will be given one or more URLs to load before
+                                    scraping. The scraper then loads the entire HTML code for the page in
+                                    question. More advanced scrapers will render the entire website,
+                                    including CSS and Javascript elements.
+                </p>
+                <p>
+                    Then the scraper will either extract all the data on the page or
+                                    specific data selected by the user before the project is run.
+                </p>
+                <p>
+                    Ideally, the user will go through the
+                                    process of selecting the
+                                    specific data they want from the page. For example, you might want to
+                                    scrape an Amazon product page for prices and models but are not
+                                    necessarily interested in product reviews.
+                </p>
+                <p>
+                    Lastly, the web scraper will output all the data that has
+                                    been collected
+                                    into a format that is more useful to the user.
+                </p>
+                <p>
+                    Most web scrapers will output data to a CSV or Excel
+                                    spreadsheet,
+                                    while more advanced scrapers will support other formats such as JSON
+                                    which can be used for an API.
+                </p>
+                <h1>
+                    Learn more:
+                </h1>
+                <p>
+                    <a href="#WebScrapers1">
+                        Is web scraping legal?
+                    </a>
+                </p>
+                <p>
+                    <a href="#WebScrapers2">
+                        What Kind of Web Scrapers are There?
+                    </a>
+                </p>
+                <p>
+                    <a href="#WebScrapers3">
+                        What are Web Scrapers Used For?
+                    </a>
+                </p>
+                <p>
+                    <a href="#WebScrapers4">
+                        The Best Web Scraper
+                    </a>
+                </p>
+            </div>
         </div>
         <section class="company">
             <div class="company-container">
                 <img
                 width="320"
                 height="120"
-                src="{
-                    logos.get(key.lower().split(
-                        '_'
-                    )[0])
-                    }"
+                src="{logos.get(key.lower().split('_')[0])}"
                 alt="{key.lower()}"
                 />
                 <!-- De Modificat -->
@@ -120,6 +219,14 @@ for key, value in data:
                     <h5>Last Update</h5>
                     <p id="last-update">Uknown</p>
                 </div>
+                <div>
+                    <h5>
+                        Scraper
+                    </h5>
+                    <p id="scraper-lg">
+                        {extensions.get(key.split('.')[-1])}
+                    </p>
+                </div>
             </div>
             <div class="functionality">
                 <button>
@@ -148,6 +255,13 @@ for key, value in data:
                 >
 
                 <p class="delete-storage">Delete Local Storage</p>
+
+                <a href="https://github.com/peviitor-ro/{url.split("/")[-2]}/tree/main/sites" target="_blank">
+                    GitHubRepo
+                </a>
+                <a href="https://github.com/peviitor-ro/{url.split("/")[-2]}/issues" target="_blank">
+                    Report 🐞
+                </a>
             </div>
         </div>
 
