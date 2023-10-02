@@ -1,63 +1,4 @@
-# This script is only for creating the folders and the html files for the scrapers...
-# https://dev.laurentiumarian.ro/scraper/based_scraper_py/
-# https://dev.laurentiumarian.ro/scraper/based_scraper_js/
-# https://dev.laurentiumarian.ro/scraper/JobsScrapers/
 
-
-import requests
-import os
-import json
-
-# curent path
-path = os.getcwd()
-exclude = [
-    '', 
-    'a', 
-    'l', 
-    'website_scraper_selenium', 
-    'website_scraper_bs4', 
-    'website_scraper_api', 
-    'update_logo', 
-    'setup_api', 
-    'script_runner', 
-    '__pycache__',
-    'main'
-    ]
-
-url = 'https://dev.laurentiumarian.ro/scraper/based_scraper_py/' # Change this url to your url
-def get_scrapers(url):
-    """Returns a list of scrapers."""
-    response = requests.get(url)
-
-    return response.json()
-
-def get_logos():
-    """Returns a list of logos."""
-    url = 'https://api.peviitor.ro/v1/logo/'
-
-    response = requests.get(url)
-
-    obj = response.json().get('companies')
-    data = {}
-    
-    for company in obj:
-        name = company.get('name').lower()
-        data[name] = company.get('logo')
-
-    return data
-
-json_file = []
-
-data = get_scrapers(url)[1].items()
-logos = get_logos()
-
-extensions = {
-    "py": "Python",
-    "js": "JavaScript",
-}
-
-for key, value in data:
-    html = f'''
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -90,8 +31,8 @@ for key, value in data:
                 <img
                 width="320"
                 height="120"
-                src="{logos.get(key.lower())}"
-                alt="{key.lower()}"
+                src="https://tickbird.com/assets/images/logo/tickbird-logo.svg"
+                alt="tickbird"
                 />
                 <!-- De Modificat -->
                 <div class="about">
@@ -108,7 +49,7 @@ for key, value in data:
                         <a
                         href="#" 
                         target="_blank"
-                        >{key.lower().capitalize()} Careers</a
+                        >Tickbird Careers</a
                         >
                     </div>
                 </div>
@@ -141,7 +82,7 @@ for key, value in data:
                         Scraper
                     </h5>
                     <p id="scraper-lg">
-                        {extensions.get(key.split('.')[-1])}
+                        None
                     </p>
                 </div>
             </div>
@@ -166,17 +107,17 @@ for key, value in data:
                 </button>
                 
                 <a
-                href="https://peviitor.ro/rezultate?q={key}&country=Rom%C3%A2nia&page=1"
+                href="https://peviitor.ro/rezultate?q=tickbird&country=Rom%C3%A2nia&page=1"
                 target="_blank"
                 >See Jobs</a
                 >
 
                 <p class="delete-storage">Delete Local Storage</p>
 
-                <a href="https://github.com/peviitor-ro/{url.split("/")[-2]}/tree/main/sites" target="_blank">
+                <a href="https://github.com/peviitor-ro/based_scraper_py/tree/main/sites" target="_blank">
                     GitHubRepo
                 </a>
-                <a href="https://github.com/peviitor-ro/{url.split("/")[-2]}/issues" target="_blank">
+                <a href="https://github.com/peviitor-ro/based_scraper_py/issues" target="_blank">
                     Report 🐞
                 </a>
             </div>
@@ -202,37 +143,14 @@ for key, value in data:
         </div>
         <script>
             // De Modificat
-            const apiObj = {{
-                file: "{value}",
-                url: "{url}",
-            }};
+            const apiObj = {
+                file: "tickbird.py",
+                url: "https://dev.laurentiumarian.ro/scraper/based_scraper_py/",
+            };
             // ##########################################
         </script>
         <script src="../../js/countries.js"></script>
         <script src="../../js/scraper.js"></script>
     </body>
 </html>
-    '''
-    
-    # Create folder
-    try:
-        folder = key.lower()
-        if folder not in exclude:
-            os.mkdir(f'{path}/src/{folder}')
-
-            with open(f'{path}/src/{folder}/index.html', 'w') as f:
-                f.write(html)
-
-                json_file.append({"name": key})
-                print(f'Folder {folder} created.')
-    except FileExistsError:
-        print(f'Folder {key.lower()} already exists.')
-        continue
-
-with open('scrapers.json', 'w') as f:
-    f.write(json.dumps(json_file, indent=4))
-
-
-
-
     
