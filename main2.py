@@ -141,7 +141,7 @@ for key, value in data:
                         Scraper
                     </h5>
                     <p id="scraper-lg">
-                        {extensions.get(key.split('.')[-1])}
+                        {extensions.get(key)}
                     </p>
                 </div>
             </div>
