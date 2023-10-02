@@ -1,49 +1,49 @@
 function adjustLine(from, to, line) {
-    let fT = from.offsetTop + from.offsetHeight / 2;
-    let tT = to.offsetTop + to.offsetHeight / 2;
-    let fL = from.offsetLeft + from.offsetWidth / 2;
-    let tL = to.offsetLeft + to.offsetWidth / 2;
-  
-    let CA = Math.abs(tT - fT);
-    let CO = Math.abs(tL - fL);
-    let H = Math.sqrt(CA * CA + CO * CO);
-    let ANG = (180 / Math.PI) * Math.acos(CA / H);
-  
-    let top;
-    let left;
-  
-    if (tT > fT) {
-      top = (tT - fT) / 2 + fT;
-    } else {
-      top = (fT - tT) / 2 + tT;
-    }
-    if (tL > fL) {
-      left = (tL - fL) / 2 + fL;
-    } else {
-      left = (fL - tL) / 2 + tL;
-    }
-  
-    if (
-      (fT < tT && fL < tL) ||
-      (tT < fT && tL < fL) ||
-      (fT > tT && fL > tL) ||
-      (tT > fT && tL > fL)
-    ) {
-      ANG *= -1;
-    }
-    top -= H / 2;
-  
-    line.style["-webkit-transform"] = "rotate(" + ANG + "deg)";
-    line.style["-moz-transform"] = "rotate(" + ANG + "deg)";
-    line.style["-ms-transform"] = "rotate(" + ANG + "deg)";
-    line.style["-o-transform"] = "rotate(" + ANG + "deg)";
-    line.style["-transform"] = "rotate(" + ANG + "deg)";
-    line.style.top = top + "px";
-    line.style.left = left + "px";
-    line.style.height = H + "px";
-    
-    line.style.setProperty("--random", Math.floor(Math.random() * 10) + 1 + "s");
-    }
+  let fT = from.offsetTop + from.offsetHeight / 2;
+  let tT = to.offsetTop + to.offsetHeight / 2;
+  let fL = from.offsetLeft + from.offsetWidth / 2;
+  let tL = to.offsetLeft + to.offsetWidth / 2;
+
+  let CA = Math.abs(tT - fT);
+  let CO = Math.abs(tL - fL);
+  let H = Math.sqrt(CA * CA + CO * CO);
+  let ANG = (180 / Math.PI) * Math.acos(CA / H);
+
+  let top;
+  let left;
+
+  if (tT > fT) {
+    top = (tT - fT) / 2 + fT;
+  } else {
+    top = (fT - tT) / 2 + tT;
+  }
+  if (tL > fL) {
+    left = (tL - fL) / 2 + fL;
+  } else {
+    left = (fL - tL) / 2 + tL;
+  }
+
+  if (
+    (fT < tT && fL < tL) ||
+    (tT < fT && tL < fL) ||
+    (fT > tT && fL > tL) ||
+    (tT > fT && tL > fL)
+  ) {
+    ANG *= -1;
+  }
+  top -= H / 2;
+
+  line.style["-webkit-transform"] = "rotate(" + ANG + "deg)";
+  line.style["-moz-transform"] = "rotate(" + ANG + "deg)";
+  line.style["-ms-transform"] = "rotate(" + ANG + "deg)";
+  line.style["-o-transform"] = "rotate(" + ANG + "deg)";
+  line.style["-transform"] = "rotate(" + ANG + "deg)";
+  line.style.top = top + "px";
+  line.style.left = left + "px";
+  line.style.height = H + "px";
+
+  line.style.setProperty("--random", Math.floor(Math.random() * 10) + 1 + "s");
+}
 
 // Scrapers
 let based_scraper_java = document.getElementById("based_scraper_java");
@@ -179,7 +179,9 @@ let test_case_peviitor_page = document.getElementById(
 // api to dev_peviitor
 let api_dev_peviitor = document.getElementById("api_dev_peviitor");
 // api_control_scrapers to api
-let api_control_scrapers_api = document.getElementById("api_api_control_scrapers");
+let api_control_scrapers_api = document.getElementById(
+  "api_api_control_scrapers"
+);
 
 // firme_peviitor to peviitor_page
 let peviitor_page_firme_peviitor = document.getElementById(
@@ -314,3 +316,9 @@ adjustLine(
   api_control_scrapers,
   api_control_scrapers_scrapers_peviitor
 );
+
+function zoom() {
+  document.body.classList.toggle("zoom");
+}
+
+document.querySelector("body").addEventListener("click", zoom);

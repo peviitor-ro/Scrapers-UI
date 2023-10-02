@@ -85,7 +85,7 @@ for folder in files:
                 while more advanced scrapers will support other formats such as JSON
                 which can be used for an API.
                 </p>
-                <h1>Learn more:</h1>
+                <h1>See more about:</h1>
                 <p>
                 <a href="#WebScrapers1">Is web scraping legal?</a>
                 </p>
