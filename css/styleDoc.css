@@ -160,6 +160,7 @@ body {
   .aside {
     width: 100%;
     display: none;
+    padding: 20px;
     animation: name 0.5s ease-in-out both;
   }
 
