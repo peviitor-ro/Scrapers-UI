@@ -42,7 +42,7 @@ function adjustLine(from, to, line) {
     line.style.left = left + "px";
     line.style.height = H + "px";
     
-    line.style.setProperty("--random", Math.floor(Math.random() * 5) + 1 + "s");
+    line.style.setProperty("--random", Math.floor(Math.random() * 10) + 1 + "s");
     }
 
 // Scrapers
@@ -178,6 +178,8 @@ let test_case_peviitor_page = document.getElementById(
 
 // api to dev_peviitor
 let api_dev_peviitor = document.getElementById("api_dev_peviitor");
+// api_control_scrapers to api
+let api_control_scrapers_api = document.getElementById("api_api_control_scrapers");
 
 // firme_peviitor to peviitor_page
 let peviitor_page_firme_peviitor = document.getElementById(
@@ -297,6 +299,9 @@ adjustLine(peviitor_page, test_case, test_case_peviitor_page);
 
 // api to dev_peviitor
 adjustLine(api, dev_peviitor, api_dev_peviitor);
+
+// api_control_scrapers to api
+adjustLine(api_control_scrapers, api, api_control_scrapers_api);
 
 // firme_peviitor to peviitor_page
 adjustLine(firme_peviitor, peviitor_page, peviitor_page_firme_peviitor);
