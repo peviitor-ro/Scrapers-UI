@@ -19,6 +19,7 @@ body {
   align-items: center;
   justify-content: center;
   margin-top: 10px;
+  min-width: 1024px;
 }
 .nav .logo {
   display: flex;
@@ -29,13 +30,14 @@ body {
 }
 
 .nav .go-back a {
-  border: 1px solid black;
+  border: 0.5px solid #e08d21;
   padding: 10px 20px;
   text-decoration: none;
   color: black;
   margin-left: 10px;
   position: relative;
   isolation: isolate;
+  font-size: medium;
 }
 .nav .go-back a::after {
   content: "";

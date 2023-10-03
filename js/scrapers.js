@@ -1547,4 +1547,25 @@ let scrapers = [
   {
     name: "dentesse",
   },
+  {
+    name: "tremend",
+  },
+  {
+    name: "quantrabbit",
+  },
+  {
+    name: "fortech",
+  },
+  {
+    name: "tickbird",
+  },
+  {
+    name: "essensys",
+  },
+  {
+    name: "webmarc",
+  },
+  {
+    name: "betterstack",
+  },
 ];
