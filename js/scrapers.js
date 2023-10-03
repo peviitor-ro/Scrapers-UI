@@ -1559,4 +1559,13 @@ let scrapers = [
   {
     name: "tickbird",
   },
+  {
+    name: "essensys",
+  },
+  {
+    name: "webmarc",
+  },
+  {
+    name: "betterstack",
+  },
 ];
