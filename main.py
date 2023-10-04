@@ -1,23 +1,46 @@
-# This script is only for creating the folders and the html files for the scrapers...
-# https://dev.laurentiumarian.ro/scraper/PeViitor_Scrapers_Melania/
-# https://dev.laurentiumarian.ro/scraper/Scrapers_start_with_digi/
-# https://dev.laurentiumarian.ro/scraper/Scrapers_Job_PeViitor/
-
 import requests
 import os
 import json
+import re 
 
 # curent path
 path = os.getcwd()
-exclude = ['', 'a', 'l','000']
 
-url = 'https://dev.laurentiumarian.ro/scraper/PeViitor_Scrapers_Melania/' # Change this url to your url
+# this folders will be excluded
+exclude = [
+    '', 
+    'a', 
+    'l', 
+    'website',
+    'update', 
+    'setup', 
+    'script', 
+    '__pycache__',
+    'main',
+    'osfdigital',
+    '000',
+    'test',
+    'smarttech'
+]
+
+# scrapers urls
+urls = [
+    'https://dev.laurentiumarian.ro/scraper/PeViitor_Scrapers_Melania/',
+    'https://dev.laurentiumarian.ro/scraper/Scrapers_start_with_digi/',
+    'https://dev.laurentiumarian.ro/scraper/Scrapers_Job_PeViitor/',
+    'https://dev.laurentiumarian.ro/scraper/based_scraper_py/',
+    'https://dev.laurentiumarian.ro/scraper/based_scraper_js/',
+    'https://dev.laurentiumarian.ro/scraper/JobsScrapers/'
+]
+
+# make a request to get the scrapers
 def get_scrapers(url):
     """Returns a list of scrapers."""
     response = requests.get(url)
 
     return response.json()
 
+# make a request to get the logos
 def get_logos():
     """Returns a list of logos."""
     url = 'https://api.peviitor.ro/v1/logo/'
@@ -33,18 +56,29 @@ def get_logos():
 
     return data
 
+# list of new companies for scrapers.js
 json_file = []
+
+# get the logos
 logos = get_logos()
 
-data = get_scrapers(url)[1].items()
+# loop through the urls
+for url in urls:
+    # get the data
+    data = get_scrapers(url)[1].items()
 
-extensions = {
-    "py": "Python",
-    "js": "JavaScript",
-}
+    # identify the extensions
+    extensions = {
+        "py": "Python",
+        "js": "JavaScript",
+    }
 
-for key, value in data:
-    html = f'''
+    # loop through the data
+    for key, value in data:
+        company = key.lower().split('_')[0]
+        
+        # html template
+        html = f'''
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -77,8 +111,8 @@ for key, value in data:
                 <img
                 width="320"
                 height="120"
-                src="{logos.get(key.lower().split('_')[0])}"
-                alt="{key.lower()}"
+                src="{logos.get(company.lower())}" 
+                alt="{company.lower()}"
                 />
                 <!-- De Modificat -->
                 <div class="about">
@@ -95,7 +129,7 @@ for key, value in data:
                         <a
                         href="#" 
                         target="_blank"
-                        >{key.lower().split('_')[0].capitalize()} Careers</a
+                        >{company.lower().capitalize()} Careers</a
                         >
                     </div>
                 </div>
@@ -128,7 +162,7 @@ for key, value in data:
                         Scraper
                     </h5>
                     <p id="scraper-lg">
-                        {extensions.get(key)}
+                        {extensions.get(value.split(".")[-1])}
                     </p>
                 </div>
             </div>
@@ -153,7 +187,7 @@ for key, value in data:
                 </button>
                 
                 <a
-                href="https://peviitor.ro/rezultate?q={key.split('_')[0]}&country=Rom%C3%A2nia&page=1"
+                href="https://peviitor.ro/rezultate?q={company}&country=Rom%C3%A2nia&page=1"
                 target="_blank"
                 >See Jobs</a
                 >
@@ -199,26 +233,39 @@ for key, value in data:
         <script src="../../js/scraper.js"></script>
     </body>
 </html>
-    '''
-    
-    # Create folder
-    try:
-        folder = key.lower().split("_")[0]
-        if folder not in exclude:
-            os.mkdir(f'{path}/src/{key.lower().split("_")[0]}')
+        '''
+        
+        # Create folder
+        try:
+            # if the folder exists, continue
+            folder = company.lower()
+            if folder not in exclude:
+                os.mkdir(f'{path}/src/{company.lower()}')
 
-            with open(f'{path}/src/{key.lower().split("_")[0]}/index.html', 'w') as f:
-                f.write(html)
+                with open(f'{path}/src/{company.lower()}/index.html', 'w') as f:
+                    f.write(html)
 
-                json_file.append({"name": key.split('_')[0]})
-                print(f'Folder {folder} created.')
-    except FileExistsError:
-        print(f'Folder {key.lower().split("_")[0]} already exists.')
-        continue
+                    json_file.append({"name": company})
+                    print(f'Folder {folder} created.')
+        except FileExistsError:
+            continue
 
-with open('scrapers.json', 'w') as f:
-    f.write(json.dumps(json_file, indent=4))
+# set the pattern 
+pattern = re.compile(r'let scrapers = \[(.*?)\];', re.DOTALL)
 
+# get the content of the file
+with open('js/scrapers.js', 'r') as f:
+    content = f.read()
+
+# find the pattern
+result = '[' + pattern.search(content).group(1).replace('name:', '"name":').replace(' ', '').replace('\n', '') + ']'
+
+# convert to  dict
+result = json.loads(result.replace('",}', '"}').replace('},]', '}]')) + json_file
+
+# add new results in file
+with open('js/scrapers.js', 'w') as f:
+    f.write(f'let scrapers = {json.dumps(result, indent=4)};')
 
 
 
