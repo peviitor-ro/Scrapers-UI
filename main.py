@@ -242,7 +242,7 @@ for url in urls:
             if folder not in exclude:
                 os.mkdir(f'{path}/src/{company.lower()}')
 
-                with open(f'{path}/src/{company.lower()}/index.html', 'w') as f:
+                with open(f'{path}/src/{company.lower()}/index.html', 'w',encoding='utf-8') as f:
                     f.write(html)
 
                     json_file.append({"name": company})
