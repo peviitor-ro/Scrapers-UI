@@ -1672,5 +1672,29 @@ let scrapers = [
     },
     {
         "name": "heimdal"
+    },
+    {
+        "name": "bdoromania"
+    },
+    {
+        "name": "druid"
+    },
+    {
+        "name": "rsmromania"
+    },
+    {
+        "name": "pixelbowlstudio"
+    },
+    {
+        "name": "zenitech"
+    },
+    {
+        "name": "eurotech"
+    },
+    {
+        "name": "verla"
+    },
+    {
+        "name": "bras"
     }
 ];
