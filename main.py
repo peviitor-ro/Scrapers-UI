@@ -30,7 +30,8 @@ urls = [
     'https://dev.laurentiumarian.ro/scraper/Scrapers_Job_PeViitor/',
     'https://dev.laurentiumarian.ro/scraper/based_scraper_py/',
     'https://dev.laurentiumarian.ro/scraper/based_scraper_js/',
-    'https://dev.laurentiumarian.ro/scraper/JobsScrapers/'
+    'https://dev.laurentiumarian.ro/scraper/JobsScrapers/',
+    'https://dev.laurentiumarian.ro/scraper/Scrapers_Cristi_Olteanu/'
 ]
 
 # make a request to get the scrapers

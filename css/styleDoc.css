@@ -205,7 +205,6 @@ body {
 .links-content {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 40px;
 }
 .links-content .cards {
@@ -213,35 +212,52 @@ body {
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
+  max-width: 250px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 .links-content .cards img {
-  margin: auto;
-  animation: bounce 2s infinite;
+  border-radius: 18px;
+  padding: 10px;
 }
 .links-content .cards a {
   text-decoration: none;
   color: var(--text-black-900);
-  margin: 10px;
-  background-color: var(--skin-color);
   padding: 15px;
-  clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+  position: relative;
+  isolation: isolate;
 }
 
-@keyframes bounce {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-7px);
-  }
-  100% {
-    transform: translateY(0);
-  }
+.links-content .cards {
+  position: relative;
+  isolation: isolate;
+}
+
+.links-content .cards::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background-color: var(--skin-color);
+  inset: 0;
+  scale: 0 1;
+  transform-origin: right;
+  transition: scale 450ms;
+}
+.links-content .cards:hover::after,
+.links-content .cards:focus-visible::after {
+  transform-origin: left;
+  scale: 1 1;
+}
+
+.links .links-h1 {
+  margin: 2em 0px 1em 0px;
 }
 
 @media (max-width: 640px) {
   .links-content {
     gap: 10px;
+    justify-content: center;
   }
   .links-content .cards {
     margin-bottom: 20px;
