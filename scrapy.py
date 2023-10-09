@@ -225,6 +225,7 @@ for url in urls:
             // ##########################################
         </script>
         <script src="../../js/countries.js"></script>
+        <script src="../../js/counties.js"></script>
         <script src="../../js/scraper.js"></script>
     </body>
 </html>

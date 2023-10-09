@@ -312,7 +312,7 @@ button div {
   display: flex;
   align-items: center;
   color: #979c9e;
-  gap: 10px;
+  gap: 2px;
 }
 
 .job_link-container {

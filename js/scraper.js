@@ -7,6 +7,18 @@ const company = document.querySelector("#company");
 htmlTitle.innerHTML = `Scraper-${capitelizedCompanyName}`;
 company.innerHTML = capitelizedCompanyName;
 
+const cityInRomania = (city) => {
+  const cities = {
+    "bucharest": "Bucuresti",
+  }
+
+  if (cities[city.toLowerCase()]) {
+    return cities[city.toLowerCase()];
+  }
+  return city;
+}
+
+
 // fetch api
 const fetchApi = async (apiObj) => {
   const response = await fetch(apiObj.url, {
@@ -45,6 +57,54 @@ const validate_link = (data, keyword) => {
   return isValidate;
 };
 
+const validate_city = (data) => {
+  let validatedData = [];
+  if(typeof data === "object"){  
+    data.forEach((city) => {
+      let isValidate = getTownAndCounty(
+        cityInRomania(city)
+      ).foudedTown;
+      let htmlDiv = document.createElement("div");
+      if(isValidate){
+        htmlDiv.classList.add("validate");
+        htmlDiv.innerHTML = city;
+        validatedData.push(
+          htmlDiv
+        );
+      } else {
+        htmlDiv.classList.add("invalid");
+        htmlDiv.innerHTML = `${city} is not a city in Romania`;
+        validatedData.push(
+          htmlDiv
+        );
+      }
+    });
+  } else if (typeof data === "string") {
+    let htmlDiv = document.createElement("div");
+    let isValidate = getTownAndCounty(
+      cityInRomania(data)
+    ).foudedTown;
+    if(isValidate){
+      htmlDiv.classList.add("validate");
+      htmlDiv.innerHTML = data;
+      validatedData.push(
+        htmlDiv
+      );
+    } else {
+      htmlDiv.classList.add("invalid");
+      htmlDiv.innerHTML = `${data} is not a city in Romania`;
+      validatedData.push(
+        htmlDiv
+      );
+    }
+  }
+  
+  return validatedData;
+
+};
+
+console.log(validate_city("Romania"));
+
 const validate_country = (data, keyword) => {
   let isValidate = false;
   for (let city of countries) {
@@ -80,11 +140,12 @@ const create_job = (data) => {
                         <path d="M17.5 8.33334C17.5 14.1667 10 19.1667 10 19.1667C10 19.1667 2.5 14.1667 2.5 8.33334C2.5 6.34421 3.29018 4.43656 4.6967 3.03003C6.10322 1.62351 8.01088 0.833336 10 0.833336C11.9891 0.833336 13.8968 1.62351 15.3033 3.03003C16.7098 4.43656 17.5 6.34421 17.5 8.33334Z" stroke="#979C9E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M10 10.8333C11.3807 10.8333 12.5 9.71405 12.5 8.33334C12.5 6.95262 11.3807 5.83334 10 5.83334C8.61929 5.83334 7.5 6.95262 7.5 8.33334C7.5 9.71405 8.61929 10.8333 10 10.8333Z" stroke="#979C9E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    <div class="${
-                      validate_data(data, "city") ? "validate" : "invalid"
-                    }">
-                        ${validate_data(data, "city") ? data.city : "No city"}
-                    </div>,
+                    ${
+                      validate_city(data.city)
+                        ? validate_city(data.city).map((city) => city.outerHTML)
+                        : "<div class='invalid'>No city</div>"
+                    }
+                    ,
                     <div class="${
                       validate_country(data, "country") ? "validate" : "invalid"
                     }">
@@ -102,7 +163,6 @@ const create_job = (data) => {
             target="_blank"
             ">
                 Vezi Postul 
-
             </a>
             </div>
         `;
@@ -182,6 +242,7 @@ button.addEventListener("click", () => {
       }
     })
     .catch((e) => {
+      console.log(e);
       svg.classList.toggle("rotate");
       button.disabled = false;
       document.querySelector("#status").innerHTML = "Api Error";

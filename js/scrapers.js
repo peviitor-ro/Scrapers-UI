@@ -1696,5 +1696,98 @@ let scrapers = [
     },
     {
         "name": "bras"
+    },
+    {
+        "name": "viamedici"
+    },
+    {
+        "name": "kambi"
+    },
+    {
+        "name": "colgate"
+    },
+    {
+        "name": "consensys"
+    },
+    {
+        "name": "pepsico"
+    },
+    {
+        "name": "n-able"
+    },
+    {
+        "name": "olx"
+    },
+    {
+        "name": "plasticomnium"
+    },
+    {
+        "name": "stericycle"
+    },
+    {
+        "name": "talentkompass"
+    },
+    {
+        "name": "kellanova"
+    },
+    {
+        "name": "teneco"
+    },
+    {
+        "name": "lenovo"
+    },
+    {
+        "name": "hkr"
+    },
+    {
+        "name": "snyk"
+    },
+    {
+        "name": "mobilexpense"
+    },
+    {
+        "name": "fltechincs"
+    },
+    {
+        "name": "edurom"
+    },
+    {
+        "name": "pearson"
+    },
+    {
+        "name": "hitachienergy"
+    },
+    {
+        "name": "rian-partners"
+    },
+    {
+        "name": "nvent"
+    },
+    {
+        "name": "adecco"
+    },
+    {
+        "name": "teva"
+    },
+    {
+        "name": "assaabloy"
+    },
+    {
+        "name": "gympass"
+    },
+    {
+        "name": "riverbed"
+    },
+    {
+        "name": "steelcase"
+    },
+    {
+        "name": "timken"
+    },
+    {
+        "name": "reckitt"
+    },
+    {
+        "name": "edenred"
     }
 ];
