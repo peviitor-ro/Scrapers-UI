@@ -1,2 +1,4 @@
 scrapers.json
 env/
+.DS_Store
+test.py

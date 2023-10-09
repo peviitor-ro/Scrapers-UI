@@ -1,154 +1,175 @@
 <!DOCTYPE html>
-
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <link href="../../css/scraper.css" rel="stylesheet" />
-    <title></title>
-  </head>
-  <body>
-    <div class="header">
-      <a href="/">
-        <div class="logo">
-          <h3>
-            <i>Scraper-UI.</i>
-          </h3>
-          <img
-            alt="logo"
-            height="30"
-            src="https://peviitor.ro/static/media/peviitor_logo.df4cd2d4b04f25a93757bb59b397e656.svg"
-            width="100"
-          />
-        </div>
-      </a>
-      <a href="../../doc.html" style="margin-left: auto">Documentation</a>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <link href="../../css/scraper.css" rel="stylesheet"/>
+  <title>
+  </title>
+ </head>
+ <body>
+  <div class="header">
+   <a href="/">
+    <div class="logo">
+     <h3>
+      <i>
+       Scraper-UI.
+      </i>
+     </h3>
+     <img alt="logo" height="30" src="https://peviitor.ro/static/media/peviitor_logo.df4cd2d4b04f25a93757bb59b397e656.svg" width="100"/>
     </div>
-
-    <section class="company">
-      <div class="company-container">
-        <img
-          alt="foundever_scraper"
-          src="data:image/png;base64,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"
-          width="250"
-        />
-        <!-- De Modificat -->
-        <div class="about">
-          <h2>Who we are</h2>
-          <p class="content hideContent" id="text-company">
-            <strong>We think of ourselves as creators of connections</strong>
-            <br />
-            Foundever™ is a leader in the customer experience (CX) industry.
+   </a>
+   <a href="../../doc.html" style="margin-left: auto">
+    Documentation
+   </a>
+  </div>
+  <section class="company">
+   <div class="company-container">
+    <img alt="foundever_scraper" src="data:image/png;base64,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" width="250"/>
+    <!-- De Modificat -->
+    <div class="about">
+     <h2>
+      Who we are
+     </h2>
+     <p class="content hideContent" id="text-company">
+      <strong>
+       We think of ourselves as creators of connections
+      </strong>
+      <br/>
+      Foundever™ is a leader in the customer experience (CX) industry.
             With 170,000 associates across the globe, we’re the team behind the
             experiences of +750 leading brands. Even though we live and work
             across the world, we depend on each other to create memorable
             moments for our customers and colleagues. To stay in sync, we have
             guidelines that keeps us focused on where we want to go and how we
             get there.
-          </p>
-          <p class="show-more">Show More</p>
-          <div>
-            <a
-              href="https://jobs.foundever.com/go/Jobs-in-Romania/9236600/"
-              target="_blank"
-              >Foundever Careers</a
-            >
-          </div>
-        </div>
-        <!-- ################################ -->
-      </div>
-    </section>
-    <div class="container-details">
-      <div class="scraper-details">
-        <div>
-          <h5>Company</h5>
-          <p id="company"></p>
-        </div>
-        <div class="hr"></div>
-        <div>
-          <h5>Status</h5>
-          <p id="status">Uknown</p>
-        </div>
-        <div class="hr"></div>
-        <div>
-          <h5>Jobs</h5>
-          <p id="jobs">Uknown</p>
-        </div>
-        <div class="hr"></div>
-        <div>
-          <h5>Last Update</h5>
-          <p id="last-update">Uknown</p>
-        </div>
-        <div class="hr"></div>
-        <div>
-          <h5>Scraper</h5>
-          <p id="scraper-lg">Python</p>
-        </div>
-      </div>
-
-      <div class="functionality">
-        <button>
-          <div>Run Scraper</div>
-          <svg
-            class="bi bi-gear"
-            fill="white"
-            height="16px"
-            viewbox="0 0 16 16"
-            width="16px"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"
-            ></path>
-            <path
-              d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"
-            ></path>
-          </svg>
-        </button>
-        <a
-          href="https://peviitor.ro/rezultate?q=foundever&amp;country=Rom%C3%A2nia&amp;page=1"
-          target="_blank"
-          >See Jobs</a
-        >
-        <p class="delete-storage">Delete Local Storage</p>
-        <a
-          href="https://github.com/peviitor-ro/Scrapers_Job_PeViitor/tree/main/sites"
-          target="_blank"
-          >GitHub Repo</a
-        ><a
-          href="https://github.com/peviitor-ro/Scrapers_Job_PeViitor/issues"
-          target="_blank"
-          >Report 🐞</a
-        >
-      </div>
+     </p>
+     <p class="show-more">
+      Show More
+     </p>
+     <div>
+      <a href="https://jobs.foundever.com/go/Jobs-in-Romania/9236600/" target="_blank">
+       Foundever Careers
+      </a>
+     </div>
     </div>
-    <div class="jobs"></div>
-    <div class="skeleton-jobs">
-      <template id="card-template">
-        <div class="skeleton-job">
-          <div>
-            <p class="skeleton-job-title"></p>
-            <p class="skeleton-job-company"></p>
-            <p class="skeleton-job-location"></p>
-          </div>
-          <div class="skeleton-job-post">
-            <p></p>
-          </div>
-        </div>
-      </template>
+    <!-- ################################ -->
+   </div>
+  </section>
+  <div class="container-details">
+   <div class="scraper-details">
+    <div>
+     <h5>
+      Company
+     </h5>
+     <p id="company">
+     </p>
     </div>
-    <div class="button-to-top-parent" onclick="toTop()">
-      <div class="button-to-top">⇧</div>
+    <div class="hr">
     </div>
-    <script>
-      // De Modificat
+    <div>
+     <h5>
+      Status
+     </h5>
+     <p id="status">
+      Uknown
+     </p>
+    </div>
+    <div class="hr">
+    </div>
+    <div>
+     <h5>
+      Jobs
+     </h5>
+     <p id="jobs">
+      Uknown
+     </p>
+    </div>
+    <div class="hr">
+    </div>
+    <div>
+     <h5>
+      Last Update
+     </h5>
+     <p id="last-update">
+      Uknown
+     </p>
+    </div>
+    <div class="hr">
+    </div>
+    <div>
+     <h5>
+      Scraper
+     </h5>
+     <p id="scraper-lg">
+      Python
+     </p>
+    </div>
+   </div>
+   <div class="functionality">
+    <button>
+     <div>
+      Run Scraper
+     </div>
+     <svg class="bi bi-gear" fill="white" height="16px" viewbox="0 0 16 16" width="16px" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z">
+      </path>
+      <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z">
+      </path>
+     </svg>
+    </button>
+    <a href="https://peviitor.ro/rezultate?q=foundever&amp;country=Rom%C3%A2nia&amp;page=1" target="_blank">
+     See Jobs
+    </a>
+    <p class="delete-storage">
+     Delete Local Storage
+    </p>
+    <a href="https://github.com/peviitor-ro/Scrapers_Job_PeViitor/tree/main/sites" target="_blank">
+     GitHub Repo
+    </a>
+    <a href="https://github.com/peviitor-ro/Scrapers_Job_PeViitor/issues" target="_blank">
+     Report 🐞
+    </a>
+   </div>
+  </div>
+  <div class="jobs">
+  </div>
+  <div class="skeleton-jobs">
+   <template id="card-template">
+    <div class="skeleton-job">
+     <div>
+      <p class="skeleton-job-title">
+      </p>
+      <p class="skeleton-job-company">
+      </p>
+      <p class="skeleton-job-location">
+      </p>
+     </div>
+     <div class="skeleton-job-post">
+      <p>
+      </p>
+     </div>
+    </div>
+   </template>
+  </div>
+  <div class="button-to-top-parent" onclick="toTop()">
+   <div class="button-to-top">
+    ⇧
+   </div>
+  </div>
+  <script>
+   // De Modificat
       const apiObj = {
         file: "foundever_scraper.py",
         url: "https://dev.laurentiumarian.ro/scraper/Scrapers_Job_PeViitor/",
       };
       // ##########################################
-    </script>
-    <script src="../../js/countries.js"></script>
-    <script src="../../js/scraper.js"></script>
-  </body>
+  </script>
+  <script src="../../js/countries.js">
+  </script>
+  <script src="../../js/counties.js">
+  </script>
+  <script src="../../js/scraper.js">
+  </script>
+ </body>
 </html>
