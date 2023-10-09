@@ -60,6 +60,7 @@ const validate_city = (data) => {
   let validatedData = [];
   let citys = data.city;
   let jobType = data.remote;
+  let country = data.country;
   if (jobType === "Remote") {
     if (typeof citys === "object") {
       citys.forEach((city) => {
@@ -76,34 +77,57 @@ const validate_city = (data) => {
     }
   } else {
     if (typeof citys === "object") {
-      citys.forEach((city) => {
-        let isValidate = getTownAndCounty(cityInRomania(city)).foudedTown;
-        let htmlDiv = document.createElement("div");
-        if (isValidate) {
+      if (removeDiacritics(country) === "Romania") {
+        citys.forEach((city) => {
+          let isValidate = getTownAndCounty(cityInRomania(city)).foudedTown;
+          let htmlDiv = document.createElement("div");
+          if (isValidate) {
+            htmlDiv.classList.add("validate");
+            htmlDiv.innerHTML = city;
+            validatedData.push(htmlDiv);
+          } else {
+            htmlDiv.classList.add("invalid");
+            htmlDiv.innerHTML = `${city} is not a city in Romania`;
+            validatedData.push(htmlDiv);
+          }
+        });
+      } else {
+        citys.forEach((city) => {
+          let htmlDiv = document.createElement("div");
           htmlDiv.classList.add("validate");
           htmlDiv.innerHTML = city;
           validatedData.push(htmlDiv);
-        } else {
-          htmlDiv.classList.add("invalid");
-          htmlDiv.innerHTML = `${city} is not a city in Romania`;
-          validatedData.push(htmlDiv);
-        }
-      });
+        });
+      }
     } else if (typeof citys === "string") {
-      let htmlDiv = document.createElement("div");
-      let isValidate = getTownAndCounty(cityInRomania(citys)).foudedTown;
-      if (isValidate) {
-        htmlDiv.classList.add("validate");
-        htmlDiv.innerHTML = citys;
-        validatedData.push(htmlDiv);
+      if (removeDiacritics(country) === "Romania") {
+        let htmlDiv = document.createElement("div");
+        let isValidate = getTownAndCounty(cityInRomania(citys)).foudedTown;
+        if (isValidate) {
+          htmlDiv.classList.add("validate");
+          htmlDiv.innerHTML = citys;
+          validatedData.push(htmlDiv);
+        } else {
+          if (citys === "") {
+            htmlDiv.classList.add("invalid");
+            htmlDiv.innerHTML = `No city`;
+            validatedData.push(htmlDiv);
+          } else {
+            htmlDiv.classList.add("invalid");
+            htmlDiv.innerHTML = `${citys} is not a city in Romania`;
+            validatedData.push(htmlDiv);
+          }
+        }
       } else {
         if (citys === "") {
+          let htmlDiv = document.createElement("div");
           htmlDiv.classList.add("invalid");
           htmlDiv.innerHTML = `No city`;
           validatedData.push(htmlDiv);
         } else {
-          htmlDiv.classList.add("invalid");
-          htmlDiv.innerHTML = `${citys} is not a city in Romania`;
+          let htmlDiv = document.createElement("div");
+          htmlDiv.classList.add("validate");
+          htmlDiv.innerHTML = citys;
           validatedData.push(htmlDiv);
         }
       }
@@ -130,12 +154,10 @@ const create_job = (data) => {
   jobElement.innerHTML = `
     <div class="details-container">
       <h2 class="job-title ${
-          validate_data(data, "job_title") ? "validate" : "invalid"
-        }">
+        validate_data(data, "job_title") ? "validate" : "invalid"
+      }">
             ${
-              validate_data(data, "job_title")
-                ? data.job_title
-                : "No job title"
+              validate_data(data, "job_title") ? data.job_title : "No job title"
             }
       </h2>
       <div class="job-company ${
@@ -174,9 +196,7 @@ const create_job = (data) => {
               <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H4Zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
               <path d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.653a5.373 5.373 0 0 1 1.066-2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v9h-2.219c.554.654.89 1.373 1.066 2h.653a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2H2Z"/>
             </svg>
-            <div class="${
-              data.remote ? "validate" : "invalid"
-            }">
+            <div class="${data.remote ? "validate" : "invalid"}">
                 ${data.remote ? "Remote" : "No Job Type"}
             </div>
           </div>
