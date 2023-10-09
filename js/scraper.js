@@ -9,11 +9,11 @@ company.innerHTML = capitelizedCompanyName;
 
 const cityInRomania = (city) => {
   const cities = {
-    "Bucharest": "Bucuresti",
+    "bucharest": "Bucuresti",
   }
 
-  if (cities[city]) {
-    return cities[city];
+  if (cities[city.toLowerCase()]) {
+    return cities[city.toLowerCase()];
   }
   return city;
 }
