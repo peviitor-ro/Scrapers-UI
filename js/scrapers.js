@@ -1792,5 +1792,11 @@ let scrapers = [
     },
     {
         "name": "sennder"
+    },
+    {
+        "name": "waldorfcluj"
+    },
+    {
+        "name": "visma"
     }
 ];
