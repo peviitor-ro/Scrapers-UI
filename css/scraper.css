@@ -46,6 +46,18 @@ body {
   color: black;
 }
 
+.header .nav-links {
+  margin-left: auto;
+}
+
+.header .nav-links a {
+  margin: 0px 10px;
+  font-weight: 600;
+}
+.header .nav-links a:hover {
+  color: #e08d21;
+}
+
 .company {
   display: flex;
   align-items: center;
