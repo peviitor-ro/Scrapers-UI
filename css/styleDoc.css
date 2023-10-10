@@ -154,7 +154,7 @@ body {
 
 @media (max-width: 1350px) {
   .section {
-    left: 20px;
+    left: 0px;
   }
 
   .aside {
@@ -225,8 +225,6 @@ body {
   text-decoration: none;
   color: var(--text-black-900);
   padding: 15px;
-  position: relative;
-  isolation: isolate;
 }
 
 .links-content .cards {
@@ -238,7 +236,8 @@ body {
   content: "";
   position: absolute;
   z-index: -1;
-  background-color: var(--skin-color);
+  background: linear-gradient(0deg, #e08d21 0%, #fbb355 65%, #00ba72 100%);
+  border: 2px solid black;
   inset: 0;
   scale: 0 1;
   transform-origin: right;
@@ -250,9 +249,51 @@ body {
   scale: 1 1;
 }
 
-.links .links-h1 {
+/* Universal h1 with border */
+
+.h1-border {
   margin: 2em 0px 1em 0px;
+  position: relative;
+  width: fit-content;
 }
+
+.right-border-univ::before,
+.left-border-univ::before {
+  content: "";
+  position: absolute;
+  background-color: var(--skin-color);
+  width: 20px;
+  height: 3px;
+}
+.right-border-univ::after,
+.left-border-univ::after {
+  content: "";
+  position: absolute;
+  background-color: var(--skin-color);
+  width: 3px;
+  height: 60%;
+}
+
+.right-border-univ::before {
+  top: -5px;
+  left: -10px;
+}
+
+.right-border-univ::after {
+  top: -5px;
+  left: -10px;
+}
+.left-border-univ::before {
+  bottom: -5px;
+  right: -10px;
+}
+
+.left-border-univ::after {
+  bottom: -5px;
+  right: -10px;
+}
+
+/* end border  */
 
 @media (max-width: 640px) {
   .links-content {

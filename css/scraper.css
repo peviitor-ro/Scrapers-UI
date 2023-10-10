@@ -46,6 +46,18 @@ body {
   color: black;
 }
 
+.header .nav-links {
+  margin-left: auto;
+}
+
+.header .nav-links a {
+  margin: 0px 10px;
+  font-weight: 600;
+}
+.header .nav-links a:hover {
+  color: #e08d21;
+}
+
 .company {
   display: flex;
   align-items: center;
@@ -264,9 +276,6 @@ button div {
   .about {
     font: 1rem "Poppins", sans-serif, bold;
   }
-  .company-container img {
-    width: 150px;
-  }
 }
 
 /* data */
@@ -275,35 +284,36 @@ button div {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   grid-auto-rows: 250px;
+  gap: 10px;
 }
 .job {
   background-color: white;
   border-top-right-radius: 16px;
   border-bottom-left-radius: 26px;
   margin: 10px;
-  height: max-content;
+  height: 250px;
   box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
     rgb(204, 219, 232) -3px -3px 6px 0px inset;
 }
 
 .details-container {
+  height: 250px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.job-title,
-.job-company,
+.job-title {
+  padding: 15px 15px 0px 15px;
+}
 .job-location {
-  padding: 15px 15px;
+  padding: 15px;
+}
+.job-company {
+  padding: 5px 15px 15px 15px;
 }
 
 .job-title,
-.job-company {
-  font-size: 15px;
-  font-weight: 600;
-}
-
 .job-company {
   font-size: 1.1rem;
   font-weight: 600;
@@ -313,7 +323,7 @@ button div {
   display: flex;
   flex-direction: column;
   color: #979c9e;
-  gap: 5px;
+  gap: 10px;
 }
 
 .location-container,
@@ -389,13 +399,6 @@ button div {
 }
 .button-to-top:hover {
   scale: 1.2;
-}
-
-@media (max-width: 546px) {
-  .logo-company {
-    width: 250px;
-    height: 100px;
-  }
 }
 
 .no-data {
