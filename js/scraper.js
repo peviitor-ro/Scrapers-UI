@@ -153,6 +153,7 @@ const create_job = (data) => {
   jobElement.classList.add("job");
   jobElement.innerHTML = `
     <div class="details-container">
+    <div>
       <h2 class="job-title ${
         validate_data(data, "job_title") ? "validate" : "invalid"
       }">
@@ -165,6 +166,8 @@ const create_job = (data) => {
       }">
           ${validate_data(data, "company") ? data.company : "No company"}
       </div>
+      </div>
+      <div>
       <div class="job-location" title="Location">
           <div class="location-container">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -208,6 +211,7 @@ const create_job = (data) => {
           ">
               Vezi Postul 
         </a>
+      </div>
       </div>
     </div>
         `;

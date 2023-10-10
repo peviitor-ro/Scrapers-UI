@@ -238,7 +238,8 @@ body {
   content: "";
   position: absolute;
   z-index: -1;
-  background-color: var(--skin-color);
+  background: linear-gradient(0deg, #e08d21 0%, #fbb355 65%, #00ba72 100%);
+  border: 2px solid black;
   inset: 0;
   scale: 0 1;
   transform-origin: right;
