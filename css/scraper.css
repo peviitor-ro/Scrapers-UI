@@ -281,25 +281,26 @@ button div {
   border-top-right-radius: 16px;
   border-bottom-left-radius: 26px;
   margin: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  height: max-content;
   box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
     rgb(204, 219, 232) -3px -3px 6px 0px inset;
 }
 
 .details-container {
-  padding: 10px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .job-title,
 .job-company,
 .job-location {
-  margin: 15px 0px;
+  padding: 15px 15px;
 }
 
-.job-title {
-  font-size: 1.2rem;
+.job-title,
+.job-company {
+  font-size: 15px;
   font-weight: 600;
 }
 
@@ -310,9 +311,18 @@ button div {
 
 .job-location {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   color: #979c9e;
+  gap: 5px;
+}
+
+.location-container,
+.country-container,
+.job-type-container {
+  display: flex;
+  align-items: center;
   gap: 2px;
+  font-size: 15px;
 }
 
 .job_link-container {
