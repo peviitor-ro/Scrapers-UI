@@ -1789,5 +1789,8 @@ let scrapers = [
     },
     {
         "name": "edenred"
+    },
+    {
+        "name": "sennder"
     }
 ];
