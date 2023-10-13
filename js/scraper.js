@@ -164,6 +164,10 @@ const create_job = (data) => {
       <div class="job-company ${
         validate_data(data, "company") ? "validate" : "invalid"
       }">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#979c9e" class="bi bi-buildings" viewBox="0 0 16 16" >
+          <path d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022ZM6 8.694 1 10.36V15h5V8.694ZM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15Z"/>
+          <path d="M2 11h1v1H2v-1Zm2 0h1v1H4v-1Zm-2 2h1v1H2v-1Zm2 0h1v1H4v-1Zm4-4h1v1H8V9Zm2 0h1v1h-1V9Zm-2 2h1v1H8v-1Zm2 0h1v1h-1v-1Zm2-2h1v1h-1V9Zm0 2h1v1h-1v-1ZM8 7h1v1H8V7Zm2 0h1v1h-1V7Zm2 0h1v1h-1V7ZM8 5h1v1H8V5Zm2 0h1v1h-1V5Zm2 0h1v1h-1V5Zm0-2h1v1h-1V3Z"/>
+        </svg>
           ${validate_data(data, "company") ? data.company : "No company"}
       </div>
       </div>
@@ -199,8 +203,8 @@ const create_job = (data) => {
               <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H4Zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
               <path d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.653a5.373 5.373 0 0 1 1.066-2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v9h-2.219c.554.654.89 1.373 1.066 2h.653a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2H2Z"/>
             </svg>
-            <div class="${data.remote ? "validate" : "invalid"}">
-                ${data.remote ? "Remote" : "No Job Type"}
+            <div class="${data.remote && data.remote.length ? "validate" : "invalid"}">
+                ${data.remote && data.remote.length ? data.remote.map((remote) => remote).join(", ") : "No job type"}
             </div>
           </div>
       </div>

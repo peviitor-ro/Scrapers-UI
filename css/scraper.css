@@ -301,6 +301,7 @@ button div {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  flex: 1;
 }
 
 .job-title {
@@ -310,7 +311,7 @@ button div {
   padding: 15px;
 }
 .job-company {
-  padding: 5px 15px 15px 15px;
+  padding: 15px;
 }
 
 .job-title,
