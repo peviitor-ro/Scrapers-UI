@@ -58,6 +58,16 @@ body {
   color: #e08d21;
 }
 
+@media (max-width: 640px) {
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* Company Container */
+
 .company {
   display: flex;
   align-items: center;
@@ -65,8 +75,7 @@ body {
   margin: 5em auto 20px auto;
   letter-spacing: 1px;
   font: 1.2em "Poppins", sans-serif, bold;
-  gap: 20px;
-  width: 60%;
+  width: 80%;
 }
 .company .company-container {
   margin: 0px 10px;
@@ -76,37 +85,75 @@ body {
   box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
     rgb(204, 219, 232) -3px -3px 6px 0px inset;
 }
-.company .company-container img {
-  margin-top: -3.4em;
+
+.company .company-container .flip-card-container {
+  background-color: transparent;
+  width: 250px;
+  height: 200px;
+  perspective: 1000px;
+  margin: -4em auto 2em auto;
+}
+
+.company .company-container .flip-card-container .flip-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.flip-card-container:hover .flip-card {
+  transform: rotateY(180deg);
+}
+
+.company .company-container .flip-card-container .flip-card .box,
+.company .company-container .flip-card-container .flip-card .box2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   backdrop-filter: blur(10px);
-  /* blur for apple devices */
   -webkit-backdrop-filter: blur(10px);
   background: rgba(255, 255, 255, 0.3);
-  border-radius: 16px;
   box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
     rgb(204, 219, 232) -3px -3px 6px 0px inset;
   padding: 15px;
 }
 
-.about {
-  padding: 20px;
-  border-radius: 26px;
-}
-
-.about div {
-  margin: 16px 10px 0px 0px;
+.company .company-container .flip-card-container .flip-card .box {
   display: flex;
-  justify-content: end;
+  justify-content: center;
 }
 
-.about div a {
-  border: 1px solid #e08d21;
-  transition: all 0.3s;
+.company .company-container .flip-card-container .flip-card .box img {
+  max-width: 200px;
 }
 
-.about div a:hover {
-  box-shadow: 0 0.6em 0.6em -0.3em #e08d21;
-  transform: translateY(-0.25em);
+.company .company-container .flip-card-container .flip-card .box2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotateY(180deg);
+}
+
+.company .company-container .flip-card-container .flip-card .box2 a {
+  text-decoration: none;
+  color: black;
+  width: fit-content;
+}
+.company .company-container .flip-card-container .flip-card .box2 a:hover {
+  font-weight: 600;
+}
+
+.company .company-container .chart-about-container {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  margin: 1em;
+  gap: 10px;
 }
 
 .about h2 {
@@ -150,6 +197,33 @@ body {
   width: fit-content;
 }
 
+@media (max-width: 1047px) {
+  .company .company-container .chart-about-container {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .company {
+    width: 80%;
+  }
+
+  .about {
+    font: 1rem "Poppins", sans-serif, bold;
+  }
+}
+
+@media (max-width: 640px) {
+  .company {
+    width: 100%;
+  }
+
+  .about {
+    font: 1rem "Poppins", sans-serif, bold;
+  }
+}
+
+/*  */
+
 .about a,
 .job-location a {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -166,6 +240,7 @@ body {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  margin: 10px 0px;
 }
 
 .scraper-details .hr {
@@ -179,6 +254,9 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.scraper-details div p {
+  margin: auto 0px;
 }
 
 #last-update {
@@ -255,26 +333,6 @@ button div {
   }
   100% {
     transform: rotate(180deg);
-  }
-}
-
-@media (max-width: 1047px) {
-  .company {
-    width: 80%;
-  }
-
-  .about {
-    font: 1rem "Poppins", sans-serif, bold;
-  }
-}
-
-@media (max-width: 640px) {
-  .company {
-    width: 100%;
-  }
-
-  .about {
-    font: 1rem "Poppins", sans-serif, bold;
   }
 }
 
