@@ -1,4 +1,6 @@
-const ctx = document.getElementById("myChart");
+const ctx = document.getElementById("Chart");
+
+ctx.height = 300;
 
 new Chart(ctx, {
   type: "line",
@@ -38,12 +40,12 @@ new Chart(ctx, {
     ],
     datasets: [
       {
-        borderColor: "black",
+        borderColor: "rgba(224, 141, 33, 0.769)",
         backgroundColor: "#e08d21",
         label: "Number of Jobs",
         data: [
           12, 2, 30, 14, 22, 26, 17, 18, 9, 12, 11, 15, 22, 23, 23, 14, 2, 5,
-          19, 20, 12, 22, 23, 22, 20, 16, 16, 17, 10, 10, 25,
+          19, 20, 12, 22, 23, 22, 20, 16, 16, 17, 10, 100, 25,
         ],
         borderWidth: 1,
       },
@@ -57,7 +59,7 @@ new Chart(ctx, {
     },
     datasets: {
       line: {
-        pointRadius: 4,
+        pointRadius: 3,
       },
     },
   },
