@@ -149,14 +149,17 @@ body {
   font-weight: 600;
 }
 
-.company .company-container .chart-about-container {
+.chart-container {
+  margin: 20px;
+}
+/* .company .company-container .chart-about-container {
   display: grid;
   grid-template-columns: 40% 60%;
   margin: 1em;
   gap: 10px;
-}
+} */
 
-.about h2 {
+/* .about h2 {
   margin: 10px 0;
   text-align: center;
 }
@@ -195,7 +198,7 @@ body {
   color: #e08d21;
   cursor: pointer;
   width: fit-content;
-}
+} */
 
 @media (max-width: 1047px) {
   .company .company-container .chart-about-container {
@@ -206,19 +209,11 @@ body {
   .company {
     width: 80%;
   }
-
-  .about {
-    font: 1rem "Poppins", sans-serif, bold;
-  }
 }
 
 @media (max-width: 640px) {
   .company {
     width: 100%;
-  }
-
-  .about {
-    font: 1rem "Poppins", sans-serif, bold;
   }
 }
 
