@@ -23,7 +23,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #e08d21c4;
+  background: hwb(34 13% 12% / 0.769);
 }
 
 .header {
@@ -78,6 +78,7 @@ body {
   width: 80%;
 }
 .company .company-container {
+  width: 100%;
   margin: 0px 10px;
   text-align: center;
   background: rgba(255, 255, 255, 0.3);
@@ -151,6 +152,10 @@ body {
 
 .chart-container {
   margin: 20px;
+}
+
+#Chart {
+  width: 100%;
 }
 /* .company .company-container .chart-about-container {
   display: grid;
