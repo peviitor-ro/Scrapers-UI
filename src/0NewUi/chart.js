@@ -1,66 +1,46 @@
 const ctx = document.getElementById("Chart");
-
 ctx.height = 300;
 
-new Chart(ctx, {
-  type: "line",
-  data: {
-    labels: [
-      "1 Oct",
-      "2 Oct",
-      "3 Oct",
-      "4 Oct",
-      "5 Oct",
-      "6 Oct",
-      "7 Oct",
-      "8 Oct",
-      "9 Oct",
-      "10 Oct",
-      "11 Oct",
-      "12 Oct",
-      "13 Oct",
-      "14 Oct",
-      "15 Oct",
-      "16 Oct",
-      "17 Oct",
-      "18 Oct",
-      "19 Oct",
-      "20 Oct",
-      "21 Oct",
-      "22 Oct",
-      "23 Oct",
-      "24 Oct",
-      "25 Oct",
-      "26 Oct",
-      "27 Oct",
-      "28 Oct",
-      "29 Oct",
-      "30 Oct",
-      "31 Oct",
-    ],
-    datasets: [
-      {
-        borderColor: "rgba(224, 141, 33, 0.769)",
-        backgroundColor: "#e08d21",
-        label: "Number of Jobs",
-        data: [
-          12, 2, 30, 14, 22, 26, 17, 18, 9, 12, 11, 15, 22, 23, 23, 14, 2, 5,
-          19, 20, 12, 22, 23, 22, 20, 16, 16, 17, 10, 100, 25,
-        ],
-        borderWidth: 1,
+const get_data = async () => {
+  const response = await fetch("https://dev.laurentiumarian.ro/dataset/based_scraper_py/1and1.py/");
+  const data = await response.json();
+  return data;
+};
+
+get_data().then((data) => {
+  let labels = [];
+  let values = [];
+
+  data.forEach((element) => {
+    labels.push(element.formated_date);
+    values.push(element.data);
+  });
+
+  new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          borderColor: "rgba(224, 141, 33, 0.769)",
+          backgroundColor: "#e08d21",
+          label: "Number of Jobs",
+          data: values,
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
       },
-    ],
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true,
+      datasets: {
+        line: {
+          pointRadius: 3,
+        },
       },
     },
-    datasets: {
-      line: {
-        pointRadius: 3,
-      },
-    },
-  },
+  });
 });
