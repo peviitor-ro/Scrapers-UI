@@ -61,7 +61,7 @@ const validate_city = (data) => {
   let citys = data.city;
   let jobType = data.remote;
   let country = data.country;
-  if (jobType.includes("Remote")) {
+  if (jobType && jobType.includes("Remote")) {
     if (typeof citys === "object") {
       citys.forEach((city) => {
         let htmlDiv = document.createElement("div");
