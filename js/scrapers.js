@@ -184,9 +184,6 @@ let scrapers = [
     name: "adi",
   },
   {
-    name: "infineon",
-  },
-  {
     name: "nestle",
   },
   {
