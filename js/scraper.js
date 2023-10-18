@@ -171,7 +171,7 @@ const create_job = (data) => {
           ${validate_data(data, "company") ? data.company : "No company"}
       </div>
       </div>
-      <div>
+      <div class="container-JobLocation">
       <div class="job-location" title="Location">
           <div class="location-container">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -203,8 +203,14 @@ const create_job = (data) => {
               <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H4Zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
               <path d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.653a5.373 5.373 0 0 1 1.066-2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v9h-2.219c.554.654.89 1.373 1.066 2h.653a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2H2Z"/>
             </svg>
-            <div class="${data.remote && data.remote.length ? "validate" : "invalid"}">
-                ${data.remote && data.remote.length ? data.remote.map((remote) => remote).join(", ") : "No job type"}
+            <div class="${
+              data.remote && data.remote.length ? "validate" : "invalid"
+            }">
+                ${
+                  data.remote && data.remote.length
+                    ? data.remote.map((remote) => remote).join(", ")
+                    : "No job type"
+                }
             </div>
           </div>
       </div>
@@ -247,8 +253,9 @@ const date =
   today.toLocaleString("en", { month: "long" }) +
   "-" +
   today.getFullYear();
-const time =
-  today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+const minutes = today.getMinutes();
+const minutesIF = minutes > 9 ? minutes : "0" + minutes;
+const time = today.getHours() + ":" + minutesIF + ":" + today.getSeconds();
 const dateTime = time + "<br>" + date;
 
 for (let i = 0; i < 9; i++) {
@@ -266,7 +273,7 @@ button.addEventListener("click", () => {
   svg.classList.toggle("rotate");
   button.disabled = true;
   document.querySelector(".jobs").innerHTML = "";
-  container.style.display = "grid";
+  container.style.display = "flex";
   fetchApi(apiObj)
     .then((data) => {
       svg.classList.toggle("rotate");
