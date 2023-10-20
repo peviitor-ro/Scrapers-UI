@@ -269,6 +269,69 @@ const noDataImage = `
         </div>
         `;
 
+// Alerts
+
+const alertPopUp = document.querySelector(".alertPopUp");
+const closeIcon = document.querySelector(".close");
+const progress = document.querySelector(".progress");
+const alertText = document.querySelector(".alert-text-1");
+const alertText2 = document.querySelector(".alert-text-2");
+const alertImage = document.querySelector("#image-alert");
+
+let timer1, timer2;
+
+const alertShow = () => {
+  alertPopUp.style.display = "block";
+  alertPopUp.classList.add("active");
+  progress.classList.add("active");
+
+  timer1 = setTimeout(() => {
+    alertPopUp.classList.remove("active");
+  }, 3000);
+
+  timer2 = setTimeout(() => {
+    progress.classList.remove("active");
+  }, 3000);
+};
+
+const alertModalSuccess = () => {
+  alertImage.src = "../../images/alert/check.png";
+  alertText.innerHTML = "Success";
+  alertText2.innerHTML = "The number of jobs has been updated.";
+  alertShow();
+};
+
+const alertModalInvalid = () => {
+  alertImage.src = "../../images/alert/invalid.png";
+  alertText.innerHTML = "Status Inactive";
+  alertText2.innerHTML = "Something went wrong";
+  alertShow();
+};
+
+const alertModalError = (e) => {
+  alertImage.src = "../../images/alert/error.png";
+  alertText.innerHTML = "Error";
+  alertText2.innerHTML = `${e}`;
+  alertShow();
+};
+const alertModalDelete = (e) => {
+  alertImage.src = "../../images/alert/check.png";
+  alertText.innerHTML = "Success";
+  alertText2.innerHTML = "Local Storage was deleted successfully";
+  alertShow();
+};
+
+closeIcon.addEventListener("click", () => {
+  alertPopUp.classList.remove("active");
+
+  setTimeout(() => {
+    progress.classList.remove("active");
+  }, 300);
+
+  clearTimeout(timer1);
+  clearTimeout(timer2);
+});
+
 button.addEventListener("click", () => {
   svg.classList.toggle("rotate");
   button.disabled = true;
@@ -294,35 +357,37 @@ button.addEventListener("click", () => {
         localStorage.setItem(`status-${companyName}`, "Active");
         localStorage.setItem(`jobs-${companyName}`, data.Total);
         localStorage.setItem(`lastUpdate-${companyName}`, dateTime);
+        alertModalSuccess();
       } else {
+        document.querySelector("#status").classList.remove("validate");
         localStorage.setItem(`status-${companyName}`, "Inactive");
         localStorage.setItem(`lastUpdate-${companyName}`, dateTime);
         document.querySelector("#last-update").innerHTML = dateTime;
         document.querySelector("#status").innerHTML = "Inactive";
         document.querySelector("#status").classList.add("warning");
         document.querySelector(".jobs").innerHTML = noDataImage;
+        alertModalInvalid();
       }
     })
     .catch((e) => {
-      console.log(e);
       svg.classList.toggle("rotate");
       button.disabled = false;
       document.querySelector("#status").innerHTML = "Api Error";
       document.querySelector("#status").classList.add("error");
+      alertModalError(e);
     });
 });
 
-if (datasave !== null) {
+const checkStatus = localStorage.getItem(`status-${companyName}`);
+
+if ((datasave !== null) & (checkStatus === "Active")) {
   datasave.forEach((post) => {
     create_job(post);
   });
-} else if (status === "Inactive") {
-  document.querySelector("#status").innerHTML = localStorage.getItem(
-    `status-${companyName}`
-  );
-  document.querySelector("#last-update").innerHTML = localStorage.getItem(
-    `lastUpdate-${companyName}`
-  );
+  document.querySelector("#status").classList.add("validate");
+} else if (checkStatus === "Inactive") {
+  document.querySelector("#status").classList.remove("validate");
+  document.querySelector("#status").classList.add("warning");
   document.querySelector(".jobs").innerHTML = noDataImage;
   document.querySelector("#jobs").innerHTML = "Uknown";
 } else {
@@ -335,6 +400,9 @@ if (datasave !== null) {
 const removeLocalStorage = document.querySelector(".delete-storage");
 
 removeLocalStorage.addEventListener("click", () => {
+  document.querySelector("#status").classList.remove("validate");
+  document.querySelector("#status").classList.remove("warning");
+  document.querySelector("#status").classList.remove("error");
   localStorage.removeItem(`data-${companyName}`);
   localStorage.removeItem(`status-${companyName}`);
   localStorage.removeItem(`jobs-${companyName}`);
@@ -343,6 +411,7 @@ removeLocalStorage.addEventListener("click", () => {
   document.querySelector("#status").innerHTML = "Uknown";
   document.querySelector("#jobs").innerHTML = "Uknown";
   document.querySelector("#last-update").innerHTML = "Uknown";
+  alertModalDelete();
 });
 
 // URL-ul API-ului GitHub pentru a obține contribuitorii unui repozitoriu
@@ -388,3 +457,10 @@ fetch(issuesUrl)
   .catch((error) => {
     console.error("Eroare:", error);
   });
+
+// buttons on mobile
+
+if (window.innerWidth < 640) {
+  const buttons = document.querySelectorAll(".functionality-buttons");
+  buttons.forEach((e) => e.classList.toggle("display-none"));
+}

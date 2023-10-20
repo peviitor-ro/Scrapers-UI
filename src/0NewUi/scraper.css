@@ -65,6 +65,100 @@ body {
     gap: 10px;
   }
 }
+/* Alert */
+.alertPopUp {
+  display: none;
+  position: fixed;
+  top: 5em;
+  right: 30px;
+  border-radius: 12px;
+  background: #fff;
+  padding: 20px 35px 20px 25px;
+  box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transform: translateX(calc(100% + 30px));
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+  z-index: 10;
+}
+
+.alertPopUp.active {
+  transform: translateX(0%);
+}
+
+.alertPopUp .alertPopUp-content {
+  display: flex;
+  align-items: center;
+}
+
+.alertPopUp-content .alert-img {
+  width: 30px;
+}
+
+.alertPopUp-content .message {
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px;
+}
+
+.message span {
+  font-size: 16px;
+  font-weight: 400;
+  color: #666666;
+}
+
+.message .alert-text-1 {
+  font-weight: 600;
+  color: #333;
+}
+
+.alertPopUp .close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  padding: 5px;
+  cursor: pointer;
+  opacity: 0.5;
+  color: red;
+  font-weight: 600;
+}
+
+.alertPopUp .close:hover {
+  opacity: 1;
+}
+
+.alertPopUp .progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+}
+
+.alertPopUp .progress:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #e08d21;
+}
+
+.progress.active:before {
+  animation: progress 3s linear forwards;
+}
+
+@keyframes progress {
+  100% {
+    right: 100%;
+  }
+}
+
+@media (width < 640px) {
+  .alertPopUp {
+    right: 5px;
+  }
+}
 
 /* Company Container */
 
@@ -249,13 +343,13 @@ body {
   width: 2px;
 }
 
-.scraper-details div {
+.scraper-details .details {
   margin: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.scraper-details div p {
+.scraper-details .details p {
   margin: auto 0px;
 }
 
@@ -263,10 +357,17 @@ body {
   text-align: center;
 }
 
-.scraper-details div h5 {
+.scraper-details .details h5 {
   font-size: 18px;
   margin-bottom: 10px;
 }
+
+.scraper-details #testers p,
+.scraper-details #contributors p {
+  text-align: center;
+  margin: 5px 0px;
+}
+
 .functionality {
   display: flex;
   justify-content: center;
@@ -306,14 +407,36 @@ body {
 }
 
 @media (max-width: 640px) {
+  .scraper-details {
+    display: block;
+  }
   .scraper-details .hr {
-    height: auto;
-    background-color: #e08d21;
-    width: 2px;
+    width: 90%;
+    height: 2px;
+    margin: 0px auto;
+    margin-top: -10px;
   }
 
-  .scraper-details div {
-    margin: 5px;
+  .scraper-details .details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .scraper-details .details h5 {
+    margin-left: 10px;
+  }
+  .scraper-details .details p {
+    margin-right: 10px;
+  }
+  .scraper-details .details #contributors p,
+  .scraper-details .details #testers p {
+    text-align: end;
+    margin-bottom: 3px;
+  }
+
+  #last-update {
+    text-align: end;
   }
 }
 
@@ -444,6 +567,10 @@ button div {
   color: rgba(255, 0, 0, 0.938) !important;
 }
 
+.display-none {
+  display: none;
+}
+
 .button-to-top-parent {
   display: flex;
   justify-content: end;
@@ -571,7 +698,7 @@ button div {
   gap: 5px;
   width: 100%;
   height: 100%;
-  overflow:auto;
+  overflow: auto;
   /* hide scrollbar */
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE 10+ */
@@ -604,12 +731,3 @@ hide scrollbar for chrome, safari and opera
 .show {
   display: initial;
 }
-
-#testers, #contributors {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-}
-
-
