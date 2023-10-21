@@ -670,9 +670,6 @@ let scrapers = [
     name: "finastra",
   },
   {
-    name: "npx",
-  },
-  {
     name: "crowdstrike",
   },
   {
