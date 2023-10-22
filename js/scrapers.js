@@ -670,9 +670,6 @@ let scrapers = [
     name: "finastra",
   },
   {
-    name: "npx",
-  },
-  {
     name: "crowdstrike",
   },
   {
@@ -1064,9 +1061,6 @@ let scrapers = [
   },
   {
     name: "capex",
-  },
-  {
-    name: "bandainamcoent",
   },
   {
     name: "upteam",
