@@ -1063,9 +1063,6 @@ let scrapers = [
     name: "capex",
   },
   {
-    name: "bandainamcoent",
-  },
-  {
     name: "upteam",
   },
   {
