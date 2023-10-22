@@ -28,6 +28,19 @@
         <a href="../../doc.html"> Documentation </a>
       </div>
     </div>
+    <!-- Start Section Alert -->
+    <div class="alertPopUp active">
+      <div class="alertPopUp-content">
+        <img src="" alt="Check" class="alert-img" id="image-alert" />
+        <div class="message">
+          <span class="alert-text-1"></span>
+          <span class="alert-text-2"></span>
+        </div>
+      </div>
+      <p class="close">X</p>
+      <div class="progress active"></div>
+    </div>
+    <!-- End Section Alert -->
     <section class="company">
       <div class="company-container">
         <div class="flip-card-container">
@@ -50,9 +63,7 @@
         </div>
 
         <div class="chart-container">
-          <canvas
-            id="Chart"
-          ></canvas>
+          <canvas id="Chart"></canvas>
         </div>
 
         <!-- ################################ -->
@@ -60,37 +71,39 @@
     </section>
     <div class="container-details">
       <div class="scraper-details">
-        <div>
+        <div class="details">
           <h5>Company</h5>
           <p id="company"></p>
         </div>
         <div class="hr"></div>
-        <div>
+        <div class="details">
           <h5>Status</h5>
           <p id="status">Uknown</p>
         </div>
         <div class="hr"></div>
-        <div>
+        <div class="details">
           <h5>Jobs</h5>
           <p id="jobs">Uknown</p>
         </div>
         <div class="hr"></div>
-        <div>
+        <div class="details">
           <h5>Last Update</h5>
           <p id="last-update">Uknown</p>
         </div>
         <div class="hr"></div>
-        <div>
+        <div class="details">
           <h5>Scraper</h5>
           <p id="scraper-lg">Python</p>
         </div>
         <div class="hr"></div>
-        <div id="contributors">
+        <div class="details">
           <h5>Contributors</h5>
+          <div id="contributors"></div>
         </div>
         <div class="hr"></div>
-        <div id="testers">
+        <div class="details">
           <h5>Testers</h5>
+          <div id="testers"></div>
         </div>
       </div>
       <div class="functionality">
@@ -115,13 +128,15 @@
         <a
           href="https://peviitor.ro/rezultate?q=1and1&amp;country=Rom%C3%A2nia&amp;page=1"
           target="_blank"
+          class="functionality-buttons"
         >
           See Jobs
         </a>
-        <p class="delete-storage">Delete Local Storage</p>
+        <p class="delete-storage functionality-buttons">Delete Local Storage</p>
         <a
-          href="https://github.com/peviitor-ro/based_scraper_py/tree/main/sites"
+          href="https://github.com/peviitor-ro/based_scraper_py/blob/main/sites/1and1.py"
           target="_blank"
+          class="functionality-buttons"
         >
           GitHub Repo
         </a>
@@ -134,6 +149,7 @@
         <a
           href="https://www.google.com/url?q=https%3A%2F%2Fdiscord.gg%2Ft2aEdmR52a&sa=D&sntz=1&usg=AOvVaw2T-L7jAgzen0J-qResoTGU"
           target="_blank"
+          class="functionality-buttons"
         >
           Discord
         </a>
@@ -157,9 +173,16 @@
     <div class="console hidden">
       <button class="close-console">x</button>
       <div class="console-content">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio voluptatum nam deleniti vel eaque in neque quo voluptate, nihil assumenda eius id itaque, molestias iusto error eveniet necessitatibus nemo sunt.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, vel sint repellendus nihil eum fugiat provident autem inventore voluptatem architecto modi, blanditiis maxime eaque rerum et sunt beatae molestiae distinctio?
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis perferendis, saepe vel tenetur necessitatibus qui, laborum odit quia esse accusamus possimus dignissimos tempore quas alias repellendus at iusto! Explicabo, voluptatum!
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio voluptatum
+        nam deleniti vel eaque in neque quo voluptate, nihil assumenda eius id
+        itaque, molestias iusto error eveniet necessitatibus nemo sunt. Lorem
+        ipsum dolor sit amet consectetur adipisicing elit. Fuga, vel sint
+        repellendus nihil eum fugiat provident autem inventore voluptatem
+        architecto modi, blanditiis maxime eaque rerum et sunt beatae molestiae
+        distinctio? Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+        Debitis perferendis, saepe vel tenetur necessitatibus qui, laborum odit
+        quia esse accusamus possimus dignissimos tempore quas alias repellendus
+        at iusto! Explicabo, voluptatum!
       </div>
     </div>
     <div class="button-to-top-parent" onclick="toTop()">
