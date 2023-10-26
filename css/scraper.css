@@ -317,6 +317,17 @@ body {
   margin-bottom: 10px;
 }
 
+.scraper-details #testers,
+.scraper-details #contributors {
+  height: 5em;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.scraper-details #testers::-webkit-scrollbar,
+.scraper-details #contributors::-webkit-scrollbar {
+  width: 4px;
+}
+
 .scraper-details #testers p,
 .scraper-details #contributors p {
   text-align: center;
@@ -383,6 +394,12 @@ body {
   }
   .scraper-details .details p {
     margin-right: 10px;
+  }
+
+  .scraper-details .details #contributors,
+  .scraper-details .details #testers {
+    overflow: initial;
+    height: initial;
   }
   .scraper-details .details #contributors p,
   .scraper-details .details #testers p {
