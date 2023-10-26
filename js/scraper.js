@@ -140,7 +140,11 @@ const validate_city = (data) => {
 const validate_country = (data, keyword) => {
   let isValidate = false;
   for (let city of countries) {
-    if (city.name.toLowerCase().includes(removeDiacritics(data.country.toLowerCase()))) {
+    if (
+      city.name
+        .toLowerCase()
+        .includes(removeDiacritics(data.country.toLowerCase()))
+    ) {
       isValidate = true;
       break;
     }
@@ -364,6 +368,7 @@ button.addEventListener("click", () => {
         localStorage.setItem(`lastUpdate-${companyName}`, dateTime);
         alertModalSuccess();
       } else if (data.error) {
+        document.querySelector("#status").classList.remove("validate");
         localStorage.setItem(`status-${companyName}`, "Inactive");
         localStorage.setItem(`lastUpdate-${companyName}`, dateTime);
         document.querySelector("#last-update").innerHTML = dateTime;
@@ -374,14 +379,13 @@ button.addEventListener("click", () => {
         document.querySelector(".console-content").innerHTML = "";
         data.error.forEach((error) => {
           // replace spaces with html space
-          document.querySelector(".console-content").innerHTML += error.replace(
-            / /g,
-            "&nbsp;"
-          ) + "</br>";
+          document.querySelector(".console-content").innerHTML +=
+            error.replace(/ /g, "&nbsp;") + "</br>";
         });
         document.querySelector(".console").classList.remove("hidden");
         alertModalInvalid();
       } else {
+        document.querySelector("#status").classList.remove("validate");
         localStorage.setItem(`status-${companyName}`, "Inactive");
         localStorage.setItem(`lastUpdate-${companyName}`, dateTime);
         document.querySelector("#last-update").innerHTML = dateTime;
@@ -401,7 +405,7 @@ button.addEventListener("click", () => {
       document.querySelector(".console-content").innerHTML = e + "</br>";
       document.querySelector(".console-content").innerHTML +=
         "Gettin data from peviitor database! </br>";
-        alertModalError(e);
+      alertModalError(e);
 
       const peviitorUrl = "https://dev.laurentiumarian.ro";
       const data = { company: companyName };
@@ -436,7 +440,7 @@ button.addEventListener("click", () => {
             container.style.display = "none";
             setTimeout(() => {
               alertModalSuccess();
-            } , 3000);
+            }, 3000);
           }
         })
         .catch((error) => {
@@ -445,7 +449,7 @@ button.addEventListener("click", () => {
           document.querySelector(".console").classList.remove("hidden");
           document.querySelector(".console-content").innerHTML =
             error + "</br>";
-            alertModalError(error);
+          alertModalError(error);
         });
     });
 });
@@ -486,6 +490,9 @@ if (status === "Active") {
 const removeLocalStorage = document.querySelector(".delete-storage");
 
 removeLocalStorage.addEventListener("click", () => {
+  document.querySelector("#status").classList.remove("validate");
+  document.querySelector("#status").classList.remove("warning");
+  document.querySelector("#status").classList.remove("error");
   localStorage.removeItem(`data-${companyName}`);
   localStorage.removeItem(`status-${companyName}`);
   localStorage.removeItem(`jobs-${companyName}`);
@@ -494,6 +501,7 @@ removeLocalStorage.addEventListener("click", () => {
   document.querySelector("#status").innerHTML = "Uknown";
   document.querySelector("#jobs").innerHTML = "Uknown";
   document.querySelector("#last-update").innerHTML = "Uknown";
+  alertModalDelete();
 });
 
 // URL-ul API-ului GitHub pentru a obține contribuitorii unui repozitoriu
