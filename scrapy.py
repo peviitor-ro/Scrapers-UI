@@ -104,8 +104,8 @@ for url in urls:
         <section class="company">
             <div class="company-container">
                 <img
-                width="320"
-                height="120"
+                
+                
                 src="{logos.get(company.lower())}" 
                 alt="{company.lower()}"
                 />

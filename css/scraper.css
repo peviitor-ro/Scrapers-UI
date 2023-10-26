@@ -221,10 +221,12 @@ body {
 .company .company-container .flip-card-container .flip-card .box {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .company .company-container .flip-card-container .flip-card .box img {
-  max-width: 200px;
+  max-width: 190px;
+  max-height: 190px;
 }
 
 .company .company-container .flip-card-container .flip-card .box2 {
