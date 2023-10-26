@@ -1,5 +1,4 @@
 let scrapers = [
-  { name: "0NewUi" },
   {
     name: "inetum",
   },
