@@ -507,39 +507,39 @@ let uniqueTesters = [];
 const contributorsUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contributors`;
 const issuesUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/issues`;
 
-// fetch(contributorsUrl)
-//   .then((response) => response.json())
-//   .then((contributors) => {
-//     const contributorsContainer = document.querySelector("#contributors");
-//     contributors.forEach((contributor) => {
-//       const contributorElement = document.createElement("p");
-//       contributorElement.innerHTML = contributor.login;
-//       contributorsContainer.appendChild(contributorElement);
-//     });
-//   })
-//   .catch((error) => {
-//     console.error("Eroare:", error);
-//   });
+fetch(contributorsUrl)
+  .then((response) => response.json())
+  .then((contributors) => {
+    const contributorsContainer = document.querySelector("#contributors");
+    contributors.forEach((contributor) => {
+      const contributorElement = document.createElement("p");
+      contributorElement.innerHTML = contributor.login;
+      contributorsContainer.appendChild(contributorElement);
+    });
+  })
+  .catch((error) => {
+    console.error("Eroare:", error);
+  });
 
-// fetch(issuesUrl)
-//   .then((response) => response.json())
-//   .then((issues) => {
-//     issues.forEach((issue) => {
-//       testers.push(issue.user.login);
-//     });
-//     uniqueTesters = [...new Set(testers)];
-//   })
-//   .then(() => {
-//     const testersContainer = document.querySelector("#testers");
-//     uniqueTesters.forEach((tester) => {
-//       const testerElement = document.createElement("p");
-//       testerElement.innerHTML = tester;
-//       testersContainer.appendChild(testerElement);
-//     });
-//   })
-//   .catch((error) => {
-//     console.error("Eroare:", error);
-//   });
+fetch(issuesUrl)
+  .then((response) => response.json())
+  .then((issues) => {
+    issues.forEach((issue) => {
+      testers.push(issue.user.login);
+    });
+    uniqueTesters = [...new Set(testers)];
+  })
+  .then(() => {
+    const testersContainer = document.querySelector("#testers");
+    uniqueTesters.forEach((tester) => {
+      const testerElement = document.createElement("p");
+      testerElement.innerHTML = tester;
+      testersContainer.appendChild(testerElement);
+    });
+  })
+  .catch((error) => {
+    console.error("Eroare:", error);
+  });
 
 // buttons on mobile
 
