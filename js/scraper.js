@@ -140,7 +140,7 @@ const validate_city = (data) => {
 const validate_country = (data, keyword) => {
   let isValidate = false;
   for (let city of countries) {
-    if (city.name.toLowerCase().includes(data.country.toLowerCase())) {
+    if (city.name.toLowerCase().includes(removeDiacritics(data.country.toLowerCase()))) {
       isValidate = true;
       break;
     }
@@ -232,6 +232,10 @@ const toTop = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
+const closeConsole = () => {
+  document.querySelector(".console").classList.toggle("hidden");
+};
+
 const button = document.querySelector("button");
 const svg = document.querySelector("svg");
 
@@ -269,6 +273,69 @@ const noDataImage = `
         </div>
         `;
 
+// Alerts
+
+const alertPopUp = document.querySelector(".alertPopUp");
+const closeIcon = document.querySelector(".close");
+const progress = document.querySelector(".progress");
+const alertText = document.querySelector(".alert-text-1");
+const alertText2 = document.querySelector(".alert-text-2");
+const alertImage = document.querySelector("#image-alert");
+
+let timer1, timer2;
+
+const alertShow = () => {
+  alertPopUp.style.display = "block";
+  alertPopUp.classList.add("active");
+  progress.classList.add("active");
+
+  timer1 = setTimeout(() => {
+    alertPopUp.classList.remove("active");
+  }, 3000);
+
+  timer2 = setTimeout(() => {
+    progress.classList.remove("active");
+  }, 3000);
+};
+
+const alertModalSuccess = () => {
+  alertImage.src = "../../images/alert/check.png";
+  alertText.innerHTML = "Success";
+  alertText2.innerHTML = "The number of jobs has been updated.";
+  alertShow();
+};
+
+const alertModalInvalid = () => {
+  alertImage.src = "../../images/alert/invalid.png";
+  alertText.innerHTML = "Status Inactive";
+  alertText2.innerHTML = "Something went wrong";
+  alertShow();
+};
+
+const alertModalError = (e) => {
+  alertImage.src = "../../images/alert/error.png";
+  alertText.innerHTML = "Error";
+  alertText2.innerHTML = `${e}`;
+  alertShow();
+};
+const alertModalDelete = (e) => {
+  alertImage.src = "../../images/alert/check.png";
+  alertText.innerHTML = "Success";
+  alertText2.innerHTML = "Local Storage was deleted successfully";
+  alertShow();
+};
+
+closeIcon.addEventListener("click", () => {
+  alertPopUp.classList.remove("active");
+
+  setTimeout(() => {
+    progress.classList.remove("active");
+  }, 300);
+
+  clearTimeout(timer1);
+  clearTimeout(timer2);
+});
+
 button.addEventListener("click", () => {
   svg.classList.toggle("rotate");
   button.disabled = true;
@@ -279,8 +346,10 @@ button.addEventListener("click", () => {
       svg.classList.toggle("rotate");
       button.disabled = false;
       container.style.display = "none";
+
       if (data.succes) {
         document.querySelector("#status").innerHTML = "Active";
+        document.querySelector("#status").classList.add("validate");
         document.querySelector("#jobs").innerHTML = data.Total;
         document.querySelector("#last-update").innerHTML = dateTime;
         data.succes.forEach((job) => {
@@ -293,19 +362,91 @@ button.addEventListener("click", () => {
         localStorage.setItem(`status-${companyName}`, "Active");
         localStorage.setItem(`jobs-${companyName}`, data.Total);
         localStorage.setItem(`lastUpdate-${companyName}`, dateTime);
+        alertModalSuccess();
+      } else if (data.error) {
+        localStorage.setItem(`status-${companyName}`, "Inactive");
+        localStorage.setItem(`lastUpdate-${companyName}`, dateTime);
+        document.querySelector("#last-update").innerHTML = dateTime;
+        document.querySelector("#status").innerHTML = "Inactive";
+        document.querySelector("#status").classList.add("warning");
+        document.querySelector(".jobs").innerHTML = noDataImage;
+
+        document.querySelector(".console-content").innerHTML = "";
+        data.error.forEach((error) => {
+          // replace spaces with html space
+          document.querySelector(".console-content").innerHTML += error.replace(
+            / /g,
+            "&nbsp;"
+          ) + "</br>";
+        });
+        document.querySelector(".console").classList.remove("hidden");
+        alertModalInvalid();
       } else {
         localStorage.setItem(`status-${companyName}`, "Inactive");
         localStorage.setItem(`lastUpdate-${companyName}`, dateTime);
         document.querySelector("#last-update").innerHTML = dateTime;
         document.querySelector("#status").innerHTML = "Inactive";
+        document.querySelector("#status").classList.add("warning");
         document.querySelector(".jobs").innerHTML = noDataImage;
+
+        alertModalInvalid();
       }
     })
     .catch((e) => {
-      console.log(e);
       svg.classList.toggle("rotate");
       button.disabled = false;
       document.querySelector("#status").innerHTML = "Api Error";
+      document.querySelector("#status").classList.add("error");
+      document.querySelector(".console").classList.remove("hidden");
+      document.querySelector(".console-content").innerHTML = e + "</br>";
+      document.querySelector(".console-content").innerHTML +=
+        "Gettin data from peviitor database! </br>";
+        alertModalError(e);
+
+      const peviitorUrl = "https://dev.laurentiumarian.ro";
+      const data = { company: companyName };
+
+      fetch(peviitorUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          if (data.succes) {
+            document.querySelector("#status").innerHTML = "Database";
+            document.querySelector("#status").classList.add("validate");
+            document.querySelector("#jobs").innerHTML = data.Total;
+            document.querySelector("#last-update").innerHTML = dateTime;
+            data.succes.forEach((job) => {
+              const editedJob = {
+                job_title: job.job_title[0],
+                company: job.company[0],
+                city: job.city,
+                country: removeDiacritics(job.country[0]),
+                remote: job.remote,
+                job_link: job.job_link[0],
+              };
+              create_job(editedJob);
+            });
+            container.style.display = "none";
+            setTimeout(() => {
+              alertModalSuccess();
+            } , 3000);
+          }
+        })
+        .catch((error) => {
+          document.querySelector("#status").innerHTML = "Database Error";
+          document.querySelector("#status").classList.add("error");
+          document.querySelector(".console").classList.remove("hidden");
+          document.querySelector(".console-content").innerHTML =
+            error + "</br>";
+            alertModalError(error);
+        });
     });
 });
 
@@ -313,10 +454,23 @@ if (datasave !== null) {
   datasave.forEach((post) => {
     create_job(post);
   });
+}
+if (status === "Active") {
+  document.querySelector("#status").innerHTML = localStorage.getItem(
+    `status-${companyName}`
+  );
+  document.querySelector("#status").classList.add("validate");
+  document.querySelector("#jobs").innerHTML = localStorage.getItem(
+    `jobs-${companyName}`
+  );
+  document.querySelector("#last-update").innerHTML = localStorage.getItem(
+    `lastUpdate-${companyName}`
+  );
 } else if (status === "Inactive") {
   document.querySelector("#status").innerHTML = localStorage.getItem(
     `status-${companyName}`
   );
+  document.querySelector("#status").classList.add("warning");
   document.querySelector("#last-update").innerHTML = localStorage.getItem(
     `lastUpdate-${companyName}`
   );
@@ -342,25 +496,54 @@ removeLocalStorage.addEventListener("click", () => {
   document.querySelector("#last-update").innerHTML = "Uknown";
 });
 
-// Show more Content
+// URL-ul API-ului GitHub pentru a obține contribuitorii unui repozitoriu
+const repoOwner = "peviitor-ro";
+const repoName = apiObj.url.split("/")[4];
 
-const showMore = document.querySelector(".show-more");
-const content = document.querySelector("#text-company");
+console.log(repoName);
+const contribuitori = [];
+const testers = [];
+let uniqueTesters = [];
+const contributorsUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contributors`;
+const issuesUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/issues`;
 
-if (content.innerText.length > 400) {
-  showMore.addEventListener("click", () => {
-    if (showMore.innerText === "Show More") {
-      content.classList.add("content");
-      content.classList.remove("hideContent");
-      showMore.innerText = "Show Less";
-    } else {
-      content.classList.remove("content");
-      content.classList.add("hideContent");
-      showMore.innerText = "Show More";
-    }
-  });
-} else {
-  content.classList.add("content");
-  content.classList.remove("hideContent");
-  showMore.style.display = "none";
+// fetch(contributorsUrl)
+//   .then((response) => response.json())
+//   .then((contributors) => {
+//     const contributorsContainer = document.querySelector("#contributors");
+//     contributors.forEach((contributor) => {
+//       const contributorElement = document.createElement("p");
+//       contributorElement.innerHTML = contributor.login;
+//       contributorsContainer.appendChild(contributorElement);
+//     });
+//   })
+//   .catch((error) => {
+//     console.error("Eroare:", error);
+//   });
+
+// fetch(issuesUrl)
+//   .then((response) => response.json())
+//   .then((issues) => {
+//     issues.forEach((issue) => {
+//       testers.push(issue.user.login);
+//     });
+//     uniqueTesters = [...new Set(testers)];
+//   })
+//   .then(() => {
+//     const testersContainer = document.querySelector("#testers");
+//     uniqueTesters.forEach((tester) => {
+//       const testerElement = document.createElement("p");
+//       testerElement.innerHTML = tester;
+//       testersContainer.appendChild(testerElement);
+//     });
+//   })
+//   .catch((error) => {
+//     console.error("Eroare:", error);
+//   });
+
+// buttons on mobile
+
+if (window.innerWidth < 640) {
+  const buttons = document.querySelectorAll(".functionality-buttons");
+  buttons.forEach((e) => e.classList.toggle("display-none"));
 }

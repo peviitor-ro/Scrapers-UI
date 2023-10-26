@@ -19,51 +19,56 @@
      <img alt="logo" height="30" src="https://peviitor.ro/static/media/peviitor_logo.df4cd2d4b04f25a93757bb59b397e656.svg" width="100"/>
     </div>
    </a>
-   <a href="../../doc.html" style="margin-left: auto">
-    Documentation
-   </a>
+   <div class="nav-links">
+    <a href="https://firme.peviitor.ro/" target="_blank">
+     Firme PeViitor
+    </a>
+    <a href="../../doc.html">
+     Documentation
+    </a>
+   </div>
   </div>
+  <!-- Start Section Alert -->
+  <div class="alertPopUp active">
+   <div class="alertPopUp-content">
+    <img alt="Check" class="alert-img" id="image-alert" src=""/>
+    <div class="message">
+     <span class="alert-text-1">
+     </span>
+     <span class="alert-text-2">
+     </span>
+    </div>
+   </div>
+   <p class="close">
+    X
+   </p>
+   <div class="progress active">
+   </div>
+  </div>
+  <!-- End Section Alert -->
   <section class="company">
    <div class="company-container">
-    <img alt="affidearomania" height="120" src="https://jurmed.ro/medici/wp-content/uploads/sites/2/2023/02/1.-Affidea.png" width="320"/>
-    <!-- De Modificat -->
-    <div class="about">
-     <h2>
-      About us
-     </h2>
-     <p class="content hideContent" id="text-company">
-      <strong>
-       Affidearomania
-      </strong>
-      <br/>
-      Affidea România face parte din Grupul Affidea, liderul european în
-            servicii de diagnostic imagistic de înalta performanță, ambulatoriu
-            și tratament al cancerului. Din 2002 Affidea este prezentă în
-            România și pune la dispoziţia pacienţilor o gamă extinsă de servicii
-            de radiologie imagistică şi medicină nucleară de înaltă performanţă,
-            servicii clinice integrate (consulţatii de specialitate şi
-            spitalizare de zi) şi de medicină de laborator (analize medicale).
-            Astazi ne puteți găsi în cele 36 de clinici deținute la nivel
-            național. Doriți să faceți parte dintr-o echipă care să transforme
-            modul în care asistența medicală este înțeleasă și acordată? Sunteți
-            gata pentru a vă îmbarca în călătoria unei companii cu creștere
-            rapidă?
-     </p>
-     <p class="show-more">
-      Show More
-     </p>
-     <div>
-      <a href="https://affidearomania.recruitee.com" target="_blank">
-       Affidearomania Careers
-      </a>
+    <div class="flip-card-container">
+     <div class="flip-card">
+      <div class="box">
+       <img alt="affidearomania" height="120" src="https://jurmed.ro/medici/wp-content/uploads/sites/2/2023/02/1.-Affidea.png" width="320"/>
+      </div>
+      <div class="box2">
+       <a href="https://affidearomania.recruitee.com" target="_blank">
+        Affidearomania Careers
+       </a>
+      </div>
      </div>
     </div>
-    <!-- ################################ -->
+    <div class="chart-container">
+     <canvas id="Chart">
+     </canvas>
+    </div>
    </div>
   </section>
   <div class="container-details">
    <div class="scraper-details">
-    <div>
+    <div class="details">
      <h5>
       Company
      </h5>
@@ -72,7 +77,7 @@
     </div>
     <div class="hr">
     </div>
-    <div>
+    <div class="details">
      <h5>
       Status
      </h5>
@@ -82,7 +87,7 @@
     </div>
     <div class="hr">
     </div>
-    <div>
+    <div class="details">
      <h5>
       Jobs
      </h5>
@@ -92,7 +97,7 @@
     </div>
     <div class="hr">
     </div>
-    <div>
+    <div class="details">
      <h5>
       Last Update
      </h5>
@@ -102,13 +107,27 @@
     </div>
     <div class="hr">
     </div>
-    <div>
+    <div class="details">
      <h5>
       Scraper
      </h5>
      <p id="scraper-lg">
       Python
      </p>
+    </div>
+    <div class="hr">
+    </div>
+    <div class="details" id="contributors">
+     <h5>
+      Contributors
+     </h5>
+    </div>
+    <div class="hr">
+    </div>
+    <div class="details" id="testers">
+     <h5>
+      Testers
+     </h5>
     </div>
    </div>
    <div class="functionality">
@@ -123,17 +142,20 @@
       </path>
      </svg>
     </button>
-    <a href="https://peviitor.ro/rezultate?q=affidearomania&amp;country=Rom%C3%A2nia&amp;page=1" target="_blank">
+    <a class="functionality-buttons" href="https://peviitor.ro/rezultate?q=affidearomania&amp;country=Rom%C3%A2nia&amp;page=1" target="_blank">
      See Jobs
     </a>
     <p class="delete-storage">
      Delete Local Storage
     </p>
-    <a href="https://github.com/peviitor-ro/JobsScrapers/tree/main/sites" target="_blank">
+    <a class="functionality-buttons" href="https://github.com/peviitor-ro/JobsScrapers/blob/main/sites/affidearomania.py" target="_blank">
      GitHub Repo
     </a>
-    <a href="https://github.com/peviitor-ro/JobsScrapers/issues" target="_blank">
+    <a class="functionality-buttons" href="https://github.com/peviitor-ro/JobsScrapers/issues" target="_blank">
      Report 🐞
+    </a>
+    <a class="functionality-buttons" href="https://www.google.com/url?q=https%3A%2F%2Fdiscord.gg%2Ft2aEdmR52a&amp;sa=D&amp;sntz=1&amp;usg=AOvVaw2T-L7jAgzen0J-qResoTGU" target="_blank">
+     Join Discord
     </a>
    </div>
   </div>
@@ -157,24 +179,30 @@
     </div>
    </template>
   </div>
+  <div class="console hidden">
+   <button class="close-console" onclick="closeConsole()">
+    x
+   </button>
+   <div class="console-content">
+   </div>
+  </div>
   <div class="button-to-top-parent" onclick="toTop()">
    <div class="button-to-top">
     ⇧
    </div>
   </div>
   <script>
-   // De Modificat
-      const apiObj = {
-        file: "affidearomania.py",
-        url: "https://dev.laurentiumarian.ro/scraper/JobsScrapers/",
-      };
-      // ##########################################
+   const apiObj = {"file": "affidearomania.py", "url": "https://dev.laurentiumarian.ro/scraper/JobsScrapers/", "dataSetUrl": "https://dev.laurentiumarian.ro/dataset/JobsScrapers/affidearomania.py/"};
   </script>
   <script src="../../js/countries.js">
   </script>
   <script src="../../js/counties.js">
   </script>
   <script src="../../js/scraper.js">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js">
+  </script>
+  <script src="../../js/chart.js">
   </script>
  </body>
 </html>
