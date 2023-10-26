@@ -19,53 +19,56 @@
      <img alt="logo" height="30" src="https://peviitor.ro/static/media/peviitor_logo.df4cd2d4b04f25a93757bb59b397e656.svg" width="100"/>
     </div>
    </a>
-   <a href="../../doc.html" style="margin-left: auto">
-    Documentation
-   </a>
+   <div class="nav-links">
+    <a href="https://firme.peviitor.ro/" target="_blank">
+     Firme PeViitor
+    </a>
+    <a href="../../doc.html">
+     Documentation
+    </a>
+   </div>
   </div>
+  <!-- Start Section Alert -->
+  <div class="alertPopUp active">
+   <div class="alertPopUp-content">
+    <img alt="Check" class="alert-img" id="image-alert" src=""/>
+    <div class="message">
+     <span class="alert-text-1">
+     </span>
+     <span class="alert-text-2">
+     </span>
+    </div>
+   </div>
+   <p class="close">
+    X
+   </p>
+   <div class="progress active">
+   </div>
+  </div>
+  <!-- End Section Alert -->
   <section class="company">
    <div class="company-container">
-    <img alt="continental" height="120" src="https://cdn.continental.com/fileadmin/_processed_/3/b/csm_continental_20logo-1920x1080_247d99d89e.png" width="320"/>
-    <!-- De Modificat -->
-    <div class="about">
-     <h2>
-      Our Values
-     </h2>
-     <p class="content hideContent" id="text-company">
-      <strong>
-       People who motivate – in a culture that inspires
-      </strong>
-      <br/>
-      At Continental, all employees share four fundamental corporate
-            values. They form the roots of our corporate culture: Trust, Passion
-            To Win, Freedom To Act and For One Another. We are convinced that
-            only in an environment shaped by those values can essential and
-            pioneering services, solutions and input be created.
-      <br/>
-      Continental encourages all employees. To do so, we maintain a
-            culture of trust and provide the freedom to develop personal
-            responsibility. At Continental, the working climate is characterized
-            by mutual respect. Every individual contribution counts. We share
-            these through our global network and work together to refine them.
-            We pick up on trends and market changes, make use of them more
-            quickly than others, and come up with better (i.e. more effective)
-            solutions for our customers more quickly.
-     </p>
-     <p class="show-more">
-      Show More
-     </p>
-     <div>
-      <a href="https://jobs.continental.com/en/#/?locationSuggestChecksums=97df691231f6e638f96c63c52454e425" target="_blank">
-       Continental Careers
-      </a>
+    <div class="flip-card-container">
+     <div class="flip-card">
+      <div class="box">
+       <img alt="continental" height="120" src="https://cdn.continental.com/fileadmin/_processed_/3/b/csm_continental_20logo-1920x1080_247d99d89e.png" width="320"/>
+      </div>
+      <div class="box2">
+       <a href="https://jobs.continental.com/en/#/?locationSuggestChecksums=97df691231f6e638f96c63c52454e425" target="_blank">
+        Continental Careers
+       </a>
+      </div>
      </div>
     </div>
-    <!-- ################################ -->
+    <div class="chart-container">
+     <canvas id="Chart">
+     </canvas>
+    </div>
    </div>
   </section>
   <div class="container-details">
    <div class="scraper-details">
-    <div>
+    <div class="details">
      <h5>
       Company
      </h5>
@@ -74,7 +77,7 @@
     </div>
     <div class="hr">
     </div>
-    <div>
+    <div class="details">
      <h5>
       Status
      </h5>
@@ -84,7 +87,7 @@
     </div>
     <div class="hr">
     </div>
-    <div>
+    <div class="details">
      <h5>
       Jobs
      </h5>
@@ -94,7 +97,7 @@
     </div>
     <div class="hr">
     </div>
-    <div>
+    <div class="details">
      <h5>
       Last Update
      </h5>
@@ -104,13 +107,27 @@
     </div>
     <div class="hr">
     </div>
-    <div>
+    <div class="details">
      <h5>
       Scraper
      </h5>
      <p id="scraper-lg">
       JavaScript
      </p>
+    </div>
+    <div class="hr">
+    </div>
+    <div class="details" id="contributors">
+     <h5>
+      Contributors
+     </h5>
+    </div>
+    <div class="hr">
+    </div>
+    <div class="details" id="testers">
+     <h5>
+      Testers
+     </h5>
     </div>
    </div>
    <div class="functionality">
@@ -125,17 +142,20 @@
       </path>
      </svg>
     </button>
-    <a href="https://peviitor.ro/rezultate?q=continental&amp;country=Rom%C3%A2nia&amp;page=1" target="_blank">
+    <a class="functionality-buttons" href="https://peviitor.ro/rezultate?q=continental&amp;country=Rom%C3%A2nia&amp;page=1" target="_blank">
      See Jobs
     </a>
     <p class="delete-storage">
      Delete Local Storage
     </p>
-    <a href="https://github.com/peviitor-ro/scrapers.js/tree/main/sites" target="_blank">
+    <a class="functionality-buttons" href="https://github.com/peviitor-ro/scrapers.js/blob/main/sites/continental.js" target="_blank">
      GitHub Repo
     </a>
-    <a href="https://github.com/peviitor-ro/scrapers.js/issues" target="_blank">
+    <a class="functionality-buttons" href="https://github.com/peviitor-ro/scrapers.js/issues" target="_blank">
      Report 🐞
+    </a>
+    <a class="functionality-buttons" href="https://www.google.com/url?q=https%3A%2F%2Fdiscord.gg%2Ft2aEdmR52a&amp;sa=D&amp;sntz=1&amp;usg=AOvVaw2T-L7jAgzen0J-qResoTGU" target="_blank">
+     Join Discord
     </a>
    </div>
   </div>
@@ -159,24 +179,30 @@
     </div>
    </template>
   </div>
+  <div class="console hidden">
+   <button class="close-console" onclick="closeConsole()">
+    x
+   </button>
+   <div class="console-content">
+   </div>
+  </div>
   <div class="button-to-top-parent" onclick="toTop()">
    <div class="button-to-top">
     ⇧
    </div>
   </div>
   <script>
-   // De Modificat
-      const apiObj = {
-        file: "continental.js",
-        url: "https://dev.laurentiumarian.ro/scraper/based_scraper_js/",
-      };
-      // ##########################################
+   const apiObj = {"file": "continental.js", "url": "https://dev.laurentiumarian.ro/scraper/based_scraper_js/", "dataSetUrl": "https://dev.laurentiumarian.ro/dataset/based_dataset_js/continental.js/"};
   </script>
   <script src="../../js/countries.js">
   </script>
   <script src="../../js/counties.js">
   </script>
   <script src="../../js/scraper.js">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js">
+  </script>
+  <script src="../../js/chart.js">
   </script>
  </body>
 </html>

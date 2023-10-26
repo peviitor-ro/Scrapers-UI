@@ -2,7 +2,7 @@ const ctx = document.getElementById("Chart");
 ctx.height = 300;
 
 const get_data = async () => {
-  const response = await fetch("https://dev.laurentiumarian.ro/dataset/based_scraper_py/1and1.py/");
+  const response = await fetch(apiObj.dataSetUrl);
   const data = await response.json();
   return data;
 };

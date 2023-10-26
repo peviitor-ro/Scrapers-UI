@@ -4485,6 +4485,7 @@ const counties = [
         "Cluj",
         "Cluj-Napoca",
         "Cluj Napoca",
+        "Jucu",
         "Turda",
         "Dej",
         "Campia Turzii",

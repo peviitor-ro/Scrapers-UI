@@ -19,46 +19,56 @@
      <img alt="logo" height="30" src="https://peviitor.ro/static/media/peviitor_logo.df4cd2d4b04f25a93757bb59b397e656.svg" width="100"/>
     </div>
    </a>
-   <a href="../../doc.html" style="margin-left: auto">
-    Documentation
-   </a>
+   <div class="nav-links">
+    <a href="https://firme.peviitor.ro/" target="_blank">
+     Firme PeViitor
+    </a>
+    <a href="../../doc.html">
+     Documentation
+    </a>
+   </div>
   </div>
+  <!-- Start Section Alert -->
+  <div class="alertPopUp active">
+   <div class="alertPopUp-content">
+    <img alt="Check" class="alert-img" id="image-alert" src=""/>
+    <div class="message">
+     <span class="alert-text-1">
+     </span>
+     <span class="alert-text-2">
+     </span>
+    </div>
+   </div>
+   <p class="close">
+    X
+   </p>
+   <div class="progress active">
+   </div>
+  </div>
+  <!-- End Section Alert -->
   <section class="company">
    <div class="company-container">
-    <img alt="tcandc" height="120" src="https://www.tcandc.com/templates/tcandc2020/images/tcandc-header-logo_light-2022_30y.png" width="220"/>
-    <!-- De Modificat -->
-    <div class="about">
-     <h2>
-      About us
-     </h2>
-     <p class="content hideContent" id="text-company">
-      TC&amp;C is focused on innovation for unified communications. Its
-            goal is to introduce new, critical concepts like the business
-            flexibility that can only be cost-effectively addressed through an
-            IP-based solution. IP telephony systems and contact centers are
-            next-generation communication solutions. TC&amp;C entered this
-            market for one simple reason: to help its customers to gain a
-            competitive advantage. TC&amp;C has been continuously expanding its
-            cooperative efforts with leading IP technology vendors including
-            Cisco Systems. TC&amp;C is a Cisco Preferred Solution Partner, a
-            Cisco Premier Certified Partner and a value-added reseller of the
-            Cisco Unified Contact Center portfolio.
-     </p>
-     <p class="show-more">
-      Show More
-     </p>
-     <div>
-      <a href="https://www.tcandc.com/company/career.html" target="_blank">
-       Tcandc Careers
-      </a>
+    <div class="flip-card-container">
+     <div class="flip-card">
+      <div class="box">
+       <img alt="tcandc" height="120" src="https://www.tcandc.com/templates/tcandc2020/images/tcandc-header-logo_light-2022_30y.png" width="220"/>
+      </div>
+      <div class="box2">
+       <a href="https://www.tcandc.com/company/career.html" target="_blank">
+        Tcandc Careers
+       </a>
+      </div>
      </div>
     </div>
-    <!-- ################################ -->
+    <div class="chart-container">
+     <canvas id="Chart">
+     </canvas>
+    </div>
    </div>
   </section>
   <div class="container-details">
    <div class="scraper-details">
-    <div>
+    <div class="details">
      <h5>
       Company
      </h5>
@@ -67,7 +77,7 @@
     </div>
     <div class="hr">
     </div>
-    <div>
+    <div class="details">
      <h5>
       Status
      </h5>
@@ -77,7 +87,7 @@
     </div>
     <div class="hr">
     </div>
-    <div>
+    <div class="details">
      <h5>
       Jobs
      </h5>
@@ -87,7 +97,7 @@
     </div>
     <div class="hr">
     </div>
-    <div>
+    <div class="details">
      <h5>
       Last Update
      </h5>
@@ -97,13 +107,27 @@
     </div>
     <div class="hr">
     </div>
-    <div>
+    <div class="details">
      <h5>
       Scraper
      </h5>
      <p id="scraper-lg">
       Python
      </p>
+    </div>
+    <div class="hr">
+    </div>
+    <div class="details" id="contributors">
+     <h5>
+      Contributors
+     </h5>
+    </div>
+    <div class="hr">
+    </div>
+    <div class="details" id="testers">
+     <h5>
+      Testers
+     </h5>
     </div>
    </div>
    <div class="functionality">
@@ -118,17 +142,20 @@
       </path>
      </svg>
     </button>
-    <a href="https://peviitor.ro/rezultate?q=tcandc&amp;country=Rom%C3%A2nia&amp;page=1" target="_blank">
+    <a class="functionality-buttons" href="https://peviitor.ro/rezultate?q=tcandc&amp;country=Rom%C3%A2nia&amp;page=1" target="_blank">
      See Jobs
     </a>
     <p class="delete-storage">
      Delete Local Storage
     </p>
-    <a href="https://github.com/peviitor-ro/JobsScrapers/tree/main/sites" target="_blank">
+    <a class="functionality-buttons" href="https://github.com/peviitor-ro/JobsScrapers/blob/main/sites/tcandc.py" target="_blank">
      GitHub Repo
     </a>
-    <a href="https://github.com/peviitor-ro/JobsScrapers/issues" target="_blank">
+    <a class="functionality-buttons" href="https://github.com/peviitor-ro/JobsScrapers/issues" target="_blank">
      Report 🐞
+    </a>
+    <a class="functionality-buttons" href="https://www.google.com/url?q=https%3A%2F%2Fdiscord.gg%2Ft2aEdmR52a&amp;sa=D&amp;sntz=1&amp;usg=AOvVaw2T-L7jAgzen0J-qResoTGU" target="_blank">
+     Join Discord
     </a>
    </div>
   </div>
@@ -152,24 +179,30 @@
     </div>
    </template>
   </div>
+  <div class="console hidden">
+   <button class="close-console" onclick="closeConsole()">
+    x
+   </button>
+   <div class="console-content">
+   </div>
+  </div>
   <div class="button-to-top-parent" onclick="toTop()">
    <div class="button-to-top">
     ⇧
    </div>
   </div>
   <script>
-   // De Modificat
-      const apiObj = {
-        file: "tcandc.py",
-        url: "https://dev.laurentiumarian.ro/scraper/JobsScrapers/",
-      };
-      // ##########################################
+   const apiObj = {"file": "tcandc.py", "url": "https://dev.laurentiumarian.ro/scraper/JobsScrapers/", "dataSetUrl": "https://dev.laurentiumarian.ro/dataset/JobsScrapers/tcandc.py/"};
   </script>
   <script src="../../js/countries.js">
   </script>
   <script src="../../js/counties.js">
   </script>
   <script src="../../js/scraper.js">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js">
+  </script>
+  <script src="../../js/chart.js">
   </script>
  </body>
 </html>

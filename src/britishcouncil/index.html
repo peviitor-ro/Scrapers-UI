@@ -19,51 +19,56 @@
      <img alt="logo" height="30" src="https://peviitor.ro/static/media/peviitor_logo.df4cd2d4b04f25a93757bb59b397e656.svg" width="100"/>
     </div>
    </a>
-   <a href="../../doc.html" style="margin-left: auto">
-    Documentation
-   </a>
+   <div class="nav-links">
+    <a href="https://firme.peviitor.ro/" target="_blank">
+     Firme PeViitor
+    </a>
+    <a href="../../doc.html">
+     Documentation
+    </a>
+   </div>
   </div>
+  <!-- Start Section Alert -->
+  <div class="alertPopUp active">
+   <div class="alertPopUp-content">
+    <img alt="Check" class="alert-img" id="image-alert" src=""/>
+    <div class="message">
+     <span class="alert-text-1">
+     </span>
+     <span class="alert-text-2">
+     </span>
+    </div>
+   </div>
+   <p class="close">
+    X
+   </p>
+   <div class="progress active">
+   </div>
+  </div>
+  <!-- End Section Alert -->
   <section class="company">
    <div class="company-container">
-    <img alt="britishcouncil" height="120" src="https://upload.wikimedia.org/wikipedia/commons/e/e3/BritishCouncil_Logo.png" width="320"/>
-    <!-- De Modificat -->
-    <div class="about">
-     <h2>
-      About us
-     </h2>
-     <p class="content hideContent" id="text-company">
-      <strong>
-       Britishcouncil
-      </strong>
-      <br/>
-      Susținem pacea și prosperitatea prin construirea de legături,
-            înțelegere și încredere între oamenii din Marea Britanie și țările
-            din întreaga lume. Combinăm în mod unic expertiza profundă a Marii
-            Britanii în arte și cultură, educație și limba engleză, prezența și
-            relațiile noastre globale în peste 100 de țări, accesul fără egal la
-            tineri și la formatori de opinie și strălucirea noastră creativă.
-            Lucrăm direct cu oameni pentru a-i ajuta să obțină abilitățile,
-            încrederea și conexiunile pentru a-și transforma viața și a modela o
-            lume mai bună în parteneriat cu Marea Britanie. Îi sprijinim să
-            construiască relații cu cei din jur și să exploreze idei creative,
-            să învețe limba engleză, să beneficieze de o educație de înaltă
-            calitate și să obțină calificări recunoscute la nivel internațional.
-     </p>
-     <p class="show-more">
-      Show More
-     </p>
-     <div>
-      <a href="https://www.britishcouncil.ro/despre-noi/cariere" target="_blank">
-       Britishcouncil Careers
-      </a>
+    <div class="flip-card-container">
+     <div class="flip-card">
+      <div class="box">
+       <img alt="britishcouncil" height="120" src="https://upload.wikimedia.org/wikipedia/commons/e/e3/BritishCouncil_Logo.png" width="320"/>
+      </div>
+      <div class="box2">
+       <a href="https://www.britishcouncil.ro/despre-noi/cariere" target="_blank">
+        Britishcouncil Careers
+       </a>
+      </div>
      </div>
     </div>
-    <!-- ################################ -->
+    <div class="chart-container">
+     <canvas id="Chart">
+     </canvas>
+    </div>
    </div>
   </section>
   <div class="container-details">
    <div class="scraper-details">
-    <div>
+    <div class="details">
      <h5>
       Company
      </h5>
@@ -72,7 +77,7 @@
     </div>
     <div class="hr">
     </div>
-    <div>
+    <div class="details">
      <h5>
       Status
      </h5>
@@ -82,7 +87,7 @@
     </div>
     <div class="hr">
     </div>
-    <div>
+    <div class="details">
      <h5>
       Jobs
      </h5>
@@ -92,7 +97,7 @@
     </div>
     <div class="hr">
     </div>
-    <div>
+    <div class="details">
      <h5>
       Last Update
      </h5>
@@ -102,13 +107,27 @@
     </div>
     <div class="hr">
     </div>
-    <div>
+    <div class="details">
      <h5>
       Scraper
      </h5>
      <p id="scraper-lg">
       Python
      </p>
+    </div>
+    <div class="hr">
+    </div>
+    <div class="details" id="contributors">
+     <h5>
+      Contributors
+     </h5>
+    </div>
+    <div class="hr">
+    </div>
+    <div class="details" id="testers">
+     <h5>
+      Testers
+     </h5>
     </div>
    </div>
    <div class="functionality">
@@ -123,17 +142,20 @@
       </path>
      </svg>
     </button>
-    <a href="https://peviitor.ro/rezultate?q=britishcouncil&amp;country=Rom%C3%A2nia&amp;page=1" target="_blank">
+    <a class="functionality-buttons" href="https://peviitor.ro/rezultate?q=britishcouncil&amp;country=Rom%C3%A2nia&amp;page=1" target="_blank">
      See Jobs
     </a>
     <p class="delete-storage">
      Delete Local Storage
     </p>
-    <a href="https://github.com/peviitor-ro/JobsScrapers/tree/main/sites" target="_blank">
+    <a class="functionality-buttons" href="https://github.com/peviitor-ro/JobsScrapers/blob/main/sites/britishcouncil.py" target="_blank">
      GitHub Repo
     </a>
-    <a href="https://github.com/peviitor-ro/JobsScrapers/issues" target="_blank">
+    <a class="functionality-buttons" href="https://github.com/peviitor-ro/JobsScrapers/issues" target="_blank">
      Report 🐞
+    </a>
+    <a class="functionality-buttons" href="https://www.google.com/url?q=https%3A%2F%2Fdiscord.gg%2Ft2aEdmR52a&amp;sa=D&amp;sntz=1&amp;usg=AOvVaw2T-L7jAgzen0J-qResoTGU" target="_blank">
+     Join Discord
     </a>
    </div>
   </div>
@@ -157,24 +179,30 @@
     </div>
    </template>
   </div>
+  <div class="console hidden">
+   <button class="close-console" onclick="closeConsole()">
+    x
+   </button>
+   <div class="console-content">
+   </div>
+  </div>
   <div class="button-to-top-parent" onclick="toTop()">
    <div class="button-to-top">
     ⇧
    </div>
   </div>
   <script>
-   // De Modificat
-      const apiObj = {
-        file: "britishcouncil.py",
-        url: "https://dev.laurentiumarian.ro/scraper/JobsScrapers/",
-      };
-      // ##########################################
+   const apiObj = {"file": "britishcouncil.py", "url": "https://dev.laurentiumarian.ro/scraper/JobsScrapers/", "dataSetUrl": "https://dev.laurentiumarian.ro/dataset/JobsScrapers/britishcouncil.py/"};
   </script>
   <script src="../../js/countries.js">
   </script>
   <script src="../../js/counties.js">
   </script>
   <script src="../../js/scraper.js">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js">
+  </script>
+  <script src="../../js/chart.js">
   </script>
  </body>
 </html>
