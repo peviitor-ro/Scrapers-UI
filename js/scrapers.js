@@ -2011,5 +2011,26 @@ let scrapers = [
     },
     {
         "name": "leroymerlin"
+    },
+    {
+        "name": "dpworld"
+    },
+    {
+        "name": "onapsis"
+    },
+    {
+        "name": "vass"
+    },
+    {
+        "name": "chainiq"
+    },
+    {
+        "name": "sofidel"
+    },
+    {
+        "name": "hogarth"
+    },
+    {
+        "name": "magna"
     }
 ];
