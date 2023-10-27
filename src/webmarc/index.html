@@ -1,85 +1,4 @@
-import requests
-import os
-import json
-import re 
 
-# curent path
-path = os.getcwd()
-
-# this folders will be excluded
-exclude = [
-    '', 
-    'a', 
-    'l', 
-    'website',
-    'update', 
-    'setup', 
-    'script', 
-    '__pycache__',
-    'main',
-    'osfdigital',
-    '000',
-    'test',
-    'smarttech'
-]
-
-# scrapers urls
-urls = [
-    'https://dev.laurentiumarian.ro/scraper/PeViitor_Scrapers_Melania/',
-    'https://dev.laurentiumarian.ro/scraper/Scrapers_start_with_digi/',
-    'https://dev.laurentiumarian.ro/scraper/Scrapers_Job_PeViitor/',
-    'https://dev.laurentiumarian.ro/scraper/based_scraper_py/',
-    'https://dev.laurentiumarian.ro/scraper/based_scraper_js/',
-    'https://dev.laurentiumarian.ro/scraper/JobsScrapers/',
-    'https://dev.laurentiumarian.ro/scraper/Scrapers_Cristi_Olteanu/'
-]
-
-# make a request to get the scrapers
-def get_scrapers(url):
-    """Returns a list of scrapers."""
-    response = requests.get(url)
-
-    return response.json()
-
-# make a request to get the logos
-def get_logos():
-    """Returns a list of logos."""
-    url = 'https://api.peviitor.ro/v1/logo/'
-
-    response = requests.get(url)
-
-    obj = response.json().get('companies')
-    data = {}
-    
-    for company in obj:
-        name = company.get('name').lower()
-        data[name] = company.get('logo')
-
-    return data
-
-# list of new companies for scrapers.js
-json_file = []
-
-# get the logos
-logos = get_logos()
-
-# loop through the urls
-for url in urls:
-    # get the data
-    data = get_scrapers(url)[1].items()
-
-    # identify the extensions
-    extensions = {
-        "py": "Python",
-        "js": "JavaScript",
-    }
-
-    # loop through the data
-    for key, value in data:
-        company = key.lower().split('_')[0]
-        
-        # html template
-        html = f'''
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -119,11 +38,11 @@ for url in urls:
                 <div class="flip-card-container">
                     <div class="flip-card">
                         <div class="box">
-                            <img alt="{company.lower()}" height="180" src="{logos.get(company.lower())}" width="250"/>
+                            <img alt="webmarc" height="180" src="data:image/jpeg;base64,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7GRwva+JgYLMIz2t/Ef9fIKvRHSg+wxPktm45UMw+ngZYT07zpy5R8LNMRgDzsDv5rx/UGIPkjkLog6OZszcsQFnte94P/KR5t5qqRTIp8Fxy5J82LVVRFHFUCGVkdhGHxNOQBrWWB7CzW+ovzdexYzXxTSTMmGo98by5zQ45owQ07+AJHnfe6r0VyoWtYmKXJK94TgFrS1rDTmmDA3ZsZOYgepJvzupLcermzSzDQ1JnB0rtBt3us4Enbkh7r/PxVYiOlB7oKTXcsvflcZzPmi1jLHM94haC+RhJa47bm538VphxOphpTTMczTIlG7ASBI0NeAfMAfRQ0TKhwMUuS0fj1fJNDNI6J8kJvE90LSWDwBtx3+viVGfiNS+aolc8Z6iIRSHKN2jLb5fkaoiIqUFsg5Se7Lj+0mJhz3B8QL3ukNoWj4nG5PHc7rXFjM9LTULKE6EtNG5hlABLrymS3yvb528CQqtFMmnwXHLksYMbrqeNkcD42RxlpjZpghls/APjqPvfnMpWG9VYrhcDoKB8EMLnl+RsDbAnw+ipER0act4oKclswiItpgEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREB//Z" width="250"/>
                         </div>
                         <div class="box2">
                             <a href="#" target="_blank">
-                            {company.lower().capitalize()} Careers
+                            Webmarc Careers
                             </a>
                         </div>
                     </div>
@@ -159,7 +78,7 @@ for url in urls:
                         Scraper
                     </h5>
                     <p id="scraper-lg">
-                        {extensions.get(value.split(".")[-1])}
+                        Python
                     </p>
                 </div>
                 <div class="hr"></div>
@@ -192,7 +111,7 @@ for url in urls:
                 </button>
                 
                 <a
-                href="https://peviitor.ro/rezultate?q={company}&country=Rom%C3%A2nia&page=1"
+                href="https://peviitor.ro/rezultate?q=webmarc&country=Rom%C3%A2nia&page=1"
                 target="_blank"
                 class="functionality-buttons"
                 >See Jobs</a
@@ -200,10 +119,10 @@ for url in urls:
 
                 <p class="delete-storage">Delete Local Storage</p>
 
-                <a href="https://github.com/peviitor-ro/{url.split("/")[-2]}/blob/main/sites/{value}" target="_blank" class="functionality-buttons">
+                <a href="https://github.com/peviitor-ro/PeViitor_Scrapers_Melania/blob/main/sites/webmarc_scraper.py" target="_blank" class="functionality-buttons">
                     GitHubRepo
                 </a>
-                <a href="https://github.com/peviitor-ro/{url.split("/")[-2]}/issues" target="_blank">
+                <a href="https://github.com/peviitor-ro/PeViitor_Scrapers_Melania/issues" target="_blank">
                     Report 🐞
                 </a>
                 <a
@@ -239,11 +158,11 @@ for url in urls:
         </div>
         <script>
             // De Modificat
-            const apiObj = {{
-                file: "{value}",
-                url: "{url}",
-                dataSetUrl: "{url.replace('scraper', 'dataset')}{value}/",
-            }};
+            const apiObj = {
+                file: "webmarc_scraper.py",
+                url: "https://dev.laurentiumarian.ro/scraper/PeViitor_Scrapers_Melania/",
+                dataSetUrl: "https://dev.laurentiumarian.ro/dataset/PeViitor_Scrapers_Melania/webmarc_scraper.py/",
+            };
             // ##########################################
         </script>
         <script src="../../js/countries.js"></script>
@@ -253,40 +172,4 @@ for url in urls:
         <script src="../../js/chart.js"></script>
     </body>
 </html>
-        '''
         
-        # Create folder
-        try:
-            # if the folder exists, continue
-            folder = company.lower()
-            if folder not in exclude:
-                os.mkdir(f'{path}/src/{company.lower()}')
-
-                with open(f'{path}/src/{company.lower()}/index.html', 'w',encoding='utf-8') as f:
-                    f.write(html)
-
-                    json_file.append({"name": company})
-                    print(f'Folder {folder} created.')
-        except FileExistsError:
-            continue
-
-# set the pattern 
-pattern = re.compile(r'let scrapers = \[(.*?)\];', re.DOTALL)
-
-# get the content of the file
-with open('js/scrapers.js', 'r') as f:
-    content = f.read()
-
-# find the pattern
-result = '[' + pattern.search(content).group(1).replace('name:', '"name":').replace(' ', '').replace('\n', '') + ']'
-
-# convert to  dict
-result = json.loads(result.replace('",}', '"}').replace('},]', '}]')) + json_file
-
-# add new results in file
-with open('js/scrapers.js', 'w') as f:
-    f.write(f'let scrapers = {json.dumps(result, indent=4)};')
-
-
-
-    
