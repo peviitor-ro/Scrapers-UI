@@ -86,79 +86,83 @@ for url in urls:
         <div class="header">
             <a href="/">
                 <div class="logo">
-                    <h3>
-                        <i>Scraper-UI.</i>
-                    </h3>
-                    <img
-                        width="100"
-                        height="30"
-                        src="https://peviitor.ro/static/media/peviitor_logo.df4cd2d4b04f25a93757bb59b397e656.svg"
-                        alt="logo"
-                    />
+                    <h3><i>Scraper-UI.</i></h3>
+                    <img alt="logo" height="30" src="https://peviitor.ro/static/media/peviitor_logo.df4cd2d4b04f25a93757bb59b397e656.svg" width="100"/>
                 </div>
             </a>
-            <a href="../../doc.html" style="margin-left: auto">
-                Documentation
-            </a>
+            <div class="nav-links">
+                <a href="https://firme.peviitor.ro/" target="_blank">Firme PeViitor</a>
+                <a href="../../doc.html">Documentation</a>
+            </div>
         </div>
+        <!-- Start Section Alert -->
+        <div class="alertPopUp active">
+            <div class="alertPopUp-content">
+                <img alt="Check" class="alert-img" id="image-alert" src="" />
+                <div class="message">
+                    <span class="alert-text-1"> </span>
+                    <span class="alert-text-2"> </span>
+                </div>
+            </div>
+            <p class="close">X</p>
+            <div class="progress active"></div>
+        </div>
+        <!-- End Section Alert -->
         <section class="company">
             <div class="company-container">
-                <img
-                
-                
-                src="{logos.get(company.lower())}" 
-                alt="{company.lower()}"
-                />
-                <!-- De Modificat -->
-                <div class="about">
-                    <h2>About us</h2>
-                    <p class="content hideContent" id="text-company">
-                        <strong>About Company</strong> <br />
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-                        voluptatum, quas, quos voluptatibus, voluptas voluptate
-                        exercitationem quia consequatur doloribus quod voluptatem
-                        accusantium?
-                    </p>
-                    <p class="show-more">Show More</p>
-                    <div>
-                        <a
-                        href="#" 
-                        target="_blank"
-                        >{company.lower().capitalize()} Careers</a
-                        >
+                <div class="flip-card-container">
+                    <div class="flip-card">
+                        <div class="box">
+                            <img alt="{company.lower()}" height="180" src="{logos.get(company.lower())}" width="250"/>
+                        </div>
+                        <div class="box2">
+                            <a href="#" target="_blank">
+                            {company.lower().capitalize()} Careers
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <!-- ################################ -->
+                <div class="chart-container">
+                    <canvas id="Chart"> </canvas>
+                </div>
             </div>
         </section>
         <div class="container-details">
             <div class="scraper-details">
-                <div>
+                <div class="details">
                     <h5>Company</h5>
                     <p id="company"></p>
                 </div>
                 <div class="hr"></div>
-                <div>
+                <div class="details"> 
                     <h5>Status</h5>
                     <p id="status">Uknown</p>
                 </div>
                 <div class="hr"></div>
-                <div>
+                <div class="details">
                     <h5>Jobs</h5>
                     <p id="jobs">Uknown</p>
                 </div>
                 <div class="hr"></div>
-                <div>
+                <div class="details">
                     <h5>Last Update</h5>
                     <p id="last-update">Uknown</p>
                 </div>
-                <div>
+                <div class="details">
                     <h5>
                         Scraper
                     </h5>
                     <p id="scraper-lg">
                         {extensions.get(value.split(".")[-1])}
                     </p>
+                </div>
+                <div class="hr"></div>
+                <div id="contributors" class="details">
+                    <h5>Contributors</h5>
+                </div>
+                <div class="hr"></div>
+                <div id="testers" class="details">
+                    <h5>Testers</h5>
                 </div>
             </div>
             <div class="functionality">
@@ -184,16 +188,24 @@ for url in urls:
                 <a
                 href="https://peviitor.ro/rezultate?q={company}&country=Rom%C3%A2nia&page=1"
                 target="_blank"
+                class="functionality-buttons"
                 >See Jobs</a
                 >
 
                 <p class="delete-storage">Delete Local Storage</p>
 
-                <a href="https://github.com/peviitor-ro/{url.split("/")[-2]}/tree/main/JobsCrawlerProject/JobsCrawlerProject/spiders" target="_blank">
+                <a href="https://github.com/peviitor-ro/{url.split("/")[-2]}/blob/main/JobsCrawlerProject/JobsCrawlerProject/spiders/{value}" target="_blank" class="functionality-buttons">
                     GitHubRepo
                 </a>
                 <a href="https://github.com/peviitor-ro/{url.split("/")[-2]}/issues" target="_blank">
                     Report 🐞
+                </a>
+                <a
+                href="https://www.google.com/url?q=https%3A%2F%2Fdiscord.gg%2Ft2aEdmR52a&sa=D&sntz=1&usg=AOvVaw2T-L7jAgzen0J-qResoTGU"
+                target="_blank"
+                class="functionality-buttons"
+                >
+                    Join Discord
                 </a>
             </div>
         </div>
@@ -213,6 +225,10 @@ for url in urls:
                 </div>
             </template>
         </div>
+         <div class="console hidden">
+            <button class="close-console" onclick="closeConsole()">x</button>
+            <div class="console-content"></div>
+        </div>
         <div onclick="toTop()" class="button-to-top-parent">
             <div class="button-to-top">&#8679;</div>
         </div>
@@ -221,12 +237,15 @@ for url in urls:
             const apiObj = {{
                 file: "{key}",
                 url: "{url}",
+                dataSetUrl: "{url.replace('scraper', 'dataset')}{value}/",
             }};
             // ##########################################
         </script>
         <script src="../../js/countries.js"></script>
         <script src="../../js/counties.js"></script>
         <script src="../../js/scraper.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+        <script src="../../js/chart.js"></script>
     </body>
 </html>
         '''
