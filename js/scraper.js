@@ -211,8 +211,12 @@ const create_job = (data) => {
               data.remote && data.remote.length ? "validate" : "invalid"
             }">
                 ${
-                  data.remote && data.remote.length
+                  data.remote &&
+                  data.remote.length &&
+                  Array.isArray(data.remote)
                     ? data.remote.map((remote) => remote).join(", ")
+                    : data.remote && data.remote.length
+                    ? data.remote
                     : "No job type"
                 }
             </div>
