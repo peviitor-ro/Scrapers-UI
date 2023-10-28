@@ -319,7 +319,7 @@ body {
 
 .scraper-details #testers,
 .scraper-details #contributors {
-  height: 4.6em;
+  max-height: 4.6em;
   overflow-y: auto;
   overflow-x: hidden;
 }

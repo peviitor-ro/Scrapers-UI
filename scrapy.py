@@ -113,11 +113,11 @@ for url in urls:
                 <div class="flip-card-container">
                     <div class="flip-card">
                         <div class="box">
-                            <img alt="{company.lower()}" height="180" src="{logos.get(company.lower())}" width="250"/>
+                            <img alt="{company.lower()}"  src="{logos.get(company.lower())}" />
                         </div>
                         <div class="box2">
                             <a href="#" target="_blank">
-                            {company.lower().capitalize()} Careers
+                           Careers
                             </a>
                         </div>
                     </div>
@@ -148,6 +148,7 @@ for url in urls:
                     <h5>Last Update</h5>
                     <p id="last-update">Uknown</p>
                 </div>
+                <div class="hr"></div>
                 <div class="details">
                     <h5>
                         Scraper
@@ -157,12 +158,14 @@ for url in urls:
                     </p>
                 </div>
                 <div class="hr"></div>
-                <div id="contributors" class="details">
+                <div class="details">
                     <h5>Contributors</h5>
-                </div>
+                    <div id="contributors"></div>
+                 </div>
                 <div class="hr"></div>
-                <div id="testers" class="details">
+                 <div class="details">
                     <h5>Testers</h5>
+                    <div id="testers"></div>
                 </div>
             </div>
             <div class="functionality">
