@@ -1,175 +1,186 @@
-
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="../../css/scraper.css" />
-        <title></title>
-    </head>
-    <body>
-        <div class="header">
-            <a href="/">
-                <div class="logo">
-                    <h3><i>Scraper-UI.</i></h3>
-                    <img alt="logo" height="30" src="https://peviitor.ro/static/media/peviitor_logo.df4cd2d4b04f25a93757bb59b397e656.svg" width="100"/>
-                </div>
-            </a>
-            <div class="nav-links">
-                <a href="https://firme.peviitor.ro/" target="_blank">Firme PeViitor</a>
-                <a href="../../doc.html">Documentation</a>
-            </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/scraper.css" />
+    <title></title>
+  </head>
+  <body>
+    <div class="header">
+      <a href="/">
+        <div class="logo">
+          <h3><i>Scraper-UI.</i></h3>
+          <img
+            alt="logo"
+            height="30"
+            src="https://peviitor.ro/static/media/peviitor_logo.df4cd2d4b04f25a93757bb59b397e656.svg"
+            width="100"
+          />
         </div>
-        <!-- Start Section Alert -->
-        <div class="alertPopUp active">
-            <div class="alertPopUp-content">
-                <img alt="Check" class="alert-img" id="image-alert" src="" />
-                <div class="message">
-                    <span class="alert-text-1"> </span>
-                    <span class="alert-text-2"> </span>
-                </div>
-            </div>
-            <p class="close">X</p>
-            <div class="progress active"></div>
+      </a>
+      <div class="nav-links">
+        <a href="https://firme.peviitor.ro/" target="_blank">Firme PeViitor</a>
+        <a href="../../doc.html">Documentation</a>
+      </div>
+    </div>
+    <!-- Start Section Alert -->
+    <div class="alertPopUp active">
+      <div class="alertPopUp-content">
+        <img alt="Check" class="alert-img" id="image-alert" src="" />
+        <div class="message">
+          <span class="alert-text-1"> </span>
+          <span class="alert-text-2"> </span>
         </div>
-        <!-- End Section Alert -->
-        <section class="company">
-            <div class="company-container">
-                <div class="flip-card-container">
-                    <div class="flip-card">
-                        <div class="box">
-                            <img alt="webmarc" height="180" src="data:image/jpeg;base64,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7GRwva+JgYLMIz2t/Ef9fIKvRHSg+wxPktm45UMw+ngZYT07zpy5R8LNMRgDzsDv5rx/UGIPkjkLog6OZszcsQFnte94P/KR5t5qqRTIp8Fxy5J82LVVRFHFUCGVkdhGHxNOQBrWWB7CzW+ovzdexYzXxTSTMmGo98by5zQ45owQ07+AJHnfe6r0VyoWtYmKXJK94TgFrS1rDTmmDA3ZsZOYgepJvzupLcermzSzDQ1JnB0rtBt3us4Enbkh7r/PxVYiOlB7oKTXcsvflcZzPmi1jLHM94haC+RhJa47bm538VphxOphpTTMczTIlG7ASBI0NeAfMAfRQ0TKhwMUuS0fj1fJNDNI6J8kJvE90LSWDwBtx3+viVGfiNS+aolc8Z6iIRSHKN2jLb5fkaoiIqUFsg5Se7Lj+0mJhz3B8QL3ukNoWj4nG5PHc7rXFjM9LTULKE6EtNG5hlABLrymS3yvb528CQqtFMmnwXHLksYMbrqeNkcD42RxlpjZpghls/APjqPvfnMpWG9VYrhcDoKB8EMLnl+RsDbAnw+ipER0act4oKclswiItpgEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREB//Z" width="250"/>
-                        </div>
-                        <div class="box2">
-                            <a href="#" target="_blank">
-                            Webmarc Careers
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="chart-container">
-                    <canvas id="Chart"> </canvas>
-                </div>
+      </div>
+      <p class="close">X</p>
+      <div class="progress active"></div>
+    </div>
+    <!-- End Section Alert -->
+    <section class="company">
+      <div class="company-container">
+        <div class="flip-card-container">
+          <div class="flip-card">
+            <div class="box">
+              <img
+                alt="webmarc"
+                src="data:image/jpeg;base64,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7GRwva+JgYLMIz2t/Ef9fIKvRHSg+wxPktm45UMw+ngZYT07zpy5R8LNMRgDzsDv5rx/UGIPkjkLog6OZszcsQFnte94P/KR5t5qqRTIp8Fxy5J82LVVRFHFUCGVkdhGHxNOQBrWWB7CzW+ovzdexYzXxTSTMmGo98by5zQ45owQ07+AJHnfe6r0VyoWtYmKXJK94TgFrS1rDTmmDA3ZsZOYgepJvzupLcermzSzDQ1JnB0rtBt3us4Enbkh7r/PxVYiOlB7oKTXcsvflcZzPmi1jLHM94haC+RhJa47bm538VphxOphpTTMczTIlG7ASBI0NeAfMAfRQ0TKhwMUuS0fj1fJNDNI6J8kJvE90LSWDwBtx3+viVGfiNS+aolc8Z6iIRSHKN2jLb5fkaoiIqUFsg5Se7Lj+0mJhz3B8QL3ukNoWj4nG5PHc7rXFjM9LTULKE6EtNG5hlABLrymS3yvb528CQqtFMmnwXHLksYMbrqeNkcD42RxlpjZpghls/APjqPvfnMpWG9VYrhcDoKB8EMLnl+RsDbAnw+ipER0act4oKclswiItpgEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREB//Z"
+              />
             </div>
-        </section>
-        <div class="container-details">
-            <div class="scraper-details">
-                <div class="details">
-                    <h5>Company</h5>
-                    <p id="company"></p>
-                </div>
-                <div class="hr"></div>
-                <div class="details">
-                    <h5>Status</h5>
-                    <p id="status">Uknown</p>
-                </div>
-                <div class="hr"></div>
-                <div class="details">
-                    <h5>Jobs</h5>
-                    <p id="jobs">Uknown</p>
-                </div>
-                <div class="hr"></div>
-                <div class="details">
-                    <h5>Last Update</h5>
-                    <p id="last-update">Uknown</p>
-                </div>
-                <div class="details">
-                    <h5>
-                        Scraper
-                    </h5>
-                    <p id="scraper-lg">
-                        Python
-                    </p>
-                </div>
-                <div class="hr"></div>
-                <div id="contributors" class="details">
-                    <h5>Contributors</h5>
-                </div>
-                <div class="hr"></div>
-                <div id="testers" class="details">
-                    <h5>Testers</h5>
-                </div>
+            <div class="box2">
+              <a href="#" target="_blank"> Webmarc Careers </a>
             </div>
-            <div class="functionality">
-                <button>
-                    <div>Run Scraper</div>
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16px"
-                        height="16px"
-                        viewbox="0 0 16 16"
-                        fill="white"
-                        class="bi bi-gear"
-                    >
-                        <path
-                        d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"
-                        />
-                        <path
-                        d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"
-                        />
-                    </svg>
-                </button>
-                
-                <a
-                href="https://peviitor.ro/rezultate?q=webmarc&country=Rom%C3%A2nia&page=1"
-                target="_blank"
-                class="functionality-buttons"
-                >See Jobs</a
-                >
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="Chart"> </canvas>
+        </div>
+      </div>
+    </section>
+    <div class="container-details">
+      <div class="scraper-details">
+        <div class="details">
+          <h5>Company</h5>
+          <p id="company"></p>
+        </div>
+        <div class="hr"></div>
+        <div class="details">
+          <h5>Status</h5>
+          <p id="status">Uknown</p>
+        </div>
+        <div class="hr"></div>
+        <div class="details">
+          <h5>Jobs</h5>
+          <p id="jobs">Uknown</p>
+        </div>
+        <div class="hr"></div>
+        <div class="details">
+          <h5>Last Update</h5>
+          <p id="last-update">Uknown</p>
+        </div>
+        <div class="hr"></div>
+        <div class="details">
+          <h5>Scraper</h5>
+          <p id="scraper-lg">Python</p>
+        </div>
+        <div class="hr"></div>
+        <div class="details">
+          <h5>Contributors</h5>
+          <div id="contributors"></div>
+        </div>
+        <div class="hr"></div>
+        <div class="details">
+          <h5>Testers</h5>
+          <div id="testers"></div>
+        </div>
+      </div>
+      <div class="functionality">
+        <button>
+          <div>Run Scraper</div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16px"
+            height="16px"
+            viewbox="0 0 16 16"
+            fill="white"
+            class="bi bi-gear"
+          >
+            <path
+              d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"
+            />
+            <path
+              d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"
+            />
+          </svg>
+        </button>
 
-                <p class="delete-storage">Delete Local Storage</p>
+        <a
+          href="https://peviitor.ro/rezultate?q=webmarc&country=Rom%C3%A2nia&page=1"
+          target="_blank"
+          class="functionality-buttons"
+          >See Jobs</a
+        >
 
-                <a href="https://github.com/peviitor-ro/PeViitor_Scrapers_Melania/blob/main/sites/webmarc_scraper.py" target="_blank" class="functionality-buttons">
-                    GitHubRepo
-                </a>
-                <a href="https://github.com/peviitor-ro/PeViitor_Scrapers_Melania/issues" target="_blank">
-                    Report 🐞
-                </a>
-                <a
-                href="https://www.google.com/url?q=https%3A%2F%2Fdiscord.gg%2Ft2aEdmR52a&sa=D&sntz=1&usg=AOvVaw2T-L7jAgzen0J-qResoTGU"
-                target="_blank"
-                class="functionality-buttons"
-                >
-                    Join Discord
-                </a>
-            </div>
+        <p class="delete-storage">Delete Local Storage</p>
+
+        <a
+          href="https://github.com/peviitor-ro/PeViitor_Scrapers_Melania/blob/main/sites/webmarc_scraper.py"
+          target="_blank"
+          class="functionality-buttons"
+        >
+          GitHubRepo
+        </a>
+        <a
+          href="https://github.com/peviitor-ro/PeViitor_Scrapers_Melania/issues"
+          target="_blank"
+        >
+          Report 🐞
+        </a>
+        <a
+          href="https://www.google.com/url?q=https%3A%2F%2Fdiscord.gg%2Ft2aEdmR52a&sa=D&sntz=1&usg=AOvVaw2T-L7jAgzen0J-qResoTGU"
+          target="_blank"
+          class="functionality-buttons"
+        >
+          Join Discord
+        </a>
+      </div>
+    </div>
+    <div class="jobs"></div>
+    <div class="skeleton-jobs">
+      <template id="card-template">
+        <div class="skeleton-job">
+          <div>
+            <p class="skeleton-job-title"></p>
+            <p class="skeleton-job-company"></p>
+            <p class="skeleton-job-location"></p>
+          </div>
+          <div class="skeleton-job-post">
+            <p></p>
+          </div>
         </div>
-        <div class="jobs"></div>
-        <div class="skeleton-jobs">
-            <template id="card-template">
-                <div class="skeleton-job">
-                    <div>
-                        <p class="skeleton-job-title"></p>
-                        <p class="skeleton-job-company"></p>
-                        <p class="skeleton-job-location"></p>
-                    </div>
-                    <div class="skeleton-job-post">
-                        <p></p>
-                    </div>
-                </div>
-            </template>
-        </div>
-        <div class="console hidden">
-            <button class="close-console" onclick="closeConsole()">x</button>
-            <div class="console-content"></div>
-        </div>
-        <div onclick="toTop()" class="button-to-top-parent">
-            <div class="button-to-top">&#8679;</div>
-        </div>
-        <script>
-            // De Modificat
-            const apiObj = {
-                file: "webmarc_scraper.py",
-                url: "https://dev.laurentiumarian.ro/scraper/PeViitor_Scrapers_Melania/",
-                dataSetUrl: "https://dev.laurentiumarian.ro/dataset/PeViitor_Scrapers_Melania/webmarc_scraper.py/",
-            };
-            // ##########################################
-        </script>
-        <script src="../../js/countries.js"></script>
-        <script src="../../js/counties.js"></script>
-        <script src="../../js/scraper.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-        <script src="../../js/chart.js"></script>
-    </body>
+      </template>
+    </div>
+    <div class="console hidden">
+      <button class="close-console" onclick="closeConsole()">x</button>
+      <div class="console-content"></div>
+    </div>
+    <div onclick="toTop()" class="button-to-top-parent">
+      <div class="button-to-top">&#8679;</div>
+    </div>
+    <script>
+      // De Modificat
+      const apiObj = {
+        file: "webmarc_scraper.py",
+        url: "https://dev.laurentiumarian.ro/scraper/PeViitor_Scrapers_Melania/",
+        dataSetUrl:
+          "https://dev.laurentiumarian.ro/dataset/PeViitor_Scrapers_Melania/webmarc_scraper.py/",
+      };
+      // ##########################################
+    </script>
+    <script src="../../js/countries.js"></script>
+    <script src="../../js/counties.js"></script>
+    <script src="../../js/scraper.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="../../js/chart.js"></script>
+  </body>
 </html>
-        
