@@ -148,6 +148,7 @@ for url in urls:
                     <h5>Last Update</h5>
                     <p id="last-update">Uknown</p>
                 </div>
+                <div class="hr"></div>
                 <div class="details">
                     <h5>
                         Scraper
