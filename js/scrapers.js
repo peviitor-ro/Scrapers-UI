@@ -2032,5 +2032,62 @@ let scrapers = [
     },
     {
         "name": "magna"
+    },
+    {
+        "name": "expressoft"
+    },
+    {
+        "name": "kuehne-nagel"
+    },
+    {
+        "name": "siena"
+    },
+    {
+        "name": "marshmclennan"
+    },
+    {
+        "name": "wtw"
+    },
+    {
+        "name": "salesconsulting"
+    },
+    {
+        "name": "shutterstock"
+    },
+    {
+        "name": "ge"
+    },
+    {
+        "name": "rws"
+    },
+    {
+        "name": "moduscreate"
+    },
+    {
+        "name": "oben"
+    },
+    {
+        "name": "konecranes"
+    },
+    {
+        "name": "mambu"
+    },
+    {
+        "name": "prysmian"
+    },
+    {
+        "name": "taroko"
+    },
+    {
+        "name": "visteon"
+    },
+    {
+        "name": "retarus"
+    },
+    {
+        "name": "teconnectivity"
+    },
+    {
+        "name": "humanrise"
     }
 ];
