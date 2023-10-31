@@ -399,7 +399,7 @@ body {
   .scraper-details .details #contributors,
   .scraper-details .details #testers {
     overflow: initial;
-    height: initial;
+    max-height: initial;
   }
   .scraper-details .details #contributors p,
   .scraper-details .details #testers p {

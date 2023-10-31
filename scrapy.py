@@ -119,6 +119,9 @@ for url in urls:
                             <a href="#" target="_blank">
                            Careers
                             </a>
+                              <a href="#" target="_blank">
+                            Targetare.ro
+                            </a>
                         </div>
                     </div>
                 </div>
