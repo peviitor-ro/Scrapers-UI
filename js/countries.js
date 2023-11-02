@@ -56,7 +56,7 @@ let countries = [
     {"name": "Cuba", "code": "CU"},
     {"name": "Curaçao", "code": "CW"},
     {"name": "Cyprus", "code": "CY"},
-    {"name": "Czechia", "code": "CZ"},
+    {"name": "Czech Republic", "code": "CZ"},
     {"name": "Côte d'Ivoire", "code": "CI"},
     {"name": "Denmark", "code": "DK"},
     {"name": "Djibouti", "code": "DJ"},
