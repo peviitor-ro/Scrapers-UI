@@ -720,13 +720,13 @@ let scrapers = [
         "name": "delonghi"
     },
     {
-        "name": "BorgWarner"
+        "name": "borgwarner"
     },
     {
         "name": "michelin"
     },
     {
-        "name": "METGroup"
+        "name": "metgroup"
     },
     {
         "name": "henkel"
@@ -753,13 +753,13 @@ let scrapers = [
         "name": "sanofi"
     },
     {
-        "name": "cognizantSoftvision"
+        "name": "cognizantsoftvision"
     },
     {
         "name": "leoni"
     },
     {
-        "name": "SchneiderElectric"
+        "name": "schneiderelectric"
     },
     {
         "name": "loreal"
@@ -807,13 +807,13 @@ let scrapers = [
         "name": "zf"
     },
     {
-        "name": "AtlasCopco"
+        "name": "atlascopco"
     },
     {
         "name": "ameropa"
     },
     {
-        "name": "DistrigazSudRetele"
+        "name": "distrigazsudretele"
     },
     {
         "name": "schaeffler"
@@ -828,7 +828,7 @@ let scrapers = [
         "name": "dynata"
     },
     {
-        "name": "Hill"
+        "name": "hill"
     },
     {
         "name": "amdaris"
@@ -888,7 +888,7 @@ let scrapers = [
         "name": "eaton"
     },
     {
-        "name": "DeutscheBank"
+        "name": "deutschebank"
     },
     {
         "name": "qualitance"
@@ -927,7 +927,7 @@ let scrapers = [
         "name": "bearingpoint"
     },
     {
-        "name": "VitescoTechnologies"
+        "name": "vitescotechnologies"
     },
     {
         "name": "ryanair"
