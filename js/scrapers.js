@@ -2110,5 +2110,20 @@ let scrapers = [
     },
     {
         "name": "dabodoner"
+    },
+    {
+        "name": "tarom"
+    },
+    {
+        "name": "victorysquare"
+    },
+    {
+        "name": "hms"
+    },
+    {
+        "name": "temps"
+    },
+    {
+        "name": "urban"
     }
 ];
