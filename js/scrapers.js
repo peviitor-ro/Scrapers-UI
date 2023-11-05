@@ -2089,5 +2089,41 @@ let scrapers = [
     },
     {
         "name": "humanrise"
+    },
+    {
+        "name": "dabodoner"
+    },
+    {
+        "name": "tarom"
+    },
+    {
+        "name": "ecolab"
+    },
+    {
+        "name": "wiley"
+    },
+    {
+        "name": "victorysquare"
+    },
+    {
+        "name": "hms"
+    },
+    {
+        "name": "temps"
+    },
+    {
+        "name": "plannet"
+    },
+    {
+        "name": "neweratechnology"
+    },
+    {
+        "name": "sugarcrm"
+    },
+    {
+        "name": "urban"
+    },
+    {
+        "name": "vitaminsoftware"
     }
 ];
