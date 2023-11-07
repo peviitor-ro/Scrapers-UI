@@ -2125,5 +2125,17 @@ let scrapers = [
     },
     {
         "name": "urban"
+    },
+    {
+        "name": "solo"
+    },
+    {
+        "name": "continentalhotels"
+    },
+    {
+        "name": "iipay"
+    },
+    {
+        "name": "opis"
     }
 ];
