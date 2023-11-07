@@ -948,7 +948,7 @@ let scrapers = [
         "name": "yazaki"
     },
     {
-        "name": "cocacola"
+        "name": "cocacolahbc"
     },
     {
         "name": "lear"
