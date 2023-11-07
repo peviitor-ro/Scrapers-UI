@@ -828,9 +828,6 @@ let scrapers = [
         "name": "dynata"
     },
     {
-        "name": "hill"
-    },
-    {
         "name": "amdaris"
     },
     {
@@ -2137,5 +2134,11 @@ let scrapers = [
     },
     {
         "name": "opis"
+    },
+    {
+        "name": "hillinternational"
+    },
+    {
+        "name": "ascom"
     }
 ];
