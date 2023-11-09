@@ -2143,5 +2143,11 @@ let scrapers = [
     },
     {
         "name": "tufin"
+    },
+    {
+        "name": "tain"
+    },
+    {
+        "name": "ropardo"
     }
 ];
