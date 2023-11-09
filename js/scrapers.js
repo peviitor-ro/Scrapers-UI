@@ -2139,21 +2139,9 @@ let scrapers = [
         "name": "hillinternational"
     },
     {
-<<<<<<< HEAD
-        "name": "cocacolahbc"
-    },
-    {
         "name": "ascom"
     },
     {
-        "name": "tain"
-    },
-    {
-=======
-        "name": "ascom"
-    },
-    {
->>>>>>> 276d788a5c4b6fee7d1c1814dbf2216560872a75
         "name": "tufin"
     },
     {
