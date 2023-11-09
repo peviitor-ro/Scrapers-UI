@@ -2137,5 +2137,20 @@ let scrapers = [
     },
     {
         "name": "opis"
+    },
+    {
+        "name": "hillinternational"
+    },
+    {
+        "name": "cocacolahbc"
+    },
+    {
+        "name": "ascom"
+    },
+    {
+        "name": "tain"
+    },
+    {
+        "name": "tufin"
     }
 ];
