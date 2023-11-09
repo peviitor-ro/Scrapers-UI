@@ -672,7 +672,7 @@ let scrapers = [
         "name": "crowdstrike"
     },
     {
-        "name": "poppAsociatii"
+        "name": "poppasociatii"
     },
     {
         "name": "rsystems"
@@ -828,9 +828,6 @@ let scrapers = [
         "name": "dynata"
     },
     {
-        "name": "hill"
-    },
-    {
         "name": "amdaris"
     },
     {
@@ -948,7 +945,7 @@ let scrapers = [
         "name": "yazaki"
     },
     {
-        "name": "cocacola"
+        "name": "cocacolahbc"
     },
     {
         "name": "lear"
@@ -2142,6 +2139,7 @@ let scrapers = [
         "name": "hillinternational"
     },
     {
+<<<<<<< HEAD
         "name": "cocacolahbc"
     },
     {
@@ -2151,6 +2149,11 @@ let scrapers = [
         "name": "tain"
     },
     {
+=======
+        "name": "ascom"
+    },
+    {
+>>>>>>> 276d788a5c4b6fee7d1c1814dbf2216560872a75
         "name": "tufin"
     }
 ];
