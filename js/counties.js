@@ -4001,6 +4001,7 @@ const counties = [
   {
     Calarasi: [
       "Calarasi",
+      "Lehliu Gara",
       "Oltenita",
       "Borcea",
       "Chirnogi",
@@ -11784,7 +11785,7 @@ const counties = [
   {
     Teleorman: [
       "Alexandria",
-      "Rosiori de Vede",
+      "Rosiorii de Vede",
       "Turnu Magurele",
       "Zimnicea",
       "Videle",
