@@ -2149,5 +2149,17 @@ let scrapers = [
     },
     {
         "name": "ropardo"
+    },
+    {
+        "name": "urbica"
+    },
+    {
+        "name": "expressvpn"
+    },
+    {
+        "name": "danieli"
+    },
+    {
+        "name": "unicredittiriac"
     }
 ];
