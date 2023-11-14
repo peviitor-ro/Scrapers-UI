@@ -357,9 +357,6 @@ let scrapers = [
         "name": "segula"
     },
     {
-        "name": "MagnaElectronics"
-    },
-    {
         "name": "veo"
     },
     {
