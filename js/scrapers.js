@@ -1824,9 +1824,6 @@ let scrapers = [
     name: "bandainamcoent",
   },
   {
-    name: "dornamedical",
-  },
-  {
     name: "interratravel",
   },
   {
