@@ -201,6 +201,9 @@ let scrapers = [
     name: "sonnentor",
   },
   {
+    name: "kelloggs",
+  },
+  {
     name: "romaero",
   },
   {
@@ -1455,7 +1458,7 @@ let scrapers = [
     name: "wipro",
   },
   {
-    name: "AtekSoftware",
+    name: "atek",
   },
   {
     name: "acrelec",

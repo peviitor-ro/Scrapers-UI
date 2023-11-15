@@ -33,7 +33,7 @@ urls = [
     'https://dev.laurentiumarian.ro/scraper/JobsScrapers/',
     'https://dev.laurentiumarian.ro/scraper/Scrapers_Cristi_Olteanu/',
     'https://dev.laurentiumarian.ro/scraper/Scrapers_canghelet/',
-    'https://dev.laurentiumarian.ro/scraper/David_is_scraping/'
+    'https://dev.laurentiumarian.ro/scraper/scrapers_david/'
 ]
 
 # make a request to get the scrapers
