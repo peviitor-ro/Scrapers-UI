@@ -2158,5 +2158,29 @@ let scrapers = [
     },
     {
         "name": "unicredittiriac"
+    },
+    {
+        "name": "mindera"
+    },
+    {
+        "name": "hirschmann"
+    },
+    {
+        "name": "enea"
+    },
+    {
+        "name": "unicredittiriac"
+    },
+    {
+        "name": "apanova"
+    },
+    {
+        "name": "maviprod"
+    },
+    {
+        "name": "cabuzau"
+    },
+    {
+        "name": "cni"
     }
 ];
