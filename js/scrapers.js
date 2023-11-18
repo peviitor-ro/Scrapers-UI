@@ -2182,5 +2182,11 @@ let scrapers = [
     },
     {
         "name": "cni"
+    },
+    {
+        "name": "companiadeapabuzau"
+    },
+    {
+        "name": "apanovabucuresti"
     }
 ];
