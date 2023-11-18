@@ -2172,15 +2172,15 @@ let scrapers = [
         "name": "unicredittiriac"
     },
     {
-        "name": "apanova"
-    },
-    {
         "name": "maviprod"
     },
     {
-        "name": "cabuzau"
+        "name": "cni"
     },
     {
-        "name": "cni"
+        "name": "companiadeapabuzau"
+    },
+    {
+        "name": "apanovabucuresti"
     }
 ];
