@@ -8904,7 +8904,7 @@ const counties = [
   },
   {
     Mures: [
-      "Targu Mures",
+      "Targu-Mures",
       "Reghin",
       "Sighisoara",
       "Tarnaveni",
