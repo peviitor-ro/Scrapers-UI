@@ -8904,7 +8904,7 @@ const counties = [
   },
   {
     Mures: [
-      "Targu Mures",
+      "Targu-Mures",
       "Reghin",
       "Sighisoara",
       "Tarnaveni",
@@ -10939,6 +10939,7 @@ const counties = [
   {
     "Satu Mare": [
       "Satu Mare",
+      "Negresti Oas",
       "Carei",
       "Negresti-Oas",
       "Tasnad",
