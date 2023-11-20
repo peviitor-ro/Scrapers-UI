@@ -10939,6 +10939,7 @@ const counties = [
   {
     "Satu Mare": [
       "Satu Mare",
+      "Negresti Oas",
       "Carei",
       "Negresti-Oas",
       "Tasnad",
