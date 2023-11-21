@@ -533,10 +533,17 @@ button div {
 }
 
 .validate {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px;
   color: rgb(0, 172, 0) !important;
 }
 
 .invalid {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
   color: rgba(255, 0, 0, 0.938) !important;
 }
 
