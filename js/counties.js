@@ -9426,6 +9426,7 @@ const counties = [
   },
   {
     Neamt: [
+      "Piatra Neamt",
       "Piatra-Neamt",
       "Roman",
       "Targu Neamt",
@@ -12499,6 +12500,7 @@ const counties = [
   },
   {
     Valcea: [
+      "Ramnicu-Valcea",
       "Ramnicu Valcea",
       "Dragasani",
       "Brezoi",

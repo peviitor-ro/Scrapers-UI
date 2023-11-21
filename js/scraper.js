@@ -5,7 +5,14 @@ const capitelizedCompanyName =
 const htmlTitle = document.querySelector("title");
 const company = document.querySelector("#company");
 htmlTitle.innerHTML = `Scraper-${capitelizedCompanyName}`;
-company.innerHTML = capitelizedCompanyName;
+
+const removeCharacter = () => {
+  originalString = capitelizedCompanyName;
+  newString = originalString.replace(/_scraper/g, "");
+  company.innerHTML = newString;
+};
+
+removeCharacter();
 
 const cityInRomania = (city) => {
   const cities = {
@@ -110,6 +117,7 @@ const validate_city = (data) => {
         } else {
           if (citys === "") {
             htmlDiv.classList.add("invalid");
+
             htmlDiv.innerHTML = `No city`;
             validatedData.push(htmlDiv);
           } else {
@@ -178,7 +186,7 @@ const create_job = (data) => {
       <div class="container-JobLocation">
       <div class="job-location" title="Location">
           <div class="location-container">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" >
                 <path d="M17.5 8.33334C17.5 14.1667 10 19.1667 10 19.1667C10 19.1667 2.5 14.1667 2.5 8.33334C2.5 6.34421 3.29018 4.43656 4.6967 3.03003C6.10322 1.62351 8.01088 0.833336 10 0.833336C11.9891 0.833336 13.8968 1.62351 15.3033 3.03003C16.7098 4.43656 17.5 6.34421 17.5 8.33334Z" stroke="#979C9E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M10 10.8333C11.3807 10.8333 12.5 9.71405 12.5 8.33334C12.5 6.95262 11.3807 5.83334 10 5.83334C8.61929 5.83334 7.5 6.95262 7.5 8.33334C7.5 9.71405 8.61929 10.8333 10 10.8333Z" stroke="#979C9E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
