@@ -2182,5 +2182,14 @@ let scrapers = [
     },
     {
         "name": "apanovabucuresti"
+    },
+    {
+        "name": "hartrodt"
+    },
+    {
+        "name": "grubhub"
+    },
+    {
+        "name": "opentext"
     }
 ];
