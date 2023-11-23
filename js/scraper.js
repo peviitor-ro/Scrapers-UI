@@ -7,8 +7,8 @@ const company = document.querySelector("#company");
 htmlTitle.innerHTML = `Scraper-${capitelizedCompanyName}`;
 
 const removeCharacter = () => {
-  originalString = capitelizedCompanyName;
-  newString = originalString.replace(/_scraper/g, "");
+  let originalString = capitelizedCompanyName;
+  let newString = originalString.replace(/_scraper/g, "");
   company.innerHTML = newString;
 };
 
@@ -73,7 +73,10 @@ const validate_city = (data) => {
   let citys = data.city;
   let jobType = data.remote;
   let country = data.country;
-  if (jobType && jobType.includes("Remote")) {
+  if (
+    (jobType && jobType.includes("Remote")) ||
+    (jobType && jobType.includes("remote"))
+  ) {
     if (typeof citys === "object") {
       citys.forEach((city) => {
         let htmlDiv = document.createElement("div");
@@ -82,10 +85,12 @@ const validate_city = (data) => {
         validatedData.push(htmlDiv);
       });
     } else if (typeof citys === "string") {
-      let htmlDiv = document.createElement("div");
-      htmlDiv.classList.add("validate");
-      htmlDiv.innerHTML = svgLocation + citys;
-      validatedData.push(htmlDiv);
+      if (!citys.length == 0) {
+        let htmlDiv = document.createElement("div");
+        htmlDiv.classList.add("validate");
+        htmlDiv.innerHTML = svgLocation + citys;
+        validatedData.push(htmlDiv);
+      }
     }
   } else {
     if (typeof citys === "object") {
@@ -123,7 +128,7 @@ const validate_city = (data) => {
         } else {
           if (citys === "") {
             htmlDiv.classList.add("invalid");
-            // htmlDiv.innerHTML = `No city`;
+            htmlDiv.innerHTML = svgLocation + `No city`;
             validatedData.push(htmlDiv);
           } else {
             htmlDiv.classList.add("invalid");
