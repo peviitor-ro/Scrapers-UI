@@ -501,11 +501,12 @@ button div {
 }
 
 .job_link-container {
+  display: flex;
+  justify-content: center;
   background-color: #201f1f;
   border-top-right-radius: 26px;
   border-bottom-left-radius: 26px;
   padding: 5px;
-  text-align: center;
 }
 .job_link-container a {
   text-decoration: none;
