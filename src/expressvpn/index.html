@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -126,59 +125,66 @@
                 >See Jobs</a
                 >
 
-                <p class="delete-storage">Delete Local Storage</p>
+        <p class="delete-storage">Delete Local Storage</p>
 
-                <a href="https://github.com/peviitor-ro/Scrapers_Cristi_Olteanu/blob/main/sites/expressvpn_scraper.py" target="_blank" class="functionality-buttons">
-                    GitHubRepo
-                </a>
-                <a href="https://github.com/peviitor-ro/Scrapers_Cristi_Olteanu/issues" target="_blank">
-                    Report 🐞
-                </a>
-                <a
-                href="https://www.google.com/url?q=https%3A%2F%2Fdiscord.gg%2Ft2aEdmR52a&sa=D&sntz=1&usg=AOvVaw2T-L7jAgzen0J-qResoTGU"
-                target="_blank"
-                class="functionality-buttons"
-                >
-                    Join Discord
-                </a>
-            </div>
+        <a
+          href="https://github.com/peviitor-ro/Scrapers_Cristi_Olteanu/blob/main/sites/expressvpn_scraper.py"
+          target="_blank"
+          class="functionality-buttons"
+        >
+          GitHubRepo
+        </a>
+        <a
+          href="https://github.com/peviitor-ro/Scrapers_Cristi_Olteanu/issues"
+          target="_blank"
+        >
+          Report 🐞
+        </a>
+        <a
+          href="https://www.google.com/url?q=https%3A%2F%2Fdiscord.gg%2Ft2aEdmR52a&sa=D&sntz=1&usg=AOvVaw2T-L7jAgzen0J-qResoTGU"
+          target="_blank"
+          class="functionality-buttons"
+        >
+          Join Discord
+        </a>
+      </div>
+    </div>
+    <div class="jobs"></div>
+    <div class="skeleton-jobs">
+      <template id="card-template">
+        <div class="skeleton-job">
+          <div>
+            <p class="skeleton-job-title"></p>
+            <p class="skeleton-job-company"></p>
+            <p class="skeleton-job-location"></p>
+          </div>
+          <div class="skeleton-job-post">
+            <p></p>
+          </div>
         </div>
-        <div class="jobs"></div>
-        <div class="skeleton-jobs">
-            <template id="card-template">
-                <div class="skeleton-job">
-                    <div>
-                        <p class="skeleton-job-title"></p>
-                        <p class="skeleton-job-company"></p>
-                        <p class="skeleton-job-location"></p>
-                    </div>
-                    <div class="skeleton-job-post">
-                        <p></p>
-                    </div>
-                </div>
-            </template>
-        </div>
-        <div class="console hidden">
-            <button class="close-console" onclick="closeConsole()">x</button>
-            <div class="console-content"></div>
-        </div>
-        <div onclick="toTop()" class="button-to-top-parent">
-            <div class="button-to-top">&#8679;</div>
-        </div>
-        <script>
-            // De Modificat
-            const apiObj = {
-                file: "expressvpn_scraper.py",
-                url: "https://dev.laurentiumarian.ro/scraper/Scrapers_Cristi_Olteanu/",
-                dataSetUrl: "https://dev.laurentiumarian.ro/dataset/Scrapers_Cristi_Olteanu/expressvpn_scraper.py/",
-            };
-            // ##########################################
-        </script>
-        <script src="../../js/countries.js"></script>
-        <script src="../../js/counties.js"></script>
-        <script src="../../js/scraper.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-        <script src="../../js/chart.js"></script>
-    </body>
+      </template>
+    </div>
+    <div class="console hidden">
+      <button class="close-console" onclick="closeConsole()">x</button>
+      <div class="console-content"></div>
+    </div>
+    <div onclick="toTop()" class="button-to-top-parent">
+      <div class="button-to-top">&#8679;</div>
+    </div>
+    <script>
+      // De Modificat
+      const apiObj = {
+        file: "expressvpn_scraper.py",
+        url: "https://dev.laurentiumarian.ro/scraper/Scrapers_Cristi_Olteanu/",
+        dataSetUrl:
+          "https://dev.laurentiumarian.ro/dataset/Scrapers_Cristi_Olteanu/expressvpn_scraper.py/",
+      };
+      // ##########################################
+    </script>
+    <script src="../../js/countries.js"></script>
+    <script src="../../js/counties.js"></script>
+    <script src="../../js/scraper.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="../../js/chart.js"></script>
+  </body>
 </html>
-        

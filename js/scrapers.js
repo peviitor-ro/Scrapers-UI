@@ -2215,14 +2215,5 @@ let scrapers = [
     },
     {
         "name": "gkn"
-    },
-    {
-        "name": "getcounty"
-    },
-    {
-        "name": "getcounty"
-    },
-    {
-        "name": "getcounty"
     }
 ];
