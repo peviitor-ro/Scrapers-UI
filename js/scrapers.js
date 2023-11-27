@@ -2192,4 +2192,26 @@ let scrapers = [
   {
     name: "opentext",
   },
+  {
+    name: "noodlepack",
+  },
+  {
+    name: "getcounty",
+  },
+  {
+    name: "victorysquare",
+  },
+  {
+    name: "sp",
+  },
+  {
+    name: "qiagen",
+  },
+  {
+    name: "hootsuite",
+  },
+  {
+    name: "inthepocket",
+  },
+  { name: "expressvpn" },
 ];
