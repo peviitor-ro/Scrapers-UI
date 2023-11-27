@@ -189,7 +189,7 @@ let scrapers = [
         "name": "publicisgroupe"
     },
     {
-        "name": "MegaImage"
+        "name": "megaimage"
     },
     {
         "name": "draxlmaier"
