@@ -1821,9 +1821,6 @@ let scrapers = [
         "name": "wwf"
     },
     {
-        "name": "bandainamcoent"
-    },
-    {
         "name": "interratravel"
     },
     {
@@ -2193,27 +2190,15 @@ let scrapers = [
         "name": "opentext"
     },
     {
-        "name": "noodlepack"
+        "name": "expressvpn"
     },
     {
-        "name": "getcounty"
+        "name": "hartrodt"
     },
     {
-        "name": "victorysquare"
+        "name": "grubhub"
     },
     {
-        "name": "sp"
-    },
-    {
-        "name": "qiagen"
-    },
-    {
-        "name": "hootsuite"
-    },
-    {
-        "name": "inthepocket"
-    },
-    {
-        "name": "gkn"
+        "name": "opentext"
     }
 ];

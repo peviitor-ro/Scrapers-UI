@@ -20,7 +20,8 @@ exclude = [
     'osfdigital',
     '000',
     'test',
-    'smarttech'
+    'smarttech',
+    'getcounty'
 ]
 
 # scrapers urls

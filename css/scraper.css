@@ -501,12 +501,11 @@ button div {
 }
 
 .job_link-container {
-  display: flex;
-  justify-content: center;
   background-color: #201f1f;
   border-top-right-radius: 26px;
   border-bottom-left-radius: 26px;
   padding: 5px;
+  text-align: center;
 }
 .job_link-container a {
   text-decoration: none;
@@ -534,17 +533,10 @@ button div {
 }
 
 .validate {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 2px;
   color: rgb(0, 172, 0) !important;
 }
 
 .invalid {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
   color: rgba(255, 0, 0, 0.938) !important;
 }
 
