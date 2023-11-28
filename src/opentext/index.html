@@ -1,89 +1,4 @@
-import requests
-import os
-import json
-import re 
 
-# curent path
-path = os.getcwd()
-
-# this folders will be excluded
-exclude = [
-    '', 
-    'a', 
-    'l', 
-    'website',
-    'update', 
-    'setup', 
-    'script', 
-    '__pycache__',
-    'main',
-    'osfdigital',
-    '000',
-    'test',
-    'smarttech',
-    'getcounty'
-]
-
-# scrapers urls
-urls = [
-    'https://dev.laurentiumarian.ro/scraper/PeViitor_Scrapers_Melania/',
-    'https://dev.laurentiumarian.ro/scraper/Scrapers_start_with_digi/',
-    'https://dev.laurentiumarian.ro/scraper/Scrapers_Job_PeViitor/',
-    'https://dev.laurentiumarian.ro/scraper/based_scraper_py/',
-    'https://dev.laurentiumarian.ro/scraper/based_scraper_js/',
-    'https://dev.laurentiumarian.ro/scraper/JobsScrapers/',
-    'https://dev.laurentiumarian.ro/scraper/Scrapers_Cristi_Olteanu/',
-    'https://dev.laurentiumarian.ro/scraper/Scrapers_canghelet/',
-    'https://dev.laurentiumarian.ro/scraper/scrapers_david/',
-    'https://dev.laurentiumarian.ro/scraper/Scrapers_Dan_Marius/'
-]
-
-# make a request to get the scrapers
-def get_scrapers(url):
-    """Returns a list of scrapers."""
-    response = requests.get(url)
-
-    return response.json()
-
-# make a request to get the logos
-def get_logos():
-    """Returns a list of logos."""
-    url = 'https://api.peviitor.ro/v1/logo/'
-
-    response = requests.get(url)
-
-    obj = response.json().get('companies')
-    data = {}
-    
-    for company in obj:
-        name = company.get('name').lower()
-        data[name] = company.get('logo')
-
-    return data
-
-# list of new companies for scrapers.js
-json_file = []
-
-# get the logos
-logos = get_logos()
-
-# loop through the urls
-for url in urls:
-    # get the data
-    data = get_scrapers(url)[1].items()
-
-    # identify the extensions
-    extensions = {
-        "py": "Python",
-        "js": "JavaScript",
-    }
-
-    # loop through the data
-    for key, value in data:
-        company = key.lower().split('_')[0]
-        
-        # html template
-        html = f'''
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -123,12 +38,15 @@ for url in urls:
                 <div class="flip-card-container">
                     <div class="flip-card">
                         <div class="box">
-                            <img alt="{company.lower()}"  src="{logos.get(company.lower())}" />
+                            <img alt="opentext"  src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/OpenText_logo.svg/447px-OpenText_logo.svg.png" />
                         </div>
                         <div class="box2">
-                            <a href="#" target="_blank">
+                            <a href="https://careers.opentext.com/search/?q=&location=RO&sortColumn=referencedate&sortDirection=desc&startrow=" target="_blank">
                             Careers
                             </a>
+                            <!-- 
+                                Could not find the targetare.ro link
+                             -->
                             <a href="#" target="_blank">
                             Targetare.ro
                             </a>
@@ -167,7 +85,7 @@ for url in urls:
                         Scraper
                     </h5>
                     <p id="scraper-lg">
-                        {extensions.get(value.split(".")[-1])}
+                        Python
                     </p>
                 </div>
                 <div class="hr"></div>
@@ -202,7 +120,7 @@ for url in urls:
                 </button>
                 
                 <a
-                href="https://peviitor.ro/rezultate?q={company}&country=Rom%C3%A2nia&page=1"
+                href="https://peviitor.ro/rezultate?q=opentext&country=Rom%C3%A2nia&page=1"
                 target="_blank"
                 class="functionality-buttons"
                 >See Jobs</a
@@ -210,10 +128,10 @@ for url in urls:
 
                 <p class="delete-storage">Delete Local Storage</p>
 
-                <a href="https://github.com/peviitor-ro/{url.split("/")[-2]}/blob/main/sites/{value}" target="_blank" class="functionality-buttons">
+                <a href="https://github.com/peviitor-ro/Scrapers_Cristi_Olteanu/blob/main/sites/opentext_scraper.py" target="_blank" class="functionality-buttons">
                     GitHubRepo
                 </a>
-                <a href="https://github.com/peviitor-ro/{url.split("/")[-2]}/issues" target="_blank">
+                <a href="https://github.com/peviitor-ro/Scrapers_Cristi_Olteanu/issues" target="_blank">
                     Report 🐞
                 </a>
                 <a
@@ -249,11 +167,11 @@ for url in urls:
         </div>
         <script>
             // De Modificat
-            const apiObj = {{
-                file: "{value}",
-                url: "{url}",
-                dataSetUrl: "{url.replace('scraper', 'dataset')}{value}/",
-            }};
+            const apiObj = {
+                file: "opentext_scraper.py",
+                url: "https://dev.laurentiumarian.ro/scraper/Scrapers_Cristi_Olteanu/",
+                dataSetUrl: "https://dev.laurentiumarian.ro/dataset/Scrapers_Cristi_Olteanu/opentext_scraper.py/",
+            };
             // ##########################################
         </script>
         <script src="../../js/countries.js"></script>
@@ -263,40 +181,4 @@ for url in urls:
         <script src="../../js/chart.js"></script>
     </body>
 </html>
-        '''
         
-        # Create folder
-        try:
-            # if the folder exists, continue
-            folder = company.lower()
-            if folder not in exclude:
-                os.mkdir(f'{path}/src/{company.lower()}')
-
-                with open(f'{path}/src/{company.lower()}/index.html', 'w',encoding='utf-8') as f:
-                    f.write(html)
-
-                    json_file.append({"name": company})
-                    print(f'Folder {folder} created.')
-        except FileExistsError:
-            continue
-
-# set the pattern 
-pattern = re.compile(r'let scrapers = \[(.*?)\];', re.DOTALL)
-
-# get the content of the file
-with open('js/scrapers.js', 'r') as f:
-    content = f.read()
-
-# find the pattern
-result = '[' + pattern.search(content).group(1).replace('name:', '"name":').replace(' ', '').replace('\n', '') + ']'
-
-# convert to  dict
-result = json.loads(result.replace('",}', '"}').replace('},]', '}]')) + json_file
-
-# add new results in file
-with open('js/scrapers.js', 'w') as f:
-    f.write(f'let scrapers = {json.dumps(result, indent=4)};')
-
-
-
-    
