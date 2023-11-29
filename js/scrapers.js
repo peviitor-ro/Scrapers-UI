@@ -2206,5 +2206,38 @@ let scrapers = [
     },
     {
         "name": "jumbo"
+    },
+    {
+        "name": "altimate"
+    },
+    {
+        "name": "ascentgroup"
+    },
+    {
+        "name": "gigroup"
+    },
+    {
+        "name": "inoveco"
+    },
+    {
+        "name": "fieldstar"
+    },
+    {
+        "name": "igt"
+    },
+    {
+        "name": "reomedical"
+    },
+    {
+        "name": "auto1"
+    },
+    {
+        "name": "agprime"
+    },
+    {
+        "name": "intelactsoft"
+    },
+    {
+        "name": "partnerd"
     }
 ];
