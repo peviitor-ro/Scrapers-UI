@@ -2215,5 +2215,26 @@ let scrapers = [
     },
     {
         "name": "gkn"
+    },
+    {
+        "name": "getcounty"
+    },
+    {
+        "name": "nefab"
+    },
+    {
+        "name": "kuehnenagel"
+    },
+    {
+        "name": "stripe"
+    },
+    {
+        "name": "plan"
+    },
+    {
+        "name": "dm"
+    },
+    {
+        "name": "found"
     }
 ];
