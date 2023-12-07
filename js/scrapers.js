@@ -2025,7 +2025,7 @@ let scrapers = [
         "name": "expressoft"
     },
     {
-        "name": "kuehne-nagel"
+        "name": "kuehnenagel"
     },
     {
         "name": "siena"

@@ -49,7 +49,7 @@ const validate_link = (data, keyword) => {
     data[keyword] !== undefined &&
     data[keyword] !== null &&
     data[keyword] !== "" &&
-    data[keyword].includes("https://")
+    data[keyword].startsWith("http")
   ) {
     isValidate = true;
   }
