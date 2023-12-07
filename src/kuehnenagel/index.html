@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8"/>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-        <link href="../../css/scraper.css" rel="stylesheet"/>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../../css/scraper.css" />
         <title></title>
     </head>
     <body>
@@ -39,6 +40,7 @@
             <p class="close">
                 X
             </p>
+
             <div class="progress active"></div>
         </div>
         <!-- End Section Alert -->
@@ -60,21 +62,20 @@
                     </div>
                 </div>
                 <div class="chart-container">
-                    <canvas id="Chart"></canvas>
+                    <canvas id="Chart"> </canvas>
                 </div>
             </div>
         </section>
         <div class="container-details">
             <div class="scraper-details">
                 <div class="details">
-                    <h5>
-                        Company
-                    </h5>
+
+                    <h5>Company</h5>
                     <p id="company"></p>
                 </div>
                 <div class="hr"></div>
                 <div class="details">
-                    <h5>
+    <h5>
                         Status
                     </h5>
                     <p id="status">
@@ -109,6 +110,7 @@
                     </p>
                 </div>
                 <div class="hr"></div>
+
                 <div class="details">
                     <h5>
                         Contributors
@@ -121,10 +123,12 @@
                         Testers
                     </h5>
                     <div id="testers"></div>
+
                 </div>
             </div>
             <div class="functionality">
                 <button>
+
                     <div>
                         Run Scraper
                     </div>
@@ -140,12 +144,19 @@
                     Delete Local Storage
                 </p>
                 <a class="functionality-buttons" href="https://github.com/peviitor-ro/Scrapers_Cristi_Olteanu/blob/main/sites/kuehnenagel_scraper.py" target="_blank">
+
                     GitHubRepo
                 </a>
                 <a href="https://github.com/peviitor-ro/Scrapers_Cristi_Olteanu/issues" target="_blank">
                     Report 🐞
                 </a>
-                <a class="functionality-buttons" href="https://www.google.com/url?q=https%3A%2F%2Fdiscord.gg%2Ft2aEdmR52a&amp;sa=D&amp;sntz=1&amp;usg=AOvVaw2T-L7jAgzen0J-qResoTGU" target="_blank">
+
+                <a
+                href="https://www.google.com/url?q=https%3A%2F%2Fdiscord.gg%2Ft2aEdmR52a&sa=D&sntz=1&usg=AOvVaw2T-L7jAgzen0J-qResoTGU"
+                target="_blank"
+                class="functionality-buttons"
+                >
+
                     Join Discord
                 </a>
             </div>
@@ -166,22 +177,21 @@
             </template>
         </div>
         <div class="console hidden">
-            <button class="close-console" onclick="closeConsole()">
-                x
-            </button>
+
+            <button class="close-console" onclick="closeConsole()">x</button>
             <div class="console-content"></div>
         </div>
-        <div class="button-to-top-parent" onclick="toTop()">
-            <div class="button-to-top">
-                ⇧
-            </div>
+        <div onclick="toTop()" class="button-to-top-parent">
+            <div class="button-to-top">&#8679;</div>
         </div>
         <script>
             // De Modificat
             const apiObj = {
                 file: "kuehnenagel_scraper.py",
                 url: "https://dev.laurentiumarian.ro/scraper/Scrapers_Cristi_Olteanu/",
+
                 dataSetUrl: "https://dev.laurentiumarian.ro/dataset/Scrapers_Cristi_Olteanu/kuehnenagel_scraper.py/"
+
             };
             // ##########################################
         </script>
