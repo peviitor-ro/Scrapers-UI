@@ -1821,9 +1821,6 @@ let scrapers = [
         "name": "wwf"
     },
     {
-        "name": "bandainamcoent"
-    },
-    {
         "name": "interratravel"
     },
     {
@@ -2193,31 +2190,28 @@ let scrapers = [
         "name": "opentext"
     },
     {
-        "name": "noodlepack"
+        "name": "expressvpn"
     },
     {
-        "name": "getcounty"
+        "name": "hartrodt"
     },
     {
-        "name": "victorysquare"
-    },
-    {
-        "name": "sp"
-    },
-    {
-        "name": "qiagen"
-    },
-    {
-        "name": "hootsuite"
-    },
-    {
-        "name": "inthepocket"
+        "name": "danieli"
     },
     {
         "name": "gkn"
     },
     {
-        "name": "getcounty"
+        "name": "catena"
+    },
+    {
+        "name": "jumbo"
+    },
+    {
+        "name": "altimate"
+    },
+    {
+        "name": "gkn"
     },
     {
         "name": "nefab"
@@ -2235,6 +2229,33 @@ let scrapers = [
         "name": "dm"
     },
     {
-        "name": "found"
+        "name": "ascentgroup"
+    },
+    {
+        "name": "gigroup"
+    },
+    {
+        "name": "inoveco"
+    },
+    {
+        "name": "fieldstar"
+    },
+    {
+        "name": "igt"
+    },
+    {
+        "name": "reomedical"
+    },
+    {
+        "name": "auto1"
+    },
+    {
+        "name": "agprime"
+    },
+    {
+        "name": "intelactsoft"
+    },
+    {
+        "name": "partnerd"
     }
 ];

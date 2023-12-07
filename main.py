@@ -20,7 +20,8 @@ exclude = [
     'osfdigital',
     '000',
     'test',
-    'smarttech'
+    'smarttech',
+    'getcounty'
 ]
 
 # scrapers urls
@@ -34,7 +35,9 @@ urls = [
     'https://dev.laurentiumarian.ro/scraper/Scrapers_Cristi_Olteanu/',
     'https://dev.laurentiumarian.ro/scraper/Scrapers_canghelet/',
     'https://dev.laurentiumarian.ro/scraper/scrapers_david/',
-    'https://dev.laurentiumarian.ro/scraper/Scrapers_Dan_Marius/'
+    'https://dev.laurentiumarian.ro/scraper/Scrapers_Dan_Marius/',
+    'https://dev.laurentiumarian.ro/scraper/scrapers_Larisa_M16/',
+    'https://dev.laurentiumarian.ro/scraper/Scrapers_Matei/'
 ]
 
 # make a request to get the scrapers
