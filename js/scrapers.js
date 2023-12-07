@@ -2211,6 +2211,24 @@ let scrapers = [
         "name": "altimate"
     },
     {
+        "name": "gkn"
+    },
+    {
+        "name": "nefab"
+    },
+    {
+        "name": "kuehnenagel"
+    },
+    {
+        "name": "stripe"
+    },
+    {
+        "name": "plan"
+    },
+    {
+        "name": "dm"
+    },
+    {
         "name": "ascentgroup"
     },
     {
