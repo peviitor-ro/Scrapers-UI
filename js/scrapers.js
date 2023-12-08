@@ -1026,9 +1026,6 @@ let scrapers = [
     name: "coremaker",
   },
   {
-    name: "proctergamble",
-  },
-  {
     name: "tractable",
   },
   {
@@ -2151,9 +2148,6 @@ let scrapers = [
     name: "tmax",
   },
   {
-    name: "unicredittiriac",
-  },
-  {
     name: "mindera",
   },
   {
@@ -2161,9 +2155,6 @@ let scrapers = [
   },
   {
     name: "enea",
-  },
-  {
-    name: "unicredittiriac",
   },
   {
     name: "maviprod",
