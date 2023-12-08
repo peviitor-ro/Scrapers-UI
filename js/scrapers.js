@@ -2013,9 +2013,6 @@ let scrapers = [
     name: "hogarth",
   },
   {
-    name: "magna",
-  },
-  {
     name: "expressoft",
   },
   {
