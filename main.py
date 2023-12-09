@@ -21,7 +21,8 @@ exclude = [
     '000',
     'test',
     'smarttech',
-    'getcounty'
+    'getcounty',
+    'proctergamble'
 ]
 
 # scrapers urls
