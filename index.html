@@ -4,56 +4,135 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
     <title>Peviitor Scrapers-UI</title>
   </head>
   <body>
     <div class="header">
-      <div class="logo-container">
-        <div class="logo">
-          <h2>
-            <i>Scraper-UI.</i>
-          </h2>
-          <img src="./images/svg/peviitor.svg" alt="logo" />
+      <div class="header-links-container">
+        <div class="header-mobile">
+          <img src="./images/bars.png" alt="bars_img" />
         </div>
-        <p class="count-scrapere"></p>
+        <img src="./images/svg/peviitor.svg" alt="logo" class="logo" />
+        <div class="header-links">
+          <img
+            src="./images/close.png"
+            alt="close"
+            class="close-header-links"
+          />
+          <a href="" target="_blank">Joburi</a>
+          <a href="index.html" target="_blank">Companii</a>
+          <p class="search-toggle">Cautare</p>
+          <a href="https://www.oportunitatisicariere.ro/acasa" target="_blank"
+            >Despre</a
+          >
+          <a href="https://discord.com/invite/t2aEdmR52a" target="_blank"
+            >Contact</a
+          >
+          <a href="doc.html" class="nav-doc">Documentation</a>
+        </div>
+
+        <a href="" target="_blank" class="link-profile">Profilul Meu</a>
+        <div class="link-profile-mobile">
+          <img src="./images/account.png" alt="account_img" />
+        </div>
       </div>
 
-      <div class="search">
-        <input id="search" type="text" placeholder="Cauta un Scraper" />
-        <div class="logo-search">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
-            width="800px"
-            height="800px"
-            viewbox="0 0 32 32"
-            version="1.1"
-            fill="currentColor"
-          >
-            <g
-              id="Page-1"
-              stroke="none"
-              stroke-width="1"
-              fill="currentColor"
-              fill-rule="evenodd"
-              sketch:type="MSPage"
-            >
-              <g
-                id="Icon-Set"
-                sketch:type="MSLayerGroup"
-                transform="translate(-256.000000, -1139.000000)"
+      <hr />
+      <div class="header-filter-container">
+        <div class="header-filter-container2">
+          <p class="count-scrapere"></p>
+          <div class="search">
+            <input id="search" type="text" placeholder="Cauta un Scraper" />
+            <div class="logo-search">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+                width="800px"
+                height="800px"
+                viewbox="0 0 32 32"
+                version="1.1"
+                fill="currentColor"
               >
-                <path
-                  d="M269.46,1163.45 C263.17,1163.45 258.071,1158.44 258.071,1152.25 C258.071,1146.06 263.17,1141.04 269.46,1141.04 C275.75,1141.04 280.85,1146.06 280.85,1152.25 C280.85,1158.44 275.75,1163.45 269.46,1163.45 L269.46,1163.45 Z M287.688,1169.25 L279.429,1161.12 C281.591,1158.77 282.92,1155.67 282.92,1152.25 C282.92,1144.93 276.894,1139 269.46,1139 C262.026,1139 256,1144.93 256,1152.25 C256,1159.56 262.026,1165.49 269.46,1165.49 C272.672,1165.49 275.618,1164.38 277.932,1162.53 L286.224,1170.69 C286.629,1171.09 287.284,1171.09 287.688,1170.69 C288.093,1170.3 288.093,1169.65 287.688,1169.25 L287.688,1169.25 Z"
-                  sketch:type="MSShapeGroup"
-                ></path>
-              </g>
-            </g>
-          </svg>
+                <g
+                  id="Page-1"
+                  stroke="none"
+                  stroke-width="1"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                  sketch:type="MSPage"
+                >
+                  <g
+                    id="Icon-Set"
+                    sketch:type="MSLayerGroup"
+                    transform="translate(-256.000000, -1139.000000)"
+                  >
+                    <path
+                      d="M269.46,1163.45 C263.17,1163.45 258.071,1158.44 258.071,1152.25 C258.071,1146.06 263.17,1141.04 269.46,1141.04 C275.75,1141.04 280.85,1146.06 280.85,1152.25 C280.85,1158.44 275.75,1163.45 269.46,1163.45 L269.46,1163.45 Z M287.688,1169.25 L279.429,1161.12 C281.591,1158.77 282.92,1155.67 282.92,1152.25 C282.92,1144.93 276.894,1139 269.46,1139 C262.026,1139 256,1144.93 256,1152.25 C256,1159.56 262.026,1165.49 269.46,1165.49 C272.672,1165.49 275.618,1164.38 277.932,1162.53 L286.224,1170.69 C286.629,1171.09 287.284,1171.09 287.688,1170.69 C288.093,1170.3 288.093,1169.65 287.688,1169.25 L287.688,1169.25 Z"
+                      sketch:type="MSShapeGroup"
+                    ></path>
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </div>
+          <div class="header-filter-mobile">
+            <p>Filtreaza</p>
+            <img src="./images/filter.png" alt="" />
+          </div>
+          <div class="header-filters">
+            <img src="./images/close.png" alt="close" class="close-header" />
+            <div>
+              <select name="Judet">
+                <option disabled selected>Judet</option>
+                <option value="">Judet 2</option>
+                <option value="">Judet 1</option>
+                <option value="">Judet 3</option>
+              </select>
+            </div>
+            <div>
+              <select name="Oras">
+                <option disabled selected>Oras</option>
+                <option value="">Oras 1</option>
+                <option value="">Oras 2</option>
+                <option value="">Oras 3</option>
+              </select>
+            </div>
+            <div>
+              <select name="Industrie">
+                <option disabled selected>Industrie</option>
+                <option value="">Industrie 1</option>
+                <option value="">Industrie 2</option>
+                <option value="">Industrie 3</option>
+              </select>
+            </div>
+            <div>
+              <select name="Judet">
+                <option disabled selected>Numar Angajati</option>
+                <option value="">Angajati 1</option>
+                <option value="">Angajati 2</option>
+                <option value="">Angajati 3</option>
+              </select>
+            </div>
+          </div>
         </div>
       </div>
-      <a href="doc.html" class="nav-doc">Documentation</a>
+    </div>
+    <div class="container-companies">
+      <h1>Companii</h1>
+      <p class="companies-length"></p>
+      <div class="checkScrapers">
+        <p>Check Valid Scrapers</p>
+        <img
+          src="./images/gear.png"
+          alt="loading"
+          class="scraper-check-loading"
+        />
+      </div>
     </div>
     <div class="container"></div>
     <script src="js/scrapers.js"></script>
