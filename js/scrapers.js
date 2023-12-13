@@ -336,9 +336,6 @@ let scrapers = [
         "name": "adp"
     },
     {
-        "name": "ahk"
-    },
-    {
         "name": "mcro"
     },
     {
@@ -2287,5 +2284,14 @@ let scrapers = [
     },
     {
         "name": "temaenergy"
+    },
+    {
+        "name": "irum"
+    },
+    {
+        "name": "uni"
+    },
+    {
+        "name": "meteocontrol"
     }
 ];
