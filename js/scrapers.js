@@ -558,7 +558,7 @@ let scrapers = [
         "name": "expertmind"
     },
     {
-        "name": "atp-group"
+        "name": "atpgroup"
     },
     {
         "name": "sonrisatechnologies"
