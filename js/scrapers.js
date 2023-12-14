@@ -2293,5 +2293,8 @@ let scrapers = [
     },
     {
         "name": "meteocontrol"
+    },
+    {
+        "name": "atpgroup"
     }
 ];
