@@ -558,9 +558,6 @@ let scrapers = [
         "name": "expertmind"
     },
     {
-        "name": "atp-group"
-    },
-    {
         "name": "sonrisatechnologies"
     },
     {
@@ -1959,7 +1956,7 @@ let scrapers = [
         "name": "medison"
     },
     {
-        "name": "baywa"
+        "name": "bayware"
     },
     {
         "name": "arvato"
@@ -2293,5 +2290,8 @@ let scrapers = [
     },
     {
         "name": "meteocontrol"
+    },
+    {
+        "name": "atpgroup"
     }
 ];
