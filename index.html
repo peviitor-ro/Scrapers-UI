@@ -14,12 +14,12 @@
     <div class="header">
       <div class="header-links-container">
         <div class="header-mobile">
-          <img src="./images/bars.png" alt="bars_img" />
+          <img src="./images/icons/bars.png" alt="bars_img" />
         </div>
         <img src="./images/svg/peviitor.svg" alt="logo" class="logo" />
         <div class="header-links">
           <img
-            src="./images/close.png"
+            src="./images/icons/close.png"
             alt="close"
             class="close-header-links"
           />
@@ -37,7 +37,7 @@
 
         <a href="" target="_blank" class="link-profile">Profilul Meu</a>
         <div class="link-profile-mobile">
-          <img src="./images/account.png" alt="account_img" />
+          <img src="./images/icons/account.png" alt="account_img" />
         </div>
       </div>
 
@@ -46,7 +46,12 @@
         <div class="header-filter-container2">
           <p class="count-scrapere"></p>
           <div class="search">
-            <input id="search" type="text" placeholder="Cauta un Scraper" />
+            <input
+              id="search"
+              type="text"
+              placeholder="Cauta un Scraper"
+              data-search
+            />
             <div class="logo-search">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -80,12 +85,28 @@
               </svg>
             </div>
           </div>
-          <div class="header-filter-mobile">
-            <p>Filtreaza</p>
-            <img src="./images/filter.png" alt="" />
+          <div class="mobile-sorts">
+            <div class="header-filter-mobile">
+              <p>Filtreaza</p>
+              <img src="./images/icons/filter.png" alt="" />
+            </div>
+            <div class="companies-sort-header">
+              <select name="sort">
+                <option disabled selected>Sorteaza</option>
+                <option value="">Sorteaza</option>
+                <option value="">Sorteaza</option>
+                <option value="">Sorteaza</option>
+                <option value="">Sorteaza</option>
+              </select>
+            </div>
           </div>
+
           <div class="header-filters">
-            <img src="./images/close.png" alt="close" class="close-header" />
+            <img
+              src="./images/icons/close.png"
+              alt="close"
+              class="close-header"
+            />
             <div>
               <select name="Judet">
                 <option disabled selected>Judet</option>
@@ -123,18 +144,51 @@
       </div>
     </div>
     <div class="container-companies">
-      <h1>Companii</h1>
-      <p class="companies-length"></p>
-      <div class="checkScrapers">
-        <p>Check Valid Scrapers</p>
-        <img
-          src="./images/gear.png"
-          alt="loading"
-          class="scraper-check-loading"
-        />
+      <div class="companies">
+        <h1>Companii</h1>
+        <p class="companies-length"></p>
+        <div class="selected-filters-container">
+          <p>Judet <img src="./images/icons/close-black.png" alt="close" /></p>
+          <p>Oras <img src="./images/icons/close-black.png" alt="close" /></p>
+          <p>
+            Angajati 500+
+            <img src="./images/icons/close-black.png" alt="close" />
+          </p>
+        </div>
+      </div>
+      <div class="compnaies-sort">
+        <label for="sort">Sorteaza</label>
+        <select name="sort">
+          <option value="">Dupa numarul de joburi active</option>
+          <option value="">Dupa numarul de joburi active 2</option>
+          <option value="">Dupa numarul de joburi active 1</option>
+          <option value="">Dupa numarul de joburi active 3</option>
+        </select>
       </div>
     </div>
-    <div class="container"></div>
+
+    <div class="container-no-scraper"></div>
+    <div class="container" data-scraper-container></div>
+    <template data-scraper-template>
+      <div class="scraper-container">
+        <div class="scraper-logo"><img src="" alt="" data-image /></div>
+        <div class="scraper-info">
+          <div class="scraper-name">
+            <h2 data-title></h2>
+          </div>
+          <p class="scraper-description" data-description></p>
+          <div class="scraper-link-container">
+            <a href="" class="scraper-link" data-scraperUi-link></a>
+            <a
+              href=""
+              class="scraper-link-site"
+              target="_blank"
+              data-website-link
+            ></a>
+          </div>
+        </div>
+      </div>
+    </template>
     <script src="js/scrapers.js"></script>
     <script src="js/script.js"></script>
   </body>
