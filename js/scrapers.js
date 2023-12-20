@@ -2293,5 +2293,203 @@ let scrapers = [
     },
     {
         "name": "atpgroup"
+    },
+    {
+        "name": "johnsonandjohnson"
+    },
+    {
+        "name": "canamgroup"
+    },
+    {
+        "name": "vonconsulting"
+    },
+    {
+        "name": "netmatch"
+    },
+    {
+        "name": "wizzair"
+    },
+    {
+        "name": "accenture"
+    },
+    {
+        "name": "smedix"
+    },
+    {
+        "name": "frequentis"
+    },
+    {
+        "name": "coera"
+    },
+    {
+        "name": "pitechplus"
+    },
+    {
+        "name": "connatix"
+    },
+    {
+        "name": "jmeter"
+    },
+    {
+        "name": "wayfare"
+    },
+    {
+        "name": "wolfpack"
+    },
+    {
+        "name": "starbucks"
+    },
+    {
+        "name": "umtsoftware"
+    },
+    {
+        "name": "netlogiq"
+    },
+    {
+        "name": "mejix"
+    },
+    {
+        "name": "sameday"
+    },
+    {
+        "name": "cybertech"
+    },
+    {
+        "name": "wolterskluwer"
+    },
+    {
+        "name": "orange"
+    },
+    {
+        "name": "exesoftware"
+    },
+    {
+        "name": "pepco"
+    },
+    {
+        "name": "bitdefender"
+    },
+    {
+        "name": "recognos"
+    },
+    {
+        "name": "nttdata"
+    },
+    {
+        "name": "epam"
+    },
+    {
+        "name": "shesoftware"
+    },
+    {
+        "name": "itperspectives"
+    },
+    {
+        "name": "maxcode"
+    },
+    {
+        "name": "bosch"
+    },
+    {
+        "name": "stefanini"
+    },
+    {
+        "name": "einfra"
+    },
+    {
+        "name": "yardi"
+    },
+    {
+        "name": "nvidia"
+    },
+    {
+        "name": "artsoftconsult"
+    },
+    {
+        "name": "gaminvest"
+    },
+    {
+        "name": "assistsoftware"
+    },
+    {
+        "name": "emerson"
+    },
+    {
+        "name": "rebeldot"
+    },
+    {
+        "name": "multicom"
+    },
+    {
+        "name": "codespring"
+    },
+    {
+        "name": "jysk"
+    },
+    {
+        "name": "kaufland"
+    },
+    {
+        "name": "metro"
+    },
+    {
+        "name": "levi9"
+    },
+    {
+        "name": "talentmatchmakers"
+    },
+    {
+        "name": "arobs"
+    },
+    {
+        "name": "farmec"
+    },
+    {
+        "name": "tarainteractive"
+    },
+    {
+        "name": "profi"
+    },
+    {
+        "name": "cora"
+    },
+    {
+        "name": "luxoft"
+    },
+    {
+        "name": "iwelcome"
+    },
+    {
+        "name": "alightee"
+    },
+    {
+        "name": "endava"
+    },
+    {
+        "name": "nova"
+    },
+    {
+        "name": "tecagency"
+    },
+    {
+        "name": "principal33"
+    },
+    {
+        "name": "garmin"
+    },
+    {
+        "name": "borgdesign"
+    },
+    {
+        "name": "seniorsoftware"
+    },
+    {
+        "name": "hornbach"
+    },
+    {
+        "name": "ulmapackaging"
+    },
+    {
+        "name": "electrogrup"
     }
 ];
