@@ -110,35 +110,35 @@
               class="close-header"
             />
             <div>
-              <select name="Judet">
+              <select name="Judet" id="judet">
                 <option disabled selected>Judet</option>
-                <option value="">Judet 2</option>
-                <option value="">Judet 1</option>
-                <option value="">Judet 3</option>
+                <option value="brasov">Brasov</option>
+                <option value="iasi">Iasi</option>
+                <option value="bucuresti">Bucuresti</option>
               </select>
             </div>
             <div>
-              <select name="Oras">
+              <select name="Oras" id="oras">
                 <option disabled selected>Oras</option>
-                <option value="">Oras 1</option>
-                <option value="">Oras 2</option>
-                <option value="">Oras 3</option>
+                <option value="brasov">Brasov</option>
+                <option value="iasi">Iasi</option>
+                <option value="bucuresti">Bucuresti</option>
               </select>
             </div>
             <div>
-              <select name="Industrie">
+              <select name="Industrie" id="industrie">
                 <option disabled selected>Industrie</option>
-                <option value="">Industrie 1</option>
-                <option value="">Industrie 2</option>
-                <option value="">Industrie 3</option>
+                <option value="industrie1">Industrie 1</option>
+                <option value="industrie2">Industrie 2</option>
+                <option value="industrie3">Industrie 3</option>
               </select>
             </div>
             <div>
-              <select name="Judet">
+              <select name="Judet" id="angajati">
                 <option disabled selected>Numar Angajati</option>
-                <option value="">Angajati 1</option>
-                <option value="">Angajati 2</option>
-                <option value="">Angajati 3</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="300">300</option>
               </select>
             </div>
           </div>
@@ -150,12 +150,10 @@
         <h1>Companii</h1>
         <p class="companies-length"></p>
         <div class="selected-filters-container">
-          <p>Judet <img src="./images/icons/close-black.png" alt="close" /></p>
-          <p>Oras <img src="./images/icons/close-black.png" alt="close" /></p>
-          <p>
-            Angajati 500+
-            <img src="./images/icons/close-black.png" alt="close" />
-          </p>
+          <p class="judet"></p>
+          <p class="oras"></p>
+          <p class="industrie"></p>
+          <p class="angajati"></p>
         </div>
       </div>
       <div class="compnaies-sort">

@@ -418,23 +418,20 @@ body {
   font-size: 14px;
   flex-wrap: wrap;
   font-weight: 500;
-  gap: 10px;
+  margin-left: -12px;
 }
 
-.container-companies .companies .selected-filters-container p:first-child {
-  margin-left: -10px;
-}
-
-.container-companies .companies .selected-filters-container p {
+.container-companies .companies .selected-filters-container .show-filters {
   background-color: var(--bg-filters);
   padding: 10px 15px;
+  margin: 0px 10px;
   border-radius: 26px;
   display: flex;
   align-items: center;
   cursor: pointer;
 }
 
-.container-companies .companies .selected-filters-container p img {
+.container-companies .companies .selected-filters-container .show-filters img {
   width: 10px;
   height: 10px;
   margin-left: 10px;
@@ -479,6 +476,9 @@ body {
   }
   .compnaies-sort {
     display: none;
+  }
+  .container-companies .companies .selected-filters-container .show-filters {
+    margin-bottom: 10px;
   }
 }
 

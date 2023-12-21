@@ -151,3 +151,70 @@ fetch("https://api.peviitor.ro/v1/logo/")
       }
     });
   });
+
+function optionsFilter() {
+  const judet = document.querySelector("#judet");
+  const oras = document.querySelector("#oras");
+  const industrie = document.querySelector("#industrie");
+  const angajati = document.querySelector("#angajati");
+
+  const judetContainer = document.querySelector(".judet");
+  const orasContainer = document.querySelector(".oras");
+  const industrieContainer = document.querySelector(".industrie");
+  const angajatiContainer = document.querySelector(".angajati");
+  const close2 = `<img src="./images/icons/close-black.png" alt="close" class="removeOptions"/>`;
+
+  // add filters
+
+  judet.addEventListener("change", () => {
+    let option = judet.options[judet.selectedIndex].text;
+    judetContainer.classList.add("show-filters");
+    judetContainer.innerHTML = option + close2;
+  });
+
+  oras.addEventListener("change", () => {
+    let option = oras.options[oras.selectedIndex].text;
+    orasContainer.classList.add("show-filters");
+    orasContainer.innerHTML = option + close2;
+  });
+
+  industrie.addEventListener("change", () => {
+    let option = industrie.options[industrie.selectedIndex].text;
+    industrieContainer.classList.add("show-filters");
+    industrieContainer.innerHTML = option + close2;
+  });
+
+  angajati.addEventListener("change", () => {
+    let option = angajati.options[angajati.selectedIndex].text;
+    angajatiContainer.classList.add("show-filters");
+    angajatiContainer.innerHTML = option + close2;
+  });
+
+  // remove filters
+
+  judetContainer.addEventListener("click", () => {
+    judet.selectedIndex = 0;
+    judetContainer.classList.remove("show-filters");
+    judetContainer.innerHTML = "";
+  });
+
+  orasContainer.addEventListener("click", () => {
+    oras.selectedIndex = 0;
+    orasContainer.classList.remove("show-filters");
+    orasContainer.innerHTML = "";
+  });
+
+  industrieContainer.addEventListener("click", () => {
+    industrie.selectedIndex = 0;
+    industrieContainer.classList.remove("show-filters");
+    industrieContainer.innerHTML = "";
+  });
+
+  angajatiContainer.addEventListener("click", () => {
+    angajati.selectedIndex = 0;
+    angajatiContainer.classList.remove("show-filters");
+    angajatiContainer.innerHTML = "";
+  });
+}
+
+optionsFilter();
