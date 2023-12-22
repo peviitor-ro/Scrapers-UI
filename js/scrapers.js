@@ -2491,5 +2491,47 @@ let scrapers = [
     },
     {
         "name": "electrogrup"
-    }
+    },
+    {
+        "name": "stryker"
+    },
+    {
+        "name": "erpahr"
+    },
+    {
+        "name": "diversey"
+    },
+    {
+        "name": "karcher"
+    },
+    {
+        "name": "tehnoglobal"
+    },
+    {
+        "name": "autocobalcescu"
+    },
+    {
+        "name": "leviatan"
+    },
+    {
+        "name": "ados"
+    },
+    {
+        "name": "inspet"
+    },
+    {
+        "name": "unix"
+    },
+    {
+        "name": "maxbet"
+    },
+    {
+        "name": "mhp"
+    },
+    {
+        "name": "rodbun"
+    },
+    {
+        "name": "saintgobain"
+    },
 ];
