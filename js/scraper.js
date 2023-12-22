@@ -248,7 +248,7 @@ const closeConsole = () => {
 };
 
 const button = document.querySelector("button");
-const svg = document.querySelector("svg");
+const svg = document.querySelector(".bi-gear");
 
 const status = (document.querySelector("#status").innerHTML =
   localStorage.getItem(`status-${companyName}`));

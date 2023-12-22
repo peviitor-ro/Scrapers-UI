@@ -121,9 +121,6 @@ body {
   transition: all 1s ease;
 }
 
-/* .header .header-filter-container .count-scrapere {
-  color: var(--text-neutral);
-} */
 .header .header-filter-container .logo {
   display: flex;
   align-items: center;
@@ -167,6 +164,7 @@ body {
 
 .header .header-filter-container .header-filters {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
 
   margin-bottom: 20px;
@@ -407,7 +405,7 @@ body {
 .alertPopUp {
   display: none;
   position: fixed;
-  top: 5em;
+  top: 6em;
   right: 30px;
   border-radius: 12px;
   background: #fff;
@@ -416,7 +414,7 @@ body {
   overflow: hidden;
   transform: translateX(calc(100% + 30px));
   transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
-  z-index: 10;
+  z-index: 100;
 }
 
 .alertPopUp.active {
