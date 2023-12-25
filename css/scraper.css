@@ -546,8 +546,6 @@ body {
   height: 100%;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   padding: 15px;
   border-radius: 12px;
   background: var(--bg-cards);
