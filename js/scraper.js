@@ -515,46 +515,45 @@ removeLocalStorage.addEventListener("click", () => {
 const repoOwner = "peviitor-ro";
 const repoName = apiObj.url.split("/")[4];
 
-console.log(repoName);
 const contribuitori = [];
 const testers = [];
 let uniqueTesters = [];
 const contributorsUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contributors`;
 const issuesUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/issues`;
 
-fetch(contributorsUrl)
-  .then((response) => response.json())
-  .then((contributors) => {
-    const contributorsContainer = document.querySelector("#contributors");
-    contributors.forEach((contributor) => {
-      const contributorElement = document.createElement("p");
-      contributorElement.innerHTML = contributor.login;
-      contributorsContainer.appendChild(contributorElement);
-    });
-  })
-  .catch((error) => {
-    console.error("Eroare:", error);
-  });
+// fetch(contributorsUrl)
+//   .then((response) => response.json())
+//   .then((contributors) => {
+//     const contributorsContainer = document.querySelector("#contributors");
+//     contributors.forEach((contributor) => {
+//       const contributorElement = document.createElement("p");
+//       contributorElement.innerHTML = contributor.login;
+//       contributorsContainer.appendChild(contributorElement);
+//     });
+//   })
+//   .catch((error) => {
+//     console.error("Eroare:", error);
+//   });
 
-fetch(issuesUrl)
-  .then((response) => response.json())
-  .then((issues) => {
-    issues.forEach((issue) => {
-      testers.push(issue.user.login);
-    });
-    uniqueTesters = [...new Set(testers)];
-  })
-  .then(() => {
-    const testersContainer = document.querySelector("#testers");
-    uniqueTesters.forEach((tester) => {
-      const testerElement = document.createElement("p");
-      testerElement.innerHTML = tester;
-      testersContainer.appendChild(testerElement);
-    });
-  })
-  .catch((error) => {
-    console.error("Eroare:", error);
-  });
+// fetch(issuesUrl)
+//   .then((response) => response.json())
+//   .then((issues) => {
+//     issues.forEach((issue) => {
+//       testers.push(issue.user.login);
+//     });
+//     uniqueTesters = [...new Set(testers)];
+//   })
+//   .then(() => {
+//     const testersContainer = document.querySelector("#testers");
+//     uniqueTesters.forEach((tester) => {
+//       const testerElement = document.createElement("p");
+//       testerElement.innerHTML = tester;
+//       testersContainer.appendChild(testerElement);
+//     });
+//   })
+//   .catch((error) => {
+//     console.error("Eroare:", error);
+//   });
 
 // buttons on mobile
 
@@ -613,3 +612,62 @@ closeFilter.addEventListener("click", () => {
   headerFilterMobile.classList.remove("display-flex");
   document.body.style.overflowY = null;
 });
+
+// Filters
+const judet = document.querySelector("#judet");
+
+counties.forEach((county) => {
+  const countyElement = document.createElement("option");
+  countyElement.innerHTML = Object.keys(county)[0];
+  judet.appendChild(countyElement);
+})
+
+const oras = document.querySelector("#oras");
+
+judet.addEventListener("change", () => {
+  oras.innerHTML = "";
+  const cityElement = document.createElement("option");
+  cityElement.innerHTML = "Oras";
+  cityElement.selected = true;
+  cityElement.disabled = true;
+  oras.appendChild(cityElement);
+  counties.forEach((county) => {
+    if (Object.keys(county)[0] === judet.value) {
+      county[Object.keys(county)[0]].forEach((city) => {
+        const cityElement = document.createElement("option");
+        cityElement.innerHTML = city;
+        oras.appendChild(cityElement);
+      });
+    }
+  });
+
+  data = JSON.parse(localStorage.getItem(`data-${companyName}`));
+
+  if (!data){
+    alertModalError("No data in Local Storage please scrape the data first");
+  }else{
+    document.querySelector(".jobs").innerHTML = "";
+    data.forEach((job) => {
+      if (job.county.includes(judet.value)) {
+        create_job(job);
+      }
+    });
+  }
+});
+
+oras.addEventListener("change", () => {
+  data = JSON.parse(localStorage.getItem(`data-${companyName}`));
+
+  if (!data){
+    alertModalError("No data in Local Storage please scrape the data first");
+  }else{
+    document.querySelector(".jobs").innerHTML = "";
+    data.forEach((job) => {
+      if (job.city.includes(oras.value)) {
+        create_job(job);
+      }
+    });
+  }
+})
+
+// #######################################################
