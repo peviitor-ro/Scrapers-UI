@@ -248,7 +248,7 @@ const closeConsole = () => {
 };
 
 const button = document.querySelector("button");
-const svg = document.querySelector("svg");
+const svg = document.querySelector(".bi-gear");
 
 const status = (document.querySelector("#status").innerHTML =
   localStorage.getItem(`status-${companyName}`));
@@ -515,46 +515,45 @@ removeLocalStorage.addEventListener("click", () => {
 const repoOwner = "peviitor-ro";
 const repoName = apiObj.url.split("/")[4];
 
-console.log(repoName);
 const contribuitori = [];
 const testers = [];
 let uniqueTesters = [];
 const contributorsUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contributors`;
 const issuesUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/issues`;
 
-fetch(contributorsUrl)
-  .then((response) => response.json())
-  .then((contributors) => {
-    const contributorsContainer = document.querySelector("#contributors");
-    contributors.forEach((contributor) => {
-      const contributorElement = document.createElement("p");
-      contributorElement.innerHTML = contributor.login;
-      contributorsContainer.appendChild(contributorElement);
-    });
-  })
-  .catch((error) => {
-    console.error("Eroare:", error);
-  });
+// fetch(contributorsUrl)
+//   .then((response) => response.json())
+//   .then((contributors) => {
+//     const contributorsContainer = document.querySelector("#contributors");
+//     contributors.forEach((contributor) => {
+//       const contributorElement = document.createElement("p");
+//       contributorElement.innerHTML = contributor.login;
+//       contributorsContainer.appendChild(contributorElement);
+//     });
+//   })
+//   .catch((error) => {
+//     console.error("Eroare:", error);
+//   });
 
-fetch(issuesUrl)
-  .then((response) => response.json())
-  .then((issues) => {
-    issues.forEach((issue) => {
-      testers.push(issue.user.login);
-    });
-    uniqueTesters = [...new Set(testers)];
-  })
-  .then(() => {
-    const testersContainer = document.querySelector("#testers");
-    uniqueTesters.forEach((tester) => {
-      const testerElement = document.createElement("p");
-      testerElement.innerHTML = tester;
-      testersContainer.appendChild(testerElement);
-    });
-  })
-  .catch((error) => {
-    console.error("Eroare:", error);
-  });
+// fetch(issuesUrl)
+//   .then((response) => response.json())
+//   .then((issues) => {
+//     issues.forEach((issue) => {
+//       testers.push(issue.user.login);
+//     });
+//     uniqueTesters = [...new Set(testers)];
+//   })
+//   .then(() => {
+//     const testersContainer = document.querySelector("#testers");
+//     uniqueTesters.forEach((tester) => {
+//       const testerElement = document.createElement("p");
+//       testerElement.innerHTML = tester;
+//       testersContainer.appendChild(testerElement);
+//     });
+//   })
+//   .catch((error) => {
+//     console.error("Eroare:", error);
+//   });
 
 // buttons on mobile
 
@@ -562,3 +561,113 @@ if (window.innerWidth < 640) {
   const buttons = document.querySelectorAll(".functionality-buttons");
   buttons.forEach((e) => e.classList.toggle("display-none"));
 }
+
+// NavBar on scroll
+let last_known_scroll_position = 0;
+const headerFilter = document.querySelector(".header-filter-container");
+const headerFilter2 = document.querySelector(".header-filter-container2");
+
+window.addEventListener("scroll", () => {
+  let st = window.pageYOffset || document.documentElement.scrollTop;
+
+  if (st > last_known_scroll_position) {
+    headerFilter2.classList.add("header-filter-show2");
+    setTimeout(() => {
+      headerFilter.classList.add("header-filter-show");
+    }, "500");
+  } else {
+    headerFilter.classList.remove("header-filter-show");
+    setTimeout(() => {
+      headerFilter2.classList.remove("header-filter-show2");
+    }, "200");
+  }
+  last_known_scroll_position = st <= 0 ? 0 : st;
+});
+
+// Navbar Mobile Open/Close
+const headerLinksMobile = document.querySelector(".header-links");
+const openHeaderLinks = document.querySelector(".header-mobile");
+const closeHeaderLinks = document.querySelector(".close-header-links");
+
+openHeaderLinks.addEventListener("click", () => {
+  headerLinksMobile.classList.add("header-links-show");
+  document.body.style.overflowY = "hidden";
+});
+
+closeHeaderLinks.addEventListener("click", () => {
+  headerLinksMobile.classList.remove("header-links-show");
+  document.body.style.overflowY = null;
+});
+
+const filterMobile = document.querySelector(".header-filter-mobile");
+const headerFilterMobile = document.querySelector(".header-filters");
+const closeFilter = document.querySelector(".close-header");
+
+filterMobile.addEventListener("click", () => {
+  headerFilterMobile.classList.add("display-flex");
+  document.body.style.overflowY = "hidden";
+});
+
+closeFilter.addEventListener("click", () => {
+  headerFilterMobile.classList.remove("display-flex");
+  document.body.style.overflowY = null;
+});
+
+// Filters
+const judet = document.querySelector("#judet");
+
+counties.forEach((county) => {
+  const countyElement = document.createElement("option");
+  countyElement.innerHTML = Object.keys(county)[0];
+  judet.appendChild(countyElement);
+})
+
+const oras = document.querySelector("#oras");
+
+judet.addEventListener("change", () => {
+  oras.innerHTML = "";
+  const cityElement = document.createElement("option");
+  cityElement.innerHTML = "Oras";
+  cityElement.selected = true;
+  cityElement.disabled = true;
+  oras.appendChild(cityElement);
+  counties.forEach((county) => {
+    if (Object.keys(county)[0] === judet.value) {
+      county[Object.keys(county)[0]].forEach((city) => {
+        const cityElement = document.createElement("option");
+        cityElement.innerHTML = city;
+        oras.appendChild(cityElement);
+      });
+    }
+  });
+
+  data = JSON.parse(localStorage.getItem(`data-${companyName}`));
+
+  if (!data){
+    alertModalError("No data in Local Storage please scrape the data first");
+  }else{
+    document.querySelector(".jobs").innerHTML = "";
+    data.forEach((job) => {
+      if (job.county.includes(judet.value)) {
+        create_job(job);
+      }
+    });
+  }
+});
+
+oras.addEventListener("change", () => {
+  data = JSON.parse(localStorage.getItem(`data-${companyName}`));
+
+  if (!data){
+    alertModalError("No data in Local Storage please scrape the data first");
+  }else{
+    document.querySelector(".jobs").innerHTML = "";
+    data.forEach((job) => {
+      if (job.city.includes(oras.value)) {
+        create_job(job);
+      }
+    });
+  }
+})
+
+// #######################################################
