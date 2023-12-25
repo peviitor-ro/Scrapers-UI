@@ -273,7 +273,7 @@ let scrapers = [
         "name": "pragmaticplay"
     },
     {
-        "name": "HCLTechnologies"
+        "name": "hcltechnologies"
     },
     {
         "name": "KBR"
@@ -340,9 +340,6 @@ let scrapers = [
     },
     {
         "name": "randstad"
-    },
-    {
-        "name": "farmaciatei"
     },
     {
         "name": "gep"
