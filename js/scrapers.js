@@ -342,9 +342,6 @@ let scrapers = [
         "name": "randstad"
     },
     {
-        "name": "farmaciatei"
-    },
-    {
         "name": "gep"
     },
     {
