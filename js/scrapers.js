@@ -2533,5 +2533,8 @@ let scrapers = [
     },
     {
         "name":"affidearomania"
+    },
+    {
+        "name":"urbica"
     }
 ];
