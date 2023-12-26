@@ -16,7 +16,7 @@ get_data().then((data) => {
     values.push(element.data);
   });
 
-  new Chart(ctx, {
+  const chart = new Chart(ctx, {
     type: "line",
     data: {
       labels: labels,
@@ -43,4 +43,10 @@ get_data().then((data) => {
       },
     },
   });
+
+  window.addEventListener("resize", () => {
+    chart.resize();
+    ctx.height = 300;
+  });
 });
+

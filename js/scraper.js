@@ -82,7 +82,12 @@ const validate_city = (data) => {
     if (typeof citys === "object") {
       if (removeDiacritics(country) === "Romania") {
         citys.forEach((city) => {
-          let isValidate = getTownAndCounty(cityInRomania(city)).foudedTown;
+          let isValidate = false;
+          if (city === "All") {
+            isValidate = true;
+          } else {
+            isValidate = getTownAndCounty(cityInRomania(city)).foudedTown;
+          }
           let htmlDiv = document.createElement("div");
           if (isValidate) {
             htmlDiv.classList.add("validate");
@@ -105,7 +110,15 @@ const validate_city = (data) => {
     } else if (typeof citys === "string") {
       if (removeDiacritics(country) === "Romania") {
         let htmlDiv = document.createElement("div");
-        let isValidate = getTownAndCounty(cityInRomania(citys)).foudedTown;
+
+        let isValidate = false;
+
+        if (citys === "All") {
+          isValidate = true;
+        } else {
+          isValidate = getTownAndCounty(cityInRomania(citys)).foudedTown;
+        }
+
         if (isValidate) {
           htmlDiv.classList.add("validate");
           htmlDiv.innerHTML = citys;
@@ -521,39 +534,39 @@ let uniqueTesters = [];
 const contributorsUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contributors`;
 const issuesUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/issues`;
 
-// fetch(contributorsUrl)
-//   .then((response) => response.json())
-//   .then((contributors) => {
-//     const contributorsContainer = document.querySelector("#contributors");
-//     contributors.forEach((contributor) => {
-//       const contributorElement = document.createElement("p");
-//       contributorElement.innerHTML = contributor.login;
-//       contributorsContainer.appendChild(contributorElement);
-//     });
-//   })
-//   .catch((error) => {
-//     console.error("Eroare:", error);
-//   });
+fetch(contributorsUrl)
+  .then((response) => response.json())
+  .then((contributors) => {
+    const contributorsContainer = document.querySelector("#contributors");
+    contributors.forEach((contributor) => {
+      const contributorElement = document.createElement("p");
+      contributorElement.innerHTML = contributor.login;
+      contributorsContainer.appendChild(contributorElement);
+    });
+  })
+  .catch((error) => {
+    console.error("Eroare:", error);
+  });
 
-// fetch(issuesUrl)
-//   .then((response) => response.json())
-//   .then((issues) => {
-//     issues.forEach((issue) => {
-//       testers.push(issue.user.login);
-//     });
-//     uniqueTesters = [...new Set(testers)];
-//   })
-//   .then(() => {
-//     const testersContainer = document.querySelector("#testers");
-//     uniqueTesters.forEach((tester) => {
-//       const testerElement = document.createElement("p");
-//       testerElement.innerHTML = tester;
-//       testersContainer.appendChild(testerElement);
-//     });
-//   })
-//   .catch((error) => {
-//     console.error("Eroare:", error);
-//   });
+fetch(issuesUrl)
+  .then((response) => response.json())
+  .then((issues) => {
+    issues.forEach((issue) => {
+      testers.push(issue.user.login);
+    });
+    uniqueTesters = [...new Set(testers)];
+  })
+  .then(() => {
+    const testersContainer = document.querySelector("#testers");
+    uniqueTesters.forEach((tester) => {
+      const testerElement = document.createElement("p");
+      testerElement.innerHTML = tester;
+      testersContainer.appendChild(testerElement);
+    });
+  })
+  .catch((error) => {
+    console.error("Eroare:", error);
+  });
 
 // buttons on mobile
 
@@ -616,21 +629,39 @@ closeFilter.addEventListener("click", () => {
 // Filters
 const judet = document.querySelector("#judet");
 
+const options = ["Judet", "All"];
+options.forEach((option, idx) => {
+  const countyElement = document.createElement("option");
+  countyElement.innerHTML = option;
+  if (idx === 0) {
+    countyElement.selected = true;
+    countyElement.disabled = true;
+  }
+  judet.appendChild(countyElement);
+});
+
 counties.forEach((county) => {
   const countyElement = document.createElement("option");
   countyElement.innerHTML = Object.keys(county)[0];
   judet.appendChild(countyElement);
-})
+});
 
 const oras = document.querySelector("#oras");
 
 judet.addEventListener("change", () => {
   oras.innerHTML = "";
-  const cityElement = document.createElement("option");
-  cityElement.innerHTML = "Oras";
-  cityElement.selected = true;
-  cityElement.disabled = true;
-  oras.appendChild(cityElement);
+  const options = ["Oras", "All"];
+
+  options.forEach((option, idx) => {
+    const cityElement = document.createElement("option");
+    cityElement.innerHTML = option;
+    if (idx === 0) {
+      cityElement.selected = true;
+      cityElement.disabled = true;
+    }
+    oras.appendChild(cityElement);
+  });
+
   counties.forEach((county) => {
     if (Object.keys(county)[0] === judet.value) {
       county[Object.keys(county)[0]].forEach((city) => {
@@ -643,9 +674,9 @@ judet.addEventListener("change", () => {
 
   data = JSON.parse(localStorage.getItem(`data-${companyName}`));
 
-  if (!data){
+  if (!data) {
     alertModalError("No data in Local Storage please scrape the data first");
-  }else{
+  } else {
     document.querySelector(".jobs").innerHTML = "";
     data.forEach((job) => {
       if (job.county.includes(judet.value)) {
@@ -658,9 +689,9 @@ judet.addEventListener("change", () => {
 oras.addEventListener("change", () => {
   data = JSON.parse(localStorage.getItem(`data-${companyName}`));
 
-  if (!data){
+  if (!data) {
     alertModalError("No data in Local Storage please scrape the data first");
-  }else{
+  } else {
     document.querySelector(".jobs").innerHTML = "";
     data.forEach((job) => {
       if (job.city.includes(oras.value)) {
@@ -668,6 +699,6 @@ oras.addEventListener("change", () => {
       }
     });
   }
-})
+});
 
 // #######################################################

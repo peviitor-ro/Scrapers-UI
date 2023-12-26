@@ -219,6 +219,9 @@ for url in urls:
                 <a href="https://github.com/peviitor-ro/{url.split("/")[-2]}/issues" target="_blank">
                     Report 🐞
                 </a>
+                <a class="functionality-buttons" href="{url + "/" + value}" target="_blank">
+                    Logs
+                </a>
                 <a
                 href="https://www.google.com/url?q=https%3A%2F%2Fdiscord.gg%2Ft2aEdmR52a&sa=D&sntz=1&usg=AOvVaw2T-L7jAgzen0J-qResoTGU"
                 target="_blank"
