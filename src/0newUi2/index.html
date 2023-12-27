@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link href="../../css/scraper.css" rel="stylesheet" />
+    <title></title>
+  </head>
+  <body>
+    <div class="header">
+      <div class="header-links-container">
+        <div class="header-mobile">
+          <img src="../../images/icons/bars.png" alt="bars_img" />
+        </div>
+        <a href="../../index.html">
+          <img src="../../images/svg/peviitor.svg" alt="logo" class="logo" />
+        </a>
+        <div class="header-links">
+          <img
+            src="../../images/icons/close.png"
+            alt="close"
+            class="close-header-links"
+          />
+          <a href="" target="_blank">Joburi</a>
+          <a href="index.html" target="_blank">Companii</a>
+          <p class="search-toggle">Cautare</p>
+          <a href="https://www.oportunitatisicariere.ro/acasa" target="_blank"
+            >Despre</a
+          >
+          <a href="https://discord.com/invite/t2aEdmR52a" target="_blank"
+            >Contact</a
+          >
+          <a href="doc.html" class="nav-doc">Documentation</a>
+        </div>
+
+        <a href="" target="_blank" class="link-profile">Profilul Meu</a>
+        <div class="link-profile-mobile">
+          <img src="../../images/icons/account.png" alt="account_img" />
+        </div>
+      </div>
+
+      <hr />
+      <div class="header-filter-container">
+        <div class="header-filter-container2">
+          <div class="search">
+            <input
+              id="search"
+              type="text"
+              placeholder="Cauta un Scraper"
+              data-search
+            />
+            <div class="logo-search">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+                width="800px"
+                height="800px"
+                viewbox="0 0 32 32"
+                version="1.1"
+                fill="currentColor"
+              >
+                <g
+                  id="Page-1"
+                  stroke="none"
+                  stroke-width="1"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                  sketch:type="MSPage"
+                >
+                  <g
+                    id="Icon-Set"
+                    sketch:type="MSLayerGroup"
+                    transform="translate(-256.000000, -1139.000000)"
+                  >
+                    <path
+                      d="M269.46,1163.45 C263.17,1163.45 258.071,1158.44 258.071,1152.25 C258.071,1146.06 263.17,1141.04 269.46,1141.04 C275.75,1141.04 280.85,1146.06 280.85,1152.25 C280.85,1158.44 275.75,1163.45 269.46,1163.45 L269.46,1163.45 Z M287.688,1169.25 L279.429,1161.12 C281.591,1158.77 282.92,1155.67 282.92,1152.25 C282.92,1144.93 276.894,1139 269.46,1139 C262.026,1139 256,1144.93 256,1152.25 C256,1159.56 262.026,1165.49 269.46,1165.49 C272.672,1165.49 275.618,1164.38 277.932,1162.53 L286.224,1170.69 C286.629,1171.09 287.284,1171.09 287.688,1170.69 C288.093,1170.3 288.093,1169.65 287.688,1169.25 L287.688,1169.25 Z"
+                      sketch:type="MSShapeGroup"
+                    ></path>
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </div>
+          <div class="mobile-sorts">
+            <div class="header-filter-mobile">
+              <p>Filtreaza</p>
+              <img src="../../images/icons/filter.png" alt="" />
+            </div>
+            <div class="companies-sort-header">
+              <select name="sort">
+                <option disabled selected>Sorteaza</option>
+                <option value="">Sorteaza</option>
+                <option value="">Sorteaza</option>
+                <option value="">Sorteaza</option>
+                <option value="">Sorteaza</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="header-filters">
+            <img
+              src="../../images/icons/close.png"
+              alt="close"
+              class="close-header"
+            />
+            <div>
+              <select name="Judet" id="judet">
+                <option disabled selected>Judet</option>
+                <option value="bucuresti">Bucuresti</option>
+                <option value="constanta">Constanta</option>
+                <option value="vaslui">Vaslui</option>
+              </select>
+            </div>
+            <div>
+              <select name="Oras" id="oras">
+                <option disabled selected>Oras</option>
+                <option value="">Oras 1</option>
+                <option value="">Oras 2</option>
+                <option value="">Oras 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Start Section Alert -->
+    <div class="alertPopUp active">
+      <div class="alertPopUp-content">
+        <img alt="Check" class="alert-img" id="image-alert" src="" />
+        <div class="message">
+          <span class="alert-text-1"></span>
+          <span class="alert-text-2"></span>
+        </div>
+      </div>
+      <p class="close">X</p>
+      <div class="progress active"></div>
+    </div>
+    <!-- End Section Alert -->
+    <section class="company">
+      <div class="company-container">
+        <div class="flip-card-container">
+          <div class="flip-card">
+            <div class="box">
+              <img
+                alt="zucchetti"
+                src="https://www.zucchettiromania.com/romania/templates/romania/img/logo.png"
+              />
+            </div>
+            <div class="box2">
+              <a
+                href="https://www.zucchettiromania.com/romania/cms/careers.html"
+                target="_blank"
+              >
+                Zucchetti Careers
+              </a>
+              <a
+                href="https://targetare.ro/17024470/zucchetti-srl"
+                target="_blank"
+              >
+                Targetare.ro
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="Chart"></canvas>
+        </div>
+      </div>
+    </section>
+    <div class="container-details">
+      <div class="scraper-details">
+        <div class="details">
+          <h5>Company</h5>
+          <p id="company"></p>
+        </div>
+        <div class="hr"></div>
+        <div class="details">
+          <h5>Status</h5>
+          <p id="status">Uknown</p>
+        </div>
+        <div class="hr"></div>
+        <div class="details">
+          <h5>Jobs</h5>
+          <p id="jobs">Uknown</p>
+        </div>
+        <div class="hr"></div>
+        <div class="details">
+          <h5>Last Update</h5>
+          <p id="last-update">Uknown</p>
+        </div>
+        <div class="hr"></div>
+        <div class="details">
+          <h5>Scraper</h5>
+          <p id="scraper-lg">Python</p>
+        </div>
+        <div class="hr"></div>
+        <div class="details">
+          <h5>Contributors</h5>
+          <div id="contributors"></div>
+        </div>
+        <div class="hr"></div>
+        <div class="details">
+          <h5>Testers</h5>
+          <div id="testers"></div>
+        </div>
+      </div>
+      <div class="functionality">
+        <button>
+          <div>Run Scraper</div>
+          <svg
+            class="bi bi-gear"
+            fill="white"
+            height="16px"
+            viewbox="0 0 16 16"
+            width="16px"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"
+            ></path>
+            <path
+              d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"
+            ></path>
+          </svg>
+        </button>
+        <a
+          class="functionality-buttons"
+          href="https://peviitor.ro/rezultate?q=zucchetti&amp;country=Rom%C3%A2nia&amp;page=1"
+          target="_blank"
+        >
+          See Jobs
+        </a>
+        <p class="delete-storage">Delete Local Storage</p>
+        <a
+          class="functionality-buttons"
+          href="https://github.com/peviitor-ro/JobsScrapers/blob/main/sites/zucchetti.py"
+          target="_blank"
+        >
+          GitHub Repo
+        </a>
+        <a
+          class="functionality-buttons"
+          href="https://github.com/peviitor-ro/JobsScrapers/issues"
+          target="_blank"
+        >
+          Report 🐞
+        </a>
+        <a
+          class="functionality-buttons"
+          href="https://www.google.com/url?q=https%3A%2F%2Fdiscord.gg%2Ft2aEdmR52a&amp;sa=D&amp;sntz=1&amp;usg=AOvVaw2T-L7jAgzen0J-qResoTGU"
+          target="_blank"
+        >
+          Join Discord
+        </a>
+      </div>
+    </div>
+
+    <div class="search-noFound"></div>
+    <div class="jobs" data-jobs-container></div>
+    <template data-jobs-template>
+      <div class="job">
+        <div class="details-container">
+          <div>
+            <h2 class="job-title" data-job-title></h2>
+            <div class="job-company">
+              <img
+                alt="company_icon"
+                data-company-image
+                class="icons-jobCard"
+              />
+              <p data-job-company></p>
+            </div>
+          </div>
+          <div class="container-JobLocation">
+            <div class="job-location" title="Location">
+              <div class="location-container">
+                <img
+                  alt="location_icon"
+                  data-location-image
+                  class="icons-jobCard"
+                />
+                <p data-location></p>
+              </div>
+              <div class="country-container" title="Country">
+                <img
+                  alt="country_icon"
+                  data-Country-image
+                  class="icons-jobCard"
+                />
+                <p data-country></p>
+              </div>
+              <div class="job-type-container" title="Job Type">
+                <img
+                  alt="job-type_icon"
+                  data-type-image
+                  class="icons-jobCard"
+                />
+                <p data-job-type></p>
+              </div>
+            </div>
+            <div class="job_link-container">
+              <a href="" target="_blank" data-job-link></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <div class="skeleton-jobs">
+      <template id="card-template">
+        <div class="skeleton-job">
+          <div>
+            <p class="skeleton-job-title"></p>
+            <p class="skeleton-job-company"></p>
+            <p class="skeleton-job-location"></p>
+          </div>
+          <div class="skeleton-job-post">
+            <p></p>
+          </div>
+        </div>
+      </template>
+    </div>
+    <div class="console hidden">
+      <button class="close-console" onclick="closeConsole()">x</button>
+      <div class="console-content"></div>
+    </div>
+    <div class="button-to-top-parent" onclick="toTop()">
+      <div class="button-to-top">⇧</div>
+    </div>
+
+    <footer>
+      <div class="container-footer">
+        <a href="../../index.html" class="logo-peviitor">
+          <img src="../../images/svg/peviitor.svg" alt="logo-peviitor" />
+        </a>
+
+        <div class="linkuri-utile-container">
+          <h1>Link-uri</h1>
+          <div class="linkuri-utile">
+            <a href="">Joburi</a>
+            <a href="">Companii</a>
+            <a href="">Despre</a>
+            <a href="">Contact</a>
+            <a href="">Documentation</a>
+          </div>
+        </div>
+
+        <div class="despre-container">
+          <h1>Despre Asociatia Oportunitati Si Cariere</h1>
+          <p>
+            Misiunea noastră este de a agrega informația despre locurile de
+            muncă și de a face această informație accesibilă universal
+          </p>
+
+          <div class="contact-container">
+            <a href=""> <img src="../../images/doc/discord.png" alt="" /></a>
+            <a href=""> <img src="../../images/doc/discord.png" alt="" /></a>
+            <a href=""> <img src="../../images/doc/discord.png" alt="" /></a>
+            <a href=""> <img src="../../images/doc/discord.png" alt="" /></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="copyright">&copy; Copyright</div>
+    </footer>
+    <script>
+      const apiObj = {
+        file: "bcr.py",
+        url: "https://dev.laurentiumarian.ro/scraper/based_scraper_py/",
+        dataSetUrl:
+          "https://dev.laurentiumarian.ro/dataset/based_dataset_py/bcr.py/",
+      };
+    </script>
+    <script src="../../js/countries.js"></script>
+    <script src="../../js/counties.js"></script>
+    <script src="../../js/scraper copy.js"></script>
+    <!-- <script src="../../js/scraper.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="../../js/chart.js"></script>
+  </body>
+</html>

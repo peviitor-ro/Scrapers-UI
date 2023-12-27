@@ -83,10 +83,12 @@ searchInput.addEventListener("input", (e) => {
     companiesLength.innerHTML = `${scrapereFiltrati.length} rezultate`;
   }
 
-  if (scrapereFiltrati.length === 0) {
-    const noScraper = document.createElement(".container-no-scraper");
+  const noScraper = document.querySelector(".container-no-scraper");
+
+  if (scrapereFiltrati.length == 0) {
     noScraper.innerHTML = `<h1 class="not-found">Nu am gasit nimic pentru ${value} !</h1>`;
-    companiesLength.innerHTML = `${scrapereFiltrati.length} rezultate`;
+  } else {
+    noScraper.innerHTML = "";
   }
 });
 
