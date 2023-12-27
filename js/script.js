@@ -66,26 +66,23 @@ let scrapersArray = [];
 searchInput.addEventListener("input", (e) => {
   const value = e.target.value.toLowerCase().replace(/\s+/g, "");
 
-  scrapersArray.forEach((e) => {
+  let nrScrapers = scrapersArray.filter((e) => {
     const isVisible = e.title.toLowerCase().replace(/\s+/g, "").includes(value);
-
     scraperCardContainer.append(e.element);
     e.element.classList.toggle("hideScraper", !isVisible);
+
+    return isVisible;
   });
 
-  scrapereFiltrati = scrapersArray.filter((scraper) =>
-    scraper.title.toLowerCase().replace(/\s+/g, "").includes(value)
-  );
-
-  if (scrapereFiltrati.length == 1) {
-    companiesLength.innerHTML = `${scrapereFiltrati.length} rezultat`;
+  if (nrScrapers.length == 1) {
+    companiesLength.innerHTML = `${nrScrapers.length} rezultat`;
   } else {
-    companiesLength.innerHTML = `${scrapereFiltrati.length} rezultate`;
+    companiesLength.innerHTML = `${nrScrapers.length} rezultate`;
   }
 
   const noScraper = document.querySelector(".container-no-scraper");
 
-  if (scrapereFiltrati.length == 0) {
+  if (nrScrapers.length == 0) {
     noScraper.innerHTML = `<h1 class="not-found">Nu am gasit nimic pentru ${value} !</h1>`;
   } else {
     noScraper.innerHTML = "";

@@ -766,7 +766,6 @@ button div {
 }
 
 .search-noFound {
-  /* display: none; */
   font-size: 20px;
   text-align: center;
   margin-top: 10px;
@@ -923,14 +922,16 @@ button div {
 }
 
 .no-data {
-  text-align: center;
-  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   font-weight: 600;
+  height: 40vh;
 }
 
 .no-data img {
   width: 150px;
-  margin-bottom: 10px;
 }
 
 /* Skeleton animation */

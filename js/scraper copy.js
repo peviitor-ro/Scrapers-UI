@@ -161,29 +161,148 @@ const dataJobsContainer = document.querySelector("[data-jobs-container]");
 const searchInput = document.querySelector("[data-search]");
 const searchNoFound = document.querySelector(".search-noFound");
 
-let filtrareJobs = [];
+let filtrareJoburi = [];
 
 searchInput.addEventListener("input", (e) => {
+  const checkData = JSON.parse(localStorage.getItem(`data-${companyName}`));
   let value = e.target.value.toLowerCase().replace(/\s+/g, "");
-
-  filtrareJobs.filter((e) => {
-    const isVisible = e.title.toLowerCase().replace(/\s+/g, "").includes(value);
-    e.card.classList.toggle("hideJobsCard", !isVisible);
-  });
-
-  let nrJobs = filtrareJobs.filter((scraper) =>
-    scraper.title.toLowerCase().replace(/\s+/g, "").includes(value)
-  );
-
-  if (nrJobs.length == 0) {
-    searchNoFound.innerHTML = `Nu am gasit nici un job cu numele <strong>${value}</strong> !`;
+  if (!checkData) {
+    alertModalError("No data in Local Storage please scrape the data first");
   } else {
-    searchNoFound.innerHTML = "";
+    let nrJobs = filtrareJoburi.filter((e) => {
+      const isVisible = e.title
+        .toLowerCase()
+        .replace(/\s+/g, "")
+        .includes(value);
+      e.card.classList.toggle("hideJobsCard", !isVisible);
+      return isVisible;
+    });
+
+    if (nrJobs.length == 0) {
+      searchNoFound.innerHTML = `Nu am gasit nici un job cu numele <strong>${value}</strong> !`;
+    } else {
+      searchNoFound.innerHTML = "";
+    }
   }
 });
 
+//
+
+const judet = document.querySelector("#judet");
+const oras = document.querySelector("#oras");
+let toateJudetele = "";
+
+counties.forEach((e) => {
+  const dropdownJudete = Object.keys(e).map((key) => {
+    return (toateJudetele += `<option value="${key}"> ${key}</option>`);
+  });
+
+  judet.innerHTML =
+    "<option disabled selected hidden>Judet</option>" +
+    "<option value='all'>All</option>" +
+    dropdownJudete.join("");
+});
+
+judet.addEventListener("change", () => {
+  const checkData = JSON.parse(localStorage.getItem(`data-${companyName}`));
+  if (!checkData) {
+    judet.selectedIndex = 0;
+    alertModalError("No data in Local Storage please scrape the data first");
+  } else {
+    filtrareJoburi.forEach((e) => {
+      if (judet.value == "all") {
+        e.card.classList.remove("hideJobsCard");
+      } else {
+        const isVisible = e.county
+          .toLowerCase()
+          .replace(/\s+/g, "")
+          .includes(judet.value.toLowerCase().replace(/\s+/g, ""));
+        e.card.classList.toggle("hideJobsCard", !isVisible);
+      }
+    });
+  }
+});
+//
+
+// asdasds
+// const judet = document.querySelector("#judet");
+
+// const options = ["Judet", "All"];
+// options.forEach((option, idx) => {
+//   const countyElement = document.createElement("option");
+//   countyElement.innerHTML = option;
+//   if (idx === 0) {
+//     countyElement.selected = true;
+//     countyElement.disabled = true;
+//   }
+//   judet.appendChild(countyElement);
+// });
+
+// counties.forEach((county) => {
+//   const countyElement = document.createElement("option");
+//   countyElement.innerHTML = Object.keys(county)[0];
+//   judet.appendChild(countyElement);
+// });
+
+// const oras = document.querySelector("#oras");
+
+// judet.addEventListener("change", () => {
+//   oras.innerHTML = "";
+//   const options = ["Oras", "All"];
+
+//   options.forEach((option, idx) => {
+//     const cityElement = document.createElement("option");
+//     cityElement.innerHTML = option;
+//     if (idx === 0) {
+//       cityElement.selected = true;
+//       cityElement.disabled = true;
+//     }
+//     oras.appendChild(cityElement);
+//   });
+
+//   counties.forEach((county) => {
+//     if (Object.keys(county)[0] === judet.value) {
+//       county[Object.keys(county)[0]].forEach((city) => {
+//         const cityElement = document.createElement("option");
+//         cityElement.innerHTML = city;
+//         oras.appendChild(cityElement);
+//       });
+//     }
+//   });
+
+//   data = JSON.parse(localStorage.getItem(`data-${companyName}`));
+
+//   if (!data) {
+//     alertModalError("No data in Local Storage please scrape the data first");
+//   } else {
+//     document.querySelector(".jobs").innerHTML = "";
+//     data.forEach((job) => {
+//       if (job.county.includes(judet.value)) {
+//         create_job(job);
+//       }
+//     });
+//   }
+// });
+
+// oras.addEventListener("change", () => {
+//   data = JSON.parse(localStorage.getItem(`data-${companyName}`));
+
+//   if (!data) {
+//     alertModalError("No data in Local Storage please scrape the data first");
+//   } else {
+//     document.querySelector(".jobs").innerHTML = "";
+//     data.forEach((job) => {
+//       if (job.city.includes(oras.value)) {
+//         create_job(job);
+//       }
+//     });
+//   }
+// });
+
+// #######################################################
+
 const create_job = (job) => {
-  filtrareJobs = job.map((data) => {
+  filtrareJoburi = job.map((data) => {
     const card = dataJobsTemplate.content.cloneNode(true).children[0];
     const jobTitle = card.querySelector("[data-job-title]");
     const jobCompany = card.querySelector("[data-job-company]");
@@ -251,7 +370,7 @@ const create_job = (job) => {
     );
 
     dataJobsContainer.append(card);
-    return { title: data.job_title, card: card };
+    return { title: data.job_title, card: card, county: data.county };
   });
 };
 
@@ -379,9 +498,6 @@ button.addEventListener("click", () => {
         document.querySelector("#status").classList.add("validate");
         document.querySelector("#jobs").innerHTML = data.Total;
         document.querySelector("#last-update").innerHTML = dateTime;
-        // data.succes.forEach((job) => {
-        //   create_job(job);
-        // });
         create_job(data.succes);
         localStorage.setItem(
           `data-${companyName}`,
