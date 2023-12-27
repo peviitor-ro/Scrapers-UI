@@ -2531,4 +2531,10 @@ let scrapers = [
     {
         "name": "saintgobain"
     },
+    {
+        "name":"affidearomania"
+    },
+    {
+        "name":"urbica"
+    }
 ];
