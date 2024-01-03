@@ -676,7 +676,7 @@ body {
 }
 .functionality a,
 .functionality button,
-.functionality p {
+.functionality-location button {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -691,7 +691,7 @@ body {
 
 .functionality a:hover,
 .functionality button:hover,
-.functionality p:hover {
+.functionality-location button:hover {
   box-shadow: 0 0.6em 0.6em -0.3em #e08d21;
   transform: translateY(-0.25em);
 }
@@ -1051,7 +1051,7 @@ hide scrollbar for chrome, safari and opera
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .show {
@@ -1162,3 +1162,101 @@ footer .copyright {
     margin-top: 2em;
   }
 }
+
+/* form */
+.form-container {
+  position: fixed;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
+  background-color: var(--bg-header);
+  z-index: 100;
+  top: 0;
+}
+
+.form-container .close-form {
+  position: absolute;
+  right: 20px;
+  margin: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--button-bg-primary);
+  color: var(--text-button-primary);
+  font-size: 16px;
+  cursor: pointer;
+
+}
+
+.form {
+  background-color: var(--bg-cards);
+  border-radius: 20px;
+  box-shadow: 0px 2px 5px 0.5px rgba(80, 79, 79, 0.72);
+  display: flex;
+  flex-direction: column;
+}
+
+.form .details-container{
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  margin: 10px;
+  overflow: auto;
+}
+
+.details-container input {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  margin: 10px;
+  font-size: 16px;
+  width: 50%;
+}
+
+.details-container input:focus {
+  border: 2px solid var(--bg-primary);
+}
+
+.form .job-company,
+.form .job-title,
+.form .job-city,
+.form .job-county,
+.form .job-country,
+.form .job-remote,
+.form .job-link
+{
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.form label {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.form .functionality {
+  justify-content: start;
+  gap: 10px;
+  margin: 10px 0px;
+}
+
+.form select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0px 15px;
+  padding: 10px 5px 10px 15px;
+  width: 13em;
+  border: 1px solid #494949;
+  border-radius: 8px;
+  outline: none;
+  color: #494949;
+  background-color: var(--bg-header);
+}
+

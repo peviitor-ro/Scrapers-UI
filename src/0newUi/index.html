@@ -219,7 +219,6 @@
         >
           See Jobs
         </a>
-        <p class="delete-storage">Delete Local Storage</p>
         <a
           class="functionality-buttons"
           href="https://github.com/peviitor-ro/JobsScrapers/blob/main/sites/zucchetti.py"
@@ -250,6 +249,10 @@
         </a>
       </div>
     </div>
+    <div class="form-container hidden" >
+      <div class="form">   
+      </div>
+    </div>
     <div class="jobs"></div>
     <div class="skeleton-jobs">
       <template id="card-template">
@@ -273,9 +276,15 @@
       <div class="button-to-top">⇧</div>
     </div>
     <script>
+      // const apiObj = {
+      //   file: "veeam.py",
+      //   url: "https://dev.laurentiumarian.ro/scraper/based_scraper_py/",
+      //   dataSetUrl:
+      //     "https://dev.laurentiumarian.ro/dataset/based_dataset_py/veeam.py/",
+      // };
       const apiObj = {
         file: "veeam.py",
-        url: "https://dev.laurentiumarian.ro/scraper/based_scraper_py/",
+        url: "http://localhost:8000/scraper/based_scraper_py/",
         dataSetUrl:
           "https://dev.laurentiumarian.ro/dataset/based_dataset_py/veeam.py/",
       };
