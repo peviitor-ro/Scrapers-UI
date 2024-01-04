@@ -11,7 +11,7 @@ const jobs_container = document.querySelector(".jobs");
 const status_container = document.querySelector("#status");
 
 // TODO: change this to the real url
-const validator_url = "http://localhost:8000/validator/get/";
+const validator_url = "http://localhost:8000/scraper/based_scraper_py/";
 const validator_data = {
   company: companyName,
 };
@@ -33,9 +33,9 @@ let apiJobs = getJobs();
 apiJobs.then((data) => {
   if (data !== null) {
     jobs_container.innerHTML = "";
-    data.forEach((post) => {
-      create_job(post);
-    });
+
+    // maparea o fac direct in functie, asa mergea inainte
+    create_job(data);
   }
 });
 
@@ -202,93 +202,168 @@ const validate_country = (data, keyword) => {
   return isValidate;
 };
 
-const create_job = (data) => {
-  let jobElement = document.createElement("div");
-  jobElement.classList.add("job");
-  jobElement.innerHTML = `
-    <div class="details-container" data='${JSON.stringify(data)}'>
-    <div>
-      <h2 class="job-title ${
-        validate_data(data, "job_title") ? "validate" : "invalid"
-      }">
-            ${
-              validate_data(data, "job_title") ? data.job_title : "No job title"
-            }
-      </h2>
-      <div class="job-company ${
-        validate_data(data, "company") ? "validate" : "invalid"
-      }">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#979c9e" class="bi bi-buildings" viewBox="0 0 16 16" >
-          <path d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022ZM6 8.694 1 10.36V15h5V8.694ZM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15Z"/>
-          <path d="M2 11h1v1H2v-1Zm2 0h1v1H4v-1Zm-2 2h1v1H2v-1Zm2 0h1v1H4v-1Zm4-4h1v1H8V9Zm2 0h1v1h-1V9Zm-2 2h1v1H8v-1Zm2 0h1v1h-1v-1Zm2-2h1v1h-1V9Zm0 2h1v1h-1v-1ZM8 7h1v1H8V7Zm2 0h1v1h-1V7Zm2 0h1v1h-1V7ZM8 5h1v1H8V5Zm2 0h1v1h-1V5Zm2 0h1v1h-1V5Zm0-2h1v1h-1V3Z"/>
-        </svg>
-          ${validate_data(data, "company") ? data.company : "No company"}
-      </div>
-      </div>
-      <div class="container-JobLocation">
-      <div class="job-location" title="Location">
-          <div class="location-container">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M17.5 8.33334C17.5 14.1667 10 19.1667 10 19.1667C10 19.1667 2.5 14.1667 2.5 8.33334C2.5 6.34421 3.29018 4.43656 4.6967 3.03003C6.10322 1.62351 8.01088 0.833336 10 0.833336C11.9891 0.833336 13.8968 1.62351 15.3033 3.03003C16.7098 4.43656 17.5 6.34421 17.5 8.33334Z" stroke="#979C9E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M10 10.8333C11.3807 10.8333 12.5 9.71405 12.5 8.33334C12.5 6.95262 11.3807 5.83334 10 5.83334C8.61929 5.83334 7.5 6.95262 7.5 8.33334C7.5 9.71405 8.61929 10.8333 10 10.8333Z" stroke="#979C9E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            ${
-              validate_city(data)
-                ? validate_city(data).map((city) => city.outerHTML)
-                : "<div class='invalid'>No city</div>"
-            }
-          </div>
-          <div class="country-container" title="Country">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-globe-americas" viewBox="0 0 16 16">
-              <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0ZM2.04 4.326c.325 1.329 2.532 2.54 3.717 3.19.48.263.793.434.743.484-.08.08-.162.158-.242.234-.416.396-.787.749-.758 1.266.035.634.618.824 1.214 1.017.577.188 1.168.38 1.286.983.082.417-.075.988-.22 1.52-.215.782-.406 1.48.22 1.48 1.5-.5 3.798-3.186 4-5 .138-1.243-2-2-3.5-2.5-.478-.16-.755.081-.99.284-.172.15-.322.279-.51.216-.445-.148-2.5-2-1.5-2.5.78-.39.952-.171 1.227.182.078.099.163.208.273.318.609.304.662-.132.723-.633.039-.322.081-.671.277-.867.434-.434 1.265-.791 2.028-1.12.712-.306 1.365-.587 1.579-.88A7 7 0 1 1 2.04 4.327Z"/>
-            </svg>
-            <div class="${
-              validate_country(data, "country") ? "validate" : "invalid"
-            }">
-                ${
-                  validate_country(data, "country")
-                    ? data.country
-                    : data.country + " is not a country"
-                }
-            </div> 
-          </div>
-          <div class="job-type-container" title="Job Type">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-workspace" viewBox="0 0 16 16">
-              <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H4Zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
-              <path d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.653a5.373 5.373 0 0 1 1.066-2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v9h-2.219c.554.654.89 1.373 1.066 2h.653a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2H2Z"/>
-            </svg>
-            <div class="${
-              data.remote && data.remote.length ? "validate" : "invalid"
-            }">
-                ${
-                  data.remote &&
-                  data.remote.length &&
-                  Array.isArray(data.remote)
-                    ? data.remote.map((remote) => remote).join(", ")
-                    : data.remote && data.remote.length
-                    ? data.remote
-                    : "No job type"
-                }
-            </div>
-          </div>
-      </div>
-      <div class="functionality">
-        <button class="edit-job">Edit Job</button>
-      </div>
-      <div class="job_link-container">
-        <a href="${data.job_link}" class="
-          ${validate_link(data, "job_link") ? "validate" : "invalid"}"
-          target="_blank"
-          ">
-              Vezi Postul 
-        </a>
-      </div>
-      </div>
-      
-    </div>
-        `;
+//  Create Cards for Jobs + Search Functionality
+const dataJobsTemplate = document.querySelector("[data-jobs-template]");
+const dataJobsContainer = document.querySelector("[data-jobs-container]");
+const searchInput = document.querySelector("[data-search]");
+const searchNoFound = document.querySelector(".search-noFound");
 
-  jobs_container.appendChild(jobElement);
+let filtrareJoburi = [];
+
+searchInput.addEventListener("input", (e) => {
+  const checkData = JSON.parse(localStorage.getItem(`data-${companyName}`));
+  let value = e.target.value.toLowerCase().replace(/\s+/g, "");
+  if (!checkData) {
+    alertModalError("No data in Local Storage please scrape the data first");
+  } else {
+    let nrJobs = filtrareJoburi.filter((e) => {
+      const isVisible = e.title
+        .toLowerCase()
+        .replace(/\s+/g, "")
+        .includes(value);
+      e.card.classList.toggle("hideJobsCard", !isVisible);
+      return isVisible;
+    });
+
+    if (nrJobs.length == 0) {
+      searchNoFound.innerHTML = `Nu am gasit nici un job cu numele <strong>${value}</strong> !`;
+    } else {
+      searchNoFound.innerHTML = "";
+    }
+  }
+});
+
+//
+
+const judet = document.querySelector("#judet");
+const oras = document.querySelector("#oras");
+let toateJudetele = "";
+
+counties.forEach((e) => {
+  const dropdownJudete = Object.keys(e).map((key) => {
+    return (toateJudetele += `<option value="${key}"> ${key}</option>`);
+  });
+
+  judet.innerHTML =
+    "<option disabled selected hidden>Judet</option>" +
+    "<option value='all'>All</option>" +
+    dropdownJudete.join("");
+});
+
+judet.addEventListener("change", () => {
+  const checkData = JSON.parse(localStorage.getItem(`data-${companyName}`));
+  if (!checkData) {
+    judet.selectedIndex = 0;
+    alertModalError("No data in Local Storage please scrape the data first");
+  } else {
+    filtrareJoburi.forEach((e) => {
+      if (judet.value == "all") {
+        e.card.classList.remove("hideJobsCard");
+      } else {
+        const isVisible = e.county
+          .toLowerCase()
+          .replace(/\s+/g, "")
+          .includes(judet.value.toLowerCase().replace(/\s+/g, ""));
+        e.card.classList.toggle("hideJobsCard", !isVisible);
+      }
+    });
+  }
+});
+
+const logo = document.querySelector(".logo-firma");
+
+// Logo Scraper
+fetch("https://api.peviitor.ro/v1/logo/")
+  .then((response) => response.json())
+  .then((data) => {
+    data.companies.map((e) => {
+      const checkNameScraper = e.name
+        .toLowerCase()
+        .replace(/\s+/g, "")
+        .includes(companyName.toLowerCase().replace(/\s+/g, ""));
+
+      if (checkNameScraper) {
+        logo.src = e.logo;
+        logo.alt = "logo_" + companyName;
+      }
+    });
+  });
+
+logo.onerror = () => {
+  logo.src = "../../images/assets/logonotfound.png";
+};
+
+const create_job = (job) => {
+  filtrareJoburi = job.map((data) => {
+    const card = dataJobsTemplate.content.cloneNode(true).children[0];
+    const jobTitle = card.querySelector("[data-job-title]");
+    const jobCompany = card.querySelector("[data-job-company]");
+    const jobLocation = card.querySelector("[data-location]");
+    const jobCountry = card.querySelector("[data-country]");
+    const jobType = card.querySelector("[data-job-type]");
+    const jobLink = card.querySelector("[data-job-link]");
+
+    const jobCompanySvg = card.querySelector("[data-company-image]");
+    const jobLocationSvg = card.querySelector("[data-location-image]");
+    const jobCountrySvg = card.querySelector("[data-country-image]");
+    const jobTypeSvg = card.querySelector("[data-type-image]");
+
+    jobCompanySvg.src = "../../images/iconsScrapers/company.png";
+    jobLocationSvg.src = "../../images/iconsScrapers/location.png";
+    jobCountrySvg.src = "../../images/iconsScrapers/globe.png";
+    jobTypeSvg.src = "../../images/iconsScrapers/freelance.png";
+
+    jobTitle.textContent = validate_data(data, "job_title")
+      ? data.job_title
+      : "No job title";
+
+    jobTitle.classList.add(
+      validate_data(data, "job_title") ? "validate" : "invalid"
+    );
+
+    jobCompany.textContent = validate_data(data, "company")
+      ? data.company
+      : "No company";
+
+    jobCompany.classList.add(
+      validate_city(data, "company") ? "validate" : "invalid"
+    );
+
+    jobLocation.innerHTML = validate_city(data)
+      ? validate_city(data).map((city) => city.outerHTML)
+      : "No city";
+
+    jobLocation.classList.add(validate_city(data) ? "validate" : "invalid");
+
+    jobCountry.textContent = validate_country(data, "country")
+      ? data.country
+      : data.country + " is not a country";
+
+    jobCountry.classList.add(
+      validate_country(data, "country") ? "validate" : "invalid"
+    );
+
+    jobType.textContent =
+      data.remote && data.remote.length && Array.isArray(data.remote)
+        ? data.remote.map((remote) => remote).join(", ")
+        : data.remote && data.remote.length
+        ? data.remote
+        : "No job type";
+
+    jobType.classList.add(
+      data.remote && data.remote.length ? "validate" : "invalid"
+    );
+
+    jobLink.href = data.job_link;
+    jobLink.textContent = "Vezi Postul";
+
+    jobLink.classList.add(
+      validate_link(data, "job_link") ? "validate" : "invalid"
+    );
+
+    dataJobsContainer.append(card);
+    return { title: data.job_title, card: card, county: data.county };
+  });
 };
 
 const toTop = () => {
@@ -427,9 +502,7 @@ button.addEventListener("click", () => {
             status_container.classList.add("validate");
             document.querySelector("#jobs").innerHTML = data.length;
             document.querySelector("#last-update").innerHTML = dateTime;
-            data.forEach((job) => {
-              create_job(job);
-            });
+            create_job(data);
             localStorage.setItem(`status-${companyName}`, "Active");
             localStorage.setItem(`jobs-${companyName}`, data.length);
             localStorage.setItem(`lastUpdate-${companyName}`, dateTime);
@@ -437,15 +510,15 @@ button.addEventListener("click", () => {
             alertModalSuccess();
             const jobs_containers =
               document.querySelectorAll(".details-container");
-              jobs_containers.forEach((job) => {
-                const button = job.querySelector(".edit-job");
-                button.addEventListener("click", () => {
-                  const data = JSON.parse(job.getAttribute("data"));
-                  form.innerHTML = "";
-                  form_job(data);
-                  formContainer.classList.toggle("hidden");
-                });
+            jobs_containers.forEach((job) => {
+              const button = job.querySelector(".edit-job");
+              button.addEventListener("click", () => {
+                const data = JSON.parse(job.getAttribute("data"));
+                form.innerHTML = "";
+                form_job(data);
+                formContainer.classList.toggle("hidden");
               });
+            });
           });
       } else if (data.error) {
         status_container.classList.remove("validate");
@@ -533,6 +606,10 @@ button.addEventListener("click", () => {
         });
     });
 });
+
+if (datasave !== null) {
+  create_job(datasave);
+}
 
 if (status === "Active") {
   status_container.innerHTML = localStorage.getItem(`status-${companyName}`);
@@ -661,79 +738,79 @@ closeFilter.addEventListener("click", () => {
 });
 
 // Filters
-const judet = document.querySelector("#judet");
+// const judet = document.querySelector("#judet");
 
-const options = ["Judet", "All"];
-options.forEach((option, idx) => {
-  const countyElement = document.createElement("option");
-  countyElement.innerHTML = option;
-  if (idx === 0) {
-    countyElement.selected = true;
-    countyElement.disabled = true;
-  }
-  judet.appendChild(countyElement);
-});
+// const options = ["Judet", "All"];
+// options.forEach((option, idx) => {
+//   const countyElement = document.createElement("option");
+//   countyElement.innerHTML = option;
+//   if (idx === 0) {
+//     countyElement.selected = true;
+//     countyElement.disabled = true;
+//   }
+//   judet.appendChild(countyElement);
+// });
 
-counties.forEach((county) => {
-  const countyElement = document.createElement("option");
-  countyElement.innerHTML = Object.keys(county)[0];
-  judet.appendChild(countyElement);
-});
+// counties.forEach((county) => {
+//   const countyElement = document.createElement("option");
+//   countyElement.innerHTML = Object.keys(county)[0];
+//   judet.appendChild(countyElement);
+// });
 
-const oras = document.querySelector("#oras");
+// const oras = document.querySelector("#oras");
 
-judet.addEventListener("change", () => {
-  oras.innerHTML = "";
-  const options = ["Oras", "All"];
+// judet.addEventListener("change", () => {
+//   oras.innerHTML = "";
+//   const options = ["Oras", "All"];
 
-  options.forEach((option, idx) => {
-    const cityElement = document.createElement("option");
-    cityElement.innerHTML = option;
-    if (idx === 0) {
-      cityElement.selected = true;
-      cityElement.disabled = true;
-    }
-    oras.appendChild(cityElement);
-  });
+//   options.forEach((option, idx) => {
+//     const cityElement = document.createElement("option");
+//     cityElement.innerHTML = option;
+//     if (idx === 0) {
+//       cityElement.selected = true;
+//       cityElement.disabled = true;
+//     }
+//     oras.appendChild(cityElement);
+//   });
 
-  counties.forEach((county) => {
-    if (Object.keys(county)[0] === judet.value) {
-      county[Object.keys(county)[0]].forEach((city) => {
-        const cityElement = document.createElement("option");
-        cityElement.innerHTML = city;
-        oras.appendChild(cityElement);
-      });
-    }
-  });
+//   counties.forEach((county) => {
+//     if (Object.keys(county)[0] === judet.value) {
+//       county[Object.keys(county)[0]].forEach((city) => {
+//         const cityElement = document.createElement("option");
+//         cityElement.innerHTML = city;
+//         oras.appendChild(cityElement);
+//       });
+//     }
+//   });
 
-  apiJobs.then((data) => {
-    if (!data) {
-      alertModalError("No data in Local Storage please scrape the data first");
-    } else {
-      jobs_container.innerHTML = "";
-      data.forEach((job) => {
-        if (job.county.includes(judet.value)) {
-          create_job(job);
-        }
-      });
-    }
-  });
-});
+//   apiJobs.then((data) => {
+//     if (!data) {
+//       alertModalError("No data in Local Storage please scrape the data first");
+//     } else {
+//       jobs_container.innerHTML = "";
+//       data.forEach((job) => {
+//         if (job.county.includes(judet.value)) {
+//           create_job(job);
+//         }
+//       });
+//     }
+//   });
+// });
 
-oras.addEventListener("change", () => {
-  apiJobs.then((data) => {
-    if (!data) {
-      alertModalError("No data in Local Storage please scrape the data first");
-    } else {
-      jobs_container.innerHTML = "";
-      data.forEach((job) => {
-        if (job.city.includes(oras.value)) {
-          create_job(job);
-        }
-      });
-    }
-  });
-});
+// oras.addEventListener("change", () => {
+//   apiJobs.then((data) => {
+//     if (!data) {
+//       alertModalError("No data in Local Storage please scrape the data first");
+//     } else {
+//       jobs_container.innerHTML = "";
+//       data.forEach((job) => {
+//         if (job.city.includes(oras.value)) {
+//           create_job(job);
+//         }
+//       });
+//     }
+//   });
+// });
 
 // #######################################################
 
@@ -750,7 +827,7 @@ const form_job = (data) => {
   <button class="close-form" onclick="closeForm();">x</button>
   <div class="job-title">
     <label for="job_title">Job Title</label>
-    <input id="job_title" type="text" name="job_title" value="${data.job_title}" placeholder="Job Title" required>          
+    <input id="job_title" type="text" name="job_title" value="${data.job_title}" placeholder="Job Title" required>
   </div>
 
   <div class="job-company">
@@ -802,7 +879,7 @@ const form_job = (data) => {
       </div>
   </div>
   </div>
-  
+
   <div class="job-location">
     <div class="job-city">
       <div>
@@ -832,7 +909,7 @@ const form_job = (data) => {
       <select id="add_oras" name="oras" required>
       </select>
     </div>
-  
+
     <div class="functionality-location">
       <button id="location-button" type="button" onclick="
         document.querySelector('.add_location').classList.toggle('hidden');
@@ -877,7 +954,7 @@ const form_job = (data) => {
   });
 
   country_select.addEventListener("change", () => {
-    if (country_input.value){
+    if (country_input.value) {
       country_input.value = country_input.value + "," + country_select.value;
     } else {
       country_input.value = country_select.value;
@@ -924,7 +1001,7 @@ const form_job = (data) => {
       }
       oras.appendChild(cityElement);
     });
-    if (judet_input.value){
+    if (judet_input.value) {
       judet_input.value = judet_input.value + "," + judet.value;
     } else {
       judet_input.value = judet.value;
@@ -942,7 +1019,7 @@ const form_job = (data) => {
   });
 
   oras.addEventListener("change", () => {
-    if (oras_input.value){
+    if (oras_input.value) {
       oras_input.value = oras_input.value + "," + oras.value;
     } else {
       oras_input.value = oras.value;
@@ -958,9 +1035,9 @@ const form_job = (data) => {
     judet_input.value = "";
     oras_input.value = "";
     judet_input.removeAttribute("disabled");
-      oras_input.removeAttribute("disabled");
-      location_button.classList.add("hidden");
-      add_location_container.classList.add("hidden");
+    oras_input.removeAttribute("disabled");
+    location_button.classList.add("hidden");
+    add_location_container.classList.add("hidden");
   });
 };
 

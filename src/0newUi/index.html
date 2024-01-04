@@ -43,7 +43,12 @@
       <div class="header-filter-container">
         <div class="header-filter-container2">
           <div class="search">
-            <input id="search" type="text" placeholder="Cauta un Scraper" />
+            <input
+              id="search"
+              type="text"
+              placeholder="Cauta un Scraper"
+              data-search
+            />
             <div class="logo-search">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -100,8 +105,7 @@
               class="close-header"
             />
             <div>
-              <select name="Judet" id="judet">
-              </select>
+              <select name="Judet" id="judet"></select>
             </div>
             <div>
               <select name="Oras" id="oras">
@@ -130,10 +134,7 @@
         <div class="flip-card-container">
           <div class="flip-card">
             <div class="box">
-              <img
-                alt="zucchetti"
-                src="https://www.zucchettiromania.com/romania/templates/romania/img/logo.png"
-              />
+              <img class="logo-firma" />
             </div>
             <div class="box2">
               <a
@@ -249,11 +250,62 @@
         </a>
       </div>
     </div>
-    <div class="form-container hidden" >
-      <div class="form">   
-      </div>
+
+    <div class="form-container hidden">
+      <div class="form"></div>
     </div>
-    <div class="jobs"></div>
+
+    <!-- Template container Carduri joburi -->
+    <div class="search-noFound"></div>
+    <div class="jobs" data-jobs-container></div>
+    <template data-jobs-template>
+      <div class="job">
+        <div class="details-container">
+          <div>
+            <h2 class="job-title" data-job-title></h2>
+            <div class="job-company">
+              <img
+                alt="company_icon"
+                data-company-image
+                class="icons-jobCard"
+              />
+              <p data-job-company></p>
+            </div>
+          </div>
+          <div class="container-JobLocation">
+            <div class="job-location" title="Location">
+              <div class="location-container">
+                <img
+                  alt="location_icon"
+                  data-location-image
+                  class="icons-jobCard"
+                />
+                <p data-location></p>
+              </div>
+              <div class="country-container" title="Country">
+                <img
+                  alt="country_icon"
+                  data-Country-image
+                  class="icons-jobCard"
+                />
+                <p data-country></p>
+              </div>
+              <div class="job-type-container" title="Job Type">
+                <img
+                  alt="job-type_icon"
+                  data-type-image
+                  class="icons-jobCard"
+                />
+                <p data-job-type></p>
+              </div>
+            </div>
+            <div class="job_link-container">
+              <a href="" target="_blank" data-job-link></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
     <div class="skeleton-jobs">
       <template id="card-template">
         <div class="skeleton-job">
@@ -276,18 +328,18 @@
       <div class="button-to-top">⇧</div>
     </div>
     <script>
-      // const apiObj = {
-      //   file: "veeam.py",
-      //   url: "https://dev.laurentiumarian.ro/scraper/based_scraper_py/",
-      //   dataSetUrl:
-      //     "https://dev.laurentiumarian.ro/dataset/based_dataset_py/veeam.py/",
-      // };
       const apiObj = {
         file: "veeam.py",
-        url: "http://localhost:8000/scraper/based_scraper_py/",
+        url: "https://dev.laurentiumarian.ro/scraper/based_scraper_py/",
         dataSetUrl:
           "https://dev.laurentiumarian.ro/dataset/based_dataset_py/veeam.py/",
       };
+      // const apiObj = {
+      //   file: "veeam.py",
+      //   url: "http://localhost:8000/scraper/based_scraper_py/",
+      //   dataSetUrl:
+      //     "https://dev.laurentiumarian.ro/dataset/based_dataset_py/veeam.py/",
+      // };
     </script>
     <script src="../../js/countries.js"></script>
     <script src="../../js/counties.js"></script>
