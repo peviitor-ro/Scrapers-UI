@@ -11,7 +11,9 @@ const jobs_container = document.querySelector(".jobs");
 const status_container = document.querySelector("#status");
 
 // TODO: change this to the real url
-const validator_url = "http://localhost:8000/validator/get/";
+// for local testing
+// const validator_url = "http://localhost:3000/validator/get/";
+const validator_url = "https://api.laurentiumarian.ro/validator/get/";
 const validator_data = {
   company: companyName,
 };
@@ -188,9 +190,9 @@ const validate_city = (data) => {
 const validate_country = (data, keyword) => {
   let isValidate = false;
   data.country.forEach((country) => {
-    for (let countryObj of countries) {
+    for (let countryObj of countries_list) {
       if (
-        countryObj.name
+        countryObj
           .toLowerCase()
           .includes(removeDiacritics(country.toLowerCase()))
       ) {
@@ -268,7 +270,7 @@ const create_job = {
     location_container.innerHTML = validate_city(data)
       ? validate_city(data)
           .map((city) => city.outerHTML)
-          .join("")
+          .join(",")
       : "<div class='invalid'>No city</div>";
     location_container.prepend(location_svg);
     job_location.appendChild(location_container);
@@ -1169,6 +1171,60 @@ const create_form = {
 
     add_city_button.addEventListener("click", () => {
       add_location.classList.toggle("hidden");
+    });
+
+    // edit job
+    edit_job.addEventListener("click", () => {
+      // for local testing
+      // const edit_url = "http://localhost:3000/validator/edit/";
+      const edit_url = "https://api.laurentiumarian.ro/validator/edit/";
+
+      const job_title = job_title_input.value;
+      const company = company_input.value;
+      const remote = remote_input.value;  
+      const job_link = link_input.value;
+      const country = country_input.value.split(",");
+      const city = city_input.value.split(",");
+      const county = county_input.value.split(",");
+
+      const data = [{
+        job_title,
+        company,
+        remote,
+        job_link,
+        country,
+        city,
+        county,
+      }];
+
+      fetch(edit_url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then(() => {
+          formContainer.classList.toggle("hidden");
+          alertModalSuccess();
+
+          setTimeout(() => {
+            window.location.reload();
+          }, 3000);
+        })
+        .catch((e) => {
+          alertModalError(e);
+        });
+    });
+
+    // delete job
+    deleted_job.addEventListener("click", () => {
+      alert("Not implemented yet");
+    });
+
+    // publish job
+    publish_job.addEventListener("click", () => {
+      alert("Not implemented yet");
     });
   },
 };
