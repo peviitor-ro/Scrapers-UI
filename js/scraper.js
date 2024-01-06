@@ -11,7 +11,7 @@ const jobs_container = document.querySelector(".jobs");
 const status_container = document.querySelector("#status");
 
 // TODO: change this to the real url
-const validator_url = "http://localhost:8000/scraper/based_scraper_py/";
+const validator_url = "http://localhost:8000/validator/get/";
 const validator_data = {
   company: companyName,
 };
@@ -33,9 +33,9 @@ let apiJobs = getJobs();
 apiJobs.then((data) => {
   if (data !== null) {
     jobs_container.innerHTML = "";
-
-    // maparea o fac direct in functie, asa mergea inainte
-    create_job(data);
+    data.forEach((job_obj) => {
+      create_job.initialize(job_obj);
+    });
   }
 });
 
@@ -202,168 +202,159 @@ const validate_country = (data, keyword) => {
   return isValidate;
 };
 
-//  Create Cards for Jobs + Search Functionality
-const dataJobsTemplate = document.querySelector("[data-jobs-template]");
-const dataJobsContainer = document.querySelector("[data-jobs-container]");
-const searchInput = document.querySelector("[data-search]");
-const searchNoFound = document.querySelector(".search-noFound");
-
-let filtrareJoburi = [];
-
-searchInput.addEventListener("input", (e) => {
-  const checkData = JSON.parse(localStorage.getItem(`data-${companyName}`));
-  let value = e.target.value.toLowerCase().replace(/\s+/g, "");
-  if (!checkData) {
-    alertModalError("No data in Local Storage please scrape the data first");
-  } else {
-    let nrJobs = filtrareJoburi.filter((e) => {
-      const isVisible = e.title
-        .toLowerCase()
-        .replace(/\s+/g, "")
-        .includes(value);
-      e.card.classList.toggle("hideJobsCard", !isVisible);
-      return isVisible;
-    });
-
-    if (nrJobs.length == 0) {
-      searchNoFound.innerHTML = `Nu am gasit nici un job cu numele <strong>${value}</strong> !`;
-    } else {
-      searchNoFound.innerHTML = "";
+const create_job = {
+  create_tag: (tag_, class_ = null, attrs_ = null) => {
+    const tag = document.createElement(tag_);
+    if (attrs_) {
+      for (let attr of attrs_) {
+        tag.setAttribute(attr.name, attr.value);
+      }
     }
-  }
-});
+    if (class_) {
+      class_.split(" ").forEach((class__) => {
+        tag.classList.add(class__);
+      });
+    }
 
-//
+    return tag;
+  },
+  initialize: (data) => {
+    // job card
+    const job_container = create_job.create_tag("div", "job");
+    job_container.setAttribute("data", JSON.stringify(data));
 
-const judet = document.querySelector("#judet");
-const oras = document.querySelector("#oras");
-let toateJudetele = "";
+    // job details
+    const details_container = create_job.create_tag("div", "details-container");
 
-counties.forEach((e) => {
-  const dropdownJudete = Object.keys(e).map((key) => {
-    return (toateJudetele += `<option value="${key}"> ${key}</option>`);
-  });
-
-  judet.innerHTML =
-    "<option disabled selected hidden>Judet</option>" +
-    "<option value='all'>All</option>" +
-    dropdownJudete.join("");
-});
-
-judet.addEventListener("change", () => {
-  const checkData = JSON.parse(localStorage.getItem(`data-${companyName}`));
-  if (!checkData) {
-    judet.selectedIndex = 0;
-    alertModalError("No data in Local Storage please scrape the data first");
-  } else {
-    filtrareJoburi.forEach((e) => {
-      if (judet.value == "all") {
-        e.card.classList.remove("hideJobsCard");
-      } else {
-        const isVisible = e.county
-          .toLowerCase()
-          .replace(/\s+/g, "")
-          .includes(judet.value.toLowerCase().replace(/\s+/g, ""));
-        e.card.classList.toggle("hideJobsCard", !isVisible);
-      }
-    });
-  }
-});
-
-const logo = document.querySelector(".logo-firma");
-
-// Logo Scraper
-fetch("https://api.peviitor.ro/v1/logo/")
-  .then((response) => response.json())
-  .then((data) => {
-    data.companies.map((e) => {
-      const checkNameScraper = e.name
-        .toLowerCase()
-        .replace(/\s+/g, "")
-        .includes(companyName.toLowerCase().replace(/\s+/g, ""));
-
-      if (checkNameScraper) {
-        logo.src = e.logo;
-        logo.alt = "logo_" + companyName;
-      }
-    });
-  });
-
-logo.onerror = () => {
-  logo.src = "../../images/assets/logonotfound.png";
-};
-
-const create_job = (job) => {
-  filtrareJoburi = job.map((data) => {
-    const card = dataJobsTemplate.content.cloneNode(true).children[0];
-    const jobTitle = card.querySelector("[data-job-title]");
-    const jobCompany = card.querySelector("[data-job-company]");
-    const jobLocation = card.querySelector("[data-location]");
-    const jobCountry = card.querySelector("[data-country]");
-    const jobType = card.querySelector("[data-job-type]");
-    const jobLink = card.querySelector("[data-job-link]");
-
-    const jobCompanySvg = card.querySelector("[data-company-image]");
-    const jobLocationSvg = card.querySelector("[data-location-image]");
-    const jobCountrySvg = card.querySelector("[data-country-image]");
-    const jobTypeSvg = card.querySelector("[data-type-image]");
-
-    jobCompanySvg.src = "../../images/iconsScrapers/company.png";
-    jobLocationSvg.src = "../../images/iconsScrapers/location.png";
-    jobCountrySvg.src = "../../images/iconsScrapers/globe.png";
-    jobTypeSvg.src = "../../images/iconsScrapers/freelance.png";
-
-    jobTitle.textContent = validate_data(data, "job_title")
+    // job title and company
+    let div = create_job.create_tag("div");
+    const job_title = create_job.create_tag(
+      "h2",
+      `job-title ${validate_data(data, "job_title") ? "validate" : "invalid"}`
+    );
+    job_title.innerHTML = validate_data(data, "job_title")
       ? data.job_title
       : "No job title";
+    div.appendChild(job_title);
 
-    jobTitle.classList.add(
-      validate_data(data, "job_title") ? "validate" : "invalid"
+    const job_company = create_job.create_tag(
+      "div",
+      `job-company ${validate_data(data, "company") ? "validate" : "invalid"}`
     );
+    const svg = `
+    
+    `;
+    job_company.innerHTML =
+      svg + (validate_data(data, "company") ? data.company : "No company");
+    div.appendChild(job_company);
+    details_container.appendChild(div);
 
-    jobCompany.textContent = validate_data(data, "company")
-      ? data.company
-      : "No company";
-
-    jobCompany.classList.add(
-      validate_city(data, "company") ? "validate" : "invalid"
+    // job location
+    const container_JobLocation = create_job.create_tag(
+      "div",
+      "container-JobLocation"
     );
+    const job_location = create_job.create_tag("div", "job-location", [
+      { name: "title", value: "Location" },
+    ]);
+    const location_container = create_job.create_tag(
+      "div",
+      "location-container"
+    );
+    const location_svg = create_job.create_tag("img", null, [
+      { name: "src", value: "../../images/svg/company.svg" },
+      { name: "alt", value: "location" },
+    ]);
+    location_container.innerHTML = validate_city(data)
+      ? validate_city(data)
+          .map((city) => city.outerHTML)
+          .join("")
+      : "<div class='invalid'>No city</div>";
+    location_container.prepend(location_svg);
+    job_location.appendChild(location_container);
+    container_JobLocation.appendChild(job_location);
+    details_container.appendChild(container_JobLocation);
 
-    jobLocation.innerHTML = validate_city(data)
-      ? validate_city(data).map((city) => city.outerHTML)
-      : "No city";
-
-    jobLocation.classList.add(validate_city(data) ? "validate" : "invalid");
-
-    jobCountry.textContent = validate_country(data, "country")
+    // country
+    const country_container = create_job.create_tag(
+      "div",
+      "country-container",
+      [{ name: "title", value: "Country" }]
+    );
+    const country_svg = create_job.create_tag("img", null, [
+      { name: "src", value: "../../images/svg/globe.svg" },
+      { name: "alt", value: "country" },
+    ]);
+    country_container.appendChild(country_svg);
+    div = create_job.create_tag(
+      "div",
+      `${validate_country(data, "country") ? "validate" : "invalid"}`
+    );
+    div.innerHTML = validate_country(data, "country")
       ? data.country
       : data.country + " is not a country";
 
-    jobCountry.classList.add(
-      validate_country(data, "country") ? "validate" : "invalid"
-    );
+    country_container.appendChild(div);
+    job_location.appendChild(country_container);
 
-    jobType.textContent =
+    // job type
+    const job_type_container = create_job.create_tag(
+      "div",
+      "job-type-container",
+      [{ name: "title", value: "Job Type" }]
+    );
+    const job_type_svg = create_job.create_tag("img", null, [
+      { name: "src", value: "../../images/svg/remote.svg" },
+      { name: "alt", value: "job type" },
+    ]);
+    job_type_container.appendChild(job_type_svg);
+    div = create_job.create_tag(
+      "div",
+      `${data.remote && data.remote.length ? "validate" : "invalid"}`
+    );
+    div.innerHTML =
       data.remote && data.remote.length && Array.isArray(data.remote)
         ? data.remote.map((remote) => remote).join(", ")
         : data.remote && data.remote.length
         ? data.remote
         : "No job type";
+    job_type_container.appendChild(div);
+    job_location.appendChild(job_type_container);
 
-    jobType.classList.add(
-      data.remote && data.remote.length ? "validate" : "invalid"
+    // functionality
+    const functionality = create_job.create_tag("div", "functionality");
+    const edit_job = create_job.create_tag("button", "edit-job");
+    edit_job.innerHTML = "Edit Job";
+    functionality.appendChild(edit_job);
+    details_container.appendChild(functionality);
+
+    edit_job.addEventListener("click", () => {
+      const data = JSON.parse(job_container.getAttribute("data"));
+      form.innerHTML = "";
+      create_form.initialize(data);
+      formContainer.classList.toggle("hidden");
+    });
+
+    // job link
+    const job_link_container = create_job.create_tag(
+      "div",
+      "job_link-container"
     );
-
-    jobLink.href = data.job_link;
-    jobLink.textContent = "Vezi Postul";
-
-    jobLink.classList.add(
-      validate_link(data, "job_link") ? "validate" : "invalid"
+    const job_link = create_job.create_tag(
+      "a",
+      `${validate_link(data, "job_link") ? "validate" : "invalid"}`,
+      [
+        { name: "href", value: data.job_link },
+        { name: "target", value: "_blank" },
+      ]
     );
+    job_link.innerHTML = "Vezi Postul";
+    job_link_container.appendChild(job_link);
+    details_container.appendChild(job_link_container);
 
-    dataJobsContainer.append(card);
-    return { title: data.job_title, card: card, county: data.county };
-  });
+    job_container.appendChild(details_container);
+    jobs_container.appendChild(job_container);
+  },
 };
 
 const toTop = () => {
@@ -502,23 +493,14 @@ button.addEventListener("click", () => {
             status_container.classList.add("validate");
             document.querySelector("#jobs").innerHTML = data.length;
             document.querySelector("#last-update").innerHTML = dateTime;
-            create_job(data);
+            data.forEach((job) => {
+              create_job.initialize(job);
+            });
             localStorage.setItem(`status-${companyName}`, "Active");
             localStorage.setItem(`jobs-${companyName}`, data.length);
             localStorage.setItem(`lastUpdate-${companyName}`, dateTime);
 
             alertModalSuccess();
-            const jobs_containers =
-              document.querySelectorAll(".details-container");
-            jobs_containers.forEach((job) => {
-              const button = job.querySelector(".edit-job");
-              button.addEventListener("click", () => {
-                const data = JSON.parse(job.getAttribute("data"));
-                form.innerHTML = "";
-                form_job(data);
-                formContainer.classList.toggle("hidden");
-              });
-            });
           });
       } else if (data.error) {
         status_container.classList.remove("validate");
@@ -606,10 +588,6 @@ button.addEventListener("click", () => {
         });
     });
 });
-
-if (datasave !== null) {
-  create_job(datasave);
-}
 
 if (status === "Active") {
   status_container.innerHTML = localStorage.getItem(`status-${companyName}`);
@@ -738,322 +716,459 @@ closeFilter.addEventListener("click", () => {
 });
 
 // Filters
-// const judet = document.querySelector("#judet");
+const judet = document.querySelector("#judet");
 
-// const options = ["Judet", "All"];
-// options.forEach((option, idx) => {
-//   const countyElement = document.createElement("option");
-//   countyElement.innerHTML = option;
-//   if (idx === 0) {
-//     countyElement.selected = true;
-//     countyElement.disabled = true;
-//   }
-//   judet.appendChild(countyElement);
-// });
+const options = ["Judet", "All"];
+options.forEach((option, idx) => {
+  const countyElement = document.createElement("option");
+  countyElement.innerHTML = option;
+  if (idx === 0) {
+    countyElement.selected = true;
+    countyElement.disabled = true;
+  }
+  judet.appendChild(countyElement);
+});
 
-// counties.forEach((county) => {
-//   const countyElement = document.createElement("option");
-//   countyElement.innerHTML = Object.keys(county)[0];
-//   judet.appendChild(countyElement);
-// });
+counties.forEach((county) => {
+  const countyElement = document.createElement("option");
+  countyElement.innerHTML = Object.keys(county)[0];
+  judet.appendChild(countyElement);
+});
 
-// const oras = document.querySelector("#oras");
+const oras = document.querySelector("#oras");
 
-// judet.addEventListener("change", () => {
-//   oras.innerHTML = "";
-//   const options = ["Oras", "All"];
+judet.addEventListener("change", () => {
+  oras.innerHTML = "";
+  const options = ["Oras", "All"];
 
-//   options.forEach((option, idx) => {
-//     const cityElement = document.createElement("option");
-//     cityElement.innerHTML = option;
-//     if (idx === 0) {
-//       cityElement.selected = true;
-//       cityElement.disabled = true;
-//     }
-//     oras.appendChild(cityElement);
-//   });
+  options.forEach((option, idx) => {
+    const cityElement = document.createElement("option");
+    cityElement.innerHTML = option;
+    if (idx === 0) {
+      cityElement.selected = true;
+      cityElement.disabled = true;
+    }
+    oras.appendChild(cityElement);
+  });
 
-//   counties.forEach((county) => {
-//     if (Object.keys(county)[0] === judet.value) {
-//       county[Object.keys(county)[0]].forEach((city) => {
-//         const cityElement = document.createElement("option");
-//         cityElement.innerHTML = city;
-//         oras.appendChild(cityElement);
-//       });
-//     }
-//   });
+  counties.forEach((county) => {
+    if (Object.keys(county)[0] === judet.value) {
+      county[Object.keys(county)[0]].forEach((city) => {
+        const cityElement = document.createElement("option");
+        cityElement.innerHTML = city;
+        oras.appendChild(cityElement);
+      });
+    }
+  });
 
-//   apiJobs.then((data) => {
-//     if (!data) {
-//       alertModalError("No data in Local Storage please scrape the data first");
-//     } else {
-//       jobs_container.innerHTML = "";
-//       data.forEach((job) => {
-//         if (job.county.includes(judet.value)) {
-//           create_job(job);
-//         }
-//       });
-//     }
-//   });
-// });
+  apiJobs.then((data) => {
+    if (!data) {
+      alertModalError("No data in Local Storage please scrape the data first");
+    } else {
+      jobs_container.innerHTML = "";
+      data.forEach((job) => {
+        if (job.county.includes(judet.value)) {
+          create_job.initialize(job);
+        }
+      });
+    }
+  });
+});
 
-// oras.addEventListener("change", () => {
-//   apiJobs.then((data) => {
-//     if (!data) {
-//       alertModalError("No data in Local Storage please scrape the data first");
-//     } else {
-//       jobs_container.innerHTML = "";
-//       data.forEach((job) => {
-//         if (job.city.includes(oras.value)) {
-//           create_job(job);
-//         }
-//       });
-//     }
-//   });
-// });
+oras.addEventListener("change", () => {
+  apiJobs.then((data) => {
+    if (!data) {
+      alertModalError("No data in Local Storage please scrape the data first");
+    } else {
+      jobs_container.innerHTML = "";
+      data.forEach((job) => {
+        if (job.city.includes(oras.value)) {
+          create_job.initialize(job);
+        }
+      });
+    }
+  });
+});
 
 // #######################################################
 
 // form
-
 const formContainer = document.querySelector(".form-container");
 const form = document.querySelector(".form");
 
-const form_job = (data) => {
-  let jobElement = document.createElement("div");
-  jobElement.classList.add("details-container");
+// clone create_job method
+const create_form = {
+  create_tag: create_job.create_tag,
+  initialize: (data) => {
+    // container
+    const container = create_form.create_tag("div", "details-container");
 
-  jobElement.innerHTML = `
-  <button class="close-form" onclick="closeForm();">x</button>
-  <div class="job-title">
-    <label for="job_title">Job Title</label>
-    <input id="job_title" type="text" name="job_title" value="${data.job_title}" placeholder="Job Title" required>
-  </div>
+    // close form
+    const close_form = create_form.create_tag("button", "close-form");
+    close_form.innerHTML = "x";
+    close_form.addEventListener("click", () => {
+      formContainer.classList.toggle("hidden");
+    });
+    container.appendChild(close_form);
 
-  <div class="job-company">
-    <div>
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#979c9e" class="bi bi-buildings" viewBox="0 0 16 16" >
-        <path d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022ZM6 8.694 1 10.36V15h5V8.694ZM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15Z"/>
-        <path d="M2 11h1v1H2v-1Zm2 0h1v1H4v-1Zm-2 2h1v1H2v-1Zm2 0h1v1H4v-1Zm4-4h1v1H8V9Zm2 0h1v1h-1V9Zm-2 2h1v1H8v-1Zm2 0h1v1h-1v-1Zm2-2h1v1h-1V9Zm0 2h1v1h-1v-1ZM8 7h1v1H8V7Zm2 0h1v1h-1V7Zm2 0h1v1h-1V7ZM8 5h1v1H8V5Zm2 0h1v1h-1V5Zm2 0h1v1h-1V5Zm0-2h1v1h-1V3Z"/>
-      </svg>
-      <label for="company">Company</label>
-    </div>
-    <input id="company" type="text" name="company" value="${data.company}" placeholder="Company" required>
-  </div>
+    // job title
+    const job_title = create_form.create_tag("div", "job-title");
+    const job_title_label = create_form.create_tag("label", null, [
+      { name: "for", value: "job_title" },
+    ]);
+    job_title_label.innerHTML = "Job Title";
+    const job_title_input = create_form.create_tag("input", null, [
+      { name: "id", value: "job_title" },
+      { name: "type", value: "text" },
+      { name: "name", value: "job_title" },
+      { name: "value", value: data.job_title },
+      { name: "placeholder", value: "Job Title" },
+      { name: "required", value: "" },
+    ]);
+    job_title.appendChild(job_title_label);
+    job_title.appendChild(job_title_input);
+    container.appendChild(job_title);
 
-  <div class="job-remote">
-    <div>
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-workspace" viewBox="0 0 16 16">
-        <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H4Zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
-        <path d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.653a5.373 5.373 0 0 1 1.066-2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v9h-2.219c.554.654.89 1.373 1.066 2h.653a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2H2Z"/>
-      </svg>
-      <label for="remote">Remote</label>
-    </div>
-    <input id="remote" type="text" name="remote" value="${data.remote}" placeholder="Remote">
-  </div>
+    // company
+    const company = create_form.create_tag("div", "job-company");
+    let div = create_form.create_tag("div");
+    const companu_svg = create_form.create_tag("img", null, [
+      { name: "src", value: "../../images/svg/company.svg" },
+      { name: "alt", value: "company" },
+    ]);
+    const company_label = create_form.create_tag("label", null, [
+      { name: "for", value: "company" },
+    ]);
+    company_label.innerHTML = "Company";
+    div.appendChild(companu_svg);
+    div.appendChild(company_label);
+    const company_input = create_form.create_tag("input", null, [
+      { name: "id", value: "company" },
+      { name: "type", value: "text" },
+      { name: "name", value: "company" },
+      { name: "value", value: data.company },
+      { name: "placeholder", value: "Company" },
+      { name: "required", value: "" },
+    ]);
+    company.appendChild(div);
+    company.appendChild(company_input);
+    container.appendChild(company);
 
-  <div class="job-link">
-    <label for="job_link">Job Link</label>
-    <input id="job_link" type="text" name="job_link" value="${data.job_link}" placeholder="Job Link" required>
-  </div>
+    // remote
+    const remote = create_form.create_tag("div", "job-remote");
+    div = create_form.create_tag("div");
+    const remote_svg = create_form.create_tag("img", null, [
+      { name: "src", value: "../../images/svg/remote.svg" },
+      { name: "alt", value: "remote" },
+    ]);
+    const remote_label = create_form.create_tag("label", null, [
+      { name: "for", value: "remote" },
+    ]);
+    remote_label.innerHTML = "Remote";
+    div.appendChild(remote_svg);
+    div.appendChild(remote_label);
+    const remote_input = create_form.create_tag("input", null, [
+      { name: "id", value: "remote" },
+      { name: "type", value: "text" },
+      { name: "name", value: "remote" },
+      { name: "value", value: data.remote },
+      { name: "placeholder", value: "Remote" },
+      { name: "required", value: "" },
+    ]);
+    remote.appendChild(div);
+    remote.appendChild(remote_input);
+    container.appendChild(remote);
 
-  <div class="job-location">
-  <div class="job-country">
-    <div>
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-globe-americas" viewBox="0 0 16 16">
-        <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0ZM2.04 4.326c.325 1.329 2.532 2.54 3.717 3.19.48.263.793.434.743.484-.08.08-.162.158-.242.234-.416.396-.787.749-.758 1.266.035.634.618.824 1.214 1.017.577.188 1.168.38 1.286.983.082.417-.075.988-.22 1.52-.215.782-.406 1.48.22 1.48 1.5-.5 3.798-3.186 4-5 .138-1.243-2-2-3.5-2.5-.478-.16-.755.081-.99.284-.172.15-.322.279-.51.216-.445-.148-2.5-2-1.5-2.5.78-.39.952-.171 1.227.182.078.099.163.208.273.318.609.304.662-.132.723-.633.039-.322.081-.671.277-.867.434-.434 1.265-.791 2.028-1.12.712-.306 1.365-.587 1.579-.88A7 7 0 1 1 2.04 4.327Z"/>
-      </svg>
-      <label for="country">Country</label>
-    </div>
-    <input id="country" type="text" name="country" value="${data.country}" placeholder="Country" required disabled>
+    // job link
+    const job_link = create_form.create_tag("div", "job-link");
+    const link_label = create_form.create_tag("label", null, [
+      { name: "for", value: "job_link" },
+    ]);
+    link_label.innerHTML = "Job Link";
+    const link_input = create_form.create_tag("input", null, [
+      { name: "id", value: "job_link" },
+      { name: "type", value: "text" },
+      { name: "name", value: "job_link" },
+      { name: "value", value: data.job_link },
+      { name: "placeholder", value: "Job Link" },
+      { name: "required", value: "" },
+    ]);
+    job_link.appendChild(link_label);
+    job_link.appendChild(link_input);
+    container.appendChild(job_link);
 
-    <div class="add_country hidden" >
-        <select id="add_country" name="Country" required>
-        </select>
-      </div>
+    // Country
+    const job_location_country = create_form.create_tag("div", "job-location");
+    const job_country = create_form.create_tag("div", "job-country");
+    div = create_form.create_tag("div");
+    const country_svg = create_form.create_tag("img", null, [
+      { name: "src", value: "../../images/svg/globe.svg" },
+      { name: "alt", value: "country" },
+    ]);
+    const country_label = create_form.create_tag("label", null, [
+      { name: "for", value: "country" },
+    ]);
+    country_label.innerHTML = "Country";
+    div.appendChild(country_svg);
+    div.appendChild(country_label);
 
-      <div class="functionality">
-        <button type="button" onclick="
-          document.querySelector('.add_country').classList.toggle('hidden');
-        ">Add Country</button>
-      </div>
-  </div>
-  </div>
+    const country_input = create_form.create_tag("input", null, [
+      { name: "id", value: "country" },
+      { name: "type", value: "text" },
+      { name: "name", value: "country" },
+      { name: "value", value: data.country },
+      { name: "placeholder", value: "Country" },
+      { name: "required", value: "" },
+    ]);
+    job_country.appendChild(div);
+    job_country.appendChild(country_input);
 
-  <div class="job-location">
-    <div class="job-city">
-      <div>
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M17.5 8.33334C17.5 14.1667 10 19.1667 10 19.1667C10 19.1667 2.5 14.1667 2.5 8.33334C2.5 6.34421 3.29018 4.43656 4.6967 3.03003C6.10322 1.62351 8.01088 0.833336 10 0.833336C11.9891 0.833336 13.8968 1.62351 15.3033 3.03003C16.7098 4.43656 17.5 6.34421 17.5 8.33334Z" stroke="#979C9E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M10 10.8333C11.3807 10.8333 12.5 9.71405 12.5 8.33334C12.5 6.95262 11.3807 5.83334 10 5.83334C8.61929 5.83334 7.5 6.95262 7.5 8.33334C7.5 9.71405 8.61929 10.8333 10 10.8333Z" stroke="#979C9E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <label for="city">City</label>
-      </div>
-      <input id="city" type="text" name="city" value="${data.city}" placeholder="City" disabled>
-    </div>
+    const add_country_container = create_form.create_tag(
+      "div",
+      "add_country hidden"
+    );
+    const add_country = create_form.create_tag("select", null, [
+      { name: "id", value: "add_country" },
+      { name: "name", value: "Country" },
+      { name: "required", value: "" },
+    ]);
 
-    <div class="job-county">
-      <div>
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M17.5 8.33334C17.5 14.1667 10 19.1667 10 19.1667C10 19.1667 2.5 14.1667 2.5 8.33334C2.5 6.34421 3.29018 4.43656 4.6967 3.03003C6.10322 1.62351 8.01088 0.833336 10 0.833336C11.9891 0.833336 13.8968 1.62351 15.3033 3.03003C16.7098 4.43656 17.5 6.34421 17.5 8.33334Z" stroke="#979C9E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M10 10.8333C11.3807 10.8333 12.5 9.71405 12.5 8.33334C12.5 6.95262 11.3807 5.83334 10 5.83334C8.61929 5.83334 7.5 6.95262 7.5 8.33334C7.5 9.71405 8.61929 10.8333 10 10.8333Z" stroke="#979C9E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <label for="county">County</label>
-      </div>
-      <input id="county" type="text" name="county" value="${data.county}" placeholder="County" disabled>
-    </div>
+    add_country_container.appendChild(add_country);
+    job_country.appendChild(add_country_container);
 
-    <div class="add_location hidden" >
-      <select id="add_judet" name="judet" required>
-      </select>
-      <select id="add_oras" name="oras" required>
-      </select>
-    </div>
+    const functionality = create_form.create_tag("div", "functionality");
+    const add_country_button = create_form.create_tag("button", null, [
+      { name: "type", value: "button" },
+    ]);
 
-    <div class="functionality-location">
-      <button id="location-button" type="button" onclick="
-        document.querySelector('.add_location').classList.toggle('hidden');
-      ">Add City</button>
-      <button type="button">Delete Locations</button>
-    </div>
-  </div>
+    add_country_button.innerHTML = "Add Country";
+    functionality.appendChild(add_country_button);
+    job_country.appendChild(functionality);
 
-  <div class="functionality">
-    <button type="button">Edit</button>
-    <button type="button">Delete</button>
-    <button type="button">Publish</button>
-  </div>
-  `;
-  form.appendChild(jobElement);
+    job_location_country.appendChild(job_country);
+    container.appendChild(job_location_country);
 
-  const country_select = document.querySelector("#add_country");
-  const judet = document.querySelector("#add_judet");
-  const oras = document.querySelector("#add_oras");
-  const country_input = document.querySelector("#country");
-  const judet_input = document.querySelector("#county");
-  const oras_input = document.querySelector("#city");
-  const location_button = document.querySelector("#location-button");
-  const add_location_container = document.querySelector(".add_location");
+    // county and city
+    const county_and_city = create_form.create_tag("div", "job-location");
+    const job_city = create_form.create_tag("div", "job-city");
+    div = create_form.create_tag("div");
+    const city_svg = create_form.create_tag("img", null, [
+      { name: "src", value: "../../images/svg/company.svg" },
+      { name: "alt", value: "city" },
+    ]);
+    const city_label = create_form.create_tag("label", null, [
+      { name: "for", value: "city" },
+    ]);
+    city_label.innerHTML = "City";
+    div.appendChild(city_svg);
+    div.appendChild(city_label);
 
-  let options = ["Country", "All"];
+    const city_input = create_form.create_tag("input", null, [
+      { name: "id", value: "city" },
+      { name: "type", value: "text" },
+      { name: "name", value: "city" },
+      { name: "value", value: data.city },
+      { name: "placeholder", value: "City" },
+      { name: "required", value: "" },
+    ]);
 
-  options.forEach((option, idx) => {
-    const countryElement = document.createElement("option");
-    countryElement.innerHTML = option;
-    if (idx === 0) {
-      countryElement.selected = true;
-      countryElement.disabled = true;
-    }
-    country_select.appendChild(countryElement);
+    job_city.appendChild(div);
+    job_city.appendChild(city_input);
+
+    const job_county = create_form.create_tag("div", "job-county");
+    div = create_form.create_tag("div");
+    const county_svg = create_form.create_tag("img", null, [
+      { name: "src", value: "../../images/svg/company.svg" },
+      { name: "alt", value: "county" },
+    ]);
+    const county_label = create_form.create_tag("label", null, [
+      { name: "for", value: "county" },
+    ]);
+    county_label.innerHTML = "County";
+    div.appendChild(county_svg);
+    div.appendChild(county_label);
+
+    const county_input = create_form.create_tag("input", null, [
+      { name: "id", value: "county" },
+      { name: "type", value: "text" },
+      { name: "name", value: "county" },
+      { name: "value", value: data.county },
+      { name: "placeholder", value: "County" },
+      { name: "required", value: "" },
+    ]);
+
+    job_county.appendChild(div);
+    job_county.appendChild(county_input);
+
+    county_and_city.appendChild(job_city);
+    county_and_city.appendChild(job_county);
+
+    const add_location = create_form.create_tag("div", "add_location hidden");
+
+    const add_county = create_form.create_tag("select", null, [
+      { name: "id", value: "add_judet" },
+      { name: "name", value: "judet" },
+      { name: "required", value: "" },
+    ]);
+
+    const add_city = create_form.create_tag("select", null, [
+      { name: "id", value: "add_oras" },
+      { name: "name", value: "oras" },
+      { name: "required", value: "" },
+    ]);
+
+    add_location.appendChild(add_county);
+    add_location.appendChild(add_city);
+    county_and_city.appendChild(add_location);
+
+    const functionality_location = create_form.create_tag(
+      "div",
+      "functionality"
+    );
+    const add_city_button = create_form.create_tag("button", null, [
+      { name: "type", value: "button" },
+    ]);
+    add_city_button.innerHTML = "Add City";
+    const delete_city_button = create_form.create_tag("button", null, [
+      { name: "type", value: "button" },
+    ]);
+    delete_city_button.innerHTML = "Delete Location";
+
+    functionality_location.appendChild(add_city_button);
+    functionality_location.appendChild(delete_city_button);
+    county_and_city.appendChild(functionality_location);
+    container.appendChild(county_and_city);
+
+    // functionality
+    const functionality_container = create_form.create_tag(
+      "div",
+      "functionality"
+    );
+    const edit_job = create_form.create_tag("button", "edit-job");
+    edit_job.innerHTML = "Edit";
+    const deleted_job = create_form.create_tag("button", "delete-job");
+    deleted_job.innerHTML = "Delete";
+    const publish_job = create_form.create_tag("button", "publish-job");
+    publish_job.innerHTML = "Publish";
+
+    functionality_container.appendChild(edit_job);
+    functionality_container.appendChild(publish_job);
+    functionality_container.appendChild(deleted_job);
+
+    container.appendChild(functionality_container);
+    form.appendChild(container);
+
+    // finctionality buttons
+    const country_options = ["Country", "All"];
+    country_options.forEach((option, idx) => {
+      const countryElement = document.createElement("option");
+      countryElement.innerHTML = option;
+      if (idx === 0) {
+        countryElement.selected = true;
+        countryElement.disabled = true;
+      }
+      add_country.appendChild(countryElement);
+    });
 
     countries_list.forEach((country) => {
       const countryElement = document.createElement("option");
       countryElement.innerHTML = country;
-      country_select.appendChild(countryElement);
+      add_country.appendChild(countryElement);
     });
-  });
 
-  country_select.addEventListener("change", () => {
-    if (country_input.value) {
-      country_input.value = country_input.value + "," + country_select.value;
-    } else {
-      country_input.value = country_select.value;
+    if (data.country.includes("Romania")) {
+      county_input.setAttribute("disabled", true);
+      city_input.setAttribute("disabled", true);
     }
 
-    if (country_input.value.split(",").includes("Romania")) {
-      judet_input.setAttribute("disabled", true);
-      location_button.classList.remove("hidden");
-    } else {
-      judet_input.removeAttribute("disabled");
-      oras_input.removeAttribute("disabled");
-      location_button.classList.add("hidden");
-      add_location_container.classList.add("hidden");
-    }
-  });
+    add_country.addEventListener("change", () => {
+      if (country_input.value) {
+        country_input.value = country_input.value + "," + add_country.value;
+      } else {
+        country_input.value = add_country.value;
+      }
 
-  options = ["Judet", "All"];
-  options.forEach((option, idx) => {
-    const countyElement = document.createElement("option");
-    countyElement.innerHTML = option;
-    if (idx === 0) {
-      countyElement.selected = true;
-      countyElement.disabled = true;
-    }
-    judet.appendChild(countyElement);
+      if (country_input.value.split(",").includes("Romania")) {
+        county_input.setAttribute("disabled", true);
+        city_input.setAttribute("disabled", true);
+      } else {
+        county_input.removeAttribute("disabled");
+        city_input.removeAttribute("disabled");
+        add_location.classList.add("hidden");
+      }
+    });
+
+    const options_county = ["Judet", "All"];
+    options_county.forEach((option, idx) => {
+      const countyElement = document.createElement("option");
+      countyElement.innerHTML = option;
+      if (idx === 0) {
+        countyElement.selected = true;
+        countyElement.disabled = true;
+      }
+      add_county.appendChild(countyElement);
+    });
 
     counties.forEach((county) => {
       const countyElement = document.createElement("option");
       countyElement.innerHTML = Object.keys(county)[0];
-      judet.appendChild(countyElement);
+      add_county.appendChild(countyElement);
     });
-  });
 
-  judet.addEventListener("change", () => {
-    oras.innerHTML = "";
-    const options = ["Oras", "All"];
+    add_county.addEventListener("change", () => {
+      add_city.innerHTML = "";
+      const options = ["Oras", "All"];
 
-    options.forEach((option, idx) => {
-      const cityElement = document.createElement("option");
-      cityElement.innerHTML = option;
-      if (idx === 0) {
-        cityElement.selected = true;
-        cityElement.disabled = true;
+      options.forEach((option, idx) => {
+        const cityElement = document.createElement("option");
+        cityElement.innerHTML = option;
+        if (idx === 0) {
+          cityElement.selected = true;
+          cityElement.disabled = true;
+        }
+        add_city.appendChild(cityElement);
+      });
+
+      if (county_input.value) {
+        county_input.value = county_input.value + "," + add_county.value;
+      } else {
+        county_input.value = add_county.value;
       }
-      oras.appendChild(cityElement);
-    });
-    if (judet_input.value) {
-      judet_input.value = judet_input.value + "," + judet.value;
-    } else {
-      judet_input.value = judet.value;
-    }
 
-    counties.forEach((county) => {
-      if (Object.keys(county)[0] === judet.value) {
-        county[Object.keys(county)[0]].forEach((city) => {
-          const cityElement = document.createElement("option");
-          cityElement.innerHTML = city;
-          oras.appendChild(cityElement);
-        });
+      counties.forEach((county) => {
+        if (Object.keys(county)[0] === add_county.value) {
+          county[Object.keys(county)[0]].forEach((city) => {
+            const cityElement = document.createElement("option");
+            cityElement.innerHTML = city;
+            add_city.appendChild(cityElement);
+          });
+        }
+      });
+    });
+
+    add_city.addEventListener("change", () => {
+      if (city_input.value) {
+        city_input.value = city_input.value + "," + add_city.value;
+      } else {
+        city_input.value = add_city.value;
       }
     });
-  });
 
-  oras.addEventListener("change", () => {
-    if (oras_input.value) {
-      oras_input.value = oras_input.value + "," + oras.value;
-    } else {
-      oras_input.value = oras.value;
-    }
-  });
-
-  const delete_location = document.querySelector(
-    ".functionality-location button:nth-child(2)"
-  );
-
-  delete_location.addEventListener("click", () => {
-    country_input.value = "";
-    judet_input.value = "";
-    oras_input.value = "";
-    judet_input.removeAttribute("disabled");
-    oras_input.removeAttribute("disabled");
-    location_button.classList.add("hidden");
-    add_location_container.classList.add("hidden");
-  });
-};
-
-const closeForm = () => {
-  formContainer.classList.add("hidden");
-};
-
-apiJobs.then(() => {
-  const jobs_containers = document.querySelectorAll(".details-container");
-  jobs_containers.forEach((job) => {
-    const button = job.querySelector(".edit-job");
-    button.addEventListener("click", () => {
-      const data = JSON.parse(job.getAttribute("data"));
-      form.innerHTML = "";
-      form_job(data);
-      formContainer.classList.toggle("hidden");
+    delete_city_button.addEventListener("click", () => {
+      country_input.value = "";
+      county_input.value = "";
+      city_input.value = "";
+      county_input.removeAttribute("disabled");
+      city_input.removeAttribute("disabled");
+      add_location.classList.add("hidden");
     });
-  });
-});
+
+    add_country_button.addEventListener("click", () => {
+      add_country_container.classList.toggle("hidden");
+    });
+
+    add_city_button.addEventListener("click", () => {
+      add_location.classList.toggle("hidden");
+    });
+  },
+};
