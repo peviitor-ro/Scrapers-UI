@@ -841,6 +841,34 @@ button div {
   margin-right: 5px;
 }
 
+.status-job{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+  margin-left: 5px;
+}
+
+.label-status {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: fit-content;
+  font-size: 10px;
+  color: #fff;
+}
+
+.deleted {
+  background-color: #fb3d3d;
+}
+.published {
+  background-color: #3ed63e;
+} 
+
+.edited {
+  background-color: #e08d21;
+}
+
 .location-container,
 .country-container,
 .job-type-container {

@@ -12,7 +12,7 @@ const status_container = document.querySelector("#status");
 
 // TODO: change this to the real url
 // for local testing
-// const validator_url = "http://localhost:3000/validator/get/";
+// const validator_url = "http://localhost:8000/validator/get/";
 const validator_url = "https://api.laurentiumarian.ro/validator/get/";
 const validator_data = {
   company: companyName,
@@ -227,6 +227,26 @@ const create_job = {
 
     // job details
     const details_container = create_job.create_tag("div", "details-container");
+
+    // status job
+    const status_job = create_job.create_tag("div", "status-job");
+    if (data.edited){
+      const edited_status = create_job.create_tag("div", "label-status edited");
+      edited_status.innerHTML = "This job was edited";
+      status_job.appendChild(edited_status);
+    } 
+    if (data.deleted){
+      const deleted_status = create_job.create_tag("div", "label-status deleted");
+      deleted_status.innerHTML = "This job was deleted";
+      status_job.appendChild(deleted_status);
+    }
+    if (data.published){
+      const new_status = create_job.create_tag("div", "label-status published");
+      new_status.innerHTML = "This job was published";
+      status_job.appendChild(new_status);
+    }
+
+    details_container.appendChild(status_job);
 
     // job title and company
     let div = create_job.create_tag("div");
@@ -1081,6 +1101,8 @@ const create_form = {
     if (data.country.includes("Romania")) {
       county_input.setAttribute("disabled", true);
       city_input.setAttribute("disabled", true);
+    } else{
+      add_city_button.classList.add("hidden");
     }
 
     add_country.addEventListener("change", () => {
@@ -1093,9 +1115,11 @@ const create_form = {
       if (country_input.value.split(",").includes("Romania")) {
         county_input.setAttribute("disabled", true);
         city_input.setAttribute("disabled", true);
+        add_city_button.classList.remove("hidden");
       } else {
         county_input.removeAttribute("disabled");
         city_input.removeAttribute("disabled");
+        add_city_button.classList.remove("hidden");
         add_location.classList.add("hidden");
       }
     });
@@ -1176,7 +1200,7 @@ const create_form = {
     // edit job
     edit_job.addEventListener("click", () => {
       // for local testing
-      // const edit_url = "http://localhost:3000/validator/edit/";
+      // const edit_url = "http://localhost:8000/validator/edit/";
       const edit_url = "https://api.laurentiumarian.ro/validator/edit/";
 
       const job_title = job_title_input.value;
