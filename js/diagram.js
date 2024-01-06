@@ -120,24 +120,31 @@ let career_page_JobsScrapers = document.getElementById(
   "career_page_JobsScrapers"
 );
 
-// scrapers to api_control_scrapers
-let api_control_scrapers_Scrapers_start_with_digi = document.getElementById(
-  "api_control_scrapers_Scrapers_start_with_digi"
+// scrapers to validator_api
+let validator_api = document.getElementById("validator_api");
+let validator_api_Jmeter_Scrapers = document.getElementById(
+  "validator_api_Jmeter_Scrapers"
 );
-let api_control_scrapers_Scrapers_Job_PeViitor = document.getElementById(
-  "api_control_scrapers_Scrapers_Job_PeViitor"
+let validator_api_Scrapy_peviitor_jobs = document.getElementById(
+  "validator_api_Scrapy_peviitor_jobs"
 );
-let api_control_scrapers_PeViitor_Scrapers_Melania = document.getElementById(
-  "api_control_scrapers_PeViitor_Scrapers_Melania"
+let validator_api_Scrapers_start_with_digi = document.getElementById(
+  "validator_api_Scrapers_start_with_digi"
 );
-let api_control_scrapers_based_scraper_js = document.getElementById(
-  "api_control_scrapers_based_scraper_js"
+let validator_api_Scrapers_Job_PeViitor = document.getElementById(
+  "validator_api_Scrapers_Job_PeViitor"
 );
-let api_control_scrapers_based_scraper_py = document.getElementById(
-  "api_control_scrapers_based_scraper_py"
+let validator_api_PeViitor_Scrapers_Melania = document.getElementById(
+  "validator_api_PeViitor_Scrapers_Melania"
 );
-let api_control_scrapers_JobsScrapers = document.getElementById(
-  "api_control_scrapers_JobsScrapers"
+let validator_api_based_scraper_js = document.getElementById(
+  "validator_api_based_scraper_js"
+);
+let validator_api_based_scraper_py = document.getElementById(
+  "validator_api_based_scraper_py"
+);
+let validator_api_JobsScrapers = document.getElementById(
+  "validator_api_JobsScrapers"
 );
 
 // databases to down
@@ -151,18 +158,15 @@ let down_cluj_solr_database = document.getElementById(
 // api to down
 let down_api = document.getElementById("down_api");
 
-// action to api
-let action_api = document.getElementById("action_api");
-
 // api to web_server
 let api_web_server = document.getElementById("api_web_server");
 
 // web_server to cloudflare
 let web_server_cloudflare = document.getElementById("web_server_cloudflare");
 
-// test_case to api_control_scrapers
-let api_control_scrapers_test_case = document.getElementById(
-  "api_control_scrapers_test_case"
+// test_case to validator_api
+let validator_api_test_case = document.getElementById(
+  "validator_api_test_case"
 );
 // test_case to action
 let action_test_case = document.getElementById("action_test_case");
@@ -178,23 +182,19 @@ let test_case_peviitor_page = document.getElementById(
 
 // api to dev_peviitor
 let api_dev_peviitor = document.getElementById("api_dev_peviitor");
-// api_control_scrapers to api
-let api_control_scrapers_api = document.getElementById(
-  "api_api_control_scrapers"
+// validator_api to api
+let validator_api_api = document.getElementById(
+  "api_validator_api"
 );
 
-// firme_peviitor to peviitor_page
-let peviitor_page_firme_peviitor = document.getElementById(
-  "peviitor_page_firme_peviitor"
+// validator_api to dev_peviitor
+let validator_api_dev_peviitor = document.getElementById(
+  "dev_peviitor_validator_api"
 );
 
-// scrapers_peviitor to peviitor_page
-let peviitor_page_scrapers_peviitor = document.getElementById(
-  "peviitor_page_scrapers_peviitor"
-);
-// scrapers_peviitor to api_control_scrapers
-let api_control_scrapers_scrapers_peviitor = document.getElementById(
-  "api_control_scrapers_scrapers_peviitor"
+// scrapers_peviitor to validator_api
+let validator_api_scrapers_peviitor = document.getElementById(
+  "validator_api_scrapers_peviitor"
 );
 
 // Scrapers to action
@@ -231,46 +231,52 @@ adjustLine(based_scraper_js, career_page, career_page_based_scraper_js);
 adjustLine(based_scraper_py, career_page, career_page_based_scraper_py);
 adjustLine(JobsScrapers, career_page, career_page_JobsScrapers);
 
-// scrapers to api_control_scrapers
+// scrapers to validator_api
+adjustLine(Jmeter_Scrapers, validator_api, validator_api_Jmeter_Scrapers);
+adjustLine(
+  Scrapy_peviitor_jobs,
+  validator_api,
+  validator_api_Scrapy_peviitor_jobs
+);
 adjustLine(
   Scrapers_start_with_digi,
-  api_control_scrapers,
-  api_control_scrapers_Scrapers_start_with_digi
+  validator_api,
+  validator_api_Scrapers_start_with_digi
 );
 adjustLine(
   Scrapers_Job_PeViitor,
-  api_control_scrapers,
-  api_control_scrapers_Scrapers_Job_PeViitor
+  validator_api,
+  validator_api_Scrapers_Job_PeViitor
 );
 adjustLine(
   PeViitor_Scrapers_Melania,
-  api_control_scrapers,
-  api_control_scrapers_PeViitor_Scrapers_Melania
+  validator_api,
+  validator_api_PeViitor_Scrapers_Melania
 );
 adjustLine(
   based_scraper_js,
-  api_control_scrapers,
-  api_control_scrapers_based_scraper_js
+  validator_api,
+  validator_api_based_scraper_js
 );
 adjustLine(
   based_scraper_py,
-  api_control_scrapers,
-  api_control_scrapers_based_scraper_py
+  validator_api,
+  validator_api_based_scraper_py
 );
 adjustLine(
   JobsScrapers,
-  api_control_scrapers,
-  api_control_scrapers_JobsScrapers
+  validator_api,
+  validator_api_JobsScrapers
 );
 
-// api_control_scrapers to action
-adjustLine(api_control_scrapers, action, action_Scrapers_start_with_digi);
+// validator_api to action
+adjustLine(validator_api, action, action_Scrapers_start_with_digi);
 
-// api_control_scrapers to database_logs
+// validator_api to validator_database
 adjustLine(
-  api_control_scrapers,
-  database_logs,
-  database_logs_api_control_scrapers
+  validator_api,
+  validator_database,
+  validator_database_validator_api
 );
 
 // databases to down
@@ -280,19 +286,36 @@ adjustLine(cluj_solr_database, down, down_cluj_solr_database);
 // api to down
 adjustLine(api, down, down_api);
 
-// action to api
-adjustLine(action, api, action_api);
-
 // api to web_server
 adjustLine(api, web_server, api_web_server);
 
 // web_server to cloudflare
 adjustLine(web_server, cloudflare, web_server_cloudflare);
 
-// test_case to api_control_scrapers
-adjustLine(test_case, api_control_scrapers, api_control_scrapers_test_case);
+// test_case to validator_api
+adjustLine(test_case, validator_api, validator_api_test_case);
 // test_case to action
 adjustLine(test_case, action, action_test_case);
+// test_case to api
+adjustLine(test_case, api, api_test_case);
+// test_case to cluj_solr_database
+adjustLine(test_case, cluj_solr_database, cluj_solr_database_test_case);
+// test_case to zimbor_solr_database
+adjustLine(test_case, zimbor_solr_database, zimbor_solr_database_test_case);
+// test_case to dev_peviitor
+adjustLine(test_case, dev_peviitor, dev_peviitor_test_case);
+// test_case to validator_database
+adjustLine(
+  test_case,
+  validator_database,
+  validator_database_test_case
+);
+// test_case to scrapers_peviitor
+adjustLine(
+  test_case,
+  scrapers_peviitor,
+  scrapers_peviitor_test_case
+);
 
 // peviitor_page to cloudflare
 adjustLine(peviitor_page, cloudflare, cloudflare_peviitor_page);
@@ -301,20 +324,21 @@ adjustLine(peviitor_page, test_case, test_case_peviitor_page);
 
 // api to dev_peviitor
 adjustLine(api, dev_peviitor, api_dev_peviitor);
+// validator_api to dev_peviitor
+adjustLine(
+  validator_api,
+  dev_peviitor,
+  validator_api_dev_peviitor
+);
 
-// api_control_scrapers to api
-adjustLine(api_control_scrapers, api, api_control_scrapers_api);
+// validator_api to api
+adjustLine(validator_api, api, validator_api_api);
 
-// firme_peviitor to peviitor_page
-adjustLine(firme_peviitor, peviitor_page, peviitor_page_firme_peviitor);
-
-// scrapers_peviitor to peviitor_page
-adjustLine(scrapers_peviitor, peviitor_page, peviitor_page_scrapers_peviitor);
-// scrapers_peviitor to api_control_scrapers
+// scrapers_peviitor to validator_api
 adjustLine(
   scrapers_peviitor,
-  api_control_scrapers,
-  api_control_scrapers_scrapers_peviitor
+  validator_api,
+  validator_api_scrapers_peviitor
 );
 
 function zoom() {
