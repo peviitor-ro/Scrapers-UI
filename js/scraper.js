@@ -1069,9 +1069,9 @@ const create_form = {
     const edit_job = create_form.create_tag("button", "edit-job");
     edit_job.innerHTML = "Edit";
     const deleted_job = create_form.create_tag("button", "delete-job");
-    deleted_job.innerHTML = "Delete";
+    deleted_job.innerHTML = data.deleted ? "Restore" : "Delete";
     const publish_job = create_form.create_tag("button", "publish-job");
-    publish_job.innerHTML = "Publish";
+    publish_job.innerHTML = data.published ? "Unpublish" : "Publish";
 
     functionality_container.appendChild(edit_job);
     functionality_container.appendChild(publish_job);
@@ -1243,12 +1243,90 @@ const create_form = {
 
     // delete job
     deleted_job.addEventListener("click", () => {
-      alert("Not implemented yet");
+      // for local testing
+      // const delete_url = "http://localhost:8000/validator/delete/";
+      const delete_url = "https://api.laurentiumarian.ro/validator/delete/";
+
+      const job_title = job_title_input.value;
+      const company = company_input.value;
+      const remote = remote_input.value;  
+      const job_link = link_input.value;
+      const country = country_input.value.split(",");
+      const city = city_input.value.split(",");
+      const county = county_input.value.split(",");
+
+      const data = [{
+        job_title,
+        company,
+        remote,
+        job_link,
+        country,
+        city,
+        county,
+      }];
+
+      fetch(delete_url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then(() => {
+          formContainer.classList.toggle("hidden");
+          alertModalSuccess();
+
+          setTimeout(() => {
+            window.location.reload();
+          }, 3000);
+        })
+        .catch((e) => {
+          alertModalError(e);
+        });
     });
 
     // publish job
     publish_job.addEventListener("click", () => {
-      alert("Not implemented yet");
+      // for local testing
+      // const publish_url = "http://localhost:8000/validator/publish/";
+      const publish_url = "https://api.laurentiumarian.ro/validator/publish/";
+
+      const job_title = job_title_input.value;
+      const company = company_input.value;
+      const remote = remote_input.value;  
+      const job_link = link_input.value;
+      const country = country_input.value.split(",");
+      const city = city_input.value.split(",");
+      const county = county_input.value.split(",");
+
+      const data = [{
+        job_title,
+        company,
+        remote,
+        job_link,
+        country,
+        city,
+        county,
+      }];
+
+      fetch(publish_url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then(() => {
+          formContainer.classList.toggle("hidden");
+          alertModalSuccess();
+
+          setTimeout(() => {
+            window.location.reload();
+          }, 3000);
+        })
+        .catch((e) => {
+          alertModalError(e);
+        });
     });
   },
 };
