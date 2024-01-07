@@ -1194,15 +1194,15 @@ footer .copyright {
 /* form */
 .form-container {
   position: fixed;
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  flex-direction: column;
-  gap: 20px;
   padding: 10px;
   background-color: var(--bg-header);
   z-index: 100;
-  top: 0;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
 }
 
 .form-container .close-form {
@@ -1225,14 +1225,20 @@ footer .copyright {
   box-shadow: 0px 2px 5px 0.5px rgba(80, 79, 79, 0.72);
   display: flex;
   flex-direction: column;
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
 .form .details-container{
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  margin: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 10px;
   overflow: auto;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .details-container input {
@@ -1240,9 +1246,8 @@ footer .copyright {
   border: none;
   border-radius: 5px;
   outline: none;
-  margin: 10px;
   font-size: 16px;
-  width: 50%;
+  width: 100%;
 }
 
 .details-container input:focus {
@@ -1255,12 +1260,24 @@ footer .copyright {
 .form .job-county,
 .form .job-country,
 .form .job-remote,
-.form .job-link
+.form .job-link,
+.form .job-location
 {
-  padding: 0;
+  padding: 5px;
   display: flex;
   flex-direction: column;
   align-items: start;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.form .job-location {
+  justify-content: space-between;
+}
+
+.form .job-location select {
+  margin-top: 10px;
 }
 
 .form .job-company div,
@@ -1276,9 +1293,18 @@ footer .copyright {
   gap: 5px;
 }
 
-.form label {
+.form .job-country,
+.form .job-city,
+.form .job-county
+{
+  border: none;
+}
+
+.form label,
+.form img {
   font-size: 16px;
   font-weight: 600;
+  margin-bottom: 10px;
 }
 
 .form .functionality {
@@ -1299,5 +1325,89 @@ footer .copyright {
   outline: none;
   color: #494949;
   background-color: var(--bg-header);
+}
+
+@media (max-width: 800px) {
+  .form-container {
+    padding: 0px;
+  }
+
+  .form {
+    border-radius: 0px;
+  }
+
+  .form .details-container {
+    grid-template-columns: 1fr;
+    overflow: auto;
+  }
+
+  .form .job-company,
+  .form .job-title,
+  .form .job-city,
+  .form .job-county,
+  .form .job-country,
+  .form .job-remote,
+  .form .job-link,
+  .form .job-location {
+    border: none;
+  }
+
+  .form .job-company div,
+  .form .job-title div,
+  .form .job-city div,
+  .form .job-county div,
+  .form .job-country div,
+  .form .job-remote div,
+  .form .job-link div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .form .job-country,
+  .form .job-city,
+  .form .job-county {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+
+  .form .job-location {
+    justify-content: space-between;
+  }
+
+  .form .job-location select {
+    margin-top: 10px;
+  }
+
+  .form label,
+  .form img {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .form .functionality {
+    justify-content: start;
+    gap: 10px;
+    margin: 10px 0px;
+  }
+
+  .form select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0px 15px;
+    padding: 10px 5px 10px 15px;
+    width: 13em;
+    border: 1px solid #494949;
+    border-radius: 8px;
+    outline: none;
+    color: #494949;
+    background-color: var(--bg-header);
+  }
+
+  .form button {
+    font-size: 10px;
+  }
 }
 

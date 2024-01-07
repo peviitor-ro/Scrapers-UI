@@ -284,7 +284,7 @@ const create_job = {
       "location-container"
     );
     const location_svg = create_job.create_tag("img", null, [
-      { name: "src", value: "../../images/svg/company.svg" },
+      { name: "src", value: "../../images/svg/location.svg" },
       { name: "alt", value: "location" },
     ]);
     location_container.innerHTML = validate_city(data)
@@ -355,6 +355,7 @@ const create_job = {
       form.innerHTML = "";
       create_form.initialize(data);
       formContainer.classList.toggle("hidden");
+      document.body.style.overflowY = "hidden";
     });
 
     // job link
@@ -830,6 +831,7 @@ const create_form = {
     close_form.innerHTML = "x";
     close_form.addEventListener("click", () => {
       formContainer.classList.toggle("hidden");
+      document.body.style.overflowY = null;
     });
     container.appendChild(close_form);
 
@@ -965,9 +967,11 @@ const create_form = {
 
     add_country_button.innerHTML = "Add Country";
     functionality.appendChild(add_country_button);
-    job_country.appendChild(functionality);
+    // job_country.appendChild(functionality);
+
 
     job_location_country.appendChild(job_country);
+    job_location_country.appendChild(functionality);
     container.appendChild(job_location_country);
 
     // county and city
@@ -975,7 +979,7 @@ const create_form = {
     const job_city = create_form.create_tag("div", "job-city");
     div = create_form.create_tag("div");
     const city_svg = create_form.create_tag("img", null, [
-      { name: "src", value: "../../images/svg/company.svg" },
+      { name: "src", value: "../../images/svg/location.svg" },
       { name: "alt", value: "city" },
     ]);
     const city_label = create_form.create_tag("label", null, [
@@ -1000,7 +1004,7 @@ const create_form = {
     const job_county = create_form.create_tag("div", "job-county");
     div = create_form.create_tag("div");
     const county_svg = create_form.create_tag("img", null, [
-      { name: "src", value: "../../images/svg/company.svg" },
+      { name: "src", value: "../../images/svg/location.svg" },
       { name: "alt", value: "county" },
     ]);
     const county_label = create_form.create_tag("label", null, [
@@ -1093,9 +1097,11 @@ const create_form = {
     });
 
     countries_list.forEach((country) => {
+      if (!data.country.includes(country)) {
       const countryElement = document.createElement("option");
       countryElement.innerHTML = country;
       add_country.appendChild(countryElement);
+      }
     });
 
     if (data.country.includes("Romania")) {
@@ -1106,6 +1112,7 @@ const create_form = {
     }
 
     add_country.addEventListener("change", () => {
+      add_country.querySelector("option").remove();
       if (country_input.value) {
         country_input.value = country_input.value + "," + add_country.value;
       } else {
@@ -1119,9 +1126,10 @@ const create_form = {
       } else {
         county_input.removeAttribute("disabled");
         city_input.removeAttribute("disabled");
-        add_city_button.classList.remove("hidden");
+        add_city_button.classList.add("hidden");
         add_location.classList.add("hidden");
       }
+      
     });
 
     const options_county = ["Judet", "All"];
@@ -1156,7 +1164,10 @@ const create_form = {
       });
 
       if (county_input.value) {
-        county_input.value = county_input.value + "," + add_county.value;
+        const counties = county_input.value.split(",");
+        if (!counties.includes(add_county.value)) {
+          county_input.value = county_input.value + "," + add_county.value;
+        }
       } else {
         county_input.value = add_county.value;
       }
@@ -1164,9 +1175,11 @@ const create_form = {
       counties.forEach((county) => {
         if (Object.keys(county)[0] === add_county.value) {
           county[Object.keys(county)[0]].forEach((city) => {
+            if (!data.city.includes(city)) {
             const cityElement = document.createElement("option");
             cityElement.innerHTML = city;
             add_city.appendChild(cityElement);
+            }
           });
         }
       });
