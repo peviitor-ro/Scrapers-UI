@@ -204,6 +204,10 @@ const validate_country = (data, keyword) => {
   return isValidate;
 };
 
+//  Create Cards for Jobs + Search Functionality
+const dataJobsTemplate = document.querySelector("[data-jobs-template]");
+const dataJobsContainer = document.querySelector("[data-jobs-container]");
+
 const create_job = {
   create_tag: (tag_, class_ = null, attrs_ = null) => {
     const tag = document.createElement(tag_);
@@ -221,162 +225,114 @@ const create_job = {
     return tag;
   },
   initialize: (data) => {
-    // job card
-    const job_container = create_job.create_tag("div", "job");
-    job_container.setAttribute("data", JSON.stringify(data));
+    const card = dataJobsTemplate.content.cloneNode(true).children[0];
+    const jobTitle = card.querySelector("[data-job-title]");
+    const jobCompany = card.querySelector("[data-job-company]");
+    const jobLocation = card.querySelector("[data-location]");
+    const jobCountry = card.querySelector("[data-country]");
+    const jobType = card.querySelector("[data-job-type]");
+    const jobLink = card.querySelector("[data-job-link]");
+    const editJobButton = card.querySelector(".edit-job");
+    const statusJob = card.querySelector("[status-job]");
 
-    // job details
-    const details_container = create_job.create_tag("div", "details-container");
+    // Images
+    const jobCompanySvg = card.querySelector("[data-company-image]");
+    const jobLocationSvg = card.querySelector("[data-location-image]");
+    const jobCountrySvg = card.querySelector("[data-country-image]");
+    const jobTypeSvg = card.querySelector("[data-type-image]");
 
-    // status job
-    const status_job = create_job.create_tag("div", "status-job");
-    if (data.edited){
-      const edited_status = create_job.create_tag("div", "label-status edited");
-      edited_status.innerHTML = "This job was edited";
-      status_job.appendChild(edited_status);
-    } 
-    if (data.deleted){
-      const deleted_status = create_job.create_tag("div", "label-status deleted");
-      deleted_status.innerHTML = "This job was deleted";
-      status_job.appendChild(deleted_status);
+    jobCompanySvg.src = "../../images/iconsScrapers/company.png";
+    jobLocationSvg.src = "../../images/iconsScrapers/location.png";
+    jobCountrySvg.src = "../../images/iconsScrapers/globe.png";
+    jobTypeSvg.src = "../../images/iconsScrapers/freelance.png";
+
+    card.setAttribute("data", JSON.stringify(data));
+
+    // edit buton
+    editJobButton.addEventListener("click", () => {
+      const data = JSON.parse(card.getAttribute("data"));
+      dataFormContainer.innerHTML = "";
+      create_form.initialize(data);
+      dataFormContainer.classList.toggle("hidden");
+      document.body.style.overflowY = "hidden";
+    });
+
+    // check status jobs
+    if (data.edited) {
+      statusJob.innerHTML +=
+        "<p class='label-status edited'>This job was edited</p>";
     }
-    if (data.published){
-      const new_status = create_job.create_tag("div", "label-status published");
-      new_status.innerHTML = "This job was published";
-      status_job.appendChild(new_status);
+    if (data.deleted) {
+      statusJob.innerHTML +=
+        "<p class='label-status deleted'>This job was deleted</p>";
+    }
+    if (data.published) {
+      statusJob.innerHTML +=
+        "<p class='label-status published'>This job was published</p>";
     }
 
-    details_container.appendChild(status_job);
-
-    // job title and company
-    let div = create_job.create_tag("div");
-    const job_title = create_job.create_tag(
-      "h2",
-      `job-title ${validate_data(data, "job_title") ? "validate" : "invalid"}`
-    );
-    job_title.innerHTML = validate_data(data, "job_title")
+    // TITLE
+    jobTitle.textContent = validate_data(data, "job_title")
       ? data.job_title
       : "No job title";
-    div.appendChild(job_title);
 
-    const job_company = create_job.create_tag(
-      "div",
-      `job-company ${validate_data(data, "company") ? "validate" : "invalid"}`
+    jobTitle.classList.add(
+      validate_data(data, "job_title") ? "validate" : "invalid"
     );
-    const svg = `
-    
-    `;
-    job_company.innerHTML =
-      svg + (validate_data(data, "company") ? data.company : "No company");
-    div.appendChild(job_company);
-    details_container.appendChild(div);
 
-    // job location
-    const container_JobLocation = create_job.create_tag(
-      "div",
-      "container-JobLocation"
-    );
-    const job_location = create_job.create_tag("div", "job-location", [
-      { name: "title", value: "Location" },
-    ]);
-    const location_container = create_job.create_tag(
-      "div",
-      "location-container"
-    );
-    const location_svg = create_job.create_tag("img", null, [
-      { name: "src", value: "../../images/svg/location.svg" },
-      { name: "alt", value: "location" },
-    ]);
-    location_container.innerHTML = validate_city(data)
-      ? validate_city(data)
-          .map((city) => city.outerHTML)
-          .join(",")
-      : "<div class='invalid'>No city</div>";
-    location_container.prepend(location_svg);
-    job_location.appendChild(location_container);
-    container_JobLocation.appendChild(job_location);
-    details_container.appendChild(container_JobLocation);
+    // Company
+    jobCompany.textContent = validate_data(data, "company")
+      ? data.company
+      : "No company";
 
-    // country
-    const country_container = create_job.create_tag(
-      "div",
-      "country-container",
-      [{ name: "title", value: "Country" }]
+    jobCompany.classList.add(
+      validate_city(data, "company") ? "validate" : "invalid"
     );
-    const country_svg = create_job.create_tag("img", null, [
-      { name: "src", value: "../../images/svg/globe.svg" },
-      { name: "alt", value: "country" },
-    ]);
-    country_container.appendChild(country_svg);
-    div = create_job.create_tag(
-      "div",
-      `${validate_country(data, "country") ? "validate" : "invalid"}`
-    );
-    div.innerHTML = validate_country(data, "country")
+
+    // Location
+    jobLocation.innerHTML = validate_city(data)
+      ? validate_city(data).map((city) => city.outerHTML)
+      : "No city";
+
+    jobLocation.classList.add(validate_city(data) ? "validate" : "invalid");
+
+    // Country
+    jobCountry.textContent = validate_country(data, "country")
       ? data.country
       : data.country + " is not a country";
 
-    country_container.appendChild(div);
-    job_location.appendChild(country_container);
+    jobCountry.classList.add(
+      validate_country(data, "country") ? "validate" : "invalid"
+    );
 
-    // job type
-    const job_type_container = create_job.create_tag(
-      "div",
-      "job-type-container",
-      [{ name: "title", value: "Job Type" }]
-    );
-    const job_type_svg = create_job.create_tag("img", null, [
-      { name: "src", value: "../../images/svg/remote.svg" },
-      { name: "alt", value: "job type" },
-    ]);
-    job_type_container.appendChild(job_type_svg);
-    div = create_job.create_tag(
-      "div",
-      `${data.remote && data.remote.length ? "validate" : "invalid"}`
-    );
-    div.innerHTML =
+    // Type
+    jobType.textContent =
       data.remote && data.remote.length && Array.isArray(data.remote)
         ? data.remote.map((remote) => remote).join(", ")
         : data.remote && data.remote.length
         ? data.remote
         : "No job type";
-    job_type_container.appendChild(div);
-    job_location.appendChild(job_type_container);
 
-    // functionality
-    const functionality = create_job.create_tag("div", "functionality");
-    const edit_job = create_job.create_tag("button", "edit-job");
-    edit_job.innerHTML = "Edit Job";
-    functionality.appendChild(edit_job);
-    details_container.appendChild(functionality);
-
-    edit_job.addEventListener("click", () => {
-      const data = JSON.parse(job_container.getAttribute("data"));
-      form.innerHTML = "";
-      create_form.initialize(data);
-      formContainer.classList.toggle("hidden");
-      document.body.style.overflowY = "hidden";
-    });
-
-    // job link
-    const job_link_container = create_job.create_tag(
-      "div",
-      "job_link-container"
+    jobType.classList.add(
+      data.remote && data.remote.length ? "validate" : "invalid"
     );
-    const job_link = create_job.create_tag(
-      "a",
-      `${validate_link(data, "job_link") ? "validate" : "invalid"}`,
-      [
-        { name: "href", value: data.job_link },
-        { name: "target", value: "_blank" },
-      ]
-    );
-    job_link.innerHTML = "Vezi Postul";
-    job_link_container.appendChild(job_link);
-    details_container.appendChild(job_link_container);
 
-    job_container.appendChild(details_container);
-    jobs_container.appendChild(job_container);
+    // Link
+    jobLink.href = data.job_link;
+    jobLink.textContent = "Vezi Postul";
+
+    jobLink.classList.add(
+      validate_link(data, "job_link") ? "validate" : "invalid"
+    );
+
+    // Set attribute
+    jobLocation.setAttribute("title", "Location");
+
+    jobCountry.setAttribute("title", "Country");
+
+    jobType.setAttribute("title", "Job Type");
+
+    dataJobsContainer.append(card);
   },
 };
 
@@ -451,10 +407,14 @@ const alertShow = () => {
   }, 3000);
 };
 
-const alertModalSuccess = () => {
+const alertModalSuccess = (e) => {
   alertImage.src = "../../images/alert/check.png";
   alertText.innerHTML = "Success";
-  alertText2.innerHTML = "The number of jobs has been updated.";
+  if (e) {
+    alertText2.innerHTML = e;
+  } else {
+    alertText2.innerHTML = "The number of jobs has been updated.";
+  }
   alertShow();
 };
 
@@ -818,528 +778,489 @@ oras.addEventListener("change", () => {
 // form
 const formContainer = document.querySelector(".form-container");
 const form = document.querySelector(".form");
+const dataFormTemplate = document.querySelector("[data-form-template]");
+const dataFormContainer = document.querySelector("[data-form-container]");
 
 // clone create_job method
 const create_form = {
   create_tag: create_job.create_tag,
   initialize: (data) => {
-    // container
-    const container = create_form.create_tag("div", "details-container");
+    const card = dataFormTemplate.content.cloneNode(true).children[0];
+    const addCountry = card.querySelector("[form-addCountry]");
+    const addLocation = card.querySelector("[form-addLocation]");
 
-    // close form
-    const close_form = create_form.create_tag("button", "close-form");
-    close_form.innerHTML = "x";
-    close_form.addEventListener("click", () => {
+    // Label And Inputs
+    const labelTitle = card.querySelector("[form-title-label]");
+    const inputTitle = card.querySelector("[form-title-input]");
+    const labelCompany = card.querySelector("[form-company-label]");
+    const inputCompany = card.querySelector("[form-company-input]");
+    const labelRemote = card.querySelector("[form-remote-label]");
+    const inputRemote = card.querySelector("[form-remote-input]");
+    const labelLink = card.querySelector("[form-link-label]");
+    const inputLink = card.querySelector("[form-link-input]");
+    const labelCountry = card.querySelector("[form-locationCountry-label]");
+    const inputCountry = card.querySelector("[form-locationCountry-input]");
+    const buttonCountry = card.querySelector("[form-locationCountry-button]");
+    const labelCity = card.querySelector("[form-locationCity-label]");
+    const inputCity = card.querySelector("[form-locationCity-input]");
+    const labelCounty = card.querySelector("[form-locationCounty-label]");
+    const inputCounty = card.querySelector("[form-locationCounty-input]");
+
+    // Select
+    const selectCountry = card.querySelector("[form-locationCountry-select]");
+    const selectCity = card.querySelector("[form-locationCity-select]");
+    const selectCounty = card.querySelector("[form-locationCounty-select]");
+
+    // Option
+    const optionCountry = card.querySelector("[form-country-option]");
+    const optionCity = card.querySelector("[form-city-option]");
+    const optionCounty = card.querySelector("[form-county-option]");
+
+    // Buttons
+    const buttonCity = card.querySelector("[form-button-city]");
+    const deleteButtonCity = card.querySelector("[form-deleteButton-city]");
+    const buttonEditJob = card.querySelector("[form-button-editJob]");
+    const buttonDeleteJob = card.querySelector("[form-button-deleteJob]");
+    const buttonPublishJob = card.querySelector("[form-button-publishJob]");
+    const closeFormButton = card.querySelector("[close-form]");
+
+    // Images
+    const imageTitle = card.querySelector("[form-title-img]");
+    const imageCompany = card.querySelector("[form-company-img]");
+    const imageLink = card.querySelector("[form-link-img]");
+    const imageRemote = card.querySelector("[form-remote-img]");
+    const imageCountry = card.querySelector("[form-country-img]");
+    const imageCity = card.querySelector("[form-city-img]");
+    const imageCounty = card.querySelector("[form-county-img]");
+
+    // Close Form
+    closeFormButton.addEventListener("click", () => {
       formContainer.classList.toggle("hidden");
       document.body.style.overflowY = null;
     });
-    container.appendChild(close_form);
 
-    // job title
-    const job_title = create_form.create_tag("div", "job-title");
-    const job_title_label = create_form.create_tag("label", null, [
-      { name: "for", value: "job_title" },
-    ]);
-    job_title_label.innerHTML = "Job Title";
-    const job_title_input = create_form.create_tag("input", null, [
-      { name: "id", value: "job_title" },
-      { name: "type", value: "text" },
-      { name: "name", value: "job_title" },
-      { name: "value", value: data.job_title },
-      { name: "placeholder", value: "Job Title" },
-      { name: "required", value: "" },
-    ]);
-    job_title.appendChild(job_title_label);
-    job_title.appendChild(job_title_input);
-    container.appendChild(job_title);
+    // All images
+    imageTitle.src = "../../images/iconsScrapers/title.png";
+    imageTitle.alt = "title";
+    imageCompany.src = "../../images/iconsScrapers/company.png";
+    imageCompany.alt = "company";
+    imageLink.src = "../../images/iconsScrapers/link.png";
+    imageLink.alt = "link";
+    imageRemote.src = "../../images/iconsScrapers/freelance.png";
+    imageRemote.alt = "remote";
+    imageCountry.src = "../../images/iconsScrapers/globe.png";
+    imageCountry.alt = "country";
+    imageCity.src = "../../images/iconsScrapers/location.png";
+    imageCity.alt = "city";
+    imageCounty.src = "../../images/iconsScrapers/location.png";
+    imageCounty.alt = "county";
 
-    // company
-    const company = create_form.create_tag("div", "job-company");
-    let div = create_form.create_tag("div");
-    const companu_svg = create_form.create_tag("img", null, [
-      { name: "src", value: "../../images/svg/company.svg" },
-      { name: "alt", value: "company" },
-    ]);
-    const company_label = create_form.create_tag("label", null, [
-      { name: "for", value: "company" },
-    ]);
-    company_label.innerHTML = "Company";
-    div.appendChild(companu_svg);
-    div.appendChild(company_label);
-    const company_input = create_form.create_tag("input", null, [
-      { name: "id", value: "company" },
-      { name: "type", value: "text" },
-      { name: "name", value: "company" },
-      { name: "value", value: data.company },
-      { name: "placeholder", value: "Company" },
-      { name: "required", value: "" },
-    ]);
-    company.appendChild(div);
-    company.appendChild(company_input);
-    container.appendChild(company);
+    //  Titlte Input
+    labelTitle.innerHTML = "Job Title";
+    labelTitle.setAttribute("for", "job_title");
 
-    // remote
-    const remote = create_form.create_tag("div", "job-remote");
-    div = create_form.create_tag("div");
-    const remote_svg = create_form.create_tag("img", null, [
-      { name: "src", value: "../../images/svg/remote.svg" },
-      { name: "alt", value: "remote" },
-    ]);
-    const remote_label = create_form.create_tag("label", null, [
-      { name: "for", value: "remote" },
-    ]);
-    remote_label.innerHTML = "Remote";
-    div.appendChild(remote_svg);
-    div.appendChild(remote_label);
-    const remote_input = create_form.create_tag("input", null, [
-      { name: "id", value: "remote" },
-      { name: "type", value: "text" },
-      { name: "name", value: "remote" },
-      { name: "value", value: data.remote },
-      { name: "placeholder", value: "Remote" },
-      { name: "required", value: "" },
-    ]);
-    remote.appendChild(div);
-    remote.appendChild(remote_input);
-    container.appendChild(remote);
+    const inputTitleAttribute = {
+      id: "job_title",
+      type: "text",
+      name: "job_title",
+      value: data.job_title,
+      placeholder: "Job Title",
+      required: "",
+    };
 
-    // job link
-    const job_link = create_form.create_tag("div", "job-link");
-    const link_label = create_form.create_tag("label", null, [
-      { name: "for", value: "job_link" },
-    ]);
-    link_label.innerHTML = "Job Link";
-    const link_input = create_form.create_tag("input", null, [
-      { name: "id", value: "job_link" },
-      { name: "type", value: "text" },
-      { name: "name", value: "job_link" },
-      { name: "value", value: data.job_link },
-      { name: "placeholder", value: "Job Link" },
-      { name: "required", value: "" },
-    ]);
-    job_link.appendChild(link_label);
-    job_link.appendChild(link_input);
-    container.appendChild(job_link);
+    // Set attributes for the input element
+    for (var key in inputTitleAttribute) {
+      inputTitle.setAttribute(key, inputTitleAttribute[key]);
+    }
 
-    // Country
-    const job_location_country = create_form.create_tag("div", "job-location");
-    const job_country = create_form.create_tag("div", "job-country");
-    div = create_form.create_tag("div");
-    const country_svg = create_form.create_tag("img", null, [
-      { name: "src", value: "../../images/svg/globe.svg" },
-      { name: "alt", value: "country" },
-    ]);
-    const country_label = create_form.create_tag("label", null, [
-      { name: "for", value: "country" },
-    ]);
-    country_label.innerHTML = "Country";
-    div.appendChild(country_svg);
-    div.appendChild(country_label);
+    //  Company Input / Label
+    labelCompany.innerHTML = "Company";
+    labelCompany.setAttribute("for", "company");
 
-    const country_input = create_form.create_tag("input", null, [
-      { name: "id", value: "country" },
-      { name: "type", value: "text" },
-      { name: "name", value: "country" },
-      { name: "value", value: data.country },
-      { name: "placeholder", value: "Country" },
-      { name: "required", value: "" },
-    ]);
-    job_country.appendChild(div);
-    job_country.appendChild(country_input);
+    // attributes input
+    const inputCompanyAttribute = {
+      id: "company",
+      type: "text",
+      name: "company",
+      value: data.company,
+      placeholder: "Company",
+      required: "",
+    };
 
-    const add_country_container = create_form.create_tag(
-      "div",
-      "add_country hidden"
-    );
-    const add_country = create_form.create_tag("select", null, [
-      { name: "id", value: "add_country" },
-      { name: "name", value: "Country" },
-      { name: "required", value: "" },
-    ]);
+    // Set attributes for the input element
+    for (var key in inputCompanyAttribute) {
+      inputCompany.setAttribute(key, inputCompanyAttribute[key]);
+    }
 
-    add_country_container.appendChild(add_country);
-    job_country.appendChild(add_country_container);
+    //  Remote Input / Label
+    labelRemote.innerHTML = "Job Type";
+    labelRemote.setAttribute("for", "remote");
 
-    const functionality = create_form.create_tag("div", "functionality");
-    const add_country_button = create_form.create_tag("button", null, [
-      { name: "type", value: "button" },
-    ]);
+    // attributes input
+    const inputRemoteAttribute = {
+      id: "remote",
+      type: "text",
+      name: "remote",
+      value: data.remote,
+      placeholder: "Remote",
+      required: "",
+    };
 
-    add_country_button.innerHTML = "Add Country";
-    functionality.appendChild(add_country_button);
-    // job_country.appendChild(functionality);
+    // Set attributes for the input element
+    for (var key in inputRemoteAttribute) {
+      inputRemote.setAttribute(key, inputRemoteAttribute[key]);
+    }
 
+    //  Link Input / Label
 
-    job_location_country.appendChild(job_country);
-    job_location_country.appendChild(functionality);
-    container.appendChild(job_location_country);
+    labelLink.innerHTML = "Job Link";
+    labelLink.setAttribute("for", "job_link");
 
-    // county and city
-    const county_and_city = create_form.create_tag("div", "job-location");
-    const job_city = create_form.create_tag("div", "job-city");
-    div = create_form.create_tag("div");
-    const city_svg = create_form.create_tag("img", null, [
-      { name: "src", value: "../../images/svg/location.svg" },
-      { name: "alt", value: "city" },
-    ]);
-    const city_label = create_form.create_tag("label", null, [
-      { name: "for", value: "city" },
-    ]);
-    city_label.innerHTML = "City";
-    div.appendChild(city_svg);
-    div.appendChild(city_label);
+    // attributes input
+    const inputLinkAttribute = {
+      id: "job_link",
+      type: "text",
+      name: "job_link",
+      value: data.job_link,
+      placeholder: "Job Link",
+      required: "",
+    };
 
-    const city_input = create_form.create_tag("input", null, [
-      { name: "id", value: "city" },
-      { name: "type", value: "text" },
-      { name: "name", value: "city" },
-      { name: "value", value: data.city },
-      { name: "placeholder", value: "City" },
-      { name: "required", value: "" },
-    ]);
+    // Set attributes for the input element
+    for (var key in inputLinkAttribute) {
+      inputLink.setAttribute(key, inputLinkAttribute[key]);
+    }
 
-    job_city.appendChild(div);
-    job_city.appendChild(city_input);
+    //  Country Input / Label
+    labelCountry.innerHTML = "Country";
+    labelCountry.setAttribute("for", "country");
 
-    const job_county = create_form.create_tag("div", "job-county");
-    div = create_form.create_tag("div");
-    const county_svg = create_form.create_tag("img", null, [
-      { name: "src", value: "../../images/svg/location.svg" },
-      { name: "alt", value: "county" },
-    ]);
-    const county_label = create_form.create_tag("label", null, [
-      { name: "for", value: "county" },
-    ]);
-    county_label.innerHTML = "County";
-    div.appendChild(county_svg);
-    div.appendChild(county_label);
+    // country attributes  input
+    const inputCountryAttribute = {
+      id: "country",
+      type: "text",
+      name: "country",
+      value: data.country,
+      placeholder: "Country",
+      required: "",
+    };
 
-    const county_input = create_form.create_tag("input", null, [
-      { name: "id", value: "county" },
-      { name: "type", value: "text" },
-      { name: "name", value: "county" },
-      { name: "value", value: data.county },
-      { name: "placeholder", value: "County" },
-      { name: "required", value: "" },
-    ]);
+    // Set attributes for the input element
+    for (var key in inputCountryAttribute) {
+      inputCountry.setAttribute(key, inputCountryAttribute[key]);
+    }
 
-    job_county.appendChild(div);
-    job_county.appendChild(county_input);
+    // select Country attributes  input
+    const inputSelectCountryAttribute = {
+      id: "add_country",
+      name: "Country",
+      required: "",
+    };
 
-    county_and_city.appendChild(job_city);
-    county_and_city.appendChild(job_county);
+    // Set attributes for the input element
+    for (var key in inputSelectCountryAttribute) {
+      selectCountry.setAttribute(key, inputSelectCountryAttribute[key]);
+    }
 
-    const add_location = create_form.create_tag("div", "add_location hidden");
+    buttonCountry.setAttribute("type", "button");
+    buttonCountry.innerHTML = "Add Country";
 
-    const add_county = create_form.create_tag("select", null, [
-      { name: "id", value: "add_judet" },
-      { name: "name", value: "judet" },
-      { name: "required", value: "" },
-    ]);
+    // City Input / Label
+    labelCity.innerHTML = "City";
+    labelCity.setAttribute("for", "city");
 
-    const add_city = create_form.create_tag("select", null, [
-      { name: "id", value: "add_oras" },
-      { name: "name", value: "oras" },
-      { name: "required", value: "" },
-    ]);
+    // country attributes  input
+    const inputCityAttribute = {
+      id: "city",
+      type: "text",
+      name: "city",
+      value: data.city,
+      placeholder: "City",
+      required: "",
+    };
 
-    add_location.appendChild(add_county);
-    add_location.appendChild(add_city);
-    county_and_city.appendChild(add_location);
+    // Set attributes for the input element
+    for (var key in inputCityAttribute) {
+      inputCity.setAttribute(key, inputCityAttribute[key]);
+    }
 
-    const functionality_location = create_form.create_tag(
-      "div",
-      "functionality"
-    );
-    const add_city_button = create_form.create_tag("button", null, [
-      { name: "type", value: "button" },
-    ]);
-    add_city_button.innerHTML = "Add City";
-    const delete_city_button = create_form.create_tag("button", null, [
-      { name: "type", value: "button" },
-    ]);
-    delete_city_button.innerHTML = "Delete Location";
+    // County Input / Label
+    labelCounty.innerHTML = "County";
+    labelCounty.setAttribute("for", "county");
 
-    functionality_location.appendChild(add_city_button);
-    functionality_location.appendChild(delete_city_button);
-    county_and_city.appendChild(functionality_location);
-    container.appendChild(county_and_city);
+    // country attributes  input
+    const inputCountyAttribute = {
+      id: "county",
+      type: "text",
+      name: "county",
+      value: data.county,
+      placeholder: "County",
+      required: "",
+    };
 
-    // functionality
-    const functionality_container = create_form.create_tag(
-      "div",
-      "functionality"
-    );
-    const edit_job = create_form.create_tag("button", "edit-job");
-    edit_job.innerHTML = "Edit";
-    const deleted_job = create_form.create_tag("button", "delete-job");
-    deleted_job.innerHTML = data.deleted ? "Restore" : "Delete";
-    const publish_job = create_form.create_tag("button", "publish-job");
-    publish_job.innerHTML = data.published ? "Unpublish" : "Publish";
+    // Set attributes for the input element
+    for (var key in inputCountyAttribute) {
+      inputCounty.setAttribute(key, inputCountyAttribute[key]);
+    }
 
-    functionality_container.appendChild(edit_job);
-    functionality_container.appendChild(publish_job);
-    functionality_container.appendChild(deleted_job);
+    // select  city attributes  input
+    const inputSelectCityAttribute = {
+      id: "add_oras",
+      name: "oras",
+      required: "",
+    };
 
-    container.appendChild(functionality_container);
-    form.appendChild(container);
+    // Set attributes for the input element
+    for (var key in inputSelectCityAttribute) {
+      selectCity.setAttribute(key, inputSelectCityAttribute[key]);
+    }
 
-    // finctionality buttons
+    // select county  attributes  input
+    const inputSelectCountyAttribute = {
+      id: "add_judet",
+      name: "judet",
+      required: "",
+    };
+
+    // Set attributes for the input element
+    for (var key in inputSelectCountyAttribute) {
+      selectCounty.setAttribute(key, inputSelectCountyAttribute[key]);
+    }
+
+    buttonCity.setAttribute("type", "button");
+    buttonCity.innerHTML = "Add City";
+
+    deleteButtonCity.setAttribute("type", "button");
+    deleteButtonCity.innerHTML = "Delete Location";
+
+    // Buttons Edit / Delete / Publish
+    buttonEditJob.innerHTML = "Edit";
+    buttonDeleteJob.innerHTML = data.deleted ? "Restore" : "Delete";
+    buttonPublishJob.innerHTML = data.published ? "Unpublish" : "Publish";
+
     const country_options = ["Country", "All"];
+
     country_options.forEach((option, idx) => {
-      const countryElement = document.createElement("option");
-      countryElement.innerHTML = option;
+      optionCountry.innerHTML = option;
       if (idx === 0) {
-        countryElement.selected = true;
-        countryElement.disabled = true;
+        optionCountry.selected = true;
+        optionCountry.disabled = true;
       }
-      add_country.appendChild(countryElement);
     });
 
+    // Countries List
     countries_list.forEach((country) => {
       if (!data.country.includes(country)) {
-      const countryElement = document.createElement("option");
-      countryElement.innerHTML = country;
-      add_country.appendChild(countryElement);
+        selectCountry.innerHTML += `<option>${country}</option>`;
       }
     });
 
     if (data.country.includes("Romania")) {
-      county_input.setAttribute("disabled", true);
-      city_input.setAttribute("disabled", true);
-    } else{
-      add_city_button.classList.add("hidden");
+      inputCounty.setAttribute("disabled", true);
+      inputCity.setAttribute("disabled", true);
+    } else {
+      buttonCity.classList.add("hidden");
     }
 
-    add_country.addEventListener("change", () => {
-      add_country.querySelector("option").remove();
-      if (country_input.value) {
-        country_input.value = country_input.value + "," + add_country.value;
+    // Select Country
+    selectCountry.addEventListener("change", () => {
+      if (inputCountry.value) {
+        inputCountry.value = inputCountry.value + "," + selectCountry.value;
       } else {
-        country_input.value = add_country.value;
+        inputCountry.value = selectCountry.value;
       }
 
-      if (country_input.value.split(",").includes("Romania")) {
-        county_input.setAttribute("disabled", true);
-        city_input.setAttribute("disabled", true);
-        add_city_button.classList.remove("hidden");
+      if (inputCountry.value.split(",").includes("Romania")) {
+        inputCounty.setAttribute("disabled", true);
+        inputCity.setAttribute("disabled", true);
+        buttonCity.classList.remove("hidden");
       } else {
-        county_input.removeAttribute("disabled");
-        city_input.removeAttribute("disabled");
-        add_city_button.classList.add("hidden");
-        add_location.classList.add("hidden");
+        inputCounty.removeAttribute("disabled");
+        inputCity.removeAttribute("disabled");
+        buttonCity.classList.add("hidden");
+        addLocation.classList.add("hidden");
       }
-      
     });
 
     const options_county = ["Judet", "All"];
     options_county.forEach((option, idx) => {
-      const countyElement = document.createElement("option");
-      countyElement.innerHTML = option;
+      optionCounty.innerHTML = option;
       if (idx === 0) {
-        countyElement.selected = true;
-        countyElement.disabled = true;
+        optionCounty.selected = true;
+        optionCounty.disabled = true;
       }
-      add_county.appendChild(countyElement);
     });
 
+    // Add Judete in Select
     counties.forEach((county) => {
-      const countyElement = document.createElement("option");
-      countyElement.innerHTML = Object.keys(county)[0];
-      add_county.appendChild(countyElement);
+      selectCounty.innerHTML += `<option>${Object.keys(county)[0]}</option>`;
     });
 
-    add_county.addEventListener("change", () => {
-      add_city.innerHTML = "";
+    selectCounty.addEventListener("change", () => {
+      selectCity.innerHTML = "";
       const options = ["Oras", "All"];
 
       options.forEach((option, idx) => {
-        const cityElement = document.createElement("option");
-        cityElement.innerHTML = option;
+        optionCity.innerHTML += option;
         if (idx === 0) {
-          cityElement.selected = true;
-          cityElement.disabled = true;
+          optionCity.selected = true;
+          optionCity.disabled = true;
         }
-        add_city.appendChild(cityElement);
       });
 
-      if (county_input.value) {
-        const counties = county_input.value.split(",");
-        if (!counties.includes(add_county.value)) {
-          county_input.value = county_input.value + "," + add_county.value;
+      // Add Judete in Input
+      if (inputCounty.value) {
+        const counties = inputCounty.value.split(",");
+        if (!counties.includes(selectCounty.value)) {
+          inputCounty.value = inputCounty.value + "," + selectCounty.value;
         }
       } else {
-        county_input.value = add_county.value;
+        inputCounty.value = selectCounty.value;
       }
 
+      // Add Orase in Select
       counties.forEach((county) => {
-        if (Object.keys(county)[0] === add_county.value) {
+        if (Object.keys(county)[0] === selectCounty.value) {
           county[Object.keys(county)[0]].forEach((city) => {
             if (!data.city.includes(city)) {
-            const cityElement = document.createElement("option");
-            cityElement.innerHTML = city;
-            add_city.appendChild(cityElement);
+              selectCity.innerHTML += `<option>${city}</option>`;
             }
           });
         }
       });
     });
 
-    add_city.addEventListener("change", () => {
-      if (city_input.value) {
-        city_input.value = city_input.value + "," + add_city.value;
+    // Add Orase in Input
+    selectCity.addEventListener("change", () => {
+      if (inputCity.value) {
+        inputCity.value = inputCity.value + "," + selectCity.value;
       } else {
-        city_input.value = add_city.value;
+        inputCity.value = selectCity.value;
       }
     });
 
-    delete_city_button.addEventListener("click", () => {
-      country_input.value = "";
-      county_input.value = "";
-      city_input.value = "";
-      county_input.removeAttribute("disabled");
-      city_input.removeAttribute("disabled");
-      add_location.classList.add("hidden");
+    //  Delete Inputs Oras,Judete,Country
+    deleteButtonCity.addEventListener("click", () => {
+      inputCountry.value = "";
+      inputCounty.value = "";
+      inputCity.value = "";
+      inputCounty.removeAttribute("disabled");
+      inputCity.removeAttribute("disabled");
+      addLocation.classList.add("hidden");
     });
 
-    add_country_button.addEventListener("click", () => {
-      add_country_container.classList.toggle("hidden");
+    buttonCountry.addEventListener("click", () => {
+      addCountry.classList.toggle("hidden");
     });
 
-    add_city_button.addEventListener("click", () => {
-      add_location.classList.toggle("hidden");
+    buttonCity.addEventListener("click", () => {
+      addLocation.classList.toggle("hidden");
     });
 
-    // edit job
-    edit_job.addEventListener("click", () => {
+    // Function to handle API requests
+    const handleApiRequest = (url, data, alertSucces) => {
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then(() => {
+          formContainer.classList.toggle("hidden");
+          alertSucces;
+          showSpinner();
+          setTimeout(() => {
+            hideSpinner();
+            window.location.reload();
+          }, 3000);
+        })
+        .catch((e) => {
+          alertModalError(e);
+        });
+    };
+
+    // Edit job
+    buttonEditJob.addEventListener("click", () => {
       // for local testing
       // const edit_url = "http://localhost:8000/validator/edit/";
-      const edit_url = "https://api.laurentiumarian.ro/validator/edit/";
-
-      const job_title = job_title_input.value;
-      const company = company_input.value;
-      const remote = remote_input.value;  
-      const job_link = link_input.value;
-      const country = country_input.value.split(",");
-      const city = city_input.value.split(",");
-      const county = county_input.value.split(",");
-
-      const data = [{
-        job_title,
-        company,
-        remote,
-        job_link,
-        country,
-        city,
-        county,
-      }];
-
-      fetch(edit_url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-        .then(() => {
-          formContainer.classList.toggle("hidden");
-          alertModalSuccess();
-
-          setTimeout(() => {
-            window.location.reload();
-          }, 3000);
-        })
-        .catch((e) => {
-          alertModalError(e);
-        });
+      const editUrl = "https://api.laurentiumarian.ro/validator/edit/";
+      const data = getFormData();
+      handleApiRequest(
+        editUrl,
+        data,
+        alertModalSuccess("The job has been updated!")
+      );
     });
 
-    // delete job
-    deleted_job.addEventListener("click", () => {
+    // Delete job
+    buttonDeleteJob.addEventListener("click", () => {
       // for local testing
       // const delete_url = "http://localhost:8000/validator/delete/";
-      const delete_url = "https://api.laurentiumarian.ro/validator/delete/";
-
-      const job_title = job_title_input.value;
-      const company = company_input.value;
-      const remote = remote_input.value;  
-      const job_link = link_input.value;
-      const country = country_input.value.split(",");
-      const city = city_input.value.split(",");
-      const county = county_input.value.split(",");
-
-      const data = [{
-        job_title,
-        company,
-        remote,
-        job_link,
-        country,
-        city,
-        county,
-      }];
-
-      fetch(delete_url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-        .then(() => {
-          formContainer.classList.toggle("hidden");
-          alertModalSuccess();
-
-          setTimeout(() => {
-            window.location.reload();
-          }, 3000);
-        })
-        .catch((e) => {
-          alertModalError(e);
-        });
+      const deleteUrl = "https://api.laurentiumarian.ro/validator/delete/";
+      const data = getFormData();
+      const alert =
+        buttonDeleteJob.innerText === "Restore"
+          ? alertModalSuccess("The job has been restored!")
+          : alertModalSuccess("The job has been deleted!");
+      handleApiRequest(deleteUrl, data, alert);
     });
 
-    // publish job
-    publish_job.addEventListener("click", () => {
+    // Publish job
+    buttonPublishJob.addEventListener("click", () => {
       // for local testing
       // const publish_url = "http://localhost:8000/validator/publish/";
-      const publish_url = "https://api.laurentiumarian.ro/validator/publish/";
-
-      const job_title = job_title_input.value;
-      const company = company_input.value;
-      const remote = remote_input.value;  
-      const job_link = link_input.value;
-      const country = country_input.value.split(",");
-      const city = city_input.value.split(",");
-      const county = county_input.value.split(",");
-
-      const data = [{
-        job_title,
-        company,
-        remote,
-        job_link,
-        country,
-        city,
-        county,
-      }];
-
-      fetch(publish_url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-        .then(() => {
-          formContainer.classList.toggle("hidden");
-          alertModalSuccess();
-
-          setTimeout(() => {
-            window.location.reload();
-          }, 3000);
-        })
-        .catch((e) => {
-          alertModalError(e);
-        });
+      const publishUrl = "https://api.laurentiumarian.ro/validator/publish/";
+      const data = getFormData();
+      const alert =
+        buttonPublishJob.innerText === "Publish"
+          ? alertModalSuccess("The job has been published!")
+          : alertModalSuccess("The job has been unpublished!");
+      handleApiRequest(publishUrl, data, alert);
     });
+
+    // Function to get form data
+    const getFormData = () => {
+      const jobTitle = inputTitle.value;
+      const company = inputCompany.value;
+      const remote = inputRemote.value;
+      const jobLink = inputLink.value;
+      const country = inputCountry.value.split(",");
+      const city = inputCity.value.split(",");
+      const county = inputCounty.value.split(",");
+
+      return [
+        {
+          job_title: jobTitle,
+          company,
+          remote,
+          job_link: jobLink,
+          country,
+          city,
+          county,
+        },
+      ];
+    };
+
+    dataFormContainer.append(card);
   },
 };
+
+// Spinner
+function showSpinner() {
+  const spinnerContainer = document.createElement("div");
+  spinnerContainer.id = "spinner-container";
+
+  const spinner = document.createElement("div");
+  spinner.id = "spinner";
+
+  spinnerContainer.appendChild(spinner);
+  document.body.appendChild(spinnerContainer);
+}
+
+function hideSpinner() {
+  const spinnerContainer = document.getElementById("spinner-container");
+  if (spinnerContainer) {
+    spinnerContainer.remove();
+  }
+}
