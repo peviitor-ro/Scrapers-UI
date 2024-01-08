@@ -889,9 +889,14 @@ button div {
 .job-type-container {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   gap: 2px;
   font-size: 15px;
+}
+
+.location-container div {
+  flex-wrap: wrap;
+  display: flex;
 }
 
 .job_link-container {
@@ -1209,47 +1214,61 @@ footer .copyright {
 /* form */
 .form-container {
   position: fixed;
-  padding: 10px;
-  background-color: var(--bg-header);
-  z-index: 100;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  background: rgba(100, 99, 99, 0.8); /* Semi-transparent white background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 998;
 }
 
 .form-container .container-label-img {
+  display: flex;
+  align-items: end;
   margin: 5px;
 }
 
 .form-container .container-label-img img {
-  width: 15px;
+  width: 20px;
   margin: 0px 3px;
 }
 
 .form-container .close-form {
   position: absolute;
-  right: 20px;
-  margin: 10px;
+  right: 5px;
+  top: 5px;
   padding: 10px;
-  border: none;
-  border-radius: 5px;
+  width: 20px;
+  height: 20px;
   background-color: var(--button-bg-primary);
   color: var(--text-button-primary);
-  font-size: 16px;
   cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+}
+.form-container .close-form:hover {
+  transform: scale(1.2);
+}
+.form-container .close-form p {
+  font-size: 12px;
 }
 
 .form {
   background-color: var(--bg-cards);
-  border-radius: 20px;
+  border-radius: 8px;
   box-shadow: 0px 2px 5px 0.5px rgba(80, 79, 79, 0.72);
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 100%;
+  width: 70%;
+  height: 80%;
   position: relative;
+  padding: 20px;
 }
 
 .form .details-container {
@@ -1272,8 +1291,27 @@ footer .copyright {
   width: 100%;
 }
 
+.details-container .inputError {
+  outline: 1px solid red;
+}
+
 .details-container input:focus {
   border: 2px solid var(--bg-primary);
+}
+
+.form .form-error-jobTitle,
+.form .form-error-companyName,
+.form .form-error-jobLink {
+  display: none;
+  font-size: 15px;
+  font-weight: 400;
+  margin: 5px;
+  color: red;
+  outline: none;
+}
+
+.form .form-errors {
+  display: block;
 }
 
 .form .job-company,
@@ -1287,7 +1325,6 @@ footer .copyright {
   padding: 5px;
   display: flex;
   flex-direction: column;
-  align-items: start;
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -1301,18 +1338,6 @@ footer .copyright {
   margin-top: 10px;
 }
 
-/* .form .job-company div,
-.form .job-title div,
-.form .job-city div,
-.form .job-county div,
-.form .job-country div,
-.form .job-remote div,
-.form .job-link div {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-} */
-
 .form .job-country,
 .form .job-city,
 .form .job-county {
@@ -1322,27 +1347,31 @@ footer .copyright {
 .form label {
   font-size: 16px;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin: 0px 3px;
 }
 
 .form .functionality {
   justify-content: start;
   gap: 10px;
-  margin: 10px 0px;
+  margin: 10px;
 }
 
-.form select {
+.form .add_location select,
+.form .add-country select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   margin: 0px 15px;
   padding: 10px 5px 10px 15px;
   width: 13em;
-  border: 1px solid #494949;
+  border: 1px solid var(--bg-filters);
   border-radius: 8px;
   outline: none;
-  color: #494949;
   background-color: var(--bg-header);
+}
+
+.form select::-webkit-scrollbar {
+  width: 6px;
 }
 
 @media (max-width: 800px) {
@@ -1350,13 +1379,24 @@ footer .copyright {
     padding: 0px;
   }
 
+  .details-container::-webkit-scrollbar {
+    width: 6px;
+  }
   .form {
-    border-radius: 0px;
+    padding: 0px;
+    border-radius: 8px;
+    width: 100%;
+    margin: 0px 10px;
   }
 
   .form .details-container {
     grid-template-columns: 1fr;
     overflow: auto;
+  }
+
+  .form-container .close-form {
+    right: 20px;
+    top: 10px;
   }
 
   .form .job-company,
@@ -1368,18 +1408,6 @@ footer .copyright {
   .form .job-link,
   .form .job-location {
     border: none;
-  }
-
-  .form .job-company div,
-  .form .job-title div,
-  .form .job-city div,
-  .form .job-county div,
-  .form .job-country div,
-  .form .job-remote div,
-  .form .job-link div {
-    display: flex;
-    align-items: center;
-    gap: 5px;
   }
 
   .form .job-country,
@@ -1401,31 +1429,43 @@ footer .copyright {
   .form img {
     font-size: 16px;
     font-weight: 600;
+  }
+
+  .form .buttonsForm {
+    justify-content: center;
+    background-color: var(--bg-header);
+    margin: 0px;
+  }
+  .form .functionality [form-button-editjob],
+  .form .functionality [form-button-deletejob],
+  .form .functionality [form-button-publishjob] {
+    font-size: 14px;
+  }
+
+  .form .job-country {
     margin-bottom: 10px;
   }
-
-  .form .functionality {
-    justify-content: start;
-    gap: 10px;
-    margin: 10px 0px;
-  }
-
-  .form select {
+  .form .add-country select {
+    margin: 0px;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    margin: 0px 15px;
     padding: 10px 5px 10px 15px;
-    width: 13em;
-    border: 1px solid #494949;
-    border-radius: 8px;
-    outline: none;
-    color: #494949;
-    background-color: var(--bg-header);
   }
 
-  .form button {
-    font-size: 10px;
+  .form .job-location .functionality button,
+  .form .job-locationCountry .functionality button {
+    font-size: 14px;
+    margin: 5px 0px;
+  }
+
+  .form .add_location select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0px;
+    padding: 10px 5px 10px 15px;
+    border-radius: 8px;
   }
 }
 

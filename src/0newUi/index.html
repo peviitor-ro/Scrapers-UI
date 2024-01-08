@@ -249,31 +249,34 @@
       </div>
     </div>
 
-    <!-- Spinner -->
-    <!-- <div id="spinner-container">
-      <div id="spinner"></div>
-    </div> -->
-
     <!-- Form Template -->
     <div class="form-container hidden" data-form-container></div>
     <template data-form-template>
       <div class="form">
-        <button type="button" class="close-form" close-form>X</button>
+        <div class="close-form" close-form>
+          <p>X</p>
+        </div>
         <div class="details-container">
           <div class="job-title">
             <div class="container-label-img">
               <img form-title-img />
               <label form-title-label></label>
+              <p>*</p>
             </div>
             <input form-title-input />
+            <p class="form-error-jobTitle">Please fill in the job title</p>
           </div>
 
           <div class="job-company">
             <div class="container-label-img">
               <img form-company-img /> <label form-company-label></label>
+              <p>*</p>
             </div>
 
             <input form-company-input />
+            <p class="form-error-companyName">
+              Please fill in the company name
+            </p>
           </div>
 
           <div class="job-remote">
@@ -288,9 +291,11 @@
             <div class="container-label-img">
               <img form-link-img />
               <label form-link-label></label>
+              <p>*</p>
             </div>
 
             <input form-link-input />
+            <p class="form-error-jobLink">Please fill in the job link</p>
           </div>
 
           <div class="job-locationCountry">
@@ -346,7 +351,7 @@
             </div>
           </div>
         </div>
-        <div class="functionality">
+        <div class="functionality buttonsForm">
           <button form-button-editJob></button>
           <button form-button-deleteJob></button>
           <button form-button-publishJob></button>
@@ -389,7 +394,7 @@
                   data-location-image
                   class="icons-jobCard"
                 />
-                <p data-location></p>
+                <div data-location></div>
               </div>
               <div class="country-container" title="Country">
                 <img

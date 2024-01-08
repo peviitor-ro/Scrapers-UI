@@ -291,7 +291,9 @@ const create_job = {
 
     // Location
     jobLocation.innerHTML = validate_city(data)
-      ? validate_city(data).map((city) => city.outerHTML)
+      ? validate_city(data).map(
+          (city) => (jobLocation.innerHTML = `<p>${city.innerText}</p>`)
+        )
       : "No city";
 
     jobLocation.classList.add(validate_city(data) ? "validate" : "invalid");
@@ -833,6 +835,11 @@ const create_form = {
     const imageCity = card.querySelector("[form-city-img]");
     const imageCounty = card.querySelector("[form-county-img]");
 
+    // check Errors Form
+    const errorTitle = card.querySelector(".form-error-jobTitle");
+    const errorLink = card.querySelector(".form-error-jobLink");
+    const errorCompany = card.querySelector(".form-error-companyName");
+
     // Close Form
     closeFormButton.addEventListener("click", () => {
       formContainer.classList.toggle("hidden");
@@ -1180,17 +1187,48 @@ const create_form = {
         });
     };
 
+    // Verificare title,company,link
+
+    function handleValidation(inputField, errorElement) {
+      if (!inputField.value) {
+        showError(inputField, errorElement);
+        return true; // Error is present
+      } else {
+        hideError(inputField, errorElement);
+        return false; // No error
+      }
+    }
+
+    function showError(inputField, errorElement) {
+      inputField.classList.add("inputError");
+      errorElement.classList.add("form-errors");
+    }
+
+    function hideError(inputField, errorElement) {
+      inputField.classList.remove("inputError");
+      errorElement.classList.remove("form-errors");
+    }
+
     // Edit job
     buttonEditJob.addEventListener("click", () => {
       // for local testing
       // const edit_url = "http://localhost:8000/validator/edit/";
       const editUrl = "https://api.laurentiumarian.ro/validator/edit/";
       const data = getFormData();
-      handleApiRequest(
-        editUrl,
-        data,
-        alertModalSuccess("The job has been updated!")
-      );
+
+      const linkError = handleValidation(inputLink, errorLink);
+      const companyError = handleValidation(inputCompany, errorCompany);
+      const titleError = handleValidation(inputTitle, errorTitle);
+
+      if (linkError || companyError || titleError) {
+        console.log("Validation failed");
+      } else {
+        handleApiRequest(
+          editUrl,
+          data,
+          alertModalSuccess("The job has been updated!")
+        );
+      }
     });
 
     // Delete job
