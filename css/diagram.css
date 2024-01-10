@@ -12,6 +12,7 @@ body {
   font-family: "Poppins", sans-serif;
   background-color: #f2f2fc;
   height: 150vh;
+  width: fit-content;
 }
 
 .nav {
@@ -78,19 +79,30 @@ body {
   color: white;
 }
 
-.line {
+.line,
+.line-hover {
   position: absolute;
   width: 1px;
   z-index: -1;
 }
 
-.line::after {
+.line::after,
+.line-hover::after {
   content: "";
   position: absolute;
   width: 1px;
   height: 100%;
   background: linear-gradient(to bottom, #0e0afa 0%, #f80707 100%);
   animation: grow var(--random) linear infinite;
+}
+
+
+.hover{
+  transform: scale(1.1);
+}
+
+.hidden {
+  display: none;
 }
 
 @keyframes grow {
