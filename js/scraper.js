@@ -10,17 +10,8 @@ company.innerHTML = capitelizedCompanyName;
 const jobs_container = document.querySelector(".jobs");
 const status_container = document.querySelector("#status");
 
-// TODO: change this to the real url
-// for local testing
-// const validator_url = "http://localhost:8000/validator/get/";
-const validator_url = "https://api.laurentiumarian.ro/validator/get/";
 const validator_data = {
   company: companyName,
-};
-
-const headers = {
-  "Content-Type": "application/json",
-  "Authorization": "Token " + sessionStorage.getItem("Token"),
 };
 
 const getJobs = async () => {
@@ -43,8 +34,8 @@ apiJobs.then((data) => {
     data.forEach((job_obj) => {
       create_job.initialize(job_obj);
     });
-  } 
-})
+  }
+});
 
 const cityInRomania = (city) => {
   const cities = {
@@ -255,9 +246,13 @@ const create_job = {
     editJobButton.addEventListener("click", () => {
       const data = JSON.parse(card.getAttribute("data"));
       dataFormContainer.innerHTML = "";
-      create_form.initialize(data);
-      dataFormContainer.classList.toggle("hidden");
-      document.body.style.overflowY = "hidden";
+      if (is_authenticated) {
+        create_form.initialize(data);
+        dataFormContainer.classList.toggle("hidden");
+        document.body.style.overflowY = "hidden";
+      } else {
+        alertModalError("You are not authorized to use this scraper");
+      }
     });
 
     // check status jobs
@@ -522,8 +517,7 @@ button.addEventListener("click", () => {
           data.detail + "</br>";
         document.querySelector(".console").classList.remove("hidden");
         alertModalInvalid();
-      }
-       else {
+      } else {
         status_container.classList.remove("validate");
         localStorage.setItem(`status-${companyName}`, "Inactive");
         localStorage.setItem(`lastUpdate-${companyName}`, dateTime);
@@ -546,7 +540,6 @@ button.addEventListener("click", () => {
         "Gettin data from peviitor database! </br>";
       alertModalError(e);
 
-      const peviitorUrl = "https://dev.laurentiumarian.ro";
       const data = { company: companyName };
 
       fetch(peviitorUrl, {
@@ -618,14 +611,9 @@ if (status === "Active") {
 }
 
 // URL-ul API-ului GitHub pentru a obține contribuitorii unui repozitoriu
-const repoOwner = "peviitor-ro";
-// const repoName = apiObj.url.split("/")[4];
-
 // const contribuitori = [];
 // const testers = [];
 // let uniqueTesters = [];
-// const contributorsUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contributors`;
-// const issuesUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/issues`;
 
 // fetch(contributorsUrl)
 //   .then((response) => response.json())
@@ -1228,9 +1216,6 @@ const create_form = {
 
     // Edit job
     buttonEditJob.addEventListener("click", () => {
-      // for local testing
-      // const edit_url = "http://localhost:8000/validator/edit/";
-      const editUrl = "https://api.laurentiumarian.ro/validator/edit/";
       const data = getFormData();
 
       const linkError = handleValidation(inputLink, errorLink);
@@ -1250,9 +1235,6 @@ const create_form = {
 
     // Delete job
     buttonDeleteJob.addEventListener("click", () => {
-      // for local testing
-      // const delete_url = "http://localhost:8000/validator/delete/";
-      const deleteUrl = "https://api.laurentiumarian.ro/validator/delete/";
       const data = getFormData();
       const alert =
         buttonDeleteJob.innerText === "Restore"
@@ -1263,9 +1245,6 @@ const create_form = {
 
     // Publish job
     buttonPublishJob.addEventListener("click", () => {
-      // for local testing
-      // const publish_url = "http://localhost:8000/validator/publish/";
-      const publishUrl = "https://api.laurentiumarian.ro/validator/publish/";
       const data = getFormData();
       const alert =
         buttonPublishJob.innerText === "Publish"
