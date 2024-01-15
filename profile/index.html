@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profilul Meu</title>
+</head>
+<body>
+    <h1>Profilul Meu</h1>
+    <a href="../src/0newUi/index.html">Go back</a>
+    <a id="logout" href="
+        https://api.laurentiumarian.ro/logout/?next=http://localhost:5500/profile/index.html
+    ">Logout</a>
+    <script src="../js/logedout.js"></script>
+    <script>
+        // get query params
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        const Authorization = urlParams.get("Token")
+
+        if (Authorization){
+           
+        sessionStorage.setItem("Token", Authorization);
+        }
+
+        // For local testing
+        // const url = "http://localhost:8000/homepage/";
+        const url = "https://api.laurentiumarian.ro/homepage/";
+
+        if (!sessionStorage.getItem("Token")){
+            window.location.replace(url);
+        }
+
+        document.getElementById("logout").addEventListener("click", () => {
+            sessionStorage.clear();
+        });
+
+
+
+    </script>
+</body>
+</html>

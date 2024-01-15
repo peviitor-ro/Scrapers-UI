@@ -18,12 +18,15 @@ const validator_data = {
   company: companyName,
 };
 
+const headers = {
+  "Content-Type": "application/json",
+  "Authorization": "Token " + sessionStorage.getItem("Token"),
+};
+
 const getJobs = async () => {
   const response = await fetch(validator_url, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: headers,
     body: JSON.stringify(validator_data),
   });
   const data = await response.json();
@@ -33,13 +36,15 @@ const getJobs = async () => {
 let apiJobs = getJobs();
 
 apiJobs.then((data) => {
-  if (data !== null) {
+  if (data.detail) {
+    alertModalError(data.detail);
+  } else if (data) {
     jobs_container.innerHTML = "";
     data.forEach((job_obj) => {
       create_job.initialize(job_obj);
     });
-  }
-});
+  } 
+})
 
 const cityInRomania = (city) => {
   const cities = {
@@ -56,9 +61,7 @@ const cityInRomania = (city) => {
 const fetchApi = async (apiObj) => {
   const response = await fetch(apiObj.url, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: headers,
     body: JSON.stringify(apiObj),
   });
   const data = await response.json();
@@ -465,12 +468,13 @@ button.addEventListener("click", () => {
       if (data.succes) {
         fetch(validator_url, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: headers,
           body: JSON.stringify(validator_data),
         })
           .then((response) => {
+            if (response.status === 401) {
+              alertModalError("You are not authorized to use this scraper");
+            }
             return response.json();
           })
           .then(async (data) => {
@@ -504,7 +508,22 @@ button.addEventListener("click", () => {
         });
         document.querySelector(".console").classList.remove("hidden");
         alertModalInvalid();
-      } else {
+      } else if (data.detail) {
+        status_container.classList.remove("validate");
+        localStorage.setItem(`status-${companyName}`, data.detail);
+        localStorage.setItem(`lastUpdate-${companyName}`, dateTime);
+        document.querySelector("#last-update").innerHTML = dateTime;
+        status_container.innerHTML = data.detail;
+        status_container.classList.add("warning");
+        jobs_container.innerHTML = noDataImage;
+
+        document.querySelector(".console-content").innerHTML = "";
+        document.querySelector(".console-content").innerHTML +=
+          data.detail + "</br>";
+        document.querySelector(".console").classList.remove("hidden");
+        alertModalInvalid();
+      }
+       else {
         status_container.classList.remove("validate");
         localStorage.setItem(`status-${companyName}`, "Inactive");
         localStorage.setItem(`lastUpdate-${companyName}`, dateTime);
@@ -1168,9 +1187,7 @@ const create_form = {
     const handleApiRequest = (url, data, alertSucces) => {
       fetch(url, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: headers,
         body: JSON.stringify(data),
       })
         .then(() => {
