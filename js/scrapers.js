@@ -2532,9 +2532,24 @@ let scrapers = [
         "name": "saintgobain"
     },
     {
-        "name":"affidearomania"
+        "name": "affidearomania"
     },
     {
-        "name":"urbica"
+        "name": "urbica"
+    },
+    {
+        "name": "intelligentbee"
+    },
+    {
+        "name": "fltechincs"
+    },
+    {
+        "name": "bengen"
+    },
+    {
+        "name": "cgsromania"
+    },
+    {
+        "name": "osfdigital"
     }
 ];
