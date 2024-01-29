@@ -2551,5 +2551,8 @@ let scrapers = [
     },
     {
         "name": "osfdigital"
+    },
+    {
+        "name":"noodlepack"
     }
 ];
