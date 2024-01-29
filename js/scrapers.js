@@ -2554,5 +2554,8 @@ let scrapers = [
     },
     {
         "name":"noodlepack"
+    },
+    {
+        "name":"pimcopy"
     }
 ];
