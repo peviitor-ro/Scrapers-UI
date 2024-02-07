@@ -2232,9 +2232,6 @@ let scrapers = [
         "name": "partnerd"
     },
     {
-        "name": "sandp"
-    },
-    {
         "name": "qiagen"
     },
     {
@@ -2551,5 +2548,11 @@ let scrapers = [
     },
     {
         "name": "osfdigital"
+    },
+    {
+        "name":"noodlepack"
+    },
+    {
+        "name":"pimcopy"
     }
 ];
