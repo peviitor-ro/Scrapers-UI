@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../../css/scraper.css" />
+        <title></title>
+    </head>
+    <body>
+        <div class="header">
+            <a href="/">
+                <div class="logo">
+                    <h3><i>Scraper-UI.</i></h3>
+                    <img alt="logo" height="30" src="../../images/svg/peviitor.svg" width="100"/>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="https://firme.peviitor.ro/" target="_blank">Firme PeViitor</a>
+                <a href="../../doc.html">Documentation</a>
+            </div>
+        </div>
+        <!-- Start Section Alert -->
+        <div class="alertPopUp active">
+            <div class="alertPopUp-content">
+                <img alt="Check" class="alert-img" id="image-alert" src="" />
+                <div class="message">
+                    <span class="alert-text-1"> </span>
+                    <span class="alert-text-2"> </span>
+                </div>
+            </div>
+            <p class="close">X</p>
+            <div class="progress active"></div>
+        </div>
+        <!-- End Section Alert -->
+        <section class="company">
+            <div class="company-container">
+                <div class="flip-card-container">
+                    <div class="flip-card">
+                        <div class="box">
+                            <img alt="gts"  src="data:image/png;base64,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" />
+                        </div>
+                        <div class="box2">
+                            <a href="https://www.gts.ro/ro/roluri-disponibile" target="_blank">
+                            Careers
+                            </a>
+                            <!--
+                                Could not find targetare link
+                            -->>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="Chart"> </canvas>
+                </div>
+            </div>
+        </section>
+        <div class="container-details">
+            <div class="scraper-details">
+                <div class="details">
+                    <h5>Company</h5>
+                    <p id="company"></p>
+                </div>
+                <div class="hr"></div>
+                <div class="details">
+                    <h5>Status</h5>
+                    <p id="status">Uknown</p>
+                </div>
+                <div class="hr"></div>
+                <div class="details">
+                    <h5>Jobs</h5>
+                    <p id="jobs">Uknown</p>
+                </div>
+                <div class="hr"></div>
+                <div class="details">
+                    <h5>Last Update</h5>
+                    <p id="last-update">Uknown</p>
+                </div>
+                <div class="hr"></div>
+                <div class="details">
+                    <h5>
+                        Scraper
+                    </h5>
+                    <p id="scraper-lg">
+                        Python
+                    </p>
+                </div>
+                <div class="hr"></div>
+                  <div class="details">
+                        <h5>Contributors</h5>
+                        <div id="contributors"></div>
+                    </div>
+                <div class="hr"></div>
+                 <div class="details">
+                     <h5>Testers</h5>
+                         <div id="testers"></div>
+                </div>
+            </div>
+            <div class="functionality">
+                <button>
+                    <div>Run Scraper</div>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16px"
+                        height="16px"
+                        viewbox="0 0 16 16"
+                        fill="white"
+                        class="bi bi-gear"
+                    >
+                        <path
+                        d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"
+                        />
+                        <path
+                        d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"
+                        />
+                    </svg>
+                </button>
+                
+                <a
+                href="https://peviitor.ro/rezultate?company=gts&country=Rom%C3%A2nia&page=1"
+                target="_blank"
+                class="functionality-buttons"
+                >See Jobs</a
+                >
+
+                <p class="delete-storage">Delete Local Storage</p>
+
+                <a href="https://github.com/peviitor-ro/Scrapers_Matei/blob/main/sites/gts_scraper.py" target="_blank" class="functionality-buttons">
+                    GitHubRepo
+                </a>
+                <a href="https://github.com/peviitor-ro/Scrapers_Matei/issues" target="_blank">
+                    Report 🐞
+                </a>
+                <a
+                href="https://www.google.com/url?q=https%3A%2F%2Fdiscord.gg%2Ft2aEdmR52a&sa=D&sntz=1&usg=AOvVaw2T-L7jAgzen0J-qResoTGU"
+                target="_blank"
+                class="functionality-buttons"
+                >
+                    Join Discord
+                </a>
+            </div>
+        </div>
+        <div class="jobs"></div>
+        <div class="skeleton-jobs">
+            <template id="card-template">
+                <div class="skeleton-job">
+                    <div>
+                        <p class="skeleton-job-title"></p>
+                        <p class="skeleton-job-company"></p>
+                        <p class="skeleton-job-location"></p>
+                    </div>
+                    <div class="skeleton-job-post">
+                        <p></p>
+                    </div>
+                </div>
+            </template>
+        </div>
+        <div class="console hidden">
+            <button class="close-console" onclick="closeConsole()">x</button>
+            <div class="console-content"></div>
+        </div>
+        <div onclick="toTop()" class="button-to-top-parent">
+            <div class="button-to-top">&#8679;</div>
+        </div>
+        <script>
+            // De Modificat
+            const apiObj = {
+                file: "gts_scraper.py",
+                url: "https://dev.laurentiumarian.ro/scraper/Scrapers_Matei/",
+                dataSetUrl: "https://dev.laurentiumarian.ro/dataset/Scrapers_Matei/gts_scraper.py/",
+            };
+            // ##########################################
+        </script>
+        <script src="../../js/countries.js"></script>
+        <script src="../../js/counties.js"></script>
+        <script src="../../js/scraper.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+        <script src="../../js/chart.js"></script>
+    </body>
+</html>
+        
