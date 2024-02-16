@@ -960,9 +960,6 @@ let scrapers = [
         "name": "axway"
     },
     {
-        "name": "test"
-    },
-    {
         "name": "yopeso"
     },
     {
@@ -2554,5 +2551,8 @@ let scrapers = [
     },
     {
         "name": "stratpharma"
+    },
+    {
+        "name":"daislerprinthouse"
     }
 ];
