@@ -1239,9 +1239,6 @@ let scrapers = [
         "name": "gmv"
     },
     {
-        "name": "canam"
-    },
-    {
         "name": "akka"
     },
     {
