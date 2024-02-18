@@ -1722,7 +1722,7 @@ let scrapers = [
         "name": "hitachienergy"
     },
     {
-        "name": "rian-partners"
+        "name": "rianpartners"
     },
     {
         "name": "nvent"
@@ -2550,6 +2550,24 @@ let scrapers = [
         "name": "stratpharma"
     },
     {
-        "name":"daislerprinthouse"
+        "name": "daislerprinthouse"
+    },
+    {
+        "name": "uplift"
+    },
+    {
+        "name": "premiermedia"
+    },
+    {
+        "name": "vivadotcom"
+    },
+    {
+        "name": "sapfioneer"
+    },
+    {
+        "name": "hicx"
+    },
+    {
+        "name": "qualitest"
     }
 ];
