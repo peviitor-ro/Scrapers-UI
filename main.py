@@ -302,7 +302,7 @@ result = json.loads(result.replace('",}', '"}').replace('},]', '}]')) + json_fil
 
 # add new results in file
 with open('js/scrapers.js', 'w') as f:
-    f.write(f'let scrapers = {json.dumps(result, indent=4)};')
+    f.write(f'let scrapers = {json.dumps(result, indent=2)};')
 
 
 
