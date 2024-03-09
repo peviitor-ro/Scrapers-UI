@@ -29,19 +29,19 @@ exclude = [
 
 # scrapers urls
 urls = [
-    # 'https://dev.laurentiumarian.ro/scraper/PeViitor_Scrapers_Melania/',
-    # 'https://dev.laurentiumarian.ro/scraper/Scrapers_start_with_digi/',
-    # 'https://dev.laurentiumarian.ro/scraper/Scrapers_Job_PeViitor/',
+     'https://dev.laurentiumarian.ro/scraper/PeViitor_Scrapers_Melania/',
+     'https://dev.laurentiumarian.ro/scraper/Scrapers_start_with_digi/',
+     'https://dev.laurentiumarian.ro/scraper/Scrapers_Job_PeViitor/',
     'https://dev.laurentiumarian.ro/scraper/based_scraper_py/',
-    # 'https://dev.laurentiumarian.ro/scraper/based_scraper_js/',
-    # 'https://dev.laurentiumarian.ro/scraper/JobsScrapers/',
-    # 'https://dev.laurentiumarian.ro/scraper/Scrapers_Cristi_Olteanu/',
-    # 'https://dev.laurentiumarian.ro/scraper/Scrapers_canghelet/',
-    # 'https://dev.laurentiumarian.ro/scraper/scrapers_david/',
-    # 'https://dev.laurentiumarian.ro/scraper/Scrapers_Dan_Marius/',
-    # 'https://dev.laurentiumarian.ro/scraper/scrapers_Larisa_M16/',
-    # 'https://dev.laurentiumarian.ro/scraper/Scrapers_Matei/',
-    # 'https://dev.laurentiumarian.ro/scraper/spider_web_scraper_jmeker/'
+     'https://dev.laurentiumarian.ro/scraper/based_scraper_js/',
+     'https://dev.laurentiumarian.ro/scraper/JobsScrapers/',
+     'https://dev.laurentiumarian.ro/scraper/Scrapers_Cristi_Olteanu/',
+     'https://dev.laurentiumarian.ro/scraper/Scrapers_canghelet/',
+     'https://dev.laurentiumarian.ro/scraper/scrapers_david/',
+     'https://dev.laurentiumarian.ro/scraper/Scrapers_Dan_Marius/',
+     'https://dev.laurentiumarian.ro/scraper/scrapers_Larisa_M16/',
+     'https://dev.laurentiumarian.ro/scraper/Scrapers_Matei/',
+     'https://dev.laurentiumarian.ro/scraper/spider_web_scraper_jmeker/'
 ]
 
 # make a request to get the scrapers

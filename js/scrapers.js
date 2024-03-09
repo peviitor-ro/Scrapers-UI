@@ -2569,5 +2569,62 @@ let scrapers = [
     },
     {
         "name": "qualitest"
+    },
+    {
+        "name": "fis"
+    },
+    {
+        "name": "flowxai"
+    },
+    {
+        "name": "deltatelgroup"
+    },
+    {
+        "name": "carmeuse"
+    },
+    {
+        "name": "intech"
+    },
+    {
+        "name": "easports"
+    },
+    {
+        "name": "altex"
+    },
+    {
+        "name": "ambalajulperfect"
+    },
+    {
+        "name": "gomag"
+    },
+    {
+        "name": "rottaprint"
+    },
+    {
+        "name": "promelek"
+    },
+    {
+        "name": "toptech"
+    },
+    {
+        "name": "lugera"
+    },
+    {
+        "name": "mercedes"
+    },
+    {
+        "name": "simplex"
+    },
+    {
+        "name": "rinftech"
+    },
+    {
+        "name": "hnservices"
+    },
+    {
+        "name": "locuridemuncacluj"
+    },
+    {
+        "name": "digitain"
     }
 ];
