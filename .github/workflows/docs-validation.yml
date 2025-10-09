@@ -1,0 +1,103 @@
+name: Documentation Validation
+
+on:
+  pull_request:
+    paths:
+      - 'docs/**'
+      - 'README.md'
+      - 'scripts/validate-docs.js'
+      - '.github/workflows/docs-validation.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs/**'
+      - 'README.md'
+
+jobs:
+  validate-docs:
+    name: Validate Documentation
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Run documentation validation
+        run: node scripts/validate-docs.js
+      
+      - name: Check for broken links in docs
+        run: |
+          echo "Checking for broken internal links..."
+          for file in docs/*.md; do
+            echo "Checking $file"
+            # Check for links to non-existent files
+            grep -oP '\[.*?\]\(\K[^)]+\.md(?=\))' "$file" | while read link; do
+              if [ ! -f "docs/$link" ] && [ ! -f "$link" ]; then
+                echo "❌ Broken link in $file: $link"
+                exit 1
+              fi
+            done
+          done
+          echo "✅ No broken links found"
+      
+      - name: Check documentation completeness
+        run: |
+          echo "Checking documentation completeness..."
+          
+          # Check that all required files exist
+          required_files=("docs/README.md" "docs/architecture.md" "docs/components-guidelines.md" "docs/contributing.md" "docs/api.md")
+          
+          for file in "${required_files[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "❌ Missing required file: $file"
+              exit 1
+            fi
+            
+            # Check file is not empty
+            if [ ! -s "$file" ]; then
+              echo "❌ File is empty: $file"
+              exit 1
+            fi
+            
+            echo "✅ $file exists and is not empty"
+          done
+          
+          echo "✅ All required documentation files are present"
+      
+      - name: Validate markdown syntax (basic)
+        run: |
+          echo "Validating markdown syntax..."
+          
+          # Check for basic markdown issues
+          for file in docs/*.md README.md; do
+            if [ -f "$file" ]; then
+              echo "Checking $file..."
+              
+              # Check for unclosed code blocks
+              if [ $(($(grep -c '```' "$file") % 2)) -ne 0 ]; then
+                echo "❌ Unclosed code block in $file"
+                exit 1
+              fi
+              
+              echo "✅ $file syntax is valid"
+            fi
+          done
+          
+          echo "✅ All markdown files have valid syntax"
+      
+      - name: Summary
+        if: success()
+        run: |
+          echo "🎉 Documentation validation completed successfully!"
+          echo ""
+          echo "📚 All documentation checks passed:"
+          echo "  ✅ Required files present"
+          echo "  ✅ No broken links"
+          echo "  ✅ Valid markdown syntax"
+          echo "  ✅ Documentation structure validated"

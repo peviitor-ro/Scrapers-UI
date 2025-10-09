@@ -4,3 +4,10 @@ env/
 test.py
 .idea/
 .vscode/
+
+# Node modules and dependencies
+node_modules/
+package-lock.json
+
+# Storybook build output
+storybook-static/

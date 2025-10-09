@@ -1,0 +1,42 @@
+{
+  "name": "scrapers-ui",
+  "version": "1.0.0",
+  "description": "Web-based interface for managing and executing web scrapers for job postings",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server -p 8000 -o",
+    "serve": "npx http-server -p 8000",
+    "docs:serve": "npx http-server -p 8001 docs/",
+    "docs:build": "echo 'Documentation is static HTML - no build required'",
+    "docs:validate": "node scripts/validate-docs.js",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build -o storybook-static",
+    "lint:html": "echo 'HTML linting not configured'",
+    "lint:css": "echo 'CSS linting not configured'",
+    "lint:js": "echo 'JavaScript linting not configured'",
+    "test": "echo 'No automated tests configured'",
+    "validate": "npm run docs:validate"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peviitor-ro/Scrapers-UI.git"
+  },
+  "keywords": [
+    "scraper",
+    "jobs",
+    "web-scraping",
+    "peviitor",
+    "romania"
+  ],
+  "author": "PeViitor Team",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/peviitor-ro/Scrapers-UI/issues"
+  },
+  "homepage": "https://github.com/peviitor-ro/Scrapers-UI#readme",
+  "devDependencies": {
+    "@storybook/html": "^7.6.7",
+    "@storybook/html-webpack5": "^7.6.7",
+    "storybook": "^7.6.7"
+  }
+}
